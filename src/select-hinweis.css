@@ -1,0 +1,612 @@
+/*
+ * Select-Hinweis
+ * Markiert Gutscheine, die nicht mit dem Select-Einkaufsgutschein kaufbar sind.
+ * Orange als Komplementärfarbe zum INCENT-Blau (#1C87B8): fällt auf, ohne fremd zu wirken.
+ * Größen in rem (Root-Font-Size der Seite = 10px).
+ */
+
+:root {
+  --sh-orange-50: #fff4e6;
+  --sh-orange-100: #ffe8cc;
+  --sh-orange-200: #ffd8a8;
+  --sh-orange-500: #f76707;
+  --sh-orange-600: #e8590c;
+  --sh-orange-700: #cf4a0e; /* weiße Schrift: 4.5:1 */
+  --sh-orange-800: #b23c0b;
+  --sh-orange-900: #7c2d12; /* auf orange-50: 8.6:1 */
+  --sh-gradient: linear-gradient(140deg, var(--sh-orange-500) 0%, var(--sh-orange-700) 100%);
+  --sh-gradient-text: linear-gradient(135deg, var(--sh-orange-700) 0%, var(--sh-orange-800) 100%);
+  --sh-ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+.sh-icon {
+  display: block;
+  flex: none;
+  width: 1em;
+  height: 1em;
+}
+
+.sh-nowrap {
+  white-space: nowrap;
+}
+
+.sh-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Badge (Icon auf dem Produktbild)                                     */
+/* ------------------------------------------------------------------ */
+
+.sh-badge {
+  position: absolute;
+  top: .8rem;
+  left: .8rem;
+  z-index: 3; /* über .stretched-link (1) und Favoriten-Button (2) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.8rem;
+  background: var(--sh-gradient);
+  box-shadow: 0 4px 12px -2px rgba(207, 74, 14, .55);
+  cursor: help;
+  transition: transform .2s var(--sh-ease), box-shadow .2s var(--sh-ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* dezenter Puls, der in Intervallen Aufmerksamkeit zieht */
+.sh-badge::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border: 2px solid var(--sh-orange-500);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sh-pulse 3.6s ease-out infinite;
+}
+
+.sh-badge:hover,
+.sh-badge:focus-visible,
+.sh-badge.is-active {
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px -2px rgba(207, 74, 14, .65);
+}
+
+.sh-badge:hover::before,
+.sh-badge.is-active::before {
+  animation: none;
+  opacity: 0;
+}
+
+.sh-badge:focus-visible {
+  outline: 3px solid rgba(28, 135, 184, .55);
+  outline-offset: 2px;
+}
+
+@keyframes sh-pulse {
+  0% { transform: scale(1); opacity: .75; }
+  40% { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Tooltip (eine Instanz am <body>, damit overflow:hidden nicht abschneidet) */
+/* ------------------------------------------------------------------ */
+
+.sh-tooltip {
+  --sh-arrow-x: 2.8rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  width: max-content;
+  max-width: min(32rem, calc(100vw - 2.4rem));
+  padding: 1.2rem 1.6rem 1.2rem 1.2rem;
+  border-radius: 1.2rem;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.3;
+  background: var(--sh-gradient-text);
+  box-shadow: 0 16px 36px -12px rgba(124, 45, 18, .55), 0 2px 6px rgba(0, 0, 0, .08);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px) scale(.97);
+  transform-origin: var(--sh-arrow-x) top;
+  transition: opacity .16s ease, transform .2s var(--sh-ease), visibility 0s linear .2s;
+}
+
+.sh-tooltip[data-placement="top"] {
+  transform: translateY(-6px) scale(.97);
+  transform-origin: var(--sh-arrow-x) bottom;
+}
+
+.sh-tooltip.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.sh-tooltip__icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  background: rgba(255, 255, 255, .18);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25);
+}
+
+.sh-tooltip__text {
+  margin: 0;
+}
+
+.sh-tooltip__text strong {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, .65);
+}
+
+.sh-tooltip__arrow {
+  position: absolute;
+  left: var(--sh-arrow-x);
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-left: -.7rem;
+  border-radius: .2rem;
+  transform: rotate(45deg);
+}
+
+.sh-tooltip[data-placement="bottom"] .sh-tooltip__arrow {
+  top: -.6rem;
+  background: var(--sh-orange-700);
+}
+
+.sh-tooltip[data-placement="top"] .sh-tooltip__arrow {
+  bottom: -.6rem;
+  background: var(--sh-orange-800);
+}
+
+/* ------------------------------------------------------------------ */
+/* Legende (Gutscheinwelt, im Filter-Container)                         */
+/* ------------------------------------------------------------------ */
+
+.sh-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  padding-right: 1.6rem;
+  border-right: 1px solid #e2e2e2;
+  color: var(--sh-orange-900);
+  font-size: 1.5rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sh-legend__icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.4rem;
+  background: var(--sh-gradient);
+}
+
+@media (max-width: 767.98px) {
+  .sh-legend {
+    padding-right: 0;
+    border-right: 0;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Hinweis direkt am Artikel (Warenkorb + Details prüfen)               */
+/* ------------------------------------------------------------------ */
+
+.sh-media-host {
+  position: relative;
+}
+
+.sh-note {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: .8rem;
+  max-width: min(40rem, 100%);
+  padding: .9rem 1.4rem .9rem 1.2rem;
+  border: 1px solid var(--sh-orange-200);
+  border-radius: .8rem;
+  color: var(--sh-orange-900);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.3;
+  background: var(--sh-orange-50);
+  box-shadow: inset 3px 0 0 var(--sh-orange-600);
+  transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.sh-note--below {
+  display: flex;
+  max-width: none;
+  margin-top: 1.2rem;
+}
+
+.sh-note .sh-icon {
+  margin-top: .05rem;
+  color: var(--sh-orange-600);
+  font-size: 1.8rem;
+}
+
+.sh-note strong {
+  font-weight: 700;
+}
+
+/* Artikel hervorheben, sobald der Kunde einen Gutscheincode eingibt */
+.cart-line-item .cart-line-item__image {
+  transition: box-shadow .3s var(--sh-ease);
+}
+
+.cart-line-item.sh-flagged .cart-line-item__image {
+  border-radius: .375rem;
+  box-shadow: 0 0 0 3px var(--sh-orange-500), 0 10px 24px -8px rgba(232, 89, 12, .55);
+}
+
+.cart-line-item.sh-flagged .sh-note {
+  border-color: var(--sh-orange-500);
+  background: var(--sh-orange-100);
+  box-shadow: inset 4px 0 0 var(--sh-orange-600), 0 6px 16px -10px rgba(178, 60, 11, .6);
+}
+
+.cart-line-item.sh-flash .sh-note {
+  animation: sh-flash 1s ease 2;
+}
+
+@keyframes sh-flash {
+  0%, 100% { background-color: var(--sh-orange-100); }
+  50% { background-color: var(--sh-orange-200); }
+}
+
+/* ------------------------------------------------------------------ */
+/* Zusammenfassung im Warenkorb (über dem Checkout-Button)              */
+/* ------------------------------------------------------------------ */
+
+.sh-summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--sh-orange-200);
+  border-radius: .8rem;
+  color: var(--sh-orange-900);
+  font-size: 1.5rem;
+  line-height: 1.35;
+  background: var(--sh-orange-50);
+  box-shadow: inset 3px 0 0 var(--sh-orange-600);
+}
+
+.sh-summary__icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.6rem;
+  background: var(--sh-gradient);
+}
+
+.sh-summary__body {
+  min-width: 0;
+}
+
+.sh-summary__body p {
+  margin: 0;
+}
+
+.sh-summary__body strong {
+  font-weight: 700;
+}
+
+.sh-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin: .8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sh-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .3rem 1rem .3rem .6rem;
+  border: 1px solid var(--sh-orange-200);
+  border-radius: 50rem;
+  color: var(--sh-orange-900);
+  font: inherit;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+
+.sh-chip .sh-icon {
+  color: var(--sh-orange-600);
+  font-size: 1.4rem;
+}
+
+.sh-chip:hover,
+.sh-chip:focus-visible {
+  border-color: var(--sh-orange-500);
+  background: var(--sh-orange-100);
+}
+
+.sh-chip:focus-visible {
+  outline: 3px solid rgba(28, 135, 184, .55);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Warnung am Gutscheincode-Feld (Details prüfen)                       */
+/* ------------------------------------------------------------------ */
+
+.sh-voucher {
+  border: 1px solid var(--sh-orange-200);
+  border-radius: .8rem;
+  background: var(--sh-orange-50);
+  transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+}
+
+.sh-voucher.is-open {
+  border-color: var(--sh-orange-500);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(247, 103, 7, .14), 0 12px 28px -16px rgba(178, 60, 11, .55);
+}
+
+.sh-voucher.is-nudged {
+  animation: sh-nudge .45s ease;
+}
+
+.sh-voucher__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: .9rem 1.2rem;
+  border: 0;
+  border-radius: .8rem;
+  color: var(--sh-orange-900);
+  font: inherit;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sh-voucher__head:focus-visible {
+  outline: 3px solid rgba(28, 135, 184, .55);
+  outline-offset: 2px;
+}
+
+.sh-voucher__badge {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  color: var(--sh-orange-600);
+  font-size: 1.6rem;
+  background: var(--sh-orange-100);
+  transition: color .25s ease, background .25s ease;
+}
+
+.sh-voucher.is-open .sh-voucher__badge {
+  color: #fff;
+  background: var(--sh-gradient);
+}
+
+.sh-voucher__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.sh-voucher__title strong {
+  font-weight: 700;
+}
+
+.sh-voucher__chevron {
+  flex: none;
+  color: var(--sh-orange-600);
+  font-size: 1.8rem;
+  transition: transform .25s var(--sh-ease);
+}
+
+.sh-voucher.is-open .sh-voucher__chevron {
+  transform: rotate(180deg);
+}
+
+.sh-voucher__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s var(--sh-ease);
+}
+
+.sh-voucher.is-open .sh-voucher__panel {
+  grid-template-rows: 1fr;
+}
+
+.sh-voucher__panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sh-voucher__content {
+  padding: 0 1.2rem 1.2rem;
+}
+
+.sh-voucher__list {
+  display: grid;
+  gap: .6rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.sh-voucher__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: .6rem 1rem .6rem .6rem;
+  border: 1px solid var(--sh-orange-200);
+  border-radius: .8rem;
+  color: #222;
+  font: inherit;
+  font-size: 1.5rem;
+  text-align: left;
+  background: var(--sh-orange-50);
+  cursor: pointer;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+
+.sh-voucher__item:hover,
+.sh-voucher__item:focus-visible {
+  border-color: var(--sh-orange-500);
+  background: var(--sh-orange-100);
+}
+
+.sh-voucher__item:focus-visible {
+  outline: 3px solid rgba(28, 135, 184, .55);
+  outline-offset: 2px;
+}
+
+.sh-voucher__thumb {
+  position: relative;
+  flex: none;
+  width: 4.4rem;
+  height: 4.4rem;
+  overflow: hidden;
+  border-radius: .6rem;
+  background: #fff;
+}
+
+.sh-voucher__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sh-voucher__thumb-mark {
+  position: absolute;
+  right: .2rem;
+  bottom: .2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1.5px solid #fff;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1rem;
+  background: var(--sh-gradient);
+}
+
+.sh-voucher__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sh-voucher__price {
+  flex: none;
+  color: var(--bs-brand_1, #1c87b8);
+  font-weight: 600;
+}
+
+.sh-voucher__text {
+  display: flex;
+  align-items: flex-start;
+  gap: .8rem;
+  margin: 0;
+  padding: 1rem 1.2rem;
+  border-radius: .8rem;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.3;
+  background: var(--sh-gradient-text);
+}
+
+.sh-voucher__text .sh-icon {
+  margin-top: .05rem;
+  font-size: 1.8rem;
+}
+
+.sh-voucher__text strong {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, .65);
+}
+
+@keyframes sh-nudge {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .sh-badge::before { display: none; }
+  .sh-badge,
+  .sh-tooltip,
+  .sh-voucher,
+  .sh-voucher__panel,
+  .sh-voucher__chevron,
+  .cart-line-item .cart-line-item__image { transition: none; }
+  .sh-voucher.is-nudged,
+  .cart-line-item.sh-flash .sh-note { animation: none; }
+}
