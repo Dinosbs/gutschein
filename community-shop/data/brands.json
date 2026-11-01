@@ -1,0 +1,330 @@
+[
+ {
+  "name": "7Mind",
+  "slug": "7mind"
+ },
+ {
+  "name": "AIRY",
+  "slug": "airy"
+ },
+ {
+  "name": "ALPINA",
+  "slug": "alpina"
+ },
+ {
+  "name": "asambeauty",
+  "slug": "asambeauty"
+ },
+ {
+  "name": "BABOR",
+  "slug": "babor"
+ },
+ {
+  "name": "BABYLISS",
+  "slug": "babyliss"
+ },
+ {
+  "name": "BetterHelp",
+  "slug": "betterhelp"
+ },
+ {
+  "name": "Biogena Sports",
+  "slug": "biogena-sports"
+ },
+ {
+  "name": "BIOTHERM",
+  "slug": "biotherm"
+ },
+ {
+  "name": "BIOTHERM HOMME",
+  "slug": "biotherm-homme"
+ },
+ {
+  "name": "BLACKROLL",
+  "slug": "blackroll"
+ },
+ {
+  "name": "BLOMUS",
+  "slug": "blomus"
+ },
+ {
+  "name": "Brandl Nutrition",
+  "slug": "brandl-nutrition"
+ },
+ {
+  "name": "BRAUN",
+  "slug": "braun"
+ },
+ {
+  "name": "CALVIN KLEIN",
+  "slug": "calvin-klein"
+ },
+ {
+  "name": "Cellavent",
+  "slug": "cellavent"
+ },
+ {
+  "name": "CERRUTI",
+  "slug": "cerruti"
+ },
+ {
+  "name": "CHLOÉ",
+  "slug": "chloe"
+ },
+ {
+  "name": "Clinique",
+  "slug": "clinique"
+ },
+ {
+  "name": "DAVIDOFF",
+  "slug": "davidoff"
+ },
+ {
+  "name": "Denttabs",
+  "slug": "denttabs"
+ },
+ {
+  "name": "DIOR",
+  "slug": "dior"
+ },
+ {
+  "name": "Doctor Mi",
+  "slug": "doctor-mi"
+ },
+ {
+  "name": "DOLCE & GABBANA",
+  "slug": "dolce-gabbana"
+ },
+ {
+  "name": "elaire",
+  "slug": "elaire"
+ },
+ {
+  "name": "Fairnatural",
+  "slug": "fairnatural"
+ },
+ {
+  "name": "FATBOY",
+  "slug": "fatboy"
+ },
+ {
+  "name": "fitnessRAUM.de",
+  "slug": "fitnessraum-de"
+ },
+ {
+  "name": "FormMed HealthCare",
+  "slug": "formmed-healthcare"
+ },
+ {
+  "name": "Frank Juice",
+  "slug": "frank-juice"
+ },
+ {
+  "name": "ghd - good hair day",
+  "slug": "ghd-good-hair-day"
+ },
+ {
+  "name": "GIORGIO ARMANI",
+  "slug": "giorgio-armani"
+ },
+ {
+  "name": "happybrush",
+  "slug": "happybrush"
+ },
+ {
+  "name": "HEAT IT",
+  "slug": "heat-it"
+ },
+ {
+  "name": "HERMES",
+  "slug": "hermes"
+ },
+ {
+  "name": "Hilo",
+  "slug": "hilo"
+ },
+ {
+  "name": "hiPURE",
+  "slug": "hipure"
+ },
+ {
+  "name": "HUGO BOSS",
+  "slug": "hugo-boss"
+ },
+ {
+  "name": "Impress",
+  "slug": "impress"
+ },
+ {
+  "name": "InnoNature",
+  "slug": "innonature"
+ },
+ {
+  "name": "JANZEN",
+  "slug": "janzen"
+ },
+ {
+  "name": "JIL SANDER",
+  "slug": "jil-sander"
+ },
+ {
+  "name": "JOOP!",
+  "slug": "joop"
+ },
+ {
+  "name": "Juniper",
+  "slug": "juniper"
+ },
+ {
+  "name": "Kale & Me",
+  "slug": "kale-me"
+ },
+ {
+  "name": "Kaufland DE",
+  "slug": "kaufland-de"
+ },
+ {
+  "name": "KLIER",
+  "slug": "klier"
+ },
+ {
+  "name": "LANCÔME",
+  "slug": "lancome"
+ },
+ {
+  "name": "Lavera",
+  "slug": "lavera"
+ },
+ {
+  "name": "Layzin Skin",
+  "slug": "layzin-skin"
+ },
+ {
+  "name": "Liebscher & Bracht",
+  "slug": "liebscher-bracht"
+ },
+ {
+  "name": "Liebscher & Bracht App",
+  "slug": "liebscher-bracht-app"
+ },
+ {
+  "name": "Loop Earplugs",
+  "slug": "loop-earplugs"
+ },
+ {
+  "name": "MEDISANA",
+  "slug": "medisana"
+ },
+ {
+  "name": "misterspex DE",
+  "slug": "misterspex-de"
+ },
+ {
+  "name": "Müller DE",
+  "slug": "mueller-de"
+ },
+ {
+  "name": "NARS",
+  "slug": "nars"
+ },
+ {
+  "name": "NUXE",
+  "slug": "nuxe"
+ },
+ {
+  "name": "ORAL-B",
+  "slug": "oral-b"
+ },
+ {
+  "name": "Orthomol Shop",
+  "slug": "orthomol-shop"
+ },
+ {
+  "name": "Orthomol Sport",
+  "slug": "orthomol-sport"
+ },
+ {
+  "name": "PACO RABANNE",
+  "slug": "paco-rabanne"
+ },
+ {
+  "name": "PHILIPS",
+  "slug": "philips"
+ },
+ {
+  "name": "Procter & Gamble Vorteils-Shop",
+  "slug": "procter-gamble-vorteils-shop"
+ },
+ {
+  "name": "RITUALS",
+  "slug": "rituals"
+ },
+ {
+  "name": "RIVERDALE",
+  "slug": "riverdale"
+ },
+ {
+  "name": "ROWENTA",
+  "slug": "rowenta"
+ },
+ {
+  "name": "SedVital",
+  "slug": "sedvital"
+ },
+ {
+  "name": "SharkNinja",
+  "slug": "sharkninja"
+ },
+ {
+  "name": "SHISEIDO",
+  "slug": "shiseido"
+ },
+ {
+  "name": "Shop-Apotheke",
+  "slug": "shop-apotheke"
+ },
+ {
+  "name": "SILK'N",
+  "slug": "silkn"
+ },
+ {
+  "name": "The Female Company",
+  "slug": "the-female-company"
+ },
+ {
+  "name": "TOM FORD",
+  "slug": "tom-ford"
+ },
+ {
+  "name": "Tunturi",
+  "slug": "tunturi"
+ },
+ {
+  "name": "VOSSEN",
+  "slug": "vossen"
+ },
+ {
+  "name": "WALRA",
+  "slug": "walra"
+ },
+ {
+  "name": "Wellcard",
+  "slug": "wellcard"
+ },
+ {
+  "name": "YAZIO",
+  "slug": "yazio"
+ },
+ {
+  "name": "Yves Rocher",
+  "slug": "yves-rocher"
+ },
+ {
+  "name": "YVES SAINT LAURENT",
+  "slug": "yves-saint-laurent"
+ },
+ {
+  "name": "Zenspotting",
+  "slug": "zenspotting"
+ }
+]
