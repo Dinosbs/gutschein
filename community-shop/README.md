@@ -1,47 +1,55 @@
-# Community Shop – Pitch Health & Beauty
+# Community-Shop – Pitch Health & Beauty
 
-One-Pager im Präsentationsstil für den Pitch des INCENT Community Shops an Creator aus dem Bereich Health & Beauty. Alle Produkte, Preise, Deals und Logos stammen aus einer Speicherung der Kategorie „Health & Beauty“ im INCENT-Shop vom 01.11.2026.
+Ein One-Pager im Präsentationsstil, mit dem wir Creatorinnen aus Health & Beauty den INCENT-Community-Shop vorstellen.
 
-**Ansehen:** `index.html` im Browser öffnen. Die Datei ist komplett eigenständig (Bilder und Schriften eingebettet, ca. 3,7 MB) und funktioniert offline. Man kann sie also auch einfach per Mail oder Link verschicken.
+- **Design:** wie der INCENT-Relaunch ([Dinosbs/incentde](https://github.com/Dinosbs/incentde)) mit Barlow Semi Condensed, blauem CI-Verlauf, hellen Flächen, Eyebrow-Pills und Buttons mit Leuchteffekt. Die Du-Ansprache und die Inhalte stimmen mit der Creator-Welt der Website überein.
+- **Shop-Mockups:** Sie sind dem echten Vorteilsportal (vorteile.net) nachgebaut, genauso wie die Live-Demo der Website. Es gibt eine Desktop- und eine Handy-Ansicht mit Kategorie-Pills, „Best of Health & Beauty“, Angebotskacheln und Produktkarten. Der Hintergrund ist das echte Bild der Kategorie Health & Beauty. So wird der Shop am Ende aussehen.
+- **Inhalte:** Produkte, Preise, Deals und Logos stammen aus einer Speicherung der Kategorie „Health & Beauty“ im INCENT-Shop vom 01.11.2026.
+
+**Ansehen:** `index.html` im Browser öffnen. Die Datei ist komplett eigenständig (Bilder und Schriften eingebettet, ca. 3,3 MB) und funktioniert offline.
 
 ## Folien
 
 | # | Folie | Inhalt |
 | --- | --- | --- |
-| – | Start | „Dein eigener Beauty-Shop.“ Handy-Mockup des Creator-Shops mit Live-Benachrichtigungen („Neue Bestellung · +10,60 €“) und Zähler „Heute verdient“. |
-| 01 | Die Idee | Vorteilspreise, die sonst nur Mitarbeitende bekommen, jetzt für die Community. Drei Schritte und ein Rechenbeispiel: regulärer Preis → Shop-Preis → Ersparnis der Community → Verdienst. |
-| 02 | Dein Look | Live-Gestalter: Shop-Name, Farbwelt, Schrift und Bildwelt ändern die Shop-Vorschau sofort, inklusive Adresse `deinname.vorteile.net`. |
-| 03 | Verdienst | Sechs echte Produkte mit Ersparnis und Verdienst pro Verkauf. Der Provisionsregler (5–20 %) rechnet alle Beträge auf der Seite live um. |
-| 04 | Rechner | Reichweite, Kaufquote, Ø Warenkorb, Provision → Verdienst pro Monat und Jahr. Dazu Profile Micro, Mid und Macro. |
-| 05 | Marken | Laufband mit Luxusmarken, Produktzahl je Kategorie und eine Logowand mit 82 Marken. |
-| 06 | Edits | Sortimentsbeispiele in fünf Tabs (Scents, Skin, Beauty Tech, Hair, Gifting), jeweils mit „+ X € für dich“. |
-| 07 | Partner-Deals | Zwölf Beauty-Deals mit Bildern (Shiseido, NARS, ghd, Rituals …). |
-| 08 | Reichweite | Story-Mockup und die Vorteile: Content-Anlässe, Bindung, Mehrwert statt Werbung, Sichtbarkeit für Marken, Saisonalität. |
-| 09 | Service | Aufgabenteilung Du / INCENT, Zahlungsarten und ein Beispiel-Dashboard. Das Dashboard übernimmt die Werte aus dem Rechner. |
-| 10 | Los geht’s | Drei Schritte zum Launch und ein Call-to-Action. |
+| – | Start | „Dein eigener Beauty-Shop“ mit großem vorteile.net-Portal in 3D. Es neigt sich zum Cursor und richtet sich beim Scrollen auf. Dazu laufende Bestellungen („Neue Bestellung · +10,60 €“), der Zähler „heute für Dich“ und Kennzahlen. |
+| 01 | Die Idee | Vorteilspreise, die sonst nur Mitarbeitende bekommen. Drei Schritte und ein Rechenbeispiel an einer echten Produktkarte. |
+| 02 | Dein Design | Live-Demo: Logo hochladen, Namen eintippen, Button- und Navigationsfarbe sowie Hintergrund wählen. Alle Portal-Mockups der Seite (Desktop, Handy, Story) übernehmen das sofort, die Adresse wird zu `name.vorteile.net`. |
+| 03 | Verdienst | Sechs echte Produktkarten mit Ersparnis und Verdienst pro Verkauf. Der Regler „Deine Beteiligung“ rechnet alle Beträge auf der Seite um. |
+| 04 | Rechner | Reichweite, Kaufquote, Ø Warenkorb und Beteiligung ergeben den Verdienst pro Monat und Jahr. Dazu die Profile Micro, Mid und Macro. |
+| 05 | Marken | Luxusmarken als Logo-Kacheln, Produktzahlen je Kategorie und ein Laufband mit allen weiteren Marken. |
+| 06 | Edits | Fünf Sortimente mit vorteile.net-Produktkarten, jeweils mit „+ X € für Dich“. |
+| 07 | Partner-Deals | Zwölf Angebotskacheln im vorteile.net-Look (Shiseido, NARS, ghd, Rituals …). |
+| 08 | Reichweite | Story → Link → Shop auf dem Handy, dazu vier Vorteile. |
+| 09 | Service | „Du machst Content. Wir den Rest.“ mit Aufgabenteilung und einer Beispiel-Auswertung, die die Werte aus dem Rechner übernimmt. |
+| 10 | Ablauf | „Innerhalb einer Woche zur eigenen Plattform“ in vier Schritten, danach „Shop anfragen“. |
 
-**Präsentieren:** Mit den Pfeiltasten ↑ ↓ oder Bild↑/Bild↓ (also auch mit einem Presenter) springt man von Folie zu Folie. Bei langen Folien wird erst innerhalb der Folie weitergeblättert. Rechts zeigen Punkte, auf welcher Folie man gerade ist.
+**Präsentieren:** Mit den Pfeiltasten ↑ ↓ oder Bild↑/Bild↓ (also auch mit einem Presenter) springt man von Folie zu Folie. Bei langen Folien wird erst innerhalb der Folie weitergeblättert.
 
 ## Für eine bestimmte Creatorin personalisieren
 
-Die Seite bleibt allgemein. Über URL-Parameter lässt sie sich aber für einen Pitch vorbelegen, ohne neu zu bauen:
+Die Seite bleibt allgemein. Über die Adresse lässt sie sich aber vorbelegen, ohne neu zu bauen:
 
 ```
-index.html?name=Lena&farbe=salbei&provision=12&reichweite=250000
+index.html?name=Lena&farbe=rose&nav=schwarz&hintergrund=verlauf&provision=12
 ```
 
 | Parameter | Wirkung |
 | --- | --- |
-| `name` | Shop-Name in allen Mockups, Adresse `lena.vorteile.net`, „Lenas Beauty Edit“, Story-Handle |
-| `farbe` | `rose`, `nude`, `salbei`, `lavendel` oder `noir` |
-| `provision` | Startwert des Provisionsreglers in Prozent (5–20) |
+| `name` | Schriftzug im Portal-Header, Shop-Name, Adresse `lena.vorteile.net`, Story-Handle, „Exklusiv für Lena“ im Hero, Seitentitel |
+| `farbe` | Buttonfarbe des Portals: `blau`, `rose`, `beere`, `nude`, `salbei`, `lavendel`, `schwarz` oder ein Hex-Wert (`c0746a`) |
+| `nav` | Farbe der Navigationsleiste, gleiche Werte wie `farbe` (z. B. `schwarz` oder `ffffff`) |
+| `hintergrund` | `bild` (Standard, Health-&-Beauty-Motiv), `einfarbig` oder `verlauf` |
+| `provision` | Startwert der Beteiligung in Prozent (5–20) |
 | `reichweite` | Startwert der Reichweite im Rechner |
+
+Ein eigenes Logo lässt sich im Gestalter hochladen. Es bleibt im Browser und wird nicht gespeichert.
 
 ## Anpassen
 
-- **Provision beim Öffnen, Kontaktadresse, Preisstand:** oben in `build.py` (`DEFAULT_RATE`, `CONTACT_MAIL`, `SNAPSHOT_DATE`). Ist `CONTACT_MAIL` leer, öffnet „Lass uns sprechen“ eine Mail ohne Empfänger.
+- **Beteiligung beim Öffnen, Kontaktadresse, Preisstand, Farben im Gestalter:** oben in `build.py` (`DEFAULT_RATE`, `CONTACT_MAIL`, `SNAPSHOT_DATE`, `BTN_COLORS`, `NAV_COLORS`). Ist `CONTACT_MAIL` leer, öffnet „Shop anfragen“ eine Mail ohne Empfänger.
 - **Welche Produkte und Deals gezeigt werden:** `data/selection.json` (Marke + exakter Titel aus `data/catalog.json`).
-- **Texte und Aufbau:** `src/template.html`. Design: `src/style.css`. Interaktion: `src/app.js`.
+- **Texte und Aufbau:** `src/template.html`. Design: `src/style.css`. Interaktion: `src/app.js`. Icons: `src/icons.svg`.
 
 Nach jeder Änderung neu bauen:
 
@@ -59,7 +67,7 @@ python3 tools/extract.py "/pfad/zu/Health & Beauty - incent.html"
 python3 build.py
 ```
 
-`extract.py` schreibt `data/catalog.json` (alle Produkte), `data/deals.json`, `data/brands.json` und die Bilder nach `assets/`. Produktbilder werden nur für Produkte aus `data/selection.json` exportiert.
+`extract.py` schreibt `data/catalog.json` (alle Produkte), `data/deals.json` und `data/brands.json`. Die Bilder legt es unter `assets/` ab, also Produkte, Deals, Logos, Zahlungsarten und den Kategorie-Hintergrund. Produktbilder werden nur für Produkte aus `data/selection.json` exportiert.
 
 ## Aufbau
 
@@ -67,13 +75,16 @@ python3 build.py
 index.html            fertige Seite (generiert, alles eingebettet)
 build.py              baut index.html aus src/ + data/ + assets/
 tools/extract.py      liest eine SingleFile-Speicherung des Shops aus
-src/                  template.html, style.css, app.js
+src/                  template.html, style.css, app.js, icons.svg
 data/                 catalog.json, deals.json, brands.json, selection.json
-assets/               products/, deals/, logos/, ui/, fonts/ (Cormorant Garamond + Inter, OFL)
+assets/products/      Produktbilder        assets/deals/   Bilder der Partner-Deals
+assets/logos/         Marken-Logos         assets/ui/      INCENT-Logos, Favicon, Zahlungsarten, Kategorie-Hintergrund
+assets/fonts/         Barlow Semi Condensed (SIL OFL, aus dem incent.de-Relaunch)
+screenshots/          Vorschaubilder
 ```
 
 ## Hinweise zu den Zahlen
 
 - Preise, Vergleichspreise („Regulär“) und Rabatte sind eine Momentaufnahme vom 01.11.2026.
-- „80+ Marken“, „250+ Produkte“, „bis 71 %“, „46 Partner-Deals“ und „Ø 27 %“ sind direkt aus den Shop-Daten berechnet.
-- Provision (Standard 10 %), Kaufquote und Warenkorb sind **Beispielwerte**. Die Seite kennzeichnet sie als Beispielrechnung. Die echten Konditionen vor dem Pitch prüfen und gegebenenfalls `DEFAULT_RATE` anpassen.
+- „80+ Marken“, „250+ Produkte“, „bis 71 %“, „46 Partner-Deals“ und „Ø 27 %“ sind direkt aus den Shop-Daten berechnet. „Über 4.400 Unternehmen“ stammt von der incent.de-Website.
+- Die Beteiligung (Standard 10 %), die Kaufquote und der Warenkorb sind **Beispielwerte**. Die Seite kennzeichnet sie als Beispielrechnung. Vor dem Pitch die echten Konditionen prüfen und gegebenenfalls `DEFAULT_RATE` anpassen.

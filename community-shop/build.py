@@ -3,9 +3,11 @@
 
     python3 build.py
 
-src/template.html + src/style.css + src/app.js + data/*.json + assets/*
+src/template.html + src/style.css + src/app.js + src/icons.svg + data/*.json + assets/*
     ->  index.html   (alle Bilder und Schriften eingebettet)
 
+Design: INCENT-Relaunch (github.com/Dinosbs/incentde) – Barlow Semi Condensed, blauer CI-Verlauf.
+Die Shop-Mockups sind dem echten Vorteilsportal (vorteile.net) nachgebaut, wie in der Live-Demo der Website.
 Nur Standardbibliothek, keine Abhängigkeiten.
 """
 from __future__ import annotations
@@ -20,17 +22,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 SRC, DATA, ASSETS = ROOT / "src", ROOT / "data", ROOT / "assets"
 
-DEFAULT_RATE = 0.10          # Provision, die beim ersten Öffnen eingestellt ist (Regler 5–20 %)
+DEFAULT_RATE = 0.10          # Beteiligung beim ersten Öffnen (Regler 5–20 %) – Beispielwert, vor dem Pitch prüfen
 SNAPSHOT_DATE = "01.11.2026"  # Stand der Preise aus der Shop-Speicherung
-CONTACT_MAIL = ""             # Empfänger für „Lass uns sprechen“ (leer = Mail ohne Empfänger)
+CONTACT_MAIL = ""             # Empfänger für „Shop anfragen“ (leer = Mail ohne Empfänger)
 
-THEMES = {
-    "rose":  {"label": "Rosé",     "accent": "#B4705F", "soft": "#F6E6E0", "bg": "#FFFBF9", "ink": "#2A1F1D"},
-    "nude":  {"label": "Nude",     "accent": "#97765C", "soft": "#F0E7DD", "bg": "#FDFAF6", "ink": "#2B241F"},
-    "sage":  {"label": "Salbei",   "accent": "#5F7D68", "soft": "#E5EDE7", "bg": "#FAFCFA", "ink": "#1F2621"},
-    "lilac": {"label": "Lavendel", "accent": "#7D6AA6", "soft": "#ECE8F5", "bg": "#FCFBFE", "ink": "#211D2B"},
-    "noir":  {"label": "Noir",     "accent": "#1E1A1A", "soft": "#ECE9E6", "bg": "#FFFFFF", "ink": "#141212"},
-}
+# Farben im Gestalter (Buttonfarbe = Akzentfarbe des Portals, wie --btn auf vorteile.net)
+BTN_COLORS = [
+    ("#1c87b8", "Portal-Blau"), ("#c0746a", "Rosé"), ("#a3245a", "Beere"), ("#a7856b", "Nude"),
+    ("#5f8a72", "Salbei"), ("#7e6aa8", "Lavendel"), ("#222222", "Schwarz"),
+]
+NAV_COLORS = [
+    ("#ffffff", "Weiß"), ("#f8eeea", "Puder"), ("#f4efe8", "Creme"), ("#1d1b1e", "Schwarz"),
+]
 
 DEAL_LOGOS = {
     "Shiseido": "shiseido", "NARS": "nars", "ghd - good hair day": "ghd-good-hair-day",
@@ -38,6 +41,8 @@ DEAL_LOGOS = {
     "Yves Rocher": "yves-rocher", "LAYZIN": "layzin-skin", "lavera": "lavera", "KLIER": "klier",
     "Philips": "philips",
 }
+LUX = ["dior", "lancome", "chloe", "tom-ford", "yves-saint-laurent", "giorgio-armani", "hermes", "shiseido",
+       "nars", "clinique", "rituals", "ghd-good-hair-day"]
 
 CATEGORIES = [  # Reihenfolge = Priorität beim Zuordnen
     ("Düfte", r"^(EdP|EdT|Eau de|Deo|Deodorant|Luxe Body Mist|Boss Bottled)"),
@@ -48,9 +53,9 @@ CATEGORIES = [  # Reihenfolge = Priorität beim Zuordnen
     ("Health & Grooming", r"(zahnbürste|Bürstenköpfe|Munddusche|Blutdruck|Thermometer|Waage|Insekten|Kartuschen|Zahnputzbecher|Seifenspender|Rasierer|Haarschneider|Trimmer|Scherkopf|Schleifscheiben)"),
 ]
 
-SECTIONS = [("start", "Start"), ("idee", "Die Idee"), ("look", "Dein Look"), ("marge", "Verdienst"),
+SECTIONS = [("start", "Start"), ("idee", "Die Idee"), ("design", "Dein Design"), ("verdienst", "Verdienst"),
             ("rechner", "Rechner"), ("marken", "Marken"), ("edits", "Edits"), ("deals", "Partner-Deals"),
-            ("reichweite", "Reichweite"), ("service", "Rundum-Service"), ("los", "Los geht’s")]
+            ("reichweite", "Reichweite"), ("service", "Service"), ("ablauf", "Ablauf")]
 
 
 # --------------------------------------------------------------- helpers
@@ -62,14 +67,9 @@ def norm(text: str) -> str:
     return re.sub(r"\s+", " ", unicodedata.normalize("NFC", text).replace("\xa0", " ")).strip()
 
 
-_uri_cache: dict[Path, str] = {}
-
-
 def data_uri(path: Path) -> str:
-    if path not in _uri_cache:
-        mime = {".jpg": "image/jpeg", ".png": "image/png", ".woff2": "font/woff2"}[path.suffix]
-        _uri_cache[path] = f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode()
-    return _uri_cache[path]
+    mime = {".jpg": "image/jpeg", ".png": "image/png", ".woff2": "font/woff2"}[path.suffix]
+    return f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode()
 
 
 def eur(value: float) -> str:
@@ -78,16 +78,15 @@ def eur(value: float) -> str:
 
 
 def nice_title(title: str) -> str:
-    """„Deutsche“ Anführungszeichen statt "gerader"."""
     return re.sub(r'"([^"]*)"', "„\\1“", title)
 
 
-def nice_brand(brand: str) -> str:
-    return {"HERMES": "HERMÈS", "Clinique": "CLINIQUE"}.get(brand, brand)
+def earn(price: float, extra: str = "") -> str:
+    return f'<span data-earn="{price:.2f}"{extra}>{eur(price * DEFAULT_RATE)}</span>'
 
 
-def earn(price: float) -> str:
-    return f'<span data-earn="{price:.2f}">{eur(price * DEFAULT_RATE)}</span>'
+def icon(name: str, cls: str = "i") -> str:
+    return f'<svg class="{cls}" aria-hidden="true"><use href="#i-{name}"/></svg>'
 
 
 # --------------------------------------------------------------- data
@@ -96,16 +95,124 @@ deals = {d["title"]: d for d in json.loads((DATA / "deals.json").read_text(encod
 brands = json.loads((DATA / "brands.json").read_text(encoding="utf-8"))
 sel = json.loads((DATA / "selection.json").read_text(encoding="utf-8"))
 by_key = {(norm(p["brand"]), norm(p["title"])): p for p in catalog}
+brand_names = {b["slug"]: b["name"] for b in brands}
+
+used_products: set[str] = set()
+used_deals: set[str] = set()
+used_logos: set[str] = set()
 
 
 def product(pair) -> dict:
     p = by_key[(norm(pair[0]), norm(pair[1]))]
-    return {**p, "img": data_uri(ASSETS / "products" / f"{p['slug']}.jpg"),
-            "alt": f"{nice_brand(p['brand'])} {p['title']}"}
+    used_products.add(p["slug"])
+    return p
+
+
+def find(brand: str, which: str = "hero", index: int = 0) -> dict:
+    items = [x for x in sel[which] if x[0] == brand]
+    return product(items[index])
+
+
+def deal(title: str) -> dict:
+    d = deals[title]
+    used_deals.add(d["slug"])
+    return d
+
+
+def logo(slug: str, label: str = "") -> str:
+    used_logos.add(slug)
+    aria = f' role="img" aria-label="{esc(label)}"' if label else ""
+    return f'<span class="logo lg-{slug}"{aria}></span>'
 
 
 discounts = [(p["uvp"] - p["price"]) / p["uvp"] for p in catalog if p["uvp"]]
 AVG_DISCOUNT = sum(discounts) / len(discounts)
+
+
+# --------------------------------------------------------------- vorteile.net bausteine
+def vp_logo() -> str:
+    """Logo-Platz im Portal-Header: INCENT (Standard), Schriftzug mit Deinem Namen oder eigenes Logo."""
+    return ('<span class="vp__logo"><span class="vp__logo-incent" role="img" aria-label="INCENT"></span>'
+            '<span class="vp__logo-name" data-bind="name">Dein Name</span>'
+            '<img class="vp__logo-custom" data-logo-img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></span>')
+
+
+def vp_product(p: dict, extra_cls: str = "") -> str:
+    """Produktkarte wie im Vorteils-Shop (Bild, Marke, Titel, Warenkorb, Preis, Rabatt, Streichpreis)."""
+    off = f"<em>-{p['discount']}%</em>" if p["discount"] else ""
+    old = f"<s>{eur(p['uvp'])}</s>" if p["uvp"] else "<s>&nbsp;</s>"
+    return (f'<span class="vp-product {extra_cls}" data-product data-brand="{esc(p["brand"])}" '
+            f'data-title="{esc(nice_title(p["title"]))}" data-price="{p["price"]:.2f}" data-img="pi-{p["slug"]}">'
+            f'{icon("heart", "i vp-product__fav")}'
+            f'<span class="pimg pi-{p["slug"]}" role="img" aria-label="{esc(p["brand"] + " " + p["title"])}"></span>'
+            f'<span class="vp-product__meta"><b>{esc(p["brand"])}</b><span>{esc(nice_title(p["title"]))}</span></span>'
+            f'<span class="vp-product__cart">{icon("bag")}</span>'
+            f'<span class="vp-product__price"><strong>{eur(p["price"])}</strong>{off}</span>{old}</span>')
+
+
+def vp_deal(title: str, text: str | None = None) -> str:
+    """Angebotskachel wie „Best of Health & Beauty“ auf vorteile.net."""
+    d = deal(title)
+    disc = d["discount"] or ""
+    m = re.match(r"(bis zu|über)?\s*(.*)", disc)
+    pre = ""
+    if m.group(1) == "bis zu":
+        pre = "<small>bis<br>zu</small>"
+    elif m.group(1):
+        pre = f"<small>{esc(m.group(1))}</small>"
+    val = esc(m.group(2).replace(" ", ""))
+    slug = DEAL_LOGOS.get(title)
+    logo_html = logo(slug, title) if slug else f'<b class="vp-deal__logo-text">{esc(title)}</b>'
+    return (f'<span class="vp-deal"><span class="dimg di-{d["slug"]}"></span>'
+            f'<span class="vp-deal__logo">{logo_html}</span>'
+            f'<span class="vp-deal__badge">{pre}{val}</span>'
+            f'<span class="vp-deal__info"><b>{esc(title)}</b><span>{esc(text or d["text"] or "")}</span></span></span>')
+
+
+VP_CATS = ('<i>Highlights</i><i>NEU</i><i class="is-on">Health &amp; Beauty</i><i>Düfte</i><i>Skincare</i>'
+           '<i>Beauty-Tech</i><i>Haare</i><i>Wellness</i><i class="is-on">Alle Kategorien +</i>')
+
+
+def vp_portal(variant: str) -> str:
+    """Desktop-Ansicht des Community-Shops auf vorteile.net."""
+    deal_titles = ["Shiseido", "NARS"]
+    products = [find("LANCÔME"), find("DIOR"), find("SILK'N"), find("RITUALS")]
+    return f"""<div class="vp-frame vp-frame--{variant}">
+  <div class="vp" aria-hidden="true">
+    <div class="vp__bar"><span class="vp__dots"><i></i><i></i><i></i></span><span class="vp__url">{icon("lock")}<span><span data-bind="slug">deinname</span>.vorteile.net/de/dashboard</span></span><span class="vp__bar-end"></span></div>
+    <div class="vp__header">
+      <div class="vp__top">{vp_logo()}<span class="vp__search">Suchen{icon("search")}</span><span class="vp__account"><b>Community-Shop</b><small data-bind="name">Dein Name</small></span></div>
+      <div class="vp__nav"><span class="vp__cats">{VP_CATS}</span><span class="vp__icons">{icon("heart")}{icon("user")}<span class="vp__cart">{icon("bag")}<b>1</b></span></span></div>
+    </div>
+    <div class="vp__stage">
+      <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span>
+      <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
+      <div class="vp__grid">{"".join(vp_deal(t) for t in deal_titles)}</div>
+      <div class="vp__head vp__head--shop"><strong>Besonders beliebt im Vorteils-Shop</strong><em>Im Trend</em></div>
+      <div class="vp__products">{"".join(vp_product(p) for p in products)}</div>
+    </div>
+  </div>
+</div>"""
+
+
+def vpm_phone() -> str:
+    """Handy-Ansicht desselben Shops."""
+    products = [find("LANCÔME"), find("SILK'N")]
+    return f"""<div class="phone" aria-hidden="true">
+  <div class="phone__screen">
+    <div class="vpm">
+      <div class="vpm__status"><span>9:41</span><span class="vpm__island"></span><span class="vpm__sig"><i></i><i></i><i></i></span></div>
+      <div class="vpm__header">{vp_logo()}<span class="vpm__icons">{icon("search")}{icon("heart")}<span class="vp__cart">{icon("bag")}<b>1</b></span></span></div>
+      <div class="vpm__cats"><i class="is-on">Health &amp; Beauty</i><i>Düfte</i><i>Skincare</i><i>Beauty-Tech</i></div>
+      <div class="vpm__stage">
+        <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span>
+        <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
+        {vp_deal("Shiseido")}
+        <div class="vpm__products">{"".join(vp_product(p) for p in products)}</div>
+      </div>
+    </div>
+  </div>
+</div>"""
 
 
 # --------------------------------------------------------------- fragments
@@ -113,100 +220,40 @@ def frag_dots() -> str:
     return "\n".join(f'<a href="#{i}" data-dot="{i}"><span>{esc(t)}</span></a>' for i, t in SECTIONS)
 
 
-def frag_hero_floaters() -> str:
-    spots = ["f1", "f2", "f3"]
-    picks = [product(x) for x in sel["hero"] if x[0] in ("LANCÔME", "DIOR", "SILK'N")][:3]
-    return "\n".join(
-        f'<figure class="floater floater--{s}"><img src="{p["img"]}" alt="{esc(p["alt"])}">'
-        f'<figcaption><b>−{p["discount"]}&nbsp;%</b></figcaption></figure>'
-        for s, p in zip(spots, picks))
-
-
-def mini_card(p: dict, cls: str) -> str:
-    return (f'<div class="{cls}"><div class="{cls}-img"><img src="{p["img"]}" alt="{esc(p["alt"])}">'
-            f'<span class="{cls}-off">−{p["discount"]}&nbsp;%</span></div>'
-            f'<span class="{cls}-brand">{esc(nice_brand(p["brand"]))}</span>'
-            f'<span class="{cls}-price"><b>{eur(p["price"])}</b> <s>{eur(p["uvp"])}</s></span></div>')
-
-
-def frag_phone_products() -> str:
-    keys = [("LANCÔME",), ("DIOR",), ("SILK'N",), ("RITUALS",)]
-    picks = [product(next(x for x in sel["hero"] if x[0] == k[0])) for k in keys]
-    return "\n".join(mini_card(p, "pm") for p in picks)
-
-
-def frag_browser_products() -> str:
-    names = ["SHISEIDO", "CHLOÉ", "SILK'N", "RITUALS"]
-    picks = [product(next(x for x in sel["hero"] if x[0] == n)) for n in names]
-    notes = {0: "Mein Holy Grail"}
-    out = []
-    for i, p in enumerate(picks):
-        note = f'<span class="bm-note">{notes[i]}</span>' if i in notes else ""
-        out.append(mini_card(p, "bm").replace('<span class="bm-off">', note + '<span class="bm-off">', 1))
-    return "\n".join(out)
-
-
 def frag_winwin() -> str:
     p = product(sel["margin"][0])
     save = p["uvp"] - p["price"]
     return f"""
-      <div class="winwin__product"><img src="{p['img']}" alt="{esc(p['alt'])}"><div><span>{esc(nice_brand(p['brand']))}</span><strong>{esc(nice_title(p['title']))}</strong></div></div>
-      <div class="winwin__flow">
-        <div class="ww"><span class="ww__label">Regulär</span><s class="ww__value">{eur(p['uvp'])}</s></div>
-        <div class="ww"><span class="ww__label">In deinem Shop</span><span class="ww__value">{eur(p['price'])}</span></div>
-        <div class="ww ww--community"><span class="ww__label">Deine Community spart</span><span class="ww__value">{eur(save)}</span></div>
-        <div class="ww ww--you"><span class="ww__label">Du verdienst <output data-out="rate">{DEFAULT_RATE*100:.0f}&nbsp;%</output></span><span class="ww__value">{earn(p['price'])}</span></div>
+      <div class="winwin__card vreal">{vp_product(p)}</div>
+      <div class="winwin__copy">
+        <p class="winwin__kicker">Ein Verkauf, zwei Gewinner</p>
+        <div class="winwin__flow">
+          <div class="ww"><span class="ww__label">Regulär</span><s class="ww__value">{eur(p['uvp'])}</s></div>
+          <div class="ww"><span class="ww__label">In Deinem Shop</span><span class="ww__value">{eur(p['price'])}</span></div>
+          <div class="ww ww--community"><span class="ww__label">Deine Community spart</span><span class="ww__value">{eur(save)}</span></div>
+          <div class="ww ww--you"><span class="ww__label">Du verdienst (<output data-out="rate">{DEFAULT_RATE*100:.0f}&nbsp;%</output>)</span><span class="ww__value">{earn(p['price'])}</span></div>
+        </div>
       </div>"""
 
 
-def frag_swatches() -> str:
-    out = []
-    for i, (key, t) in enumerate(THEMES.items()):
-        checked = " checked" if i == 0 else ""
-        out.append(f'<label class="swatch" style="--sw:{t["accent"]};--sw2:{t["soft"]}">'
-                   f'<input type="radio" name="theme" value="{key}"{checked}><span aria-hidden="true"></span>'
-                   f'<em>{esc(t["label"])}</em></label>')
-    return "\n".join(out)
-
-
-def frag_motifs() -> str:
-    out = []
-    for i, title in enumerate(sel["customizer_motifs"]):
-        slug = deals[title]["slug"]
-        checked = " checked" if i == 0 else ""
-        out.append(f'<label class="motif"><input type="radio" name="motif" value="{slug}"{checked}>'
-                   f'<span class="motif__img" style="background-image:var(--motif-{slug})"></span>'
-                   f'<em class="sr">{esc(title)}</em></label>')
-    return "\n".join(out)
-
-
-def product_card(p: dict, extra_cls: str = "") -> str:
-    uvp = f"<s>{eur(p['uvp'])}</s>" if p["uvp"] else ""
-    off = f'<span class="pcard__off">−{p["discount"]}&nbsp;%</span>' if p["discount"] else ""
-    return f"""<article class="pcard {extra_cls}" data-product data-brand="{esc(nice_brand(p['brand']))}" data-title="{esc(nice_title(p['title']))}" data-price="{p['price']:.2f}">
-  <div class="pcard__img"><img src="{p['img']}" alt="{esc(p['alt'])}">{off}</div>
-  <div class="pcard__body">
-    <p class="pcard__brand">{esc(nice_brand(p['brand']))}</p>
-    <h4 class="pcard__title">{esc(nice_title(p['title']))}</h4>
-    <p class="pcard__price"><strong>{eur(p['price'])}</strong>{uvp}</p>
-    <p class="pcard__earn"><span class="plus">+</span>{earn(p['price'])} für dich</p>
-  </div>
-</article>"""
+def swatches(colors, kind: str) -> str:
+    return "\n".join(
+        f'<button type="button" class="swatch{" is-on" if i == 0 else ""}" style="--c:{c}" data-{kind}="{c}" '
+        f'role="radio" aria-checked="{"true" if i == 0 else "false"}" aria-label="{esc(label)}"></button>'
+        for i, (c, label) in enumerate(colors))
 
 
 def frag_margin_cards() -> str:
     out = []
-    for pair in sel["margin"]:
+    for i, pair in enumerate(sel["margin"]):
         p = product(pair)
         save = p["uvp"] - p["price"]
-        out.append(f"""<article class="mcard reveal">
-  <div class="mcard__img"><img src="{p['img']}" alt="{esc(p['alt'])}"><span class="pcard__off">−{p['discount']}&nbsp;%</span></div>
-  <div class="mcard__body">
-    <p class="pcard__brand">{esc(nice_brand(p['brand']))}</p>
-    <h3 class="mcard__title">{esc(nice_title(p['title']))}</h3>
+        out.append(f"""<article class="mcard" data-reveal style="--d:{(i % 3) * .08:.2f}s">
+  <div class="mcard__product vreal">{vp_product(p)}</div>
+  <div class="mcard__calc">
     <dl class="mcard__rows">
       <div><dt>Regulär</dt><dd><s>{eur(p['uvp'])}</s></dd></div>
-      <div><dt>In deinem Shop</dt><dd>{eur(p['price'])}</dd></div>
+      <div><dt>In Deinem Shop</dt><dd>{eur(p['price'])}</dd></div>
       <div class="is-save"><dt>Community spart</dt><dd>{eur(save)}</dd></div>
     </dl>
     <div class="mcard__earn"><span>Du verdienst</span><strong>{earn(p['price'])}</strong></div>
@@ -217,21 +264,13 @@ def frag_margin_cards() -> str:
 
 def frag_punch() -> str:
     p = product(sel["margin"][1])  # LED-Maske
-    return (f'Schon <strong>10 verkaufte</strong> {esc(nice_brand(p["brand"]))} LED-Masken bringen dir '
-            f'<strong class="hl" data-earn-x="10" data-earn="{p["price"]:.2f}">{eur(p["price"] * 10 * DEFAULT_RATE)}</strong>.')
+    return (f'Schon <strong>10 verkaufte</strong> LED-Masken von {esc(p["brand"])} bringen Dir '
+            f'<span class="grad-text" data-earn-x="10" data-earn="{p["price"]:.2f}">{eur(p["price"] * 10 * DEFAULT_RATE)}</span>.')
 
 
-def frag_names() -> str:
-    names = sel["luxury_names"]
-    half = len(names) // 2
-    rows = []
-    for r, chunk in enumerate([names[:half], names[half:]]):
-        items = "".join(f'<span class="{"i" if i % 2 else ""}">{esc(n)}</span><i aria-hidden="true">✦</i>'
-                        for i, n in enumerate(chunk))
-        rows.append(f'<div class="names__row{" names__row--rev" if r else ""}">'
-                    f'<div class="names__track">{items}</div>'
-                    f'<div class="names__track" aria-hidden="true">{items}</div></div>')
-    return "\n".join(rows)
+def frag_lux() -> str:
+    return "\n".join(f'<li data-reveal style="--d:{i * .04:.2f}s">{logo(slug, brand_names.get(slug, slug))}</li>'
+                     for i, slug in enumerate(LUX))
 
 
 def frag_categories() -> str:
@@ -241,25 +280,25 @@ def frag_categories() -> str:
             if re.search(rx, p["title"], re.I):
                 counts[name] += 1
                 break
-    return "\n".join(f'<li class="reveal"><strong data-count="{n}">{n}</strong><span>{esc(name)}</span></li>'
+    return "\n".join(f'<div><dt>{esc(name)}</dt><dd><span data-count="{n}">{n}</span></dd></div>'
                      for name, n in counts.items())
 
 
 def frag_logos() -> str:
-    rows = [brands[i::3] for i in range(3)]
+    rest = [b for b in brands if b["slug"] not in LUX]
+    rows = [rest[0::2], rest[1::2]]
     out = []
     for r, row in enumerate(rows):
-        tiles = "".join(f'<span class="logo lg-{b["slug"]}" role="img" aria-label="{esc(b["name"])}"></span>'
-                        for b in row)
-        dup = "".join(f'<span class="logo lg-{b["slug"]}"></span>' for b in row)
-        out.append(f'<div class="logos__row{" logos__row--rev" if r == 1 else ""}" style="--dur:{70 + r * 12}s">'
-                   f'<div class="logos__track">{tiles}</div><div class="logos__track" aria-hidden="true">{dup}</div></div>')
+        tiles = "".join(f"<li>{logo(b['slug'], b['name'])}</li>" for b in row)
+        dup = "".join(f"<li>{logo(b['slug'])}</li>" for b in row)
+        out.append(f'<div class="marquee{" marquee--rev" if r else ""}" style="--dur:{80 + r * 10}s">'
+                   f'<ul class="marquee__track">{tiles}</ul><ul class="marquee__track" aria-hidden="true">{dup}</ul></div>')
     return "\n".join(out)
 
 
 def frag_edit_tabs() -> str:
     return "\n".join(
-        f'<button type="button" role="tab" id="tab-{e["id"]}" aria-controls="edit-{e["id"]}" '
+        f'<button type="button" class="tab" role="tab" id="tab-{e["id"]}" aria-controls="edit-{e["id"]}" '
         f'aria-selected="{"true" if i == 0 else "false"}"{"" if i == 0 else " tabindex=\"-1\""}>{esc(e["name"])}'
         f'<span>{len(e["items"])}</span></button>'
         for i, e in enumerate(sel["edits"]))
@@ -268,91 +307,75 @@ def frag_edit_tabs() -> str:
 def frag_edit_panels() -> str:
     out = []
     for i, e in enumerate(sel["edits"]):
-        cards = "\n".join(product_card(product(x)) for x in e["items"])
+        cards = []
+        for x in e["items"]:
+            p = product(x)
+            cards.append(f'<div class="ecard vreal">{vp_product(p)}'
+                         f'<p class="ecard__earn">+&nbsp;{earn(p["price"])} für Dich</p></div>')
         hidden = "" if i == 0 else " hidden"
         out.append(f"""<div class="edit" role="tabpanel" id="edit-{e['id']}" aria-labelledby="tab-{e['id']}"{hidden}>
-  <div class="wrap edit__head"><p class="edit__claim">{esc(e['claim'])}</p>
-    <div class="edit__arrows"><button type="button" data-rail="-1" aria-label="Zurück">←</button><button type="button" data-rail="1" aria-label="Weiter">→</button></div></div>
-  <div class="rail" tabindex="0" aria-label="{esc(e['name'])}">{cards}</div>
+  <div class="container edit__head"><p class="edit__claim">{esc(e['claim'])}</p>
+    <div class="edit__arrows"><button type="button" data-rail="-1" aria-label="Zurück">{icon("chevron-left")}</button><button type="button" data-rail="1" aria-label="Weiter">{icon("chevron-right")}</button></div></div>
+  <div class="rail" tabindex="0" aria-label="{esc(e['name'])}">{"".join(cards)}</div>
 </div>""")
     return "\n".join(out)
 
 
 def frag_deals() -> str:
-    out = []
-    for i, (title, text) in enumerate(sel["deals"]):
-        d = deals[title]
-        disc = d["discount"] or ""
-        m = re.match(r"(bis zu|über)?\s*(.*)", disc)
-        pre = f"<small>{esc(m.group(1))}</small>" if m.group(1) else ""
-        val = esc(m.group(2).replace("%", " %"))
-        logo = DEAL_LOGOS.get(title)
-        logo_html = (f'<span class="deal__logo"><span class="logo lg-{logo}" role="img" aria-label="{esc(title)}"></span></span>'
-                     if logo else f'<span class="deal__logo deal__logo--text">{esc(title)}</span>')
-        size = " deal--xl" if i < 2 else ""
-        img = data_uri(ASSETS / "deals" / f"{d['slug']}.jpg")
-        out.append(f"""<article class="deal{size} reveal">
-  <img src="{img}" alt="" class="deal__img">
-  {logo_html}
-  <span class="deal__off">{pre}{val}</span>
-  <span class="deal__copy"><strong>{esc(title)}</strong><span>{esc(text)}</span></span>
-</article>""")
-    return "\n".join(out)
+    return "\n".join(f'<div class="vdeal vreal" data-reveal style="--d:{(i % 3) * .06:.2f}s">{vp_deal(t, txt)}</div>'
+                     for i, (t, txt) in enumerate(sel["deals"]))
 
 
 def frag_story_product() -> str:
     p = product(sel["edits"][4]["items"][1])  # Rituals Classic Advent Calendar
-    return (f'<div class="story__product"><img src="{p["img"]}" alt=""></div>'
-            f'<div class="story__sticker"><span>Nur in meinem Shop</span><strong>−{p["discount"]}&nbsp;%</strong></div>'
+    return (f'<div class="story__product"><span class="pimg pi-{p["slug"]}"></span></div>'
+            f'<div class="story__sticker"><span>Nur in meinem Shop</span><strong>-{p["discount"]}&nbsp;%</strong></div>'
             f'<p class="story__text">Der Adventskalender ist da ✨<br>Link in Bio!</p>')
 
 
 def frag_dash_top() -> str:
     picks = [product(sel["margin"][0]), product(sel["margin"][1]), product(sel["margin"][4])]
-    shares = [0.31, 0.22, 0.14]
+    shares = [1, .72, .46]
     return "\n".join(
-        f'<li><img src="{p["img"]}" alt=""><span><b>{esc(nice_brand(p["brand"]))}</b>{esc(nice_title(p["title"]))}</span>'
-        f'<i style="--w:{int(s * 100 / shares[0])}%"></i></li>'
+        f'<li><span class="pimg pi-{p["slug"]}"></span><span><b>{esc(p["brand"])}</b>{esc(nice_title(p["title"]))}</span>'
+        f'<i style="--w:{int(s * 100)}%"></i></li>'
         for p, s in zip(picks, shares))
 
 
-# --------------------------------------------------------------- css head
+# --------------------------------------------------------------- css head (Schriften + Bilder, jedes nur einmal)
 def css_head() -> str:
     fonts = ASSETS / "fonts"
-    parts = [
-        f"@font-face{{font-family:'Cormorant';font-style:normal;font-weight:300 700;font-display:swap;src:url({data_uri(fonts / 'cormorant.woff2')}) format('woff2')}}",
-        f"@font-face{{font-family:'Cormorant';font-style:italic;font-weight:300 700;font-display:swap;src:url({data_uri(fonts / 'cormorant-italic.woff2')}) format('woff2')}}",
-        f"@font-face{{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url({data_uri(fonts / 'inter.woff2')}) format('woff2')}}",
-    ]
-    used_logos = {b["slug"] for b in brands} | set(DEAL_LOGOS.values())
-    parts += [f".lg-{slug}{{background-image:url({data_uri(ASSETS / 'logos' / f'{slug}.png')})}}"
-              for slug in sorted(used_logos) if (ASSETS / "logos" / f"{slug}.png").exists()]
-    motif_vars = ";".join(f"--motif-{deals[t]['slug']}:url({data_uri(ASSETS / 'deals' / (deals[t]['slug'] + '.jpg'))})"
-                          for t in sel["customizer_motifs"])
-    first = deals[sel["customizer_motifs"][0]]["slug"]
-    parts.append(f":root{{{motif_vars};--motif:var(--motif-{first})}}")
+    parts = []
+    for weight, style, file in [(400, "normal", "400"), (500, "normal", "500"), (600, "normal", "600"),
+                                (600, "italic", "600-italic"), (700, "normal", "700"), (800, "normal", "800")]:
+        uri = data_uri(fonts / f"barlow-semi-condensed-{file}.woff2")
+        parts.append(f'@font-face{{font-family:"Barlow Semi Condensed";font-weight:{weight};font-style:{style};'
+                     f'font-display:swap;src:url({uri}) format("woff2")}}')
+    ui = ASSETS / "ui"
+    parts.append(f".vp__logo-incent{{background-image:url({data_uri(ui / 'incent-logo-dark.png')})}}")
+    parts.append(f".vp-theme[data-nav-tone=\"dark\"] .vp__logo-incent{{background-image:url({data_uri(ui / 'incent-logo-white.png')})}}")
+    parts.append(f".vp__bg--image,.bg-opt__thumb--image{{background-image:var(--bg-img,url({data_uri(ui / 'bg-health-beauty.jpg')}))}}")
+    parts += [f".pi-{s}{{background-image:url({data_uri(ASSETS / 'products' / f'{s}.jpg')})}}" for s in sorted(used_products)]
+    parts += [f".di-{s}{{background-image:url({data_uri(ASSETS / 'deals' / f'{s}.jpg')})}}" for s in sorted(used_deals)]
+    parts += [f".lg-{s}{{background-image:url({data_uri(ASSETS / 'logos' / f'{s}.png')})}}" for s in sorted(used_logos)
+              if (ASSETS / "logos" / f"{s}.png").exists()]
     return "\n".join(parts) + "\n"
 
 
 # --------------------------------------------------------------- main
 def main() -> None:
     page = (SRC / "template.html").read_text(encoding="utf-8")
-    css = css_head() + (SRC / "style.css").read_text(encoding="utf-8")
     js = (SRC / "app.js").read_text(encoding="utf-8")
-    data = {
-        "themes": THEMES,
-        "defaults": {"rate": DEFAULT_RATE * 100, "followers": 100_000, "conv": 0.5, "basket": 75},
-        "avgDiscount": round(AVG_DISCOUNT, 4),
-        "contact": CONTACT_MAIL,
-    }
 
     fragments = {
-        "dots": frag_dots(), "hero_floaters": frag_hero_floaters(), "phone_products": frag_phone_products(),
-        "browser_products": frag_browser_products(), "winwin": frag_winwin(), "swatches": frag_swatches(),
-        "motifs": frag_motifs(), "margin_cards": frag_margin_cards(), "punch": frag_punch(),
-        "names": frag_names(), "categories": frag_categories(), "logos": frag_logos(),
-        "edit_tabs": frag_edit_tabs(), "edit_panels": frag_edit_panels(), "deals": frag_deals(),
-        "story_product": frag_story_product(), "dash_top": frag_dash_top(), "snapshot_date": SNAPSHOT_DATE,
+        "icons": (SRC / "icons.svg").read_text(encoding="utf-8"),
+        "dots": frag_dots(), "vp_hero": vp_portal("hero"), "vp_builder": vp_portal("builder"),
+        "vpm_phone": vpm_phone(), "vpm_phone_2": vpm_phone(), "winwin": frag_winwin(),
+        "swatches_btn": swatches(BTN_COLORS, "btn"), "swatches_nav": swatches(NAV_COLORS, "nav"),
+        "margin_cards": frag_margin_cards(), "punch": frag_punch(), "lux": frag_lux(),
+        "categories": frag_categories(), "logos": frag_logos(), "edit_tabs": frag_edit_tabs(),
+        "edit_panels": frag_edit_panels(), "deals": frag_deals(), "story_product": frag_story_product(),
+        "dash_top": frag_dash_top(), "snapshot_date": SNAPSHOT_DATE,
     }
     for key, value in fragments.items():
         marker = f"<!--@{key}-->"
@@ -360,14 +383,17 @@ def main() -> None:
             raise SystemExit(f"Marker fehlt im Template: {marker}")
         page = page.replace(marker, value)
 
-    def asset(m: re.Match) -> str:
-        kind, name = m.group(1), m.group(2)
-        folder = {"ui": "ui", "deal": "deals"}[kind]
-        ext = ".png" if kind == "ui" else ".jpg"
-        return data_uri(ASSETS / folder / f"{name}{ext}")
+    page = re.sub(r"\{\{ui:([a-z0-9-]+)\}\}", lambda m: data_uri(ASSETS / "ui" / f"{m.group(1)}.png"), page)
 
-    page = re.sub(r"\{\{(ui|deal):([a-z0-9-]+)\}\}", asset, page)
-    # Erst ganz am Ende CSS/JS einsetzen, damit deren Inhalt nicht als Marker gelesen wird
+    data = {
+        "defaults": {"rate": DEFAULT_RATE * 100, "followers": 100_000, "conv": 0.5, "basket": 75,
+                     "btn": BTN_COLORS[0][0], "nav": NAV_COLORS[0][0]},
+        "avgDiscount": round(AVG_DISCOUNT, 4),
+        "contact": CONTACT_MAIL,
+        "presets": {"blau": "#1c87b8", "rose": "#c0746a", "rosé": "#c0746a", "beere": "#a3245a", "nude": "#a7856b",
+                    "salbei": "#5f8a72", "lavendel": "#7e6aa8", "schwarz": "#222222"},
+    }
+    css = css_head() + (SRC / "style.css").read_text(encoding="utf-8")
     page = page.replace("/*@CSS*/", css, 1)
     page = page.replace("/*@DATA*/", "window.SHOP_DATA = " + json.dumps(data, ensure_ascii=False) + ";", 1)
     page = page.replace("/*@JS*/", js, 1)

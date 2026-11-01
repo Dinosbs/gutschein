@@ -1,6 +1,6 @@
 # Hinweis „Nicht mit Select-Einkaufsgutschein kaufbar“
 
-> **Neu:** `community-shop/` enthält den Pitch-One-Pager „Dein eigener Beauty-Shop“ für den INCENT Community Shop (Health & Beauty). Details in [`community-shop/README.md`](community-shop/README.md).
+> **Neu:** `community-shop/` enthält den Pitch-One-Pager „Dein eigener Beauty-Shop“ für den INCENT-Community-Shop (Health & Beauty) im Design des incent.de-Relaunchs, mit Shop-Mockups im vorteile.net-Look. Details in [`community-shop/README.md`](community-shop/README.md).
 
 Dieses Repo enthält einen Design-Prototyp für die INCENT-Gutscheinwelt. Er markiert Gutscheine, die nicht mit dem Select-Einkaufsgutschein gekauft werden können, und zwar an drei Stellen:
 

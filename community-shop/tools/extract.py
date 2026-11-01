@@ -11,7 +11,7 @@ Schreibt:
     assets/products/    Bilder der Produkte aus data/selection.json
     assets/deals/       Bilder der Deals aus data/selection.json
     assets/logos/       alle Marken-Logos
-    assets/ui/          INCENT-Logo + Zahlungsarten
+    assets/ui/          Zahlungsarten + Hintergrundbild der Kategorie
 
 Benötigt Pillow (pip install pillow).
 """
@@ -204,10 +204,6 @@ def extract_brand_logos(page: Page):
 def extract_ui(page: Page):
     s = page.s
     out = {}
-    k = s.find('alt="INCENT Corporate Services"')
-    if k > 0:
-        tag = s[s.rfind("<img", 0, k):s.find(">", k) + 1]
-        out["incent"] = page.image_of(tag) or decode_data_uri(attr(tag, "src"))
     k = s.find("payment-methods payment-methods--fixed")
     for tag in re.findall(IMG_TAG, s[k:k + 60000]):
         name = attr(tag, "alt") or ""
@@ -257,9 +253,12 @@ def main() -> None:
     (DATA / "brands.json").write_text(json.dumps(brands, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{len(brands)} Logos")
 
-    # UI
+    # UI: Zahlungsarten + Hintergrundbild der Kategorie (so sieht „Health & Beauty“ auf vorteile.net aus)
     for name, raw in extract_ui(page).items():
-        save_image(raw, ASSETS / "ui" / f"{name}.png", (400, 200), "PNG", transparent_white=(name == "incent"))
+        save_image(raw, ASSETS / "ui" / f"{name}.png", (400, 200), "PNG")
+    bg = re.search(r'--page-bkg-image:url\("?(data:image/[^")]+)"?\)', page.s)
+    if bg:
+        save_image(decode_data_uri(bg.group(1)), ASSETS / "ui" / "bg-health-beauty.jpg", (1600, 900), "JPEG", 80)
     print("UI-Grafiken ok")
 
 
