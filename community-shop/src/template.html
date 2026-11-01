@@ -4,36 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Dein eigener Beauty-Shop · INCENT Community-Shop</title>
-<meta name="description" content="Der INCENT Community-Shop für Creator: Dein eigener Vorteils-Shop auf vorteile.net – exklusive Beauty-Preise für Deine Community, Beteiligung an jeder Bestellung.">
+<title><!--@page_title--></title>
+<meta name="description" content="INCENT Community-Shop: Dein eigener Beauty-Shop auf vorteile.net – exklusive Vorteilspreise für Deine Community, 10 % Beteiligung an jeder Bestellung, null Aufwand.">
 <meta name="theme-color" content="#f4f7fc">
 <link rel="icon" href="{{ui:incent-favicon}}">
+<script>document.documentElement.classList.add("js")</script>
 <style>
 /*@CSS*/
 </style>
 </head>
 <body>
 <!--@icons-->
-<a class="skip-link" href="#idee">Zum Inhalt springen</a>
-<div class="scroll-progress" aria-hidden="true"><span data-progress></span></div>
 
-<!-- ================================================================ NAVIGATION -->
-<header class="nav" data-nav>
-  <div class="nav__inner">
-    <a class="brand" href="#start" aria-label="INCENT – zum Anfang"><img src="{{ui:incent-logo-nav-dark}}" alt="INCENT" width="138" height="48"></a>
-    <nav class="nav__menu" aria-label="Kapitel">
-      <ul class="nav__list">
-        <li><a class="nav__link" href="#idee">Idee</a></li>
-        <li><a class="nav__link nav__link--design" href="#design"><svg class="i i--sm" aria-hidden="true"><use href="#i-palette"/></svg>Dein Design</a></li>
-        <li><a class="nav__link" href="#verdienst">Verdienst</a></li>
-        <li><a class="nav__link" href="#marken">Marken</a></li>
-        <li><a class="nav__link" href="#reichweite">Reichweite</a></li>
-        <li><a class="nav__link" href="#ablauf">Ablauf</a></li>
-      </ul>
-    </nav>
-    <div class="nav__actions">
-      <a class="btn btn--primary btn--sm" href="#start-jetzt" data-contact>Shop anfragen</a>
-    </div>
+<!-- ================================================================ Präsentationsleiste -->
+<header class="deckbar" data-deckbar>
+  <div class="deckbar__inner">
+    <span class="deckbar__brand"><img src="{{ui:incent-logo-nav-dark}}" alt="INCENT" width="138" height="48"></span>
+    <span class="deckbar__chapter" aria-live="polite"><span class="deckbar__num" data-chapter-num>–</span><span data-chapter-title>Community-Shop</span></span>
+    <span class="deckbar__end">
+      <span class="deckbar__for" data-for-chip hidden>Für <b data-bind="name">Dein Name</b></span>
+      <span class="deckbar__count"><b data-slide-now>1</b>/<span data-slide-total>13</span></span>
+    </span>
+    <span class="deckbar__progress" aria-hidden="true"><i data-progress></i></span>
   </div>
 </header>
 
@@ -41,45 +33,68 @@
   <!--@dots-->
 </nav>
 
-<main>
+<main class="deck">
 
-<!-- ================================================================ HERO -->
-<section class="hero slide" id="start" data-title="Start">
-  <div class="hero__bg" aria-hidden="true">
-    <span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span>
-    <span class="hero__spot" data-spot></span>
-  </div>
-  <div class="container hero__inner">
-    <div class="hero__copy">
-      <p class="eyebrow" data-reveal><span data-bind="eyebrow">Community-Shop · Health &amp; Beauty</span></p>
-      <h1 class="hero__title" data-reveal style="--d:.06s">Dein eigener <span class="grad-text">Beauty-Shop</span></h1>
-      <p class="hero__lead" data-reveal style="--d:.12s">Dior, Lancôme, Rituals &amp; Co.: über 80 Marken zu exklusiven Vorteilspreisen – auf vorteile.net, in Deinem Look, nur für Deine Community. Und an jeder Bestellung verdienst Du mit.</p>
-      <div class="hero__cta" data-reveal style="--d:.18s">
-        <a class="btn btn--primary btn--lg btn--glow" href="#design"><span class="btn__fx" aria-hidden="true"></span><svg class="i i--pal" aria-hidden="true"><use href="#i-palette"/></svg>Dein Design</a>
-        <a class="btn btn--ghost btn--lg" href="#rechner">Verdienst berechnen <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-      </div>
-      <ul class="hero__ticks" data-reveal style="--d:.24s">
+<!-- ================================================================ TITEL (zwei Schritte: Titel → Portal) -->
+<section class="slide slide--title" id="start" data-title="Community-Shop" data-num="">
+  <span class="snap-mark" data-snap></span>
+  <span class="snap-mark snap-mark--2" data-snap></span>
+  <div class="pin" data-pin>
+    <div class="pin__bg" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span><span class="blob blob--3"></span><span class="hero__spot" data-spot></span></div>
+    <div class="title">
+      <p class="eyebrow"><span data-bind="eyebrow">Community-Shop · Health &amp; Beauty</span></p>
+      <h1 class="title__h">Dein eigener <span class="grad-text">Beauty-Shop</span></h1>
+      <p class="title__lead">Über 80 Marken zu exklusiven Vorteilspreisen – auf vorteile.net, in Deinem Look, nur für Deine Community. Und an jeder Bestellung verdienst Du mit.</p>
+      <ul class="title__ticks">
         <li><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>100&nbsp;% kostenlos</li>
-        <li><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>Kein Setup-Aufwand</li>
-        <li><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>In Deinem Look</li>
+        <li><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>Null Aufwand für Dich &amp; Dein Management</li>
+        <li><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg><!--@rate_text-->&nbsp;% an jeder Bestellung</li>
       </ul>
     </div>
-
-    <div class="hero__view" data-reveal style="--d:.3s">
-      <div class="stage" data-stage aria-label="So sieht Dein Shop auf vorteile.net aus">
+    <div class="showcase">
+      <p class="showcase__cap"><span class="eyebrow">So sieht Dein Shop auf vorteile.net aus</span></p>
+      <div class="stage" data-hero-stage aria-label="Dein Community-Shop auf vorteile.net">
         <!--@vp_hero-->
         <div class="float float--toasts" data-toasts aria-live="polite"></div>
         <div class="float float--stat">
           <span class="float__icon"><svg class="i" aria-hidden="true"><use href="#i-coins"/></svg></span>
           <span><strong data-today>0,00&nbsp;€</strong><small>heute für Dich</small></span>
         </div>
-        <div class="float float--tag"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>Beteiligung an jeder Bestellung</div>
+        <div class="float float--tag"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg><!--@rate_text-->&nbsp;% an jeder Bestellung</div>
       </div>
     </div>
+    <p class="scroll-cue" aria-hidden="true"><span class="scroll-cue__mouse"><i></i></span>Scrollen</p>
   </div>
+</section>
 
-  <div class="container">
-    <dl class="stats" data-reveal>
+<!-- ================================================================ 01 IDEE -->
+<section class="slide" id="idee" data-title="Die Idee" data-num="01" data-snap>
+  <div class="slide__inner">
+    <header class="head">
+      <div>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">01</span>Die Idee</p>
+        <h2 class="h2" data-anim>Preise, die sonst nur Mitarbeitende bekommen. <span class="grad-text">Jetzt für Deine Community.</span></h2>
+      </div>
+      <p class="lead" data-anim>Auf vorteile.net kaufen heute Mitarbeitende aus über 4.400 Unternehmen zu Vorteilspreisen ein. Mit dem Community-Shop öffnen wir diese Welt für Dich: Deine Community bekommt Zugang zu denselben Preisen – in <strong>Deinem</strong> Shop, unter <strong>Deinem</strong> Namen.</p>
+    </header>
+    <ol class="perks perks--3">
+      <li class="perk" data-anim>
+        <span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg></span><span class="perk__num">01</span>
+        <h3>Du empfiehlst</h3>
+        <p>Du teilst Deinen Shop mit Deiner Community – mit Deinen Lieblingsprodukten und Edits, von „Meine Morning Routine“ bis „Geschenke unter 50&nbsp;€“.</p>
+      </li>
+      <li class="perk" data-anim>
+        <span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><span class="perk__num">02</span>
+        <h3>Deine Community spart</h3>
+        <p>Im Schnitt <strong>27&nbsp;%</strong> unter dem regulären Preis, bei vielen Produkten deutlich mehr. Ein Vorteil, den sie nur über Dich bekommt.</p>
+      </li>
+      <li class="perk" data-anim>
+        <span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-coins"/></svg></span><span class="perk__num">03</span>
+        <h3>Du verdienst mit</h3>
+        <p><strong><!--@rate_text-->&nbsp;%</strong> an jeder Bestellung in Deinem Shop. Ohne Lager, ohne Versand, ohne eigenes Risiko – und 100&nbsp;% kostenlos.</p>
+      </li>
+    </ol>
+    <dl class="stats" data-anim>
       <div class="stat"><dt>Marken in Health &amp; Beauty</dt><dd><span data-count="80">80</span><span class="stat__suffix">+</span></dd></div>
       <div class="stat"><dt>Beauty- &amp; Health-Produkte</dt><dd><span data-count="250">250</span><span class="stat__suffix">+</span></dd></div>
       <div class="stat"><dt>unter dem regulären Preis</dt><dd><span class="stat__pre">bis</span> <span data-count="71">71</span><span class="stat__suffix">&nbsp;%</span></dd></div>
@@ -88,66 +103,41 @@
   </div>
 </section>
 
-<!-- ================================================================ 01 IDEE -->
-<section class="section slide" id="idee" data-title="Die Idee">
-  <div class="container">
-    <header class="section-head section-head--split">
+<!-- ================================================================ 02 ZWEI GEWINNER -->
+<section class="slide slide--tint" id="beispiel" data-title="Ein Verkauf, zwei Gewinner" data-num="02" data-snap>
+  <div class="slide__inner">
+    <header class="head">
       <div>
-        <p class="eyebrow" data-reveal><span class="eyebrow__num">01</span>Die Idee</p>
-        <h2 class="h2" data-reveal style="--d:.06s">Preise, die sonst nur Mitarbeitende bekommen. <span class="grad-text">Jetzt für Deine Community.</span></h2>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">02</span>Am Beispiel</p>
+        <h2 class="h2" data-anim>Ein Verkauf. <span class="grad-text">Zwei Gewinner.</span></h2>
       </div>
-      <p class="lead" data-reveal style="--d:.12s">Auf vorteile.net kaufen heute Mitarbeitende aus über 4.400 Unternehmen zu Vorteilspreisen ein. Mit dem Community-Shop öffnen wir diese Welt für Dich: Deine Community bekommt Zugang zu denselben Preisen – in <strong>Deinem</strong> Shop, unter <strong>Deinem</strong> Namen.</p>
+      <p class="lead" data-anim>Ein Klassiker aus dem aktuellen Sortiment: Deine Community spart deutlich – und Du verdienst ganz automatisch mit.</p>
     </header>
-
-    <ol class="perks perks--3">
-      <li class="perk" data-reveal>
-        <span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg></span>
-        <span class="perk__num">01</span>
-        <h3>Du kuratierst</h3>
-        <p>Du wählst die Produkte und Deals, hinter denen Du stehst, und stellst Deine eigenen Edits zusammen – von „Meine Morning Routine“ bis „Geschenke unter 50&nbsp;€“.</p>
-      </li>
-      <li class="perk" data-reveal style="--d:.08s">
-        <span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span>
-        <span class="perk__num">02</span>
-        <h3>Deine Community spart</h3>
-        <p>Im Schnitt <strong>27&nbsp;%</strong> unter dem regulären Preis, bei vielen Produkten deutlich mehr. Ein Vorteil, den sie nur über Dich bekommt.</p>
-      </li>
-      <li class="perk" data-reveal style="--d:.16s">
-        <span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-coins"/></svg></span>
-        <span class="perk__num">03</span>
-        <h3>Du verdienst mit</h3>
-        <p>An jeder Bestellung in Deinem Shop bist Du beteiligt. Ohne Lager, ohne Versand, ohne eigenes Risiko – und 100&nbsp;% kostenlos.</p>
-      </li>
-    </ol>
-
-    <div class="winwin" data-reveal aria-label="Rechenbeispiel">
+    <div class="winwin" data-anim>
       <!--@winwin-->
     </div>
   </div>
 </section>
 
-<!-- ================================================================ 02 DESIGN -->
-<section class="section section--dark section--inset slide" id="design" data-title="Dein Design">
-  <div class="container">
-    <header class="section-head section-head--split">
+<!-- ================================================================ 03 DEIN LOOK -->
+<section class="slide" id="design" data-title="Dein Look" data-num="03" data-snap>
+  <div class="slide__inner">
+    <header class="head head--tight">
       <div>
-        <p class="eyebrow" data-reveal><span class="eyebrow__num">02</span>Live-Demo</p>
-        <h2 class="h2" data-reveal style="--d:.06s">Dein Shop. <span class="grad-text">Dein Look.</span></h2>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">03</span>Live-Demo</p>
+        <h2 class="h2" data-anim>Dein Shop. <span class="grad-text">Dein Look.</span></h2>
       </div>
-      <p class="lead" data-reveal style="--d:.12s">So sieht Dein Community-Shop auf vorteile.net aus – auf dem Desktop und auf dem Handy Deiner Follower. Logo, Name, Farben und Hintergrund: Probier es direkt aus.</p>
+      <p class="lead" data-anim>So sieht Dein Community-Shop auf vorteile.net aus – auf dem Desktop und auf dem Handy Deiner Follower. Probier es direkt aus.</p>
     </header>
-
     <div class="pb">
-      <form class="studio__controls" data-studio onsubmit="return false" aria-label="Shop gestalten" data-reveal>
+      <form class="studio" data-studio onsubmit="return false" aria-label="Shop gestalten" data-anim>
         <div class="field">
           <span class="field__label">Logo</span>
           <div class="logo-drop" data-logo-drop>
-            <span class="logo-drop__preview" data-logo-preview><img src="{{ui:incent-logo-dark}}" alt="" data-logo-preview-img></span>
-            <span class="logo-drop__text"><strong data-logo-name>INCENT-Logo</strong><small>PNG, JPG, SVG oder WebP – oder hierher ziehen. Bleibt auf Deinem Gerät.</small></span>
-            <span class="logo-drop__actions">
-              <label class="logo-drop__btn"><svg class="i i--sm" aria-hidden="true"><use href="#i-upload"/></svg>Eigenes Logo hochladen<input type="file" accept="image/png,image/jpeg,image/svg+xml,image/webp" class="sr-only" data-logo-input></label>
-              <button type="button" class="logo-drop__reset" data-logo-reset hidden aria-label="Logo zurücksetzen"><svg class="i i--sm" aria-hidden="true"><use href="#i-reset"/></svg></button>
-            </span>
+            <span class="logo-drop__preview" data-logo-preview><img src="{{ui:incent-logo-dark}}" alt=""></span>
+            <span class="logo-drop__text"><strong data-logo-name>INCENT-Logo</strong><small>Datei hierher ziehen – bleibt auf Deinem Gerät.</small></span>
+            <label class="logo-drop__btn" title="Eigenes Logo hochladen"><svg class="i i--sm" aria-hidden="true"><use href="#i-upload"/></svg><span class="sr-only">Eigenes Logo hochladen</span><input type="file" accept="image/png,image/jpeg,image/svg+xml,image/webp" class="sr-only" data-logo-input></label>
+            <button type="button" class="logo-drop__reset" data-logo-reset hidden aria-label="Logo zurücksetzen"><svg class="i i--sm" aria-hidden="true"><use href="#i-reset"/></svg></button>
           </div>
         </div>
         <div class="field">
@@ -176,59 +166,53 @@
             <button type="button" class="bg-opt" data-bg-opt="gradient" role="radio" aria-checked="false"><span class="bg-opt__thumb bg-opt__thumb--gradient"></span>Verlauf</button>
           </div>
         </fieldset>
-        <p class="studio__url"><svg class="i i--sm" aria-hidden="true"><use href="#i-lock"/></svg><span><span data-bind="slug">deinname</span>.vorteile.net</span></p>
-        <button type="button" class="studio__reset" data-reset-all>Alles zurücksetzen</button>
+        <div class="studio__foot">
+          <p class="studio__url"><svg class="i i--sm" aria-hidden="true"><use href="#i-lock"/></svg><span><span data-bind="slug">deinname</span>.vorteile.net</span></p>
+          <button type="button" class="studio__reset" data-reset-all title="Alles zurücksetzen" aria-label="Alles zurücksetzen"><svg class="i i--sm" aria-hidden="true"><use href="#i-reset"/></svg></button>
+        </div>
       </form>
-
-      <div class="pb__view" data-reveal style="--d:.1s">
-        <!--@vp_builder-->
-        <div class="pb__phone">
-          <!--@vpm_phone-->
+      <div class="pb__view" data-anim>
+        <div class="tilt" data-tilt>
+          <!--@vp_builder-->
+          <div class="pb__phone"><!--@vpm_phone--></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================ 03 VERDIENST -->
-<section class="section slide" id="verdienst" data-title="Verdienst">
-  <div class="container">
-    <header class="section-head section-head--split">
+<!-- ================================================================ 04 VERDIENST -->
+<section class="slide slide--tint" id="verdienst" data-title="Dein Verdienst" data-num="04" data-snap>
+  <div class="slide__inner">
+    <header class="head">
       <div>
-        <p class="eyebrow" data-reveal><span class="eyebrow__num">03</span>Dein Verdienst</p>
-        <h2 class="h2" data-reveal style="--d:.06s">Jeder Verkauf <span class="grad-text">zahlt auf Dich ein.</span></h2>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">04</span>Dein Verdienst</p>
+        <h2 class="h2" data-anim>Jeder Verkauf <span class="grad-text">zahlt auf Dich ein.</span></h2>
       </div>
-      <div class="section-head__aside" data-reveal style="--d:.12s">
-        <p class="lead">Echte Produkte und echte Preise aus dem aktuellen Health-&amp;-Beauty-Sortiment. Deine Community spart – und Du verdienst an jeder Bestellung mit.</p>
-        <div class="rate">
-          <label for="rate">Deine Beteiligung <output data-out="rate">10&nbsp;%</output></label>
-          <input id="rate" type="range" min="5" max="20" step="1" value="10" data-input="rate">
-          <span class="rate__scale" aria-hidden="true"><span>5&nbsp;%</span><span>Beispielwert</span><span>20&nbsp;%</span></span>
-        </div>
+      <div class="head__aside" data-anim>
+        <p class="lead">Echte Produkte und echte Preise aus dem aktuellen Health-&amp;-Beauty-Sortiment.</p>
+        <p class="rate-chip"><span class="rate-chip__big"><!--@rate_text-->&nbsp;%</span><span>Beteiligung an jeder<br>Bestellung in Deinem Shop</span></p>
       </div>
     </header>
-
     <div class="mcards">
       <!--@margin_cards-->
     </div>
-
-    <p class="punch" data-reveal><!--@punch--></p>
+    <p class="punch" data-anim><!--@punch--></p>
   </div>
 </section>
 
-<!-- ================================================================ 04 RECHNER -->
-<section class="section section--dark section--inset slide" id="rechner" data-title="Rechner">
-  <div class="container">
-    <header class="section-head section-head--split">
+<!-- ================================================================ 05 RECHNER -->
+<section class="slide" id="rechner" data-title="Dein Potenzial" data-num="05" data-snap>
+  <div class="slide__inner">
+    <header class="head">
       <div>
-        <p class="eyebrow" data-reveal><span class="eyebrow__num">04</span>Dein Potenzial</p>
-        <h2 class="h2" data-reveal style="--d:.06s">Was Dein Shop <span class="grad-text">im Monat</span> bringen kann.</h2>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">05</span>Dein Potenzial</p>
+        <h2 class="h2" data-anim>Was Dein Shop <span class="grad-text">im Monat</span> bringen kann.</h2>
       </div>
-      <p class="lead" data-reveal style="--d:.12s">Schieb die Regler auf Deine Zahlen. Die Rechnung ist bewusst konservativ angesetzt.</p>
+      <p class="lead" data-anim>Bewusst konservativ gerechnet – mit <!--@rate_text-->&nbsp;% Beteiligung an jeder Bestellung. Schieb die Regler auf Deine Zahlen.</p>
     </header>
-
     <div class="calc">
-      <div class="calc__inputs" data-reveal>
+      <div class="calc__inputs" data-anim>
         <div class="presets" role="group" aria-label="Beispielprofile">
           <button type="button" data-preset="25000">Micro · 25k</button>
           <button type="button" data-preset="100000" class="is-on">Mid · 100k</button>
@@ -249,78 +233,144 @@
           <input id="basket" type="range" min="30" max="250" step="5" value="75" data-input="basket">
           <span class="slider__scale" aria-hidden="true"><span>30&nbsp;€</span><span>250&nbsp;€</span></span>
         </div>
-        <div class="slider">
-          <label for="rate2">Deine Beteiligung <output data-out="rate">10&nbsp;%</output></label>
-          <input id="rate2" type="range" min="5" max="20" step="1" value="10" data-input="rate">
-          <span class="slider__scale" aria-hidden="true"><span>5&nbsp;%</span><span>20&nbsp;%</span></span>
-        </div>
+        <p class="calc__fixed"><span>Deine Beteiligung</span><b><!--@rate_text-->&nbsp;%</b></p>
       </div>
-
-      <div class="calc__result" data-reveal style="--d:.1s" aria-live="polite">
+      <div class="calc__result tilt" data-tilt data-anim aria-live="polite">
         <p class="calc__label">Dein Verdienst pro Monat</p>
         <p class="calc__big" data-res="month">3.750&nbsp;€</p>
-        <p class="calc__year">≈ <strong data-res="year">45.000&nbsp;€</strong> im Jahr</p>
+        <p class="calc__year">≈ <strong data-res="year">45.000&nbsp;€</strong> im Jahr – passiv</p>
         <dl class="calc__rows">
           <div><dt>Bestellungen pro Monat</dt><dd data-res="orders">500</dd></div>
           <div><dt>Umsatz in Deinem Shop</dt><dd data-res="revenue">37.500&nbsp;€</dd></div>
           <div><dt>Deine Community spart</dt><dd data-res="savings">13.600&nbsp;€</dd></div>
         </dl>
-        <p class="calc__note">Beispielrechnung, keine Umsatzprognose. Deine Beteiligung und die Konditionen vereinbaren wir individuell mit Dir. Ersparnis auf Basis der Ø&nbsp;27&nbsp;% im aktuellen Health-&amp;-Beauty-Sortiment.</p>
+        <p class="calc__note">Beispielrechnung, keine Umsatzprognose. Ersparnis auf Basis der Ø&nbsp;27&nbsp;% im aktuellen Health-&amp;-Beauty-Sortiment.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================ 05 MARKEN -->
-<section class="section slide" id="marken" data-title="Marken">
-  <div class="container">
-    <header class="section-head section-head--split">
-      <div>
-        <p class="eyebrow" data-reveal><span class="eyebrow__num">05</span>Markenvielfalt</p>
-        <h2 class="h2" data-reveal style="--d:.06s">Die Marken, die Deine Community <span class="grad-text">liebt.</span></h2>
+<!-- ================================================================ 06 NULL AUFWAND -->
+<section class="slide slide--tint" id="aufwand" data-title="Null Aufwand" data-num="06" data-snap>
+  <div class="slide__inner">
+    <div class="zero">
+      <div class="zero__copy">
+        <p class="eyebrow" data-anim><span class="eyebrow__num">06</span>Für Dich &amp; Dein Management</p>
+        <h2 class="h2" data-anim>Ihr müsst <span class="grad-text">nichts tun.</span></h2>
+        <p class="lead" data-anim>Kein Briefing-Pingpong, keine Kampagnenplanung, kein Lager, keine Technik. Wir übernehmen alles, was ein Shop sonst an Arbeit macht – Dein Shop läuft von allein.</p>
+        <div class="zero__todo" data-anim>
+          <span class="zero__todo-label">Euer einziges To-do</span>
+          <span class="zero__todo-item"><svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg><span><span data-bind="slug">deinname</span>.vorteile.net</span> in die Bio</span>
+        </div>
       </div>
-      <p class="lead" data-reveal style="--d:.12s">Vom Luxusduft bis zum LED-Beauty-Device: Allein in Health &amp; Beauty warten über 80 Marken und 250+ Produkte. Laufend kommen neue Deals dazu.</p>
+      <div class="tasks tilt" data-tilt data-anim>
+        <p class="tasks__head"><span>Was sonst Arbeit macht</span><span>Wer’s übernimmt</span></p>
+        <ul class="tasks__list">
+          <li><s>Shop aufbauen, gestalten &amp; pflegen</s><b>INCENT</b></li>
+          <li><s>Marken anfragen &amp; Preise verhandeln</s><b>INCENT</b></li>
+          <li><s>Kampagnen planen, Briefings abstimmen</s><b>entfällt</b></li>
+          <li><s>Ware einkaufen, lagern &amp; versenden</s><b>INCENT</b></li>
+          <li><s>Bezahlung, Bestellungen &amp; Kundenfragen</s><b>INCENT</b></li>
+          <li><s>Verkäufe auswerten &amp; abrechnen</s><b>INCENT</b></li>
+          <li><s>Content für den Launch vorbereiten</s><b>INCENT</b></li>
+        </ul>
+        <p class="tasks__sum"><span>Laufender Aufwand für Dich &amp; Dein Management</span><strong>0&nbsp;Stunden</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ 07 PASSIV -->
+<section class="slide" id="passiv" data-title="Passives Einkommen" data-num="07" data-snap>
+  <div class="slide__inner">
+    <header class="head head--tight">
+      <div>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">07</span>Passives Einkommen</p>
+        <h2 class="h2" data-anim>Verdienen, <span class="grad-text">während Du schläfst.</span></h2>
+      </div>
+      <p class="lead" data-anim>Brand Deals enden mit dem Post. Dein Shop verkauft rund um die Uhr weiter – jeden Tag, jeden Monat, ohne neuen Aufwand.</p>
     </header>
+    <div class="night">
+      <div class="lock tilt" data-tilt data-anim aria-label="Beispiel: Bestellungen über Nacht">
+        <!--@lockscreen-->
+      </div>
+      <div class="chart tilt" data-tilt data-anim>
+        <div class="chart__legend"><span class="chart__key chart__key--deal">Klassische Brand Deals</span><span class="chart__key chart__key--shop">Dein Community-Shop</span></div>
+        <svg class="chart__svg" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="g-shop" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1a9cff" stop-opacity=".35"/><stop offset="1" stop-color="#1a9cff" stop-opacity="0"/></linearGradient>
+            <linearGradient id="g-line" x1="0" x2="1"><stop offset="0" stop-color="#00c6ff"/><stop offset="1" stop-color="#2b4bff"/></linearGradient>
+          </defs>
+          <g class="chart__grid"><line x1="0" x2="600" y1="65" y2="65"/><line x1="0" x2="600" y1="130" y2="130"/><line x1="0" x2="600" y1="195" y2="195"/></g>
+          <g class="chart__deals">
+            <rect x="55" y="70" width="34" height="190" rx="5"/><rect x="205" y="120" width="34" height="140" rx="5"/><rect x="405" y="60" width="34" height="200" rx="5"/><rect x="555" y="140" width="34" height="120" rx="5"/>
+          </g>
+          <path class="chart__area" d="M0 246 C60 236 110 222 160 208 S260 182 310 166 S420 136 470 118 S560 92 600 82 L600 260 L0 260 Z" fill="url(#g-shop)"/>
+          <path class="chart__line" d="M0 246 C60 236 110 222 160 208 S260 182 310 166 S420 136 470 118 S560 92 600 82" fill="none" stroke="url(#g-line)" stroke-width="5" stroke-linecap="round" pathLength="1"/>
+        </svg>
+        <div class="chart__months" aria-hidden="true"><span>Jan</span><span>Feb</span><span>Mär</span><span>Apr</span><span>Mai</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Okt</span><span>Nov</span><span>Dez</span></div>
+        <div class="chart__notes">
+          <p><b>Brand Deals:</b> einzelne Spitzen, dazwischen Funkstille – abhängig von Kampagnen und Algorithmus.</p>
+          <p><b>Dein Shop:</b> verdient an jeder Bestellung, Monat für Monat – und wächst mit Deiner Community.</p>
+        </div>
+        <p class="chart__fine">Schematische Darstellung, keine Umsatzprognose.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <ul class="lux" aria-label="Auswahl der Marken">
+<!-- ================================================================ 08 MARKEN -->
+<section class="slide slide--tint" id="marken" data-title="Markenvielfalt" data-num="08" data-snap>
+  <div class="slide__inner">
+    <header class="head head--tight">
+      <div>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">08</span>Markenvielfalt</p>
+        <h2 class="h2" data-anim>Die Marken, die Deine Community <span class="grad-text">liebt.</span></h2>
+      </div>
+      <p class="lead" data-anim>Vom Luxusduft bis zum LED-Beauty-Device: Allein in Health &amp; Beauty warten über 80 Marken und 250+ Produkte – und das ist nur ein Ausschnitt.</p>
+    </header>
+    <ul class="lux">
       <!--@lux-->
+      <li class="lux__more" data-anim><b>+ 70</b><span>weitere Marken in Health&nbsp;&amp;&nbsp;Beauty</span></li>
     </ul>
-
-    <dl class="cats" data-reveal>
+    <dl class="cats" data-anim>
       <!--@categories-->
     </dl>
-  </div>
-  <div class="logo-rows" aria-label="Alle Marken in Health &amp; Beauty">
-    <!--@logos-->
+    <div class="logo-rows" data-anim aria-label="Weitere Marken in Health &amp; Beauty">
+      <!--@logos-->
+    </div>
+    <p class="more" data-anim><svg class="i" aria-hidden="true"><use href="#i-sparkles"/></svg><span><strong>Und vieles mehr:</strong> Insgesamt über 450 Markenpartner, 3.000+ Markenprodukte und 70+ Partnergutscheine auf vorteile.net – von Mode und Sport bis Reisen und Technik. Neue Deals kommen laufend dazu.</span></p>
   </div>
 </section>
 
-<!-- ================================================================ 06 EDITS -->
-<section class="section section--dark section--inset slide" id="edits" data-title="Edits">
-  <div class="container">
-    <header class="section-head section-head--split">
+<!-- ================================================================ 09 EDITS -->
+<section class="slide" id="edits" data-title="Deine Edits" data-num="09" data-snap>
+  <div class="slide__inner">
+    <header class="head head--tight">
       <div>
-        <p class="eyebrow" data-reveal><span class="eyebrow__num">06</span>Dein Sortiment</p>
-        <h2 class="h2" data-reveal style="--d:.06s">Kuratiere Deine <span class="grad-text">Edits.</span></h2>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">09</span>Dein Sortiment</p>
+        <h2 class="h2" data-anim>Kuratiere Deine <span class="grad-text">Edits.</span></h2>
       </div>
-      <p class="lead" data-reveal style="--d:.12s">Stell Dein Sortiment zusammen wie Deinen Feed: Lieblingsprodukte, Routinen, Geschenkideen. Ein paar Beispiele aus dem aktuellen Angebot – inklusive Deinem Anteil.</p>
+      <p class="lead" data-anim>Stell Dein Sortiment zusammen wie Deinen Feed – Lieblingsprodukte, Routinen, Geschenkideen. Ein paar Beispiele aus dem aktuellen Angebot, inklusive Deinem Anteil.</p>
     </header>
-    <div class="tabs" role="tablist" aria-label="Edits" data-reveal>
+    <div class="tabs" role="tablist" aria-label="Edits" data-anim>
       <!--@edit_tabs-->
     </div>
+    <div class="edits" data-anim>
+      <!--@edit_panels-->
+    </div>
   </div>
-  <!--@edit_panels-->
 </section>
 
-<!-- ================================================================ 07 DEALS -->
-<section class="section slide" id="deals" data-title="Partner-Deals">
-  <div class="container">
-    <header class="section-head section-head--split">
+<!-- ================================================================ 10 DEALS -->
+<section class="slide slide--tint" id="deals" data-title="Partner-Deals" data-num="10" data-snap>
+  <div class="slide__inner">
+    <header class="head head--tight">
       <div>
-        <p class="eyebrow" data-reveal><span class="eyebrow__num">07</span>Best of Health &amp; Beauty</p>
-        <h2 class="h2" data-reveal style="--d:.06s">Plus: Deals, die es <span class="grad-text">sonst nirgends gibt.</span></h2>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">10</span>Best of Health &amp; Beauty</p>
+        <h2 class="h2" data-anim>Plus: Deals, die es <span class="grad-text">sonst nirgends gibt.</span></h2>
       </div>
-      <p class="lead" data-reveal style="--d:.12s">Neben dem Produktshop bekommt Deine Community exklusive Rabatte direkt bei Top-Marken – so, wie sie heute schon auf vorteile.net stehen.</p>
+      <p class="lead" data-anim>Neben dem Produktshop bekommt Deine Community exklusive Rabatte direkt bei Top-Marken – so, wie sie heute schon auf vorteile.net stehen.</p>
     </header>
     <div class="vdeals">
       <!--@deals-->
@@ -328,19 +378,18 @@
   </div>
 </section>
 
-<!-- ================================================================ 08 REICHWEITE -->
-<section class="section section--dark section--inset slide" id="reichweite" data-title="Reichweite">
-  <div class="container">
-    <header class="section-head section-head--split">
+<!-- ================================================================ 11 REICHWEITE -->
+<section class="slide" id="reichweite" data-title="Reichweite & Bindung" data-num="11" data-snap>
+  <div class="slide__inner">
+    <header class="head head--tight">
       <div>
-        <p class="eyebrow" data-reveal><span class="eyebrow__num">08</span>Reichweite &amp; Bindung</p>
-        <h2 class="h2" data-reveal style="--d:.06s">Mehr Reichweite. <span class="grad-text">Mehr Bindung.</span></h2>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">11</span>Reichweite &amp; Bindung</p>
+        <h2 class="h2" data-anim>Mehr Reichweite. <span class="grad-text">Mehr Bindung.</span></h2>
       </div>
-      <p class="lead" data-reveal style="--d:.12s">Dein Shop ist mehr als eine Einnahmequelle. Er gibt Deiner Community einen Grund, immer wiederzukommen – und Dir laufend neue Themen.</p>
+      <p class="lead" data-anim>Dein Shop gibt Deiner Community einen Grund, immer wiederzukommen – und Dir laufend neue Themen für Stories und Reels.</p>
     </header>
-
     <div class="reach">
-      <div class="journey" data-reveal aria-label="Von der Story in Deinen Shop">
+      <div class="journey tilt" data-tilt data-anim aria-label="Von der Story in Deinen Shop">
         <div class="story" aria-hidden="true">
           <div class="story__bars"><i class="is-done"></i><i class="is-on"></i><i></i></div>
           <div class="story__head"><span class="story__avatar" data-bind="initial">D</span><span data-bind="handle">deinname</span><span class="story__time">2 Std.</span></div>
@@ -348,130 +397,65 @@
           <div class="story__link"><svg class="i i--sm"><use href="#i-arrow-up-right"/></svg><span><span data-bind="slug">deinname</span>.vorteile.net</span></div>
         </div>
         <span class="journey__arrow" aria-hidden="true"><svg class="i"><use href="#i-arrow-right"/></svg></span>
-        <div class="journey__phone">
-          <!--@vpm_phone_2-->
-        </div>
-        <p class="journey__cap"><strong>Story → Link → Dein Shop.</strong> Ein Tipp, und Deine Follower kaufen zu Vorteilspreisen in Deinem Shop.</p>
+        <div class="journey__phone"><!--@vpm_phone_2--></div>
       </div>
-
       <ul class="perks perks--2">
-        <li class="perk" data-reveal>
-          <span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-video"/></svg></span>
-          <h3>Content für jeden Tag</h3>
-          <p>Neue Deals, Adventskalender, Black Week, Gift-Guides: Dein Shop liefert laufend Anlässe für Stories und Reels – dazu fertige Marketing-Assets von uns.</p>
-        </li>
-        <li class="perk" data-reveal style="--d:.08s">
-          <span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg></span>
-          <h3>Eine Community, die bleibt</h3>
-          <p>Aus Followern werden Shop-Mitglieder, die regelmäßig wiederkommen – unabhängig davon, was der Algorithmus heute ausspielt.</p>
-        </li>
-        <li class="perk" data-reveal style="--d:.16s">
-          <span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-gift"/></svg></span>
-          <h3>Mehrwert statt Werbung</h3>
-          <p>Du verschenkst echte Vorteile, statt nur Produkte zu bewerben. Das schafft Vertrauen – und Vertrauen schafft Engagement.</p>
-        </li>
-        <li class="perk" data-reveal style="--d:.24s">
-          <span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-trending"/></svg></span>
-          <h3>Sichtbar für Marken</h3>
-          <p>Messbare Verkäufe sind Dein stärkstes Argument in jeder Kooperationsanfrage. Du zeigst nicht nur Reichweite, sondern Wirkung.</p>
-        </li>
+        <li class="perk" data-anim><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-video"/></svg></span><h3>Content für jeden Tag</h3><p>Neue Deals, Adventskalender, Black Week, Gift-Guides – dazu fertige Marketing-Assets von uns.</p></li>
+        <li class="perk" data-anim><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Eine Community, die bleibt</h3><p>Aus Followern werden Shop-Mitglieder, die wiederkommen – unabhängig vom Algorithmus.</p></li>
+        <li class="perk" data-anim><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-gift"/></svg></span><h3>Mehrwert statt Werbung</h3><p>Du verschenkst echte Vorteile, statt nur Produkte zu bewerben. Das schafft Vertrauen.</p></li>
+        <li class="perk" data-anim><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-trending"/></svg></span><h3>Sichtbar für Marken</h3><p>Messbare Verkäufe sind Dein stärkstes Argument in jeder Kooperationsanfrage.</p></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ================================================================ 09 SERVICE -->
-<section class="section slide" id="service" data-title="Rundum-Service">
-  <div class="container">
-    <header class="section-head section-head--split">
+<!-- ================================================================ 12 START -->
+<section class="slide slide--tint" id="ablauf" data-title="Dein Start" data-num="12" data-snap>
+  <div class="slide__inner">
+    <header class="head">
       <div>
-        <p class="eyebrow" data-reveal><span class="eyebrow__num">09</span>Kein operativer Aufwand</p>
-        <h2 class="h2" data-reveal style="--d:.06s">Du machst Content. <span class="grad-text">Wir den Rest.</span></h2>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">12</span>Dein Start</p>
+        <h2 class="h2" data-anim>Innerhalb einer Woche zur <span class="grad-text">eigenen Plattform</span></h2>
       </div>
-      <p class="lead" data-reveal style="--d:.12s">Kein Lager, kein Versand, keine Technik. Du konzentrierst Dich auf das, was Du am besten kannst: Deine Community.</p>
+      <p class="lead" data-anim>Wir übernehmen die komplette technische Einrichtung und Gestaltung für Dich, damit Du ohne Aufwand direkt mit Deinem Shop starten kannst.</p>
     </header>
-
-    <div class="duo">
-      <div class="duo__col" data-reveal>
-        <p class="duo__who">Du</p>
-        <ul class="checks">
-          <li>Sortiment &amp; Edits kuratieren</li>
-          <li>Content erstellen &amp; teilen</li>
-          <li>Deine Community begeistern</li>
-        </ul>
-        <p class="duo__link"><span class="duo__pill"><svg class="i i--sm" aria-hidden="true"><use href="#i-arrow-up-right"/></svg><span><span data-bind="slug">deinname</span>.vorteile.net</span></span><small>Ein Link für Bio, Stories und Newsletter.</small></p>
-      </div>
-      <div class="duo__col duo__col--incent" data-reveal style="--d:.08s">
-        <p class="duo__who"><img src="{{ui:incent-logo-dark}}" alt="INCENT" width="138" height="34"></p>
-        <ul class="checks">
-          <li>Einrichtung &amp; Gestaltung Deines Shops</li>
-          <li>Technik, Hosting &amp; Updates</li>
-          <li>Markenpartner, Angebote &amp; Preise</li>
-          <li>Checkout &amp; sichere Bezahlung</li>
-          <li>Abwicklung der Bestellungen</li>
-          <li>Monatliche Auswertung Deiner Verkäufe</li>
-        </ul>
-        <div class="pay" aria-label="Zahlungsarten">
-          <img src="{{ui:pay-paypal}}" alt="PayPal"><img src="{{ui:pay-klarna}}" alt="Klarna"><img src="{{ui:pay-apple-pay}}" alt="Apple Pay"><img src="{{ui:pay-visa}}" alt="Visa"><img src="{{ui:pay-mastercard}}" alt="Mastercard">
-        </div>
-      </div>
-      <div class="dash" data-reveal style="--d:.16s" aria-label="Beispielansicht: Deine monatliche Auswertung">
-        <div class="dash__head"><strong>Deine Auswertung</strong><span class="dash__badge">Beispiel</span></div>
-        <div class="dash__kpis">
-          <div><span>Umsatz</span><strong data-res="revenue">37.500&nbsp;€</strong></div>
-          <div><span>Bestellungen</span><strong data-res="orders">500</strong></div>
-          <div class="is-accent"><span>Deine Beteiligung</span><strong data-res="month">3.750&nbsp;€</strong></div>
-        </div>
-        <div class="dash__chart" aria-hidden="true">
-          <i style="--h:38%"></i><i style="--h:46%"></i><i style="--h:42%"></i><i style="--h:55%"></i><i style="--h:61%"></i><i style="--h:58%"></i><i style="--h:70%"></i><i style="--h:76%"></i><i style="--h:72%"></i><i style="--h:84%"></i><i style="--h:92%"></i><i style="--h:100%"></i>
-        </div>
-        <p class="dash__sub">Top-Seller diesen Monat</p>
-        <ol class="dash__top">
-          <!--@dash_top-->
-        </ol>
+    <ol class="steps" data-steps>
+      <li class="step"><span class="step__num">01</span><h3>Definition</h3><p>Gemeinsam analysieren wir passende und auf Deinen Content abgestimmte Kategorien.</p></li>
+      <li class="step"><span class="step__num">02</span><h3>Einrichtung</h3><p>Wir gestalten Deinen Vorteils-Shop in Deinem Design und integrieren alle gewünschten Inhalte.</p></li>
+      <li class="step"><span class="step__num">03</span><h3>Übergabe</h3><p>Du teilst Deinen Shop-Link, wir liefern Dir fertige Inhalte für die Promotion.</p></li>
+      <li class="step"><span class="step__num">04</span><h3>Profitieren</h3><p>Du bekommst monatliche Auswertungen zu den Verkäufen über Deinen Shop – und Deine Beteiligung.</p></li>
+    </ol>
+    <div class="launch" data-anim>
+      <p>Biete Deiner Community besondere Benefits – <span class="grad-text">ganz ohne Mehraufwand.</span></p>
+      <div class="launch__week" aria-label="In sieben Tagen live">
+        <span style="--i:0">Tag<b>1</b></span><span style="--i:1">Tag<b>2</b></span><span style="--i:2">Tag<b>3</b></span><span style="--i:3">Tag<b>4</b></span><span style="--i:4">Tag<b>5</b></span><span style="--i:5">Tag<b>6</b></span><span style="--i:6">Live<b><svg class="i i--sm" aria-hidden="true"><use href="#i-zap"/></svg></b></span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================ 10 ABLAUF -->
-<section class="section section--dark section--inset slide" id="ablauf" data-title="Ablauf">
-  <div class="container">
-    <header class="section-head section-head--split">
-      <div>
-        <p class="eyebrow" data-reveal><span class="eyebrow__num">10</span>Dein Start</p>
-        <h2 class="h2" data-reveal style="--d:.06s">Innerhalb einer Woche zur <span class="grad-text">eigenen Plattform</span></h2>
-      </div>
-      <p class="lead" data-reveal style="--d:.12s">Wir übernehmen die komplette technische Einrichtung und Gestaltung für Dich, damit Du ohne Aufwand direkt mit Deinem Shop starten kannst.</p>
-    </header>
-    <ol class="steps" data-steps>
-      <li class="step"><span class="step__num">01</span><h3>Definition</h3><p>Gemeinsam analysieren wir passende und auf Deinen Content abgestimmte Kategorien.</p></li>
-      <li class="step"><span class="step__num">02</span><h3>Einrichtung</h3><p>Wir gestalten Deinen Vorteils-Shop in Deinem Design und integrieren alle gewünschten Inhalte.</p></li>
-      <li class="step"><span class="step__num">03</span><h3>Übergabe</h3><p>Du integrierst Deinen Shop in Deine Kanäle, und wir liefern Dir fertige Inhalte für die Promotion.</p></li>
-      <li class="step"><span class="step__num">04</span><h3>Profitieren</h3><p>Du bekommst monatliche Auswertungen zu den Verkäufen über Deinen Shop – und Deine Beteiligung.</p></li>
-    </ol>
-
-    <div class="outro" id="start-jetzt" data-reveal>
-      <p>Biete Deiner Community besondere Benefits – <span class="grad-text">ganz ohne Mehraufwand.</span></p>
-      <div class="outro__cta">
-        <a class="btn btn--primary btn--lg" data-contact href="mailto:?subject=Community-Shop%20%E2%80%93%20Lass%20uns%20sprechen">Shop anfragen <svg class="i" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-        <a class="btn btn--ghost btn--lg" href="#design"><svg class="i" aria-hidden="true"><use href="#i-palette"/></svg>Nochmal gestalten</a>
-      </div>
+<!-- ================================================================ ABSCHLUSS -->
+<section class="slide slide--end" id="danke" data-title="Auf einen Blick" data-num="" data-snap>
+  <div class="pin__bg" aria-hidden="true"><span class="blob blob--1"></span><span class="blob blob--2"></span></div>
+  <div class="slide__inner">
+    <div class="end">
+      <p class="eyebrow" data-anim><span data-bind="eyebrow">Community-Shop · Health &amp; Beauty</span></p>
+      <h2 class="end__h" data-anim><span data-bind="thanks">Dein Beauty-Shop.</span> <span class="grad-text">Startklar in einer Woche.</span></h2>
+      <ul class="recap">
+        <li data-anim><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-palette"/></svg></span><b>Dein Look</b><span>Dein Shop auf vorteile.net – mit Deinem Namen, Logo und Deinen Farben.</span></li>
+        <li data-anim><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><b><!--@rate_text-->&nbsp;% Beteiligung</b><span>an jeder Bestellung. Deine Community spart im Schnitt 27&nbsp;%.</span></li>
+        <li data-anim><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-zap"/></svg></span><b>Null Aufwand</b><span>für Dich und Dein Management – 100&nbsp;% kostenlos, kein Risiko.</span></li>
+        <li data-anim><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg></span><b>80+ Marken</b><span>von Dior bis Rituals – plus exklusive Partner-Deals.</span></li>
+      </ul>
+      <p class="end__link" data-anim><svg class="i i--sm" aria-hidden="true"><use href="#i-eye"/></svg><span>Diese Präsentation kannst Du jederzeit wieder öffnen: <b data-self-link>dinosbs.github.io/pitch</b></span></p>
+      <p class="end__fine">INCENT · Vertrauliche Präsentation · Produkte, Preise und Rabatte: Momentaufnahme aus dem INCENT-Vorteilsportal (vorteile.net), Kategorie Health &amp; Beauty, <!--@snapshot_date-->. „Regulär“ entspricht dem im Shop ausgewiesenen Vergleichspreis. Reichweiten- und Umsatzwerte sind Beispielrechnungen, keine Zusage. Alle Marken und Logos gehören ihren jeweiligen Inhabern.</p>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="footer">
-  <div class="container footer__inner">
-    <img src="{{ui:incent-logo-dark}}" alt="INCENT" width="138" height="34">
-    <p>Community-Shop · Health &amp; Beauty · Vertrauliche Präsentation</p>
-    <p class="footer__fine">Produkte, Preise und Rabatte: Momentaufnahme aus dem INCENT-Vorteilsportal (vorteile.net), Kategorie Health &amp; Beauty, <!--@snapshot_date-->. „Regulär“ entspricht dem im Shop ausgewiesenen Vergleichspreis. Beteiligungs-, Reichweiten- und Umsatzwerte sind Beispielrechnungen, keine Zusage. Alle Marken und Logos gehören ihren jeweiligen Inhabern.</p>
-  </div>
-</footer>
-
-<p class="keyhint" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> Folie wechseln</p>
+<p class="keyhint" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> oder Scrollen</p>
 
 <script>
 /*@DATA*/

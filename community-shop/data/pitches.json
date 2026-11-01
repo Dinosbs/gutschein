@@ -1,0 +1,14 @@
+{
+  "_hinweis": "Ein Eintrag = ein Sublink https://dinosbs.github.io/pitch/<slug>/ (Datei pitches/<slug>/index.html). slug: nur a–z, 0–9 und Bindestrich. farbe/nav: Hex-Wert (#c0746a) oder blau, rose, beere, nude, salbei, lavendel, schwarz, weiss, puder, creme. hintergrund: image, solid oder gradient. logo: optionaler Dateiname in data/pitches/ (PNG, JPG, SVG, WebP). beteiligung: Prozent, Standard 10. Nach Änderungen: python3 build.py",
+  "pitches": [
+    {
+      "slug": "beispiel",
+      "name": "Lena",
+      "farbe": "rose",
+      "nav": "weiss",
+      "hintergrund": "image",
+      "logo": null,
+      "beteiligung": 10
+    }
+  ]
+}
