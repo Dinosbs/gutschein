@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent
 SRC, DATA, ASSETS = ROOT / "src", ROOT / "data", ROOT / "assets"
 
 SHARE = 70                    # Beteiligung am Gewinn in Prozent (je Pitch: "beteiligung")
-MARGIN = 18                   # Beispiel-Marge pro Produkt in Prozent (je Pitch: "marge") – echte Margen variieren je Produkt
+MARGIN = 25                   # Durchschnittsmarge pro Produkt in Prozent (je Pitch: "marge")
 SNAPSHOT_DATE = "01.11.2026"  # Stand der Preise aus der Shop-Speicherung
 RESERVED = {"assets", "data", "src", "tools", "screenshots", "pitches", "favicon.png", "index.html"}
 
@@ -331,13 +331,13 @@ def frag_winwin(rate: float) -> str:
           <span class="ww__arrow" data-anim="pop" style="--d:.8s" aria-hidden="true">{icon("arrow-right")}</span>
           <div class="ww" data-anim style="--d:.9s"><span class="ww__label">In Deinem Shop</span><span class="ww__value" data-ww="price">{eur(p['price'])}</span></div>
           <div class="ww ww--community" data-anim style="--d:1.1s"><span class="ww__label">Deine Community spart</span><span class="ww__value" data-ww="save">{eur(p['uvp'] - p['price'])}</span><span class="ww__note">−<span data-ww="off">{p['discount']}</span>&nbsp;% gegenüber regulär</span></div>
-          <div class="ww ww--you" data-anim style="--d:1.3s" data-ww-you><span class="ww__label">Du verdienst</span><span class="ww__value" data-ww="earn">{eur(p['price'] * rate)}</span><span class="ww__note"><!--@share-->&nbsp;% vom Gewinn – ganz automatisch</span></div>
+          <div class="ww ww--you" data-anim style="--d:1.3s" data-ww-you><span class="ww__label">Du verdienst*</span><span class="ww__value" data-ww="earn">{eur(p['price'] * rate)}</span><span class="ww__note"><!--@share-->&nbsp;% vom Gewinn – ganz automatisch</span></div>
         </div>
       </div>
     </div>
     <div class="ww-sum" data-anim style="--d:1.6s">
       <span class="ww-sum__count"><b data-ww-count>0</b><span><span data-ww-noun>Verkäufe</span> in<br>Deinem Shop</span></span>
-      <span class="ww-sum__total"><span>Dein Verdienst</span><strong data-ww-total>0,00&nbsp;€</strong><em class="ww-sum__plus" data-ww-plus></em></span>
+      <span class="ww-sum__total"><span>Dein Verdienst*</span><strong data-ww-total>0,00&nbsp;€</strong><em class="ww-sum__plus" data-ww-plus></em></span>
       <span class="ww-sum__claim">… und das <span class="grad-text">ohne einen Handgriff.</span></span>
     </div>
     <p class="finep" data-anim style="--d:1.8s"><!--@fine_rate--></p>"""
@@ -544,7 +544,7 @@ def render(pitch: dict | None, pv: dict | None = None) -> str:
     CUR["i"] = named.index(CUR["slug"]) if CUR["slug"] in named else 0
     share = float(pitch.get("beteiligung", SHARE))
     margin = float(pitch.get("marge", MARGIN))
-    rate = round(share * margin / 10000, 6)  # Verdienst je Euro Umsatz: Marge × Gewinnbeteiligung (18 % × 70 % = 12,6 %)
+    rate = round(share * margin / 10000, 6)  # Verdienst je Euro Umsatz: Marge × Gewinnbeteiligung (25 % × 70 % = 17,5 %)
     name = (pitch.get("name") or "").strip()
     page = (SRC / "template.html").read_text(encoding="utf-8")
     poss = (name + ("’" if re.search(r"[sxzß]$", name, re.I) else "s")) if name else ""
@@ -564,8 +564,7 @@ def render(pitch: dict | None, pv: dict | None = None) -> str:
             raise SystemExit(f"Marker fehlt im Template: {marker}")
         page = page.replace(marker, value)
     pct = lambda v: f"{v:g}".replace(".", ",")
-    page = page.replace("<!--@fine_rate-->", f"Beispielrechnung: {pct(margin)}&nbsp;% Marge pro Produkt, davon {pct(share)}&nbsp;% für Dich. "
-                                               f"Die tatsächliche Marge variiert je nach Produkt.")
+    page = page.replace("<!--@fine_rate-->", f"*Durchschnittsmarge ist rund {pct(margin)}&nbsp;%")
     page = page.replace("<!--@share-->", pct(share)).replace("<!--@margin-->", pct(margin))
     page = re.sub(r"\{\{ui:([a-z0-9-]+)\}\}", lambda m: data_uri(ASSETS / "ui" / f"{m.group(1)}.png"), page)
 
