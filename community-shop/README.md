@@ -6,7 +6,7 @@ Eine scroll-gesteuerte Präsentation, mit der wir Influencerinnen und ihrem Mana
 - **Ariel61:** https://dinosbs.github.io/pitch/ariel61/ – Shop vorgebaut mit Schriftzug „ARIEL61“, Creme-Leiste, Nude-Buttons, cremefarbener Hintergrund
 - **Yeliz Koc:** https://dinosbs.github.io/pitch/yelizkoc/ – Name hinterlegt, überwiegend weiß mit schwarzen Akzenten
 
-**Verdienst:** 70 % vom Gewinn jeder Bestellung. Alle Beträge sind eine Beispielrechnung mit 15 % Marge pro Produkt (also 10,5 % vom Verkaufspreis), die tatsächliche Marge variiert je nach Produkt. Das steht auch als Kleingedrucktes auf den Folien.
+**Verdienst:** 70 % vom Gewinn jeder Bestellung. Alle Beträge sind eine Beispielrechnung mit 18 % Marge pro Produkt (also 12,6 % vom Verkaufspreis), die tatsächliche Marge variiert je nach Produkt. Das steht auch als Kleingedrucktes auf den Folien.
 
 Jeder Push auf `main` baut alle Fassungen neu und veröffentlicht sie über GitHub Pages (`.github/workflows/pages.yml`). Die Seiten sind mit `noindex, nofollow` markiert und erscheinen nicht in Suchmaschinen. Wer den Link hat, kann sie aber öffnen.
 
@@ -43,8 +43,8 @@ Jeder Push auf `main` baut alle Fassungen neu und veröffentlicht sie über GitH
 | 06 | Deine Community | Partner-Deals | 30 echte Deals in zwei gegenläufigen Laufbändern (Hover hält eine Reihe an) und „46 exklusive Partner-Deals allein in Health & Beauty“. |
 | 07 | Deine Community | Deine Edits | Sortimente in Reitern mit „+ X € für Dich“. Die Reiter wechseln von selbst, bis jemand klickt. |
 | 08 | Deine Community | Mehr als Beauty | „Beauty ist erst der Anfang.“ Man wählt eine Zielgruppe, und die passenden Sortimentswelten leuchten auf. |
-| 09 | Dein Verdienst | Ein Verkauf, zwei Gewinner | Echte Produkte von unter 10 € bis über 100 € wechseln sich ab, immer reihum aus vier Preisbereichen. Jeweils zu sehen: regulär → im Shop → Community spart → Du verdienst (70 % vom Gewinn bei 15 % Beispiel-Marge). Darunter zählen Verkäufe und Verdienst mit: „… und das ohne einen Handgriff.“ Die Produkte stehen in `data/selection.json` unter `cycle`. |
-| 10 | Dein Verdienst | Dein Potenzial | Rechner mit Reichweite, Kaufquote und Warenkorb. Die Beteiligung steht fest auf 70 % vom Gewinn, gerechnet mit 15 % Beispiel-Marge. |
+| 09 | Dein Verdienst | Ein Verkauf, zwei Gewinner | Echte Produkte von unter 10 € bis über 100 € wechseln sich ab, immer reihum aus vier Preisbereichen. Jeweils zu sehen: regulär → im Shop → Community spart → Du verdienst (70 % vom Gewinn bei 18 % Beispiel-Marge). Darunter zählen Verkäufe und Verdienst mit: „… und das ohne einen Handgriff.“ Die Produkte stehen in `data/selection.json` unter `cycle`. |
+| 10 | Dein Verdienst | Dein Potenzial | Rechner mit Reichweite, Kaufquote und Warenkorb. Die Beteiligung steht fest auf 70 % vom Gewinn, gerechnet mit 18 % Beispiel-Marge. |
 | 11 | Dein Verdienst | Null Aufwand | „Ihr müsst nichts tun.“ Aufgaben werden durchgestrichen und an INCENT übergeben. Der Aufwand zählt von 40 auf 0 Stunden. |
 | 12 | Dein Verdienst | Passives Einkommen | iPhone-Sperrbildschirm im iOS-Stil. Unten ist eine Live-Aktivität angeheftet, die den Gewinn der Nacht mitzählt („Heute Nacht verdient“ mit dem letzten Betrag in Grün). Darüber schieben sich Bestellungen von unten ein, die Uhr läuft durch die Nacht. Als iOS-Schrift dient San Francisco, wo vorhanden, sonst das eingebettete Inter. |
 | 13 | Dein Start | Reichweite & Bindung | Ein Handy mit Instagram, als 24-Sekunden-Schleife. Der Ablauf steht unter der Tabelle. |
@@ -57,7 +57,7 @@ Ablauf der Instagram-Schleife auf Folie 13:
 2. Link antippen.
 3. Der Webshop öffnet sich. Ein Produkt kommt in den Warenkorb („Zum Warenkorb hinzugefügt“, das Symbol zeigt 1).
 4. Durch die Deals scrollen.
-5. Warenkorb öffnen, „Zur Kasse“ antippen. Es erscheint „Bestellung abgeschlossen“ und neben dem Handy „+9,40 € für Dich“.
+5. Warenkorb öffnen, „Zur Kasse“ antippen. Es erscheint „Bestellung abgeschlossen“ und neben dem Handy „+11,84 € für Dich“.
 6. Den Shop schließen. Zurück geht es zur Story, nach einer kurzen Pause zum Feed, und die Schleife beginnt von vorn.
 
 Der Warenkorb ist im Stil von vorteile.net nachempfunden, die echte Warenkorb-Seite war nicht in der Shop-Speicherung enthalten.
@@ -78,7 +78,7 @@ Für jeden Pitch kommt ein Eintrag in `data/pitches.json`:
   "hintergrundfarbe": null,
   "logo": "lena-logo.png",
   "beteiligung": 70,
-  "marge": 15
+  "marge": 18
 }
 ```
 
@@ -91,7 +91,7 @@ Für jeden Pitch kommt ein Eintrag in `data/pitches.json`:
 | `logo` | optional: Logo-Datei in `data/pitches/`. Sie ersetzt den Schriftzug in allen Mockups. |
 | `hintergrundfarbe` | optional: Hex-Wert für den einfarbigen Hintergrund (sonst aus der Buttonfarbe abgeleitet) |
 | `beteiligung` | optional, Standard 70 (Prozent vom Gewinn) |
-| `marge` | optional, Standard 15 (Beispiel-Marge pro Produkt in Prozent) |
+| `marge` | optional, Standard 18 (Beispiel-Marge pro Produkt in Prozent) |
 
 Danach `python3 build.py` ausführen (das erzeugt `pitches/<slug>/index.html`) und auf `main` pushen. Der Workflow veröffentlicht die Seite unter `/<slug>/`. Ein Eintrag ohne `name` ist die allgemeine Fassung (`beauty`).
 
@@ -136,4 +136,4 @@ screenshots/                Vorschaubilder
 
 - Preise, Vergleichspreise („Regulär“) und Rabatte sind eine Momentaufnahme vom 01.11.2026 aus dem INCENT-Vorteilsportal, Kategorie Health & Beauty.
 - „80+ Marken“, „250+ Produkte“, „bis 71 %“, „46 Partner-Deals“ und „Ø 27 %“ sind aus diesen Daten berechnet. „4.400 Unternehmen“, „450+ Markenpartner“, „3.000+ Markenprodukte“ und „70+ Partnergutscheine“ stammen von incent.de.
-- Die Beteiligung beträgt 70 % vom Gewinn. Alle Verdienst-Beträge rechnen mit 15 % Beispiel-Marge pro Produkt (70 % davon = 10,5 % vom Verkaufspreis); die tatsächliche Marge variiert je nach Produkt. Reichweiten- und Umsatzwerte im Rechner sowie das Diagramm sind als Beispiel bzw. schematisch gekennzeichnet.
+- Die Beteiligung beträgt 70 % vom Gewinn. Alle Verdienst-Beträge rechnen mit 18 % Beispiel-Marge pro Produkt (70 % davon = 12,6 % vom Verkaufspreis); die tatsächliche Marge variiert je nach Produkt. Reichweiten- und Umsatzwerte im Rechner sowie das Diagramm sind als Beispiel bzw. schematisch gekennzeichnet.

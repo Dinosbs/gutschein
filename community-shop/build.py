@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent
 SRC, DATA, ASSETS = ROOT / "src", ROOT / "data", ROOT / "assets"
 
 SHARE = 70                    # Beteiligung am Gewinn in Prozent (je Pitch: "beteiligung")
-MARGIN = 15                   # Beispiel-Marge pro Produkt in Prozent (je Pitch: "marge") – echte Margen variieren je Produkt
+MARGIN = 18                   # Beispiel-Marge pro Produkt in Prozent (je Pitch: "marge") – echte Margen variieren je Produkt
 SNAPSHOT_DATE = "01.11.2026"  # Stand der Preise aus der Shop-Speicherung
 RESERVED = {"assets", "data", "src", "tools", "screenshots", "pitches", "favicon.png", "index.html"}
 
@@ -441,7 +441,7 @@ def render(pitch: dict | None) -> str:
     pitch = pitch or {}
     share = float(pitch.get("beteiligung", SHARE))
     margin = float(pitch.get("marge", MARGIN))
-    rate = share / 100 * margin / 100  # Verdienst je Euro Umsatz: Marge × Gewinnbeteiligung
+    rate = round(share * margin / 10000, 6)  # Verdienst je Euro Umsatz: Marge × Gewinnbeteiligung (18 % × 70 % = 12,6 %)
     name = (pitch.get("name") or "").strip()
     page = (SRC / "template.html").read_text(encoding="utf-8")
     poss = (name + ("’" if re.search(r"[sxzß]$", name, re.I) else "s")) if name else ""
