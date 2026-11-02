@@ -9,6 +9,7 @@
   'use strict';
 
   const D = window.SHOP_DATA;
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; // Präsentation startet immer beim Titel
   const root = document.documentElement;
   root.classList.add('js');
 
@@ -16,13 +17,26 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const lerp = (a, b, t) => a + (b - a) * t;
-  const easeIO = (t) => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   const easeOut = (t) => 1 - Math.pow(1 - t, 3);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const deckQuery = matchMedia('(orientation: landscape) and (min-width: 900px) and (min-height: 480px)');
   const isDeck = () => deckQuery.matches;
   const W = 1600, H = 900; // Folienfläche in Canvas-Pixeln
+  const K_MAX = 1.6;        // größte Skalierung (2560 × 1440); darüber wird nur zentriert
+  // Kurve für den Folienwechsel: setzt sofort ein und läuft lang und weich aus (kein „erst langsam, dann schnell“)
+  const bezier = (x1, y1, x2, y2) => {
+    const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx;
+    const cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+    const x = (t) => ((ax * t + bx) * t + cx) * t, y = (t) => ((ay * t + by) * t + cy) * t;
+    const dx = (t) => (3 * ax * t + 2 * bx) * t + cx;
+    return (p) => {
+      let t = p;
+      for (let i = 0; i < 6; i++) { const d = dx(t); if (Math.abs(d) < 1e-6) break; t -= (x(t) - p) / d; }
+      return y(clamp(t));
+    };
+  };
+  const navEase = bezier(.33, .2, .12, 1);
 
   const fmtEur = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format;
   const fmtEur0 = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format;
@@ -119,6 +133,7 @@
     $$('[data-bind="eyebrow"]').forEach((el) => { el.textContent = n ? `Exklusiv für ${n} · Health & Beauty` : 'Community-Shop · Health & Beauty'; });
     $$('[data-bind="thanks"]').forEach((el) => { el.textContent = n ? `${possessive(n)} Beauty-Shop.` : 'Dein Beauty-Shop.'; });
     $$('[data-bind="app"]').forEach((el) => { el.textContent = n ? `${possessive(n)} Shop` : 'Community-Shop'; });
+    $$('[data-bind="shop-in"]').forEach((el) => { el.textContent = n ? `${possessive(n)} Shop` : 'Deinem Shop'; });
     $('[data-for-chip]').hidden = !n;
     document.title = n ? `${possessive(n)} Beauty-Shop · INCENT Community-Shop` : 'Dein eigener Beauty-Shop · INCENT Community-Shop';
     splitHosts.forEach(splitWords); // Überschriften mit Namen neu in Wörter teilen
@@ -397,8 +412,9 @@
     const monthEl = $('[data-ios-month]');
     const now = new Date();
     const clock = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 58);
-    const MAX = 3;
-    let total = 0, count = 0, members = 0, timer = 0, on = false, last = -1;
+    const STEP = 70; // Höhe einer Mitteilung (62) + Abstand (8), in Canvas-Pixeln
+    const KEEP = 5;  // so viele bleiben im Stapel (die oberste läuft unter der Maske aus)
+    let total = 0, count = 0, members = 0, timer = 0, on = false, last = -1, cleanup = 0;
     const paintClock = () => {
       timeEl.textContent = `${clock.getHours()}:${String(clock.getMinutes()).padStart(2, '0')}`;
       dateEl.textContent = fmtDate(clock);
@@ -407,21 +423,21 @@
     paintClock();
     const ago = (m) => (m < 1 ? 'Jetzt' : m < 60 ? `vor ${m} Min.` : `vor ${Math.floor(m / 60)} Std.`);
     const appIcon = '<svg class="i" aria-hidden="true"><use href="#i-bag"/></svg>';
+    const shopName = () => (theme.name ? `${possessive(theme.name)} Shop` : 'Deinem Community-Shop');
     const note = (title, text) => {
       const li = document.createElement('li');
       li.className = 'ios-note';
       li._at = clock.getTime();
-      li.innerHTML = `<span class="ios-note__icon">${appIcon}</span><span class="ios-note__body"><span class="ios-note__top"><b data-bind="app"></b><time>Jetzt</time></span><span class="ios-note__title"></span><span class="ios-note__text"></span></span>`;
-      $('[data-bind="app"]', li).textContent = theme.name ? `${possessive(theme.name)} Shop` : 'Community-Shop';
+      li.innerHTML = `<span class="ios-note__icon">${appIcon}</span><span class="ios-note__body"><span class="ios-note__top"><b class="ios-note__title"></b><time>Jetzt</time></span><span class="ios-note__text"></span></span>`;
       $('.ios-note__title', li).textContent = title;
       $('.ios-note__text', li).textContent = text;
       return li;
     };
     const make = () => {
-      if (count > 2 && Math.random() < .16) {
+      if (count > 2 && Math.random() < .15) {
         const n = 2 + Math.floor(Math.random() * 4);
         members += n;
-        return note(`${n} neue Mitglieder`, `Deine Community wächst – ${fmtInt(members)} neue Mitglieder heute Nacht.`);
+        return note(`${n} neue Mitglieder`, `in ${shopName()} – Deine Community wächst`);
       }
       let i;
       do { i = Math.floor(Math.random() * items.length); } while (i === last && items.length > 1);
@@ -430,7 +446,7 @@
       const amount = cents(p.price * RATE);
       total = cents(total + amount);
       count++;
-      return note(`Neue Bestellung · +${fmtEur(amount)}`, `${p.brand} · ${p.title}`);
+      return note(`+${fmtEur(amount)} für Dich`, `Neue Bestellung: ${p.brand} · ${p.title}`);
     };
     const paintTotals = (animate) => {
       if (animate) tween(totalEl, total, fmtEur, 1100); else { totalEl._v = total; totalEl.textContent = fmtEur(total); }
@@ -440,44 +456,30 @@
     const push = (animate = true) => {
       clock.setMinutes(clock.getMinutes() + 2 + Math.floor(Math.random() * 8));
       paintClock();
-      const old = $$('.ios-note:not(.is-leaving)', list);
-      const before = animate ? old.map((el) => el.getBoundingClientRect().top) : [];
       const li = make();
-      if (animate) {
-        li.classList.add('is-new');
-        li.addEventListener('animationend', () => li.classList.remove('is-new'), { once: true });
-      }
       list.append(li);
-      // ältere Mitteilungen rücken nach oben (FLIP – nur transform)
-      if (animate) {
-        old.forEach((el, k) => {
-          const dy = before[k] - el.getBoundingClientRect().top;
-          if (!dy) return;
-          el.style.transition = 'none';
-          el.style.transform = `translate3d(0, ${dy}px, 0)`;
-          requestAnimationFrame(() => requestAnimationFrame(() => {
-            el.style.transition = 'transform .85s cubic-bezier(.2, .9, .25, 1)';
-            el.style.transform = '';
-          }));
-        });
-      }
-      const live = [...old, li];
-      live.slice(0, Math.max(0, live.length - MAX)).forEach((el) => {
-        if (!animate) { el.remove(); return; }
-        el.classList.add('is-leaving');
-        setTimeout(() => el.remove(), 650);
-      });
       $$('.ios-note', list).forEach((el) => { $('time', el).textContent = ago(Math.round((clock.getTime() - el._at) / 60000)); });
       paintTotals(animate);
+      if (!animate) { while (list.children.length > KEEP) list.firstElementChild.remove(); return; }
+      // neue Mitteilung kommt von unten: der Stapel startet eine Zeile tiefer und gleitet als Ganzes hoch
+      li.classList.add('is-new');
+      li.addEventListener('animationend', () => li.classList.remove('is-new'), { once: true });
+      list.style.transition = 'none';
+      list.style.transform = `translate3d(0, ${STEP}px, 0)`;
+      void list.offsetHeight;
+      list.style.transition = 'transform .9s cubic-bezier(.22, .9, .24, 1)';
+      list.style.transform = 'translate3d(0, 0, 0)';
+      clearTimeout(cleanup);
+      cleanup = setTimeout(() => { while (list.children.length > KEEP) list.firstElementChild.remove(); }, 1000);
     };
     // Startzustand: ein paar Mitteilungen aus der Nacht liegen schon da
-    push(false); push(false); push(false);
+    push(false); push(false); push(false); push(false);
     return (want) => {
       if (document.hidden) want = false;
       if (want === on) return;
       on = want;
       clearInterval(timer);
-      if (on) timer = setInterval(push, 2600);
+      if (on) timer = setInterval(push, 2800);
     };
   }
 
@@ -532,6 +534,43 @@
     };
   }
 
+  /* ============================================================ Mehr als Beauty: Zielgruppe wechselt von selbst, bis jemand klickt */
+  function bindAudience() {
+    const box = $('[data-aud]');
+    if (!box) return () => {};
+    const wrap = box.closest('.aud');
+    const btns = $$('[data-aud-btn]', box);
+    const worlds = $$('[data-world]');
+    const countEl = $('[data-aud-count]');
+    worlds.forEach((w, i) => w.style.setProperty('--wi', i));
+    let auto = !reduce, timer = 0, running = false, cur = 0;
+    const DUR = 3600;
+    wrap.style.setProperty('--auto', DUR + 'ms');
+    const select = (i) => {
+      cur = i;
+      const key = btns[i].dataset.audBtn;
+      btns.forEach((b, k) => b.setAttribute('aria-pressed', k === i));
+      let n = 0;
+      worlds.forEach((w) => { const on = w.dataset.world.split(' ').includes(key); w.classList.toggle('is-on', on); n += on; });
+      countEl.textContent = n;
+    };
+    const stop = () => { auto = false; clearTimeout(timer); wrap.classList.remove('is-auto'); };
+    btns.forEach((b, i) => b.addEventListener('click', () => { stop(); select(i); }));
+    const next = () => { select((cur + 1) % btns.length); timer = setTimeout(next, DUR); };
+    select(0);
+    return (want) => {
+      want = want && auto && !document.hidden;
+      if (want === running) return;
+      running = want;
+      clearTimeout(timer);
+      wrap.classList.toggle('is-auto', want);
+      if (want) {
+        const b = btns[cur]; b.setAttribute('aria-pressed', 'false'); void b.offsetWidth; b.setAttribute('aria-pressed', 'true');
+        timer = setTimeout(next, DUR);
+      }
+    };
+  }
+
   /* ============================================================ Präsentation: skalieren, Einstieg, Folienwechsel, Leiste */
   function bindDeck() {
     const deck = $('.deck');
@@ -548,6 +587,7 @@
     const toasts = bindToasts();
     const lock = bindLockscreen();
     const edits = bindEdits();
+    const audience = bindAudience();
     const demo = bindDemo();
 
     // gestaffeltes Einblenden: Eyebrow → Überschrift (Wort für Wort) → Inhalte nacheinander
@@ -590,15 +630,17 @@
 
     // Maße (Dokument-Positionen) – bei Größenänderung neu
     let vh = innerHeight, k = 1, snapTops = [], slideTops = [], introTop = 0;
+    const nav = { idx: 0, raf: 0, animating: false, locked: false, acc: 0, lastWheel: 0, lastAbs: 0 };
     const measure = () => {
       vh = innerHeight;
       if (isDeck()) {
-        k = Math.min(innerWidth / W, innerHeight / H);
+        k = Math.min(innerWidth / W, innerHeight / H, K_MAX); // ab 1440p nur noch zentrieren
         root.style.setProperty('--k', k.toFixed(4));
       } else {
         k = 1;
         root.style.removeProperty('--k');
       }
+      root.classList.toggle('is-deck', isDeck());
       const y = scrollY;
       snapTops = snaps.map((s) => Math.round(s.getBoundingClientRect().top + y));
       slideTops = slides.map((s) => s.getBoundingClientRect().top + y);
@@ -642,7 +684,7 @@
 
     let builder = null;
     const paintIntro = (P) => {
-      const ia = easeIO(clamp(P)), ib = easeIO(clamp(P - 1));
+      const ia = clamp(P), ib = clamp(P - 1); // linear: die weiche Kurve liefert die Navigation
       const from = ib > 0 ? S.B : S.A, to = ib > 0 ? S.C : S.B, t = ib > 0 ? ib : ia;
       for (const key in pose) pose[key] = lerp(from[key], to[key], t);
       paintStage();
@@ -671,7 +713,7 @@
       if (depth.get(el) === key) return;
       depth.set(el, key);
       if (p <= 0) { el.style.transform = ''; el.style.opacity = ''; return; }
-      const e = easeOut(p);
+      const e = p * (2 - p);
       el.style.transform = `translate3d(0, ${(p * vh * .62).toFixed(1)}px, 0) scale(${(1 - e * .08).toFixed(4)})`;
       el.style.opacity = (1 - e * .7).toFixed(3);
     };
@@ -724,6 +766,7 @@
       }
       cur = -1;
       lastP = null;
+      if (isDeck()) { cancelAnimationFrame(nav.raf); nav.animating = false; scrollTo(0, snapTops[nav.idx] ?? 0); }
       onScroll();
     };
     let rt;
@@ -745,6 +788,7 @@
       s.classList.toggle('is-active', on);
       if (on) runCounters(s); else resetCounters(s);
       if (s.id === 'edits') edits(on);
+      if (s.id === 'sortiment') audience(on);
     };
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       const s = e.target;
@@ -766,29 +810,94 @@
       const vis = !document.hidden;
       lock(vis && $('#passiv').classList.contains('is-near'));
       edits(vis && $('#edits').classList.contains('is-active'));
+      audience(vis && $('#sortiment').classList.contains('is-active'));
       if (!vis) toasts(false); else onScroll();
     });
 
-    // Präsentieren: Pfeiltasten, Bild↑/↓, Leertaste, Pos1/Ende, Presenter → nächster Haltepunkt
+    // Präsentieren: eigene, gleichmäßige Bewegung zwischen den Haltepunkten (kein Einrasten des Browsers).
+    // Mausrad, Trackpad, Wischen, Pfeiltasten, Bild↑/↓, Leertaste, Pos1/Ende, Presenter und Legende.
+    function nearest() {
+      let best = 0;
+      snapTops.forEach((t, i) => { if (Math.abs(t - scrollY) < Math.abs(snapTops[best] - scrollY)) best = i; });
+      return best;
+    }
     function goTo(i) {
       i = clamp(i, 0, snapTops.length - 1);
-      scrollTo({ top: snapTops[i], behavior: reduce ? 'auto' : 'smooth' });
+      nav.idx = i;
+      hint?.classList.add('is-gone');
+      cancelAnimationFrame(nav.raf);
+      const from = scrollY, to = snapTops[i];
+      if (!isDeck()) { scrollTo({ top: to, behavior: reduce ? 'auto' : 'smooth' }); return; }
+      if (reduce || Math.abs(to - from) < 1) { scrollTo(0, to); nav.animating = false; onScroll(); return; }
+      const dist = Math.abs(to - from) / vh;
+      const dur = Math.min(1800, 1150 + (dist - 1) * 110);
+      const t0 = performance.now();
+      nav.animating = true;
+      const tick = (now) => {
+        const t = clamp((now - t0) / dur);
+        scrollTo(0, from + (to - from) * navEase(t));
+        onScroll();
+        if (t < 1) nav.raf = requestAnimationFrame(tick);
+        else { nav.animating = false; nav.raf = 0; }
+      };
+      nav.raf = requestAnimationFrame(tick);
     }
+    const step = (dir) => goTo((nav.animating ? nav.idx : nearest()) + dir);
+
+    addEventListener('wheel', (e) => {
+      if (!isDeck() || e.ctrlKey) return;
+      const horizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+      if (horizontal && e.target instanceof Element && e.target.closest('.rail, .mcards')) return; // Produktreihen bleiben seitlich scrollbar
+      e.preventDefault();
+      if (horizontal) return;
+      const dy = e.deltaY * (e.deltaMode === 1 ? 33 : e.deltaMode === 2 ? innerHeight : 1);
+      const now = performance.now(), gap = now - nav.lastWheel, abs = Math.abs(dy);
+      nav.lastWheel = now;
+      // Nachlauf des Trackpads (gleichmäßig abklingende Werte) löst keinen zweiten Wechsel aus
+      const tail = gap < 180 && abs <= nav.lastAbs * 1.25 + 2;
+      nav.lastAbs = abs;
+      if (nav.animating || (nav.locked && tail)) return;
+      nav.locked = false;
+      nav.acc = gap > 300 ? dy : nav.acc + dy;
+      if (Math.abs(nav.acc) < 24) return;
+      step(Math.sign(nav.acc));
+      nav.acc = 0;
+      nav.locked = true;
+    }, { passive: false });
+
+    let touch = null;
+    addEventListener('touchstart', (e) => { if (isDeck() && e.touches.length === 1) touch = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }, { passive: true });
+    addEventListener('touchmove', (e) => { if (isDeck() && !e.target.closest('input, .rail, .mcards')) e.preventDefault(); }, { passive: false });
+    addEventListener('touchend', (e) => {
+      if (!isDeck() || !touch) return;
+      const dx = touch.x - e.changedTouches[0].clientX, dy = touch.y - e.changedTouches[0].clientY;
+      touch = null;
+      if (Math.abs(dy) > 50 && Math.abs(dy) > Math.abs(dx) * 1.2 && !e.target.closest('input')) step(Math.sign(dy));
+    }, { passive: true });
+
     addEventListener('keydown', (e) => {
       if (!isDeck() || e.altKey || e.ctrlKey || e.metaKey) return;
-      if (e.target.closest('input, textarea, select, [role="tab"], .rail')) return;
-      if (e.key === ' ' && e.target.closest('button, a, label')) return;
+      const el = e.target instanceof Element ? e.target : document.body;
+      if (el.closest('input, textarea, select, [role="tab"], .rail')) return;
+      if (e.key === ' ' && el.closest('button, a, label')) return;
       const dir = { ArrowDown: 1, PageDown: 1, ArrowRight: 1, ' ': e.shiftKey ? -1 : 1, ArrowUp: -1, PageUp: -1, ArrowLeft: -1, Home: 0, End: 0 }[e.key];
       if (dir === undefined) return;
       e.preventDefault();
-      hint?.classList.add('is-gone');
       if (e.key === 'Home') return goTo(0);
       if (e.key === 'End') return goTo(snapTops.length - 1);
-      const y = scrollY;
-      const target = dir > 0 ? snapTops.findIndex((t) => t > y + 4) : snapTops.map((t, k2) => [t, k2]).filter(([t]) => t < y - 4).pop()?.[1];
-      if (target === undefined || target < 0) return;
-      goTo(target);
+      step(dir);
     });
+
+    // Springt der Browser selbst (Tab-Taste, Suche), landet die Präsentation wieder sauber auf einer Folie
+    let settle;
+    addEventListener('scroll', () => {
+      if (!isDeck() || nav.animating) return;
+      clearTimeout(settle);
+      settle = setTimeout(() => { const i = nearest(); if (Math.abs(snapTops[i] - scrollY) > 2) goTo(i); else nav.idx = i; }, 200);
+    }, { passive: true });
+    nav.idx = nearest();
+    if (isDeck()) scrollTo(0, snapTops[nav.idx]);
+
     setTimeout(() => hint?.classList.add('is-gone'), 14000);
     deck.classList.add('is-ready');
   }

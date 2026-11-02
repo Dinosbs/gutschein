@@ -241,7 +241,7 @@ def main() -> None:
         if not deal or not deal_raw.get(title):
             print("! Deal-Bild fehlt:", title)
             continue
-        save_image(deal_raw[title], ASSETS / "deals" / f"{deal['slug']}.jpg", (1000, 500), "JPEG", 78)
+        save_image(deal_raw[title], ASSETS / "deals" / f"{deal['slug']}.jpg", (800, 400), "JPEG", 74)
     print(f"{len(deals)} Deals")
 
     # Marken-Logos

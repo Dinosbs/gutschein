@@ -16,7 +16,8 @@
 <body>
 <!--@icons-->
 
-<!-- ================================================================ Präsentationsleiste: Logo · vier Akte · Foliennummer -->
+<!-- ================================================================ Bedienelemente: liegen auf derselben 16:9-Fläche wie die Folien -->
+<div class="hud"><div class="hud__frame">
 <header class="deckbar" data-deckbar>
   <div class="deckbar__inner">
     <span class="deckbar__brand"><img src="{{ui:incent-logo-nav-dark}}" alt="INCENT" width="138" height="48"></span>
@@ -34,6 +35,8 @@
 </header>
 
 <nav class="legend" aria-label="Folien" data-legend></nav>
+<p class="keyhint" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> oder Scrollen</p>
+</div></div>
 
 <main class="deck">
 
@@ -51,7 +54,7 @@
         <div class="intro__title" data-intro-title>
           <p class="eyebrow eyebrow--live" data-anim><span data-bind="eyebrow">Community-Shop · Health &amp; Beauty</span></p>
           <h1 class="intro__h" data-split>Dein eigener <span class="grad-text">Beauty-Shop</span></h1>
-          <p class="intro__lead" data-anim>Über 80 Marken zu exklusiven Vorteilspreisen – auf vorteile.net, in Deinem Look, nur für Deine Community. Und an jeder Bestellung verdienst Du mit.</p>
+          <p class="intro__lead" data-anim>Exklusive Vorteilspreise von über 80 Beauty-Marken – und weit darüber hinaus. Auf vorteile.net, in Deinem Look, nur für Deine Community. An jeder Bestellung verdienst Du mit.</p>
           <ul class="intro__ticks">
             <li data-anim="pop"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>100&nbsp;% kostenlos</li>
             <li data-anim="pop"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>Null Aufwand für Dich &amp; Dein Management</li>
@@ -166,7 +169,23 @@
     </ul>
     <dl class="cats" data-anim><!--@categories--></dl>
     <div class="logo-rows" data-anim aria-label="Weitere Marken in Health &amp; Beauty"><!--@logos--></div>
-    <p class="more" data-anim><svg class="i" aria-hidden="true"><use href="#i-sparkles"/></svg><span><strong>Und vieles mehr:</strong> Insgesamt über 450 Markenpartner, 3.000+ Markenprodukte und 70+ Partnergutscheine auf vorteile.net – von Mode und Sport bis Reisen und Technik. Neue Deals kommen laufend dazu.</span></p>
+    <p class="more" data-anim><svg class="i" aria-hidden="true"><use href="#i-sparkles"/></svg><span><strong>Und weit mehr als Beauty:</strong> Insgesamt über 450 Markenpartner, 3.000+ Markenprodukte und 70+ Partnergutscheine auf vorteile.net – von Mode und Sport bis Reisen und Technik. Dein Sortiment stellen wir passend zu Deiner Zielgruppe zusammen.</span></p>
+  </div></div></div></div>
+</section>
+
+<section class="slide slide--tint" id="deals" data-act="1" data-snap data-label="Partner-Deals">
+  <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i></div><div class="frame"><div class="frame__in"><div class="content">
+    <header class="head head--tight">
+      <div>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">05</span>Best of Health &amp; Beauty</p>
+        <h2 class="h2" data-split>Plus: Deals, die es <span class="grad-text">sonst nirgends gibt.</span></h2>
+      </div>
+      <div class="head__aside deals__aside" data-anim>
+        <p class="rate-chip"><span class="rate-chip__big"><span data-count="<!--@deal_count-->"><!--@deal_count--></span></span><span>exklusive Partner-Deals<br>allein in Health &amp; Beauty</span></p>
+      </div>
+    </header>
+    <div class="dealwall" data-anim aria-label="Partner-Deals auf vorteile.net"><!--@deals--></div>
+    <p class="dealwall__note" data-anim><svg class="i i--sm" aria-hidden="true"><use href="#i-tag"/></svg><span>Rabatte direkt bei Top-Marken – genau so, wie sie heute auf vorteile.net stehen. Portalweit kommen <strong>70+ Partnergutscheine</strong> dazu, neue Deals laufend.</span></p>
   </div></div></div></div>
 </section>
 
@@ -174,7 +193,7 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head head--tight">
       <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">05</span>Dein Sortiment</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">06</span>Deine Edits</p>
         <h2 class="h2" data-split>Kuratiere Deine <span class="grad-text">Edits.</span></h2>
       </div>
       <p class="lead" data-anim>Stell Dein Sortiment zusammen wie Deinen Feed – Lieblingsprodukte, Routinen, Geschenkideen. Echte Produkte aus dem aktuellen Angebot, inklusive Deinem Anteil.</p>
@@ -184,25 +203,50 @@
   </div></div></div></div>
 </section>
 
-<section class="slide slide--tint" id="deals" data-act="1" data-snap data-label="Partner-Deals">
-  <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i></div><div class="frame"><div class="frame__in"><div class="content">
+<section class="slide slide--tint" id="sortiment" data-act="1" data-snap data-label="Mehr als Beauty">
+  <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--2"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head head--tight">
       <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">06</span>Best of Health &amp; Beauty</p>
-        <h2 class="h2" data-split>Plus: Deals, die es <span class="grad-text">sonst nirgends gibt.</span></h2>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">07</span>Dein Sortiment</p>
+        <h2 class="h2" data-split>Beauty ist erst <span class="grad-text">der Anfang.</span></h2>
       </div>
-      <p class="lead" data-anim>Neben dem Produktshop bekommt Deine Community exklusive Rabatte direkt bei Top-Marken – so, wie sie heute schon auf vorteile.net stehen.</p>
+      <p class="lead" data-anim>Auf vorteile.net warten über 450 Markenpartner und 3.000+ Markenprodukte – weit über Health &amp; Beauty hinaus. Wir schneiden Dein Produktportfolio auf <strong>Deine Zielgruppe</strong> zu.</p>
     </header>
-    <div class="vdeals"><!--@deals--></div>
+    <div class="fit-aud">
+      <div class="aud" data-anim="left">
+        <p class="aud__label">Deine Community ist …</p>
+        <div class="aud__list" role="group" aria-label="Zielgruppe" data-aud>
+          <button type="button" class="aud__btn" data-aud-btn="beauty" aria-pressed="true"><svg class="i" aria-hidden="true"><use href="#i-sparkles"/></svg><span><b>Beauty &amp; Skincare</b><small>Routinen, Düfte, Self-Care</small></span></button>
+          <button type="button" class="aud__btn" data-aud-btn="fit" aria-pressed="false"><svg class="i" aria-hidden="true"><use href="#i-dumbbell"/></svg><span><b>Fitness &amp; Health</b><small>Training, Ernährung, Balance</small></span></button>
+          <button type="button" class="aud__btn" data-aud-btn="family" aria-pressed="false"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg><span><b>Family &amp; Home</b><small>Alltag, Zuhause, Kids</small></span></button>
+          <button type="button" class="aud__btn" data-aud-btn="life" aria-pressed="false"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg><span><b>Lifestyle &amp; Travel</b><small>Mode, Reisen, Tech</small></span></button>
+        </div>
+      </div>
+      <div class="cats-world" data-anim="right">
+        <p class="cats-world__head"><span>Sortiment in <strong data-bind="shop-in">Deinem Shop</strong></span><span class="cats-world__count"><b data-aud-count>4</b> von 8 Welten aktiv</span></p>
+        <ul class="world">
+          <li data-world="beauty fit life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-sparkles"/></svg></span><b>Health &amp; Beauty</b><small>80+ Marken · Dein Start</small></li>
+          <li data-world="beauty life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-shirt"/></svg></span><b>Fashion &amp; Accessoires</b><small>Mode, Schuhe, Schmuck</small></li>
+          <li data-world="fit"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-dumbbell"/></svg></span><b>Sport &amp; Fitness</b><small>Training, Outdoor, Recovery</small></li>
+          <li data-world="fit family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-cup"/></svg></span><b>Food &amp; Drinks</b><small>Supplements, Genuss</small></li>
+          <li data-world="beauty family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg></span><b>Home &amp; Living</b><small>Interior, Haushalt, Küche</small></li>
+          <li data-world="fit life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg></span><b>Technik &amp; Gadgets</b><small>Audio, Smart Home, Wearables</small></li>
+          <li data-world="family life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg></span><b>Reisen &amp; Erlebnisse</b><small>Hotels, Wellness, Events</small></li>
+          <li data-world="family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg></span><b>Kids &amp; Family</b><small>Spielzeug, Baby, Schule</small></li>
+        </ul>
+      </div>
+    </div>
   </div></div></div></div>
 </section>
+
+
 
 <!-- ================================================================ AKT 3 · DEIN VERDIENST -->
 <section class="slide" id="beispiel" data-act="2" data-snap data-label="Zwei Gewinner">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--2"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head">
       <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">07</span>Am Beispiel</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">08</span>Am Beispiel</p>
         <h2 class="h2" data-split>Ein Verkauf. <span class="grad-text">Zwei Gewinner.</span></h2>
       </div>
       <p class="lead" data-anim>Ein Klassiker aus dem aktuellen Sortiment: Deine Community spart deutlich – und Du verdienst ganz automatisch mit.</p>
@@ -215,7 +259,7 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head head--tight">
       <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">08</span>Dein Verdienst</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">09</span>Dein Verdienst</p>
         <h2 class="h2" data-split>Jeder Verkauf <span class="grad-text">zahlt auf Dich ein.</span></h2>
       </div>
       <div class="head__aside" data-anim>
@@ -231,7 +275,7 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head">
       <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">09</span>Dein Potenzial</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">10</span>Dein Potenzial</p>
         <h2 class="h2" data-split>Was Dein Shop <span class="grad-text">im Monat</span> bringen kann.</h2>
       </div>
       <p class="lead" data-anim>Bewusst konservativ gerechnet – mit <!--@rate_text-->&nbsp;% Beteiligung an jeder Bestellung. Schieb die Regler auf Deine Zahlen.</p>
@@ -282,7 +326,7 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--2"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <div class="zero">
       <div class="zero__copy">
-        <p class="eyebrow" data-anim><span class="eyebrow__num">10</span>Für Dich &amp; Dein Management</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">11</span>Für Dich &amp; Dein Management</p>
         <h2 class="h2 zero__h" data-split>Ihr müsst <span class="grad-text">nichts tun.</span></h2>
         <p class="lead" data-anim>Kein Briefing-Pingpong, keine Kampagnenplanung, kein Lager, keine Technik. Wir übernehmen alles, was ein Shop sonst an Arbeit macht – Dein Shop läuft von allein.</p>
         <div class="zero__todo" data-anim>
@@ -313,7 +357,7 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i><i class="stars"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <div class="night">
       <div class="night__copy">
-        <p class="eyebrow" data-anim><span class="eyebrow__num">11</span>Passives Einkommen</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">12</span>Passives Einkommen</p>
         <h2 class="h2" data-split>Verdienen, <span class="grad-text">während Du schläfst.</span></h2>
         <p class="lead" data-anim>Brand Deals enden mit dem Post. Dein Shop verkauft rund um die Uhr weiter – jeden Tag, jeden Monat, ohne neuen Aufwand.</p>
         <div class="chart" data-anim>
@@ -341,33 +385,22 @@
 <!-- ================================================================ AKT 4 · DEIN START -->
 <section class="slide slide--tint" id="reichweite" data-act="3" data-snap data-label="Reichweite & Bindung">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
-    <header class="head head--tight">
-      <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">12</span>Reichweite &amp; Bindung</p>
-        <h2 class="h2" data-split>Mehr Reichweite. <span class="grad-text">Mehr Bindung.</span></h2>
-      </div>
-      <p class="lead" data-anim>Dein Shop gibt Deiner Community einen Grund, immer wiederzukommen – und Dir laufend neue Themen für Stories und Reels.</p>
-    </header>
     <div class="reach">
-      <div class="journey" data-anim="pop" aria-label="Von der Story in Deinen Shop">
-        <div class="tilt journey__tilt" data-tilt>
-          <div class="story" aria-hidden="true">
-            <div class="story__bars"><i class="is-done"></i><i class="is-on"></i><i></i></div>
-            <div class="story__head"><span class="story__avatar" data-bind="initial">D</span><span data-bind="handle">deinname</span><span class="story__time">2 Std.</span></div>
-            <!--@story_product-->
-            <div class="story__link"><svg class="i i--sm"><use href="#i-arrow-up-right"/></svg><span><span data-bind="slug">deinname</span>.vorteile.net</span></div>
-            <span class="story__tap" aria-hidden="true"></span>
-          </div>
-          <span class="journey__arrow" aria-hidden="true"><svg class="i"><use href="#i-arrow-right"/></svg></span>
-          <div class="journey__phone"><!--@vpm_phone_2--></div>
-        </div>
+      <div class="reach__copy">
+        <p class="eyebrow" data-anim><span class="eyebrow__num">13</span>Reichweite &amp; Bindung</p>
+        <h2 class="h2" data-split>Mehr Reichweite. <span class="grad-text">Mehr Bindung.</span></h2>
+        <p class="lead" data-anim>Eine Story, ein Tipp auf den Link – und Deine Community stöbert in Deinem Shop. Danach geht es direkt zurück in Deine Story. Und Du hast laufend neue Themen für Stories und Reels.</p>
+        <ol class="flow" data-anim aria-label="So kommt Deine Community in Deinen Shop">
+          <li><b>1</b>Story ansehen</li><li><b>2</b>Link antippen</li><li><b>3</b>Deals entdecken</li><li><b>4</b>Zurück zur Story</li>
+        </ol>
+        <ul class="perks perks--mini">
+          <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-video"/></svg></span><h3>Content für jeden Tag</h3><p>Neue Deals, Adventskalender, Black Week – dazu fertige Marketing-Assets von uns.</p></li>
+          <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Eine Community, die bleibt</h3><p>Aus Followern werden Shop-Mitglieder – unabhängig vom Algorithmus.</p></li>
+          <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-gift"/></svg></span><h3>Mehrwert statt Werbung</h3><p>Du verschenkst echte Vorteile, statt nur Produkte zu bewerben.</p></li>
+          <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-trending"/></svg></span><h3>Sichtbar für Marken</h3><p>Messbare Verkäufe sind Dein stärkstes Argument bei Kooperationen.</p></li>
+        </ul>
       </div>
-      <ul class="perks perks--2">
-        <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-video"/></svg></span><h3>Content für jeden Tag</h3><p>Neue Deals, Adventskalender, Black Week, Gift-Guides – dazu fertige Marketing-Assets von uns.</p></li>
-        <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Eine Community, die bleibt</h3><p>Aus Followern werden Shop-Mitglieder, die wiederkommen – unabhängig vom Algorithmus.</p></li>
-        <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-gift"/></svg></span><h3>Mehrwert statt Werbung</h3><p>Du verschenkst echte Vorteile, statt nur Produkte zu bewerben. Das schafft Vertrauen.</p></li>
-        <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-trending"/></svg></span><h3>Sichtbar für Marken</h3><p>Messbare Verkäufe sind Dein stärkstes Argument in jeder Kooperationsanfrage.</p></li>
-      </ul>
+      <div class="reach__phone" data-anim="rise"><div class="tilt" data-tilt><!--@ig_phone--></div></div>
     </div>
   </div></div></div></div>
 </section>
@@ -376,13 +409,13 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head">
       <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">13</span>Dein Start</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">14</span>Dein Start</p>
         <h2 class="h2" data-split>Innerhalb einer Woche zur <span class="grad-text">eigenen Plattform</span></h2>
       </div>
       <p class="lead" data-anim>Wir übernehmen die komplette technische Einrichtung und Gestaltung für Dich, damit Du ohne Aufwand direkt mit Deinem Shop starten kannst.</p>
     </header>
     <ol class="steps">
-      <li class="step" data-anim><span class="step__num">01</span><h3>Definition</h3><p>Gemeinsam analysieren wir passende und auf Deinen Content abgestimmte Kategorien.</p></li>
+      <li class="step" data-anim><span class="step__num">01</span><h3>Definition</h3><p>Gemeinsam schneiden wir Dein Sortiment auf Deine Zielgruppe zu – Beauty und alles, was Deine Community sonst liebt.</p></li>
       <li class="step" data-anim><span class="step__num">02</span><h3>Einrichtung</h3><p>Wir gestalten Deinen Vorteils-Shop in Deinem Design und integrieren alle gewünschten Inhalte.</p></li>
       <li class="step" data-anim><span class="step__num">03</span><h3>Übergabe</h3><p>Du teilst Deinen Shop-Link, wir liefern Dir fertige Inhalte für die Promotion.</p></li>
       <li class="step" data-anim><span class="step__num">04</span><h3>Profitieren</h3><p>Du bekommst monatliche Auswertungen zu den Verkäufen über Deinen Shop – und Deine Beteiligung.</p></li>
@@ -405,7 +438,7 @@
         <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-palette"/></svg></span><b>Dein Look</b><span>Dein Shop auf vorteile.net – mit Deinem Namen, Logo und Deinen Farben.</span></li>
         <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><b><!--@rate_text-->&nbsp;% Beteiligung</b><span>an jeder Bestellung. Deine Community spart im Schnitt 27&nbsp;%.</span></li>
         <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-zap"/></svg></span><b>Null Aufwand</b><span>für Dich und Dein Management – 100&nbsp;% kostenlos, kein Risiko.</span></li>
-        <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg></span><b>80+ Marken</b><span>von Dior bis Rituals – plus exklusive Partner-Deals.</span></li>
+        <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg></span><b>Beauty &amp; weit mehr</b><span>80+ Beauty-Marken, 450+ Markenpartner insgesamt – zugeschnitten auf Deine Community.</span></li>
       </ul>
       <p class="end__link" data-anim><svg class="i i--sm" aria-hidden="true"><use href="#i-eye"/></svg><span>Diese Präsentation jederzeit wieder öffnen: <b data-self-link>dinosbs.github.io/pitch</b></span></p>
       <p class="end__fine" data-anim>INCENT · Vertrauliche Präsentation · Produkte, Preise und Rabatte: Momentaufnahme aus dem INCENT-Vorteilsportal (vorteile.net), Kategorie Health &amp; Beauty, <!--@snapshot_date-->. „Regulär“ entspricht dem im Shop ausgewiesenen Vergleichspreis. Reichweiten- und Umsatzwerte sind Beispielrechnungen, keine Zusage. Alle Marken und Logos gehören ihren jeweiligen Inhabern.</p>
@@ -414,8 +447,6 @@
 </section>
 
 </main>
-
-<p class="keyhint" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> oder Scrollen</p>
 
 <script>
 /*@DATA*/

@@ -43,11 +43,15 @@ DEAL_LOGOS = {
     "Shiseido": "shiseido", "NARS": "nars", "ghd - good hair day": "ghd-good-hair-day",
     "Rituals Cosmetics": "rituals", "Doctor Mi": "doctor-mi", "The Female Company": "the-female-company",
     "Yves Rocher": "yves-rocher", "LAYZIN": "layzin-skin", "lavera": "lavera", "KLIER": "klier",
-    "Philips": "philips",
+    "Philips": "philips", "Braun": "braun", "happybrush": "happybrush", "SharkNinja": "sharkninja", "Oral-B": "oral-b",
+    "Procter & Gamble Vorteils-Shop": "procter-gamble-vorteils-shop", "BIOGENA SPORTS": "biogena-sports", "Yazio": "yazio",
+    "7Mind": "7mind", "BetterHelp": "betterhelp", "Brandl Nutrition": "brandl-nutrition", "WellCard": "wellcard",
+    "ZENSPOTTING": "zenspotting", "Loop Earplugs": "loop-earplugs", "elaire": "elaire", "Kale & Me": "kale-me",
+    "Frank Juice": "frank-juice", "fitnessRAUM.de": "fitnessraum-de",
 }
 LUX = ["dior", "lancome", "chloe", "tom-ford", "yves-saint-laurent", "giorgio-armani", "hermes", "shiseido",
        "nars", "clinique", "rituals"]
-DEALS_SHOWN = 8
+DEAL_ROW = 15  # Deals je Laufband-Reihe (zwei gegenläufige Reihen)
 
 CATEGORIES = [  # Reihenfolge = Priorität beim Zuordnen
     ("Düfte", r"^(EdP|EdT|Eau de|Deo|Deodorant|Luxe Body Mist|Boss Bottled)"),
@@ -308,14 +312,72 @@ def frag_edit_panels(rate: float) -> str:
 
 
 def frag_deals() -> str:
-    return "\n".join(f'<div class="vdeal vreal" data-anim="flip">{vp_deal(t, txt)}</div>' for t, txt in sel["deals"][:DEALS_SHOWN])
+    """Zwei gegenläufige Laufbänder mit Partner-Deals (jede Reihe doppelt für eine nahtlose Schleife)."""
+    rows = [sel["deals"][:DEAL_ROW], sel["deals"][DEAL_ROW:2 * DEAL_ROW]]
+    out = []
+    for n, row in enumerate(rows):
+        tiles = "".join(f'<li class="vdeal vreal">{vp_deal(t, txt)}</li>' for t, txt in row)
+        out.append(f'<div class="dealrow{" dealrow--rev" if n else ""}" style="--dur:{150 + n * 25}s">'
+                   f'<ul class="dealrow__track">{tiles}</ul><ul class="dealrow__track" aria-hidden="true">{tiles}</ul></div>')
+    return "\n".join(out)
 
 
-def frag_story_product() -> str:
-    p = product(sel["edits"][4]["items"][1])  # Rituals Classic Advent Calendar
-    return (f'<div class="story__product"><span class="pimg pi-{p["slug"]}"></span></div>'
-            f'<div class="story__sticker"><span>Nur in meinem Shop</span><strong>-{p["discount"]}&nbsp;%</strong></div>'
-            f'<p class="story__text">Der Adventskalender ist da ✨<br>Link in Bio!</p>')
+def ig_phone() -> str:
+    """Handy mit Instagram: Feed → Story → Link → Webshop (vorteile.net) → zurück zur Story. Ablauf: CSS-Schleife."""
+    post = find("LANCÔME")
+    st = product(sel["edits"][4]["items"][1])  # Rituals Adventskalender
+    page1 = [find("DIOR"), find("SILK'N")]
+    page2 = [find("RITUALS"), find("LANCÔME")]
+    friends = [("anna.m", "A", "#f2b6a8"), ("julia", "J", "#a9c1ff"), ("sophie", "S", "#ffd28a"), ("mara", "M", "#a8dcc0")]
+    rings = "".join(f'<span class="ig__st"><span class="ig__ring"><i style="--av:{c}">{a}</i></span>{h}</span>' for h, a, c in friends)
+    return f"""<div class="phone ig-phone" aria-hidden="true">
+  <div class="phone__screen">
+    <div class="ig">
+      <span class="ig__island"></span>
+      <div class="ig__feed">
+        <div class="ig__status"><span>9:41</span><span class="ig__sig"><i></i><i></i><i></i><i></i></span></div>
+        <div class="ig__top"><span class="ig__brand">Instagram</span><span class="ig__top-icons">{icon("heart")}{icon("message")}</span></div>
+        <div class="ig__stories">
+          <span class="ig__st ig__st--me"><span class="ig__ring"><i data-bind="initial">D</i></span><span data-bind="handle">deinname</span></span>{rings}
+        </div>
+        <div class="ig__post-head"><span class="ig__ava"><i data-bind="initial">D</i></span><b data-bind="handle">deinname</b>{icon("more")}</div>
+        <div class="ig__post-img"><span class="pimg pi-{post['slug']}"></span><span class="ig__post-tag">{icon("bag")}<span><span data-bind="slug">deinname</span>.vorteile.net</span></span></div>
+        <div class="ig__actions">{icon("heart")}{icon("message")}{icon("share")}<span class="ig__save">{icon("bookmark")}</span></div>
+        <p class="ig__likes">Gefällt 2.418 Mal</p>
+        <p class="ig__caption"><b data-bind="handle">deinname</b> Mein Duft für den Herbst ✨ Exklusiv in meinem Shop</p>
+        <div class="ig__tabbar">{icon("home")}{icon("search")}{icon("plus-square")}{icon("reels")}<span class="ig__me"><i data-bind="initial">D</i></span></div>
+      </div>
+      <div class="ig__story">
+        <div class="ig__story-bars"><i></i><i></i><i></i></div>
+        <div class="ig__story-head"><span class="ig__ava ig__ava--sm"><i data-bind="initial">D</i></span><b data-bind="handle">deinname</b><span class="ig__story-time">2 Std.</span>{icon("x")}</div>
+        <div class="ig__story-product"><span class="pimg pi-{st['slug']}"></span></div>
+        <div class="ig__story-sticker"><span>Nur in meinem Shop</span><strong>-{st['discount']}&nbsp;%</strong></div>
+        <p class="ig__story-text">Der Adventskalender ist da ✨<br>Alle Deals in meinem Shop</p>
+        <span class="ig__story-link">{icon("arrow-up-right")}<span><span data-bind="slug">deinname</span>.vorteile.net</span></span>
+        <div class="ig__story-foot"><span class="ig__story-input">Nachricht senden …</span>{icon("heart")}{icon("share")}</div>
+      </div>
+      <div class="ig__sheet">
+        <div class="ig__bar"><span class="ig__close">{icon("x")}</span><span class="ig__url">{icon("lock")}<span><span data-bind="slug">deinname</span>.vorteile.net</span></span>{icon("more")}</div>
+        <div class="ig__view">
+          <div class="vpm ig__page">
+            <div class="vpm__header">{vp_logo()}<span class="vpm__icons">{icon("search")}{icon("heart")}<span class="vp__cart">{icon("bag")}<b>1</b></span></span></div>
+            <div class="vpm__cats"><i class="is-on">Health &amp; Beauty</i><i>Düfte</i><i>Skincare</i><i>Beauty-Tech</i></div>
+            <div class="vpm__stage">
+              <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span><span class="vp__fade"></span>
+              <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
+              {vp_deal("Shiseido")}
+              <div class="vpm__products">{"".join(vp_product(x) for x in page1)}</div>
+              <div class="vp__head vp__head--shop"><strong>Nur für Deine Community</strong><em>Partner-Deals</em></div>
+              <div class="ig__deals">{vp_deal("NARS")}{vp_deal("ghd - good hair day")}</div>
+              <div class="vpm__products">{"".join(vp_product(x) for x in page2)}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="ig__tap"></span>
+    </div>
+  </div>
+</div>"""
 
 
 def frag_lockscreen() -> str:
@@ -331,7 +393,7 @@ def frag_lockscreen() -> str:
       <div class="ios__widget ios__widget--wide"><span class="ios__wlabel">{icon("bag")}<span data-bind="app">Community-Shop</span> · <span data-ios-month>November</span></span><b data-ios-total>0,00 €</b></div>
       <div class="ios__widget ios__widget--ring"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18"/><circle class="ios__ring" cx="22" cy="22" r="18" pathLength="100" data-ios-ring/></svg><b data-ios-count>0</b></div>
     </div>
-    <ul class="ios__notes" data-ios-notes></ul>
+    <div class="ios__stack"><ul class="ios__notes" data-ios-notes></ul></div>
     <div class="ios__bottom"><span class="ios__btn"><svg viewBox="0 0 24 24"><path d="M9 2h6l-1 6h-4zM10 8h4v12a2 2 0 0 1-4 0z"/></svg></span><span class="ios__btn"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span></div>
     <span class="ios__home"></span>
   </div>
@@ -367,11 +429,11 @@ def render(pitch: dict | None) -> str:
     fragments = {
         "icons": (SRC / "icons.svg").read_text(encoding="utf-8"),
         "page_title": esc(f"{poss} Beauty-Shop · INCENT Community-Shop" if name else "Dein eigener Beauty-Shop · INCENT Community-Shop"),
-        "vp_hero": vp_portal(), "vpm_phone": vpm_phone(), "vpm_phone_2": vpm_phone(), "winwin": frag_winwin(rate),
+        "vp_hero": vp_portal(), "vpm_phone": vpm_phone(), "winwin": frag_winwin(rate),
         "swatches_btn": swatches(BTN_COLORS, "btn"), "swatches_nav": swatches(NAV_COLORS, "nav"),
         "margin_cards": frag_margin_cards(rate), "punch": frag_punch(rate), "lux": frag_lux(),
         "categories": frag_categories(), "logos": frag_logos(), "edit_tabs": frag_edit_tabs(),
-        "edit_panels": frag_edit_panels(rate), "deals": frag_deals(), "story_product": frag_story_product(),
+        "edit_panels": frag_edit_panels(rate), "deals": frag_deals(), "deal_count": str(len(deals)), "ig_phone": ig_phone(),
         "lockscreen": frag_lockscreen(), "snapshot_date": SNAPSHOT_DATE,
     }
     for key, value in fragments.items():

@@ -1,326 +1,398 @@
 {
-  "_hinweis": "Welche Produkte und Deals auf der Seite erscheinen. Produkte werden über Marke + exakten Titel aus catalog.json gefunden. hero = Produkte in den vorteile.net-Mockups, margin = Verdienst-Karten, edits = Sortiments-Reiter, deals = Partner-Deals.",
-  "hero": [
-    [
-      "LANCÔME",
-      "EdP \"La vie est belle\", 100 ml"
-    ],
-    [
-      "DIOR",
-      "EdT \"J'ADORE\", 100 ml"
-    ],
-    [
-      "SILK'N",
-      "LED Lichttherapiegerät Gesichtsmaske"
-    ],
-    [
-      "RITUALS",
-      "Classic Advent Calendar 2026"
-    ],
-    [
-      "SHISEIDO",
-      "\"Benefiance - Wrinkle Smoothing\", 50 ml"
-    ],
-    [
-      "CHLOÉ",
-      "EdP \"Chloé\", 55 ml"
-    ]
+ "_hinweis": "Welche Produkte und Deals auf der Seite erscheinen. Produkte werden über Marke + exakten Titel aus catalog.json gefunden. hero = Produkte in den vorteile.net-Mockups, margin = Verdienst-Karten, edits = Sortiments-Reiter, deals = Partner-Deals.",
+ "hero": [
+  [
+   "LANCÔME",
+   "EdP \"La vie est belle\", 100 ml"
   ],
-  "margin": [
-    [
-      "LANCÔME",
-      "EdP \"La vie est belle\", 100 ml"
-    ],
-    [
-      "SILK'N",
-      "LED Lichttherapiegerät Gesichts- und Halsmaske"
-    ],
-    [
-      "SHISEIDO",
-      "\"Benefiance - Wrinkle Smoothing\", 50 ml"
-    ],
-    [
-      "PHILIPS",
-      "IPL Haarentferner Lumea Advanced \"BRI920/00\""
-    ],
-    [
-      "RITUALS",
-      "Premium Advent Calendar 2026"
-    ],
-    [
-      "TOM FORD",
-      "EdP \"Black Orchid\", 50 ml"
-    ]
+  [
+   "DIOR",
+   "EdT \"J'ADORE\", 100 ml"
   ],
-  "edits": [
-    {
-      "id": "scents",
-      "name": "Signature Scents",
-      "claim": "Die Düfte, nach denen deine Community fragt.",
-      "items": [
-        [
-          "LANCÔME",
-          "EdP \"La vie est belle\", 100 ml"
-        ],
-        [
-          "DIOR",
-          "EdT \"J'ADORE\", 100 ml"
-        ],
-        [
-          "CHLOÉ",
-          "EdP \"Chloé\", 55 ml"
-        ],
-        [
-          "TOM FORD",
-          "EdP \"Black Orchid\", 50 ml"
-        ],
-        [
-          "PACO RABANNE",
-          "EdP \"Lady Million\" 50 ml"
-        ],
-        [
-          "YVES SAINT LAURENT",
-          "EdP \"Libre\", 30 ml"
-        ],
-        [
-          "DIOR",
-          "EdP \"Joy\", 50 ml"
-        ],
-        [
-          "GIORGIO ARMANI",
-          "EdP \"My Way\", 50 ml"
-        ],
-        [
-          "DOLCE & GABBANA",
-          "EdT \"Light Blue\", 50 ml"
-        ],
-        [
-          "HERMES",
-          "EdT \"Un Jardin sur le Nil\", 100 ml"
-        ],
-        [
-          "DIOR",
-          "EdT \"Miss Blooming Bouquet\", 50 ml"
-        ],
-        [
-          "GIORGIO ARMANI",
-          "EdP \"Sì\", 30 ml"
-        ]
-      ]
-    },
-    {
-      "id": "skin",
-      "name": "Skin Rituals",
-      "claim": "Skincare-Klassiker für jede Routine.",
-      "items": [
-        [
-          "SHISEIDO",
-          "\"Benefiance - Wrinkle Smoothing\", 50 ml"
-        ],
-        [
-          "Clinique",
-          "Reinigungsbalsam \"Take the Day Off\", 125 ml"
-        ],
-        [
-          "BABOR",
-          "\"Skinovage\" Moisturizing Serum, 30 ml"
-        ],
-        [
-          "BABOR",
-          "\"Skinovage\" Purifying Cream rich, 50 ml"
-        ],
-        [
-          "BIOTHERM",
-          "\"Aquasource\" Normale Haut, 50 ml"
-        ],
-        [
-          "NUXE",
-          "Körperöl, \"Huile Prodigieuse Treatment\""
-        ],
-        [
-          "NUXE",
-          "Gesichtspflegeset \"Mixed Lines\""
-        ],
-        [
-          "SILK'N",
-          "Gesichtsreinigungsbürste \"Bright\", pink"
-        ],
-        [
-          "BEURER",
-          "Gesichtssauna \"FS 60\""
-        ],
-        [
-          "SILK'N",
-          "Mikrodermabrasionsgerät \"ReVit Essential\""
-        ]
-      ]
-    },
-    {
-      "id": "tech",
-      "name": "Beauty Tech",
-      "claim": "Hochpreisige Geräte – hohe Warenkörbe.",
-      "items": [
-        [
-          "SILK'N",
-          "LED Lichttherapiegerät Gesichts- und Halsmaske"
-        ],
-        [
-          "SILK'N",
-          "LED Lichttherapiegerät Gesichtsmaske"
-        ],
-        [
-          "SILK'N",
-          "LED Lichttherapiegerät Gesichtsmaske Pro"
-        ],
-        [
-          "SILK'N",
-          "Anti-Aging-Gerät \"FaceTite Essential\""
-        ],
-        [
-          "PHILIPS",
-          "IPL Haarentferner Lumea Advanced \"BRI920/00\""
-        ],
-        [
-          "SILK'N",
-          "Haarentferner \"IPL Motion Premium\""
-        ],
-        [
-          "SILK'N",
-          "LED Lichttherapiegerät Lippenmaske \"LumiLips\""
-        ],
-        [
-          "SILK'N",
-          "LED Lichttherapiegerät Gesichtsmaske mit EMS"
-        ]
-      ]
-    },
-    {
-      "id": "hair",
-      "name": "Hair Love",
-      "claim": "Salon-Ergebnis für zuhause.",
-      "items": [
-        [
-          "SILK'N",
-          "Haartrockner & Styler \"SilkyAir Flex\" mit 8 Aufsätzen"
-        ],
-        [
-          "SILK'N",
-          "Multi-Haarstyler 3-in-1 \"SilkyAir Trinity\""
-        ],
-        [
-          "BABYLISS",
-          "Automatischer Lockenstab \"Style Secret Air\""
-        ],
-        [
-          "BABYLISS",
-          "Automatischer Lockenstab \"Curl Secret Shine C1700E\""
-        ],
-        [
-          "SILK'N",
-          "Haartrockner \"SilkyAir Pro\" mit 3 Aufsätzen"
-        ],
-        [
-          "SILK'N",
-          "Haarglätter \"SilkyStraight\""
-        ],
-        [
-          "BABYLISS",
-          "Föhn, \"Air Power Pro D6555DE\""
-        ],
-        [
-          "BABYLISS",
-          "Warmluftbürste \"Air Power Volume AS95E\""
-        ]
-      ]
-    },
-    {
-      "id": "gifting",
-      "name": "Self-Care & Gifting",
-      "claim": "Adventskalender, Sets, Me-Time – perfekt für Q4.",
-      "items": [
-        [
-          "RITUALS",
-          "Premium Advent Calendar 2026"
-        ],
-        [
-          "RITUALS",
-          "Classic Advent Calendar 2026"
-        ],
-        [
-          "RITUALS",
-          "Geschenkset \"Private Collection\", Hibiscus Dream"
-        ],
-        [
-          "RITUALS",
-          "Geschenkset \"Amsterdam Collection\", L"
-        ],
-        [
-          "RITUALS",
-          "Geschenkset \"The Ritual of Yozakura\", M"
-        ],
-        [
-          "RIVERDALE",
-          "Duftkerze Sense L, Terra Touch"
-        ],
-        [
-          "DOMO",
-          "Ultraschall-Duftzerstäuber"
-        ],
-        [
-          "WALRA",
-          "Bademantel \"Spring Robe\", weiß s/m"
-        ]
-      ]
-    }
+  [
+   "SILK'N",
+   "LED Lichttherapiegerät Gesichtsmaske"
   ],
-  "deals": [
-    [
-      "Shiseido",
-      "Tauche ein in die Welt erstklassiger japanischer Schönheit"
-    ],
-    [
-      "NARS",
-      "Iconic. Individual. Unexpected."
-    ],
-    [
-      "ghd - good hair day",
-      "Hair-Styling in Salonqualität"
-    ],
-    [
-      "Rituals Cosmetics",
-      "Bedeutungsvolle Momente mit Rituals"
-    ],
-    [
-      "Doctor Mi",
-      "Beyond Skincare. Clinical Results."
-    ],
-    [
-      "The Female Company",
-      "Non-toxic, saugstark, auslaufsicher"
-    ],
-    [
-      "Yves Rocher",
-      "Über 60 Jahre Pflanzenkraft für die Haut"
-    ],
-    [
-      "LAYZIN",
-      "Restart Your Skin – wissenschaftlich fundiert"
-    ],
-    [
-      "lavera",
-      "Die Kraft wirksamer Naturkosmetik"
-    ],
-    [
-      "Pink Box",
-      "Die schönsten Beauty-Boxen"
-    ],
-    [
-      "KLIER",
-      "Zeit für einen neuen Look?"
-    ],
-    [
-      "Philips",
-      "Exklusive Philips Pflegeprodukte"
-    ]
+  [
+   "RITUALS",
+   "Classic Advent Calendar 2026"
+  ],
+  [
+   "SHISEIDO",
+   "\"Benefiance - Wrinkle Smoothing\", 50 ml"
+  ],
+  [
+   "CHLOÉ",
+   "EdP \"Chloé\", 55 ml"
   ]
+ ],
+ "margin": [
+  [
+   "LANCÔME",
+   "EdP \"La vie est belle\", 100 ml"
+  ],
+  [
+   "SILK'N",
+   "LED Lichttherapiegerät Gesichts- und Halsmaske"
+  ],
+  [
+   "SHISEIDO",
+   "\"Benefiance - Wrinkle Smoothing\", 50 ml"
+  ],
+  [
+   "PHILIPS",
+   "IPL Haarentferner Lumea Advanced \"BRI920/00\""
+  ],
+  [
+   "RITUALS",
+   "Premium Advent Calendar 2026"
+  ],
+  [
+   "TOM FORD",
+   "EdP \"Black Orchid\", 50 ml"
+  ]
+ ],
+ "edits": [
+  {
+   "id": "scents",
+   "name": "Signature Scents",
+   "claim": "Die Düfte, nach denen deine Community fragt.",
+   "items": [
+    [
+     "LANCÔME",
+     "EdP \"La vie est belle\", 100 ml"
+    ],
+    [
+     "DIOR",
+     "EdT \"J'ADORE\", 100 ml"
+    ],
+    [
+     "CHLOÉ",
+     "EdP \"Chloé\", 55 ml"
+    ],
+    [
+     "TOM FORD",
+     "EdP \"Black Orchid\", 50 ml"
+    ],
+    [
+     "PACO RABANNE",
+     "EdP \"Lady Million\" 50 ml"
+    ],
+    [
+     "YVES SAINT LAURENT",
+     "EdP \"Libre\", 30 ml"
+    ],
+    [
+     "DIOR",
+     "EdP \"Joy\", 50 ml"
+    ],
+    [
+     "GIORGIO ARMANI",
+     "EdP \"My Way\", 50 ml"
+    ],
+    [
+     "DOLCE & GABBANA",
+     "EdT \"Light Blue\", 50 ml"
+    ],
+    [
+     "HERMES",
+     "EdT \"Un Jardin sur le Nil\", 100 ml"
+    ],
+    [
+     "DIOR",
+     "EdT \"Miss Blooming Bouquet\", 50 ml"
+    ],
+    [
+     "GIORGIO ARMANI",
+     "EdP \"Sì\", 30 ml"
+    ]
+   ]
+  },
+  {
+   "id": "skin",
+   "name": "Skin Rituals",
+   "claim": "Skincare-Klassiker für jede Routine.",
+   "items": [
+    [
+     "SHISEIDO",
+     "\"Benefiance - Wrinkle Smoothing\", 50 ml"
+    ],
+    [
+     "Clinique",
+     "Reinigungsbalsam \"Take the Day Off\", 125 ml"
+    ],
+    [
+     "BABOR",
+     "\"Skinovage\" Moisturizing Serum, 30 ml"
+    ],
+    [
+     "BABOR",
+     "\"Skinovage\" Purifying Cream rich, 50 ml"
+    ],
+    [
+     "BIOTHERM",
+     "\"Aquasource\" Normale Haut, 50 ml"
+    ],
+    [
+     "NUXE",
+     "Körperöl, \"Huile Prodigieuse Treatment\""
+    ],
+    [
+     "NUXE",
+     "Gesichtspflegeset \"Mixed Lines\""
+    ],
+    [
+     "SILK'N",
+     "Gesichtsreinigungsbürste \"Bright\", pink"
+    ],
+    [
+     "BEURER",
+     "Gesichtssauna \"FS 60\""
+    ],
+    [
+     "SILK'N",
+     "Mikrodermabrasionsgerät \"ReVit Essential\""
+    ]
+   ]
+  },
+  {
+   "id": "tech",
+   "name": "Beauty Tech",
+   "claim": "Hochpreisige Geräte – hohe Warenkörbe.",
+   "items": [
+    [
+     "SILK'N",
+     "LED Lichttherapiegerät Gesichts- und Halsmaske"
+    ],
+    [
+     "SILK'N",
+     "LED Lichttherapiegerät Gesichtsmaske"
+    ],
+    [
+     "SILK'N",
+     "LED Lichttherapiegerät Gesichtsmaske Pro"
+    ],
+    [
+     "SILK'N",
+     "Anti-Aging-Gerät \"FaceTite Essential\""
+    ],
+    [
+     "PHILIPS",
+     "IPL Haarentferner Lumea Advanced \"BRI920/00\""
+    ],
+    [
+     "SILK'N",
+     "Haarentferner \"IPL Motion Premium\""
+    ],
+    [
+     "SILK'N",
+     "LED Lichttherapiegerät Lippenmaske \"LumiLips\""
+    ],
+    [
+     "SILK'N",
+     "LED Lichttherapiegerät Gesichtsmaske mit EMS"
+    ]
+   ]
+  },
+  {
+   "id": "hair",
+   "name": "Hair Love",
+   "claim": "Salon-Ergebnis für zuhause.",
+   "items": [
+    [
+     "SILK'N",
+     "Haartrockner & Styler \"SilkyAir Flex\" mit 8 Aufsätzen"
+    ],
+    [
+     "SILK'N",
+     "Multi-Haarstyler 3-in-1 \"SilkyAir Trinity\""
+    ],
+    [
+     "BABYLISS",
+     "Automatischer Lockenstab \"Style Secret Air\""
+    ],
+    [
+     "BABYLISS",
+     "Automatischer Lockenstab \"Curl Secret Shine C1700E\""
+    ],
+    [
+     "SILK'N",
+     "Haartrockner \"SilkyAir Pro\" mit 3 Aufsätzen"
+    ],
+    [
+     "SILK'N",
+     "Haarglätter \"SilkyStraight\""
+    ],
+    [
+     "BABYLISS",
+     "Föhn, \"Air Power Pro D6555DE\""
+    ],
+    [
+     "BABYLISS",
+     "Warmluftbürste \"Air Power Volume AS95E\""
+    ]
+   ]
+  },
+  {
+   "id": "gifting",
+   "name": "Self-Care & Gifting",
+   "claim": "Adventskalender, Sets, Me-Time – perfekt für Q4.",
+   "items": [
+    [
+     "RITUALS",
+     "Premium Advent Calendar 2026"
+    ],
+    [
+     "RITUALS",
+     "Classic Advent Calendar 2026"
+    ],
+    [
+     "RITUALS",
+     "Geschenkset \"Private Collection\", Hibiscus Dream"
+    ],
+    [
+     "RITUALS",
+     "Geschenkset \"Amsterdam Collection\", L"
+    ],
+    [
+     "RITUALS",
+     "Geschenkset \"The Ritual of Yozakura\", M"
+    ],
+    [
+     "RIVERDALE",
+     "Duftkerze Sense L, Terra Touch"
+    ],
+    [
+     "DOMO",
+     "Ultraschall-Duftzerstäuber"
+    ],
+    [
+     "WALRA",
+     "Bademantel \"Spring Robe\", weiß s/m"
+    ]
+   ]
+  }
+ ],
+ "deals": [
+  [
+   "Shiseido",
+   "Tauche ein in die Welt erstklassiger japanischer Schönheit"
+  ],
+  [
+   "NARS",
+   "Iconic. Individual. Unexpected."
+  ],
+  [
+   "ghd - good hair day",
+   "Hair-Styling in Salonqualität"
+  ],
+  [
+   "Rituals Cosmetics",
+   "Bedeutungsvolle Momente mit Rituals"
+  ],
+  [
+   "Doctor Mi",
+   "Beyond Skincare. Clinical Results."
+  ],
+  [
+   "The Female Company",
+   "Non-toxic, saugstark, auslaufsicher"
+  ],
+  [
+   "Yves Rocher",
+   "Über 60 Jahre Pflanzenkraft für die Haut"
+  ],
+  [
+   "LAYZIN",
+   "Restart Your Skin – wissenschaftlich fundiert"
+  ],
+  [
+   "lavera",
+   "Die Kraft wirksamer Naturkosmetik"
+  ],
+  [
+   "Pink Box",
+   "Die schönsten Beauty-Boxen"
+  ],
+  [
+   "KLIER",
+   "Zeit für einen neuen Look?"
+  ],
+  [
+   "Philips",
+   "Exklusive Philips Pflegeprodukte"
+  ],
+  [
+   "Braun",
+   "Premium-Produkte von Braun zum Vorteilspreis"
+  ],
+  [
+   "happybrush",
+   "Frischer Wind fürs Badezimmer"
+  ],
+  [
+   "SharkNinja",
+   "Haarstyler, Haushalts- und Küchengeräte"
+  ],
+  [
+   "Oral-B",
+   "Premium-Zahnpflege zum Vorteilspreis"
+  ],
+  [
+   "Procter & Gamble Vorteils-Shop",
+   "Premium-Schnäppchen für Haushalt & Pflege"
+  ],
+  [
+   "BIOGENA SPORTS",
+   "Raise your Performance"
+  ],
+  [
+   "Yazio",
+   "Gesund leben mit Yazio Pro"
+  ],
+  [
+   "7Mind",
+   "Mehr Gelassenheit im Alltag"
+  ],
+  [
+   "BetterHelp",
+   "Psychologische Online-Beratung"
+  ],
+  [
+   "Brandl Nutrition",
+   "Premium Protein & Supplements"
+  ],
+  [
+   "WellCard",
+   "Wellness-Gutschein für über 750 Tempel"
+  ],
+  [
+   "ZENSPOTTING",
+   "Der Wohlfühl-Gutschein"
+  ],
+  [
+   "Zahnheld",
+   "Professionelle Mundpflege"
+  ],
+  [
+   "Loop Earplugs",
+   "Live Life at your volume"
+  ],
+  [
+   "elaire",
+   "Mute the world – mit dem Airstick"
+  ],
+  [
+   "Kale & Me",
+   "Der Experte für Fasten und Gesundheit"
+  ],
+  [
+   "Frank Juice",
+   "Saft- und Suppenkuren für den Reset"
+  ],
+  [
+   "fitnessRAUM.de",
+   "Wellbeing-Flatrate: Onlinekurse für zu Hause"
+  ]
+ ]
 }
