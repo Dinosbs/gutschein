@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title><!--@page_title--></title>
-<meta name="description" content="INCENT Community-Shop: Dein eigener Beauty-Shop auf vorteile.net – exklusive Vorteilspreise für Deine Community, 10 % Beteiligung an jeder Bestellung, null Aufwand.">
+<meta name="description" content="INCENT Community-Shop: Dein eigener Beauty-Shop auf vorteile.net – exklusive Vorteilspreise für Deine Community, Beteiligung am Gewinn jeder Bestellung, null Aufwand.">
 <meta name="theme-color" content="#f4f7fc">
 <link rel="icon" href="{{ui:incent-favicon}}">
 <script>document.documentElement.classList.add("js")</script>
@@ -58,7 +58,7 @@
           <ul class="intro__ticks">
             <li data-anim="pop"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>100&nbsp;% kostenlos</li>
             <li data-anim="pop"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>Null Aufwand für Dich &amp; Dein Management</li>
-            <li data-anim="pop"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg><!--@rate_text-->&nbsp;% an jeder Bestellung</li>
+            <li data-anim="pop"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg><!--@share-->&nbsp;% vom Gewinn für Dich</li>
           </ul>
         </div>
 
@@ -70,7 +70,7 @@
             <span class="stage__sheen" aria-hidden="true"></span>
             <div class="float float--toasts" data-toasts aria-live="polite"></div>
             <div class="float float--stat"><span class="float__icon"><svg class="i" aria-hidden="true"><use href="#i-coins"/></svg></span><span><strong data-today>0,00&nbsp;€</strong><small>heute für Dich</small></span></div>
-            <div class="float float--tag"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg><!--@rate_text-->&nbsp;% an jeder Bestellung</div>
+            <div class="float float--tag"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg><!--@share-->&nbsp;% vom Gewinn für Dich</div>
           </div>
         </div>
 
@@ -143,7 +143,7 @@
     <ol class="perks perks--3">
       <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg></span><span class="perk__num">01</span><h3>Du empfiehlst</h3><p>Du teilst Deinen Shop mit Deiner Community – mit Deinen Lieblingsprodukten und Edits, von „Meine Morning Routine“ bis „Geschenke unter 50&nbsp;€“.</p></li>
       <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><span class="perk__num">02</span><h3>Deine Community spart</h3><p>Im Schnitt <strong>27&nbsp;%</strong> unter dem regulären Preis, bei vielen Produkten deutlich mehr. Ein Vorteil, den sie nur über Dich bekommt.</p></li>
-      <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-coins"/></svg></span><span class="perk__num">03</span><h3>Du verdienst mit</h3><p><strong><!--@rate_text-->&nbsp;%</strong> an jeder Bestellung in Deinem Shop. Ohne Lager, ohne Versand, ohne eigenes Risiko – und 100&nbsp;% kostenlos.</p></li>
+      <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-coins"/></svg></span><span class="perk__num">03</span><h3>Du verdienst mit</h3><p><strong><!--@share-->&nbsp;% vom Gewinn</strong> jeder Bestellung in Deinem Shop. Ohne Lager, ohne Versand, ohne eigenes Risiko – und 100&nbsp;% kostenlos.</p></li>
     </ol>
     <dl class="stats" data-anim>
       <div class="stat"><dt>Marken in Health &amp; Beauty</dt><dd><span data-count="80">80</span><span class="stat__suffix">+</span></dd></div>
@@ -200,6 +200,7 @@
     </header>
     <div class="tabs" role="tablist" aria-label="Edits" data-anim data-tabs><!--@edit_tabs--></div>
     <div class="edits" data-anim><!--@edit_panels--></div>
+    <p class="finep" data-anim><!--@fine_rate--></p>
   </div></div></div></div>
 </section>
 
@@ -250,7 +251,7 @@
         <h2 class="h2" data-split>Ein Verkauf. <span class="grad-text">Zwei Gewinner.</span></h2>
       </div>
       <div class="head__aside" data-anim>
-        <p class="rate-chip"><span class="rate-chip__big"><!--@rate_text-->&nbsp;%</span><span>Beteiligung an jeder<br>Bestellung in Deinem Shop</span></p>
+        <p class="rate-chip"><span class="rate-chip__big"><!--@share-->&nbsp;%</span><span>vom Gewinn jeder<br>Bestellung in Deinem Shop</span></p>
       </div>
     </header>
     <!--@winwin-->
@@ -264,7 +265,7 @@
         <p class="eyebrow" data-anim><span class="eyebrow__num">10</span>Dein Potenzial</p>
         <h2 class="h2" data-split>Was Dein Shop <span class="grad-text">im Monat</span> bringen kann.</h2>
       </div>
-      <p class="lead" data-anim>Bewusst konservativ gerechnet – mit <!--@rate_text-->&nbsp;% Beteiligung an jeder Bestellung. Schieb die Regler auf Deine Zahlen.</p>
+      <p class="lead" data-anim>Bewusst konservativ gerechnet – mit <!--@margin-->&nbsp;% Beispiel-Marge pro Produkt, davon <!--@share-->&nbsp;% für Dich. Schieb die Regler auf Deine Zahlen.</p>
     </header>
     <div class="calc">
       <div class="calc__inputs" data-anim="left">
@@ -288,7 +289,7 @@
           <input id="basket" type="range" min="30" max="250" step="5" value="75" data-input="basket">
           <span class="slider__scale" aria-hidden="true"><span>30&nbsp;€</span><span>250&nbsp;€</span></span>
         </div>
-        <p class="calc__fixed"><span>Deine Beteiligung</span><b><!--@rate_text-->&nbsp;%</b></p>
+        <p class="calc__fixed"><span>Deine Beteiligung<small>vom Gewinn · Beispiel-Marge <!--@margin-->&nbsp;%</small></span><b><!--@share-->&nbsp;%</b></p>
       </div>
       <div class="calc__result" data-anim="right" aria-live="polite">
         <div class="tilt calc__tilt" data-tilt>
@@ -301,7 +302,7 @@
             <div><dt>Umsatz in Deinem Shop</dt><dd data-res="revenue">37.500&nbsp;€</dd></div>
             <div><dt>Deine Community spart</dt><dd data-res="savings">13.600&nbsp;€</dd></div>
           </dl>
-          <p class="calc__note">Beispielrechnung, keine Umsatzprognose. Ersparnis auf Basis der Ø&nbsp;27&nbsp;% im aktuellen Health-&amp;-Beauty-Sortiment.</p>
+          <p class="calc__note">Beispielrechnung, keine Umsatzprognose: <!--@margin-->&nbsp;% Marge pro Produkt angenommen, davon <!--@share-->&nbsp;% für Dich – die tatsächliche Marge variiert je nach Produkt. Ersparnis auf Basis der Ø&nbsp;27&nbsp;% im aktuellen Health-&amp;-Beauty-Sortiment.</p>
         </div>
       </div>
     </div>
@@ -419,12 +420,12 @@
       <h2 class="end__h" data-split><span data-bind="thanks">Dein Beauty-Shop.</span> <span class="grad-text">Startklar in einer Woche.</span></h2>
       <ul class="recap">
         <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-palette"/></svg></span><b>Dein Look</b><span>Dein Shop auf vorteile.net – mit Deinem Namen, Logo und Deinen Farben.</span></li>
-        <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><b><!--@rate_text-->&nbsp;% Beteiligung</b><span>an jeder Bestellung. Deine Community spart im Schnitt 27&nbsp;%.</span></li>
+        <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><b><!--@share-->&nbsp;% vom Gewinn</b><span>jeder Bestellung in Deinem Shop. Deine Community spart im Schnitt 27&nbsp;%.</span></li>
         <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-zap"/></svg></span><b>Null Aufwand</b><span>für Dich und Dein Management – 100&nbsp;% kostenlos, kein Risiko.</span></li>
         <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg></span><b>Beauty &amp; weit mehr</b><span>80+ Beauty-Marken, 450+ Markenpartner insgesamt – zugeschnitten auf Deine Community.</span></li>
       </ul>
       <p class="end__link" data-anim><svg class="i i--sm" aria-hidden="true"><use href="#i-eye"/></svg><span>Diese Präsentation jederzeit wieder öffnen: <b data-self-link>dinosbs.github.io/pitch</b></span></p>
-      <p class="end__fine" data-anim>INCENT · Vertrauliche Präsentation · Produkte, Preise und Rabatte: Momentaufnahme aus dem INCENT-Vorteilsportal (vorteile.net), Kategorie Health &amp; Beauty, <!--@snapshot_date-->. „Regulär“ entspricht dem im Shop ausgewiesenen Vergleichspreis. Reichweiten- und Umsatzwerte sind Beispielrechnungen, keine Zusage. Alle Marken und Logos gehören ihren jeweiligen Inhabern.</p>
+      <p class="end__fine" data-anim>INCENT · Vertrauliche Präsentation · Produkte, Preise und Rabatte: Momentaufnahme aus dem INCENT-Vorteilsportal (vorteile.net), Kategorie Health &amp; Beauty, <!--@snapshot_date-->. „Regulär“ entspricht dem im Shop ausgewiesenen Vergleichspreis. Verdienst-Beispiele: <!--@margin-->&nbsp;% Marge pro Produkt angenommen, davon <!--@share-->&nbsp;% Gewinnbeteiligung – die tatsächliche Marge variiert je nach Produkt. Reichweiten- und Umsatzwerte sind Beispielrechnungen, keine Zusage. Alle Marken und Logos gehören ihren jeweiligen Inhabern.</p>
     </div>
   </div></div></div></div>
 </section>

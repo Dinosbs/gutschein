@@ -76,6 +76,7 @@
     nav: parseColor(params.get('nav')) || parseColor(P.nav) || D.defaults.nav,
     bg: BG[(params.get('hintergrund') || '').toLowerCase()] || BG[(P.hintergrund || '').toLowerCase()] || 'image',
     name: (params.get('name') || P.name || '').trim().slice(0, 20),
+    bgSolid: parseColor(params.get('hintergrundfarbe')) || parseColor(P.hintergrundfarbe) || null,
     logo: P.logo || null,
     logoName: P.logo ? 'Dein Logo' : '',
   };
@@ -97,7 +98,7 @@
     const s = root.style;
     s.setProperty('--btn', theme.btn);
     s.setProperty('--nav', theme.nav);
-    s.setProperty('--bg-solid', mix(theme.btn, '#ffffff', .86));
+    s.setProperty('--bg-solid', theme.bgSolid || mix(theme.btn, '#ffffff', .86));
     s.setProperty('--bg-g1', theme.btn);
     s.setProperty('--bg-g2', mix(theme.btn, '#071022', .72));
     root.dataset.btnTone = lum(theme.btn) > .45 ? 'light' : 'dark';

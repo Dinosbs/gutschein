@@ -25,9 +25,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 SRC, DATA, ASSETS = ROOT / "src", ROOT / "data", ROOT / "assets"
 
-RATE = 10                     # Beteiligung an jeder Bestellung in Prozent (je Pitch überschreibbar)
+SHARE = 70                    # Beteiligung am Gewinn in Prozent (je Pitch: "beteiligung")
+MARGIN = 15                   # Beispiel-Marge pro Produkt in Prozent (je Pitch: "marge") – echte Margen variieren je Produkt
 SNAPSHOT_DATE = "01.11.2026"  # Stand der Preise aus der Shop-Speicherung
-RESERVED = {"assets", "data", "src", "tools", "screenshots", "pitches", "favicon.png"}
+RESERVED = {"assets", "data", "src", "tools", "screenshots", "pitches", "favicon.png", "index.html"}
 
 # Farben im Gestalter (Buttonfarbe = Akzentfarbe des Portals, wie --btn auf vorteile.net)
 BTN_COLORS = [
@@ -241,7 +242,7 @@ def frag_winwin(rate: float) -> str:
           <span class="ww__arrow" data-anim="pop" style="--d:.8s" aria-hidden="true">{icon("arrow-right")}</span>
           <div class="ww" data-anim style="--d:.9s"><span class="ww__label">In Deinem Shop</span><span class="ww__value" data-ww="price">{eur(p['price'])}</span></div>
           <div class="ww ww--community" data-anim style="--d:1.1s"><span class="ww__label">Deine Community spart</span><span class="ww__value" data-ww="save">{eur(p['uvp'] - p['price'])}</span><span class="ww__note">−<span data-ww="off">{p['discount']}</span>&nbsp;% gegenüber regulär</span></div>
-          <div class="ww ww--you" data-anim style="--d:1.3s" data-ww-you><span class="ww__label">Du verdienst</span><span class="ww__value" data-ww="earn">{eur(p['price'] * rate)}</span><span class="ww__note">{rate * 100:.0f}&nbsp;% Beteiligung – ganz automatisch</span></div>
+          <div class="ww ww--you" data-anim style="--d:1.3s" data-ww-you><span class="ww__label">Du verdienst</span><span class="ww__value" data-ww="earn">{eur(p['price'] * rate)}</span><span class="ww__note"><!--@share-->&nbsp;% vom Gewinn – ganz automatisch</span></div>
         </div>
       </div>
     </div>
@@ -249,7 +250,8 @@ def frag_winwin(rate: float) -> str:
       <span class="ww-sum__count"><b data-ww-count>0</b><span><span data-ww-noun>Verkäufe</span> in<br>Deinem Shop</span></span>
       <span class="ww-sum__total"><span>Dein Verdienst</span><strong data-ww-total>0,00&nbsp;€</strong><em class="ww-sum__plus" data-ww-plus></em></span>
       <span class="ww-sum__claim">… und das <span class="grad-text">ohne einen Handgriff.</span></span>
-    </div>"""
+    </div>
+    <p class="finep" data-anim style="--d:1.8s"><!--@fine_rate--></p>"""
 
 
 def swatches(colors, kind: str) -> str:
@@ -437,7 +439,9 @@ def css_head() -> str:
 # --------------------------------------------------------------- Seite bauen
 def render(pitch: dict | None) -> str:
     pitch = pitch or {}
-    rate = float(pitch.get("beteiligung", RATE)) / 100
+    share = float(pitch.get("beteiligung", SHARE))
+    margin = float(pitch.get("marge", MARGIN))
+    rate = share / 100 * margin / 100  # Verdienst je Euro Umsatz: Marge × Gewinnbeteiligung
     name = (pitch.get("name") or "").strip()
     page = (SRC / "template.html").read_text(encoding="utf-8")
     poss = (name + ("’" if re.search(r"[sxzß]$", name, re.I) else "s")) if name else ""
@@ -456,18 +460,22 @@ def render(pitch: dict | None) -> str:
         if marker not in page:
             raise SystemExit(f"Marker fehlt im Template: {marker}")
         page = page.replace(marker, value)
-    page = page.replace("<!--@rate_text-->", f"{rate * 100:.0f}")
+    pct = lambda v: f"{v:g}".replace(".", ",")
+    page = page.replace("<!--@fine_rate-->", f"Beispielrechnung: {pct(margin)}&nbsp;% Marge pro Produkt, davon {pct(share)}&nbsp;% für Dich. "
+                                               f"Die tatsächliche Marge variiert je nach Produkt.")
+    page = page.replace("<!--@share-->", pct(share)).replace("<!--@margin-->", pct(margin))
     page = re.sub(r"\{\{ui:([a-z0-9-]+)\}\}", lambda m: data_uri(ASSETS / "ui" / f"{m.group(1)}.png"), page)
 
     logo_uri = None
     if pitch.get("logo"):
         logo_uri = data_uri(DATA / "pitches" / pitch["logo"])
     data = {
-        "rate": rate * 100,
+        "rate": rate * 100, "share": share, "margin": margin,
         "defaults": {"followers": 100_000, "conv": 0.5, "basket": 75,
                      "btn": BTN_COLORS[0][0], "nav": NAV_COLORS[0][0]},
         "pitch": {"name": name, "farbe": pitch.get("farbe"), "nav": pitch.get("nav"),
-                  "hintergrund": pitch.get("hintergrund"), "logo": logo_uri, "slug": pitch.get("slug")},
+                  "hintergrund": pitch.get("hintergrund"), "hintergrundfarbe": pitch.get("hintergrundfarbe"),
+                  "logo": logo_uri, "slug": pitch.get("slug")},
         "avgDiscount": round(AVG_DISCOUNT, 4),
         "presets": PRESETS,
     }
@@ -480,12 +488,25 @@ def render(pitch: dict | None) -> str:
     return page
 
 
-def main() -> None:
-    out = ROOT / "index.html"
-    out.write_text(render(None), encoding="utf-8")
-    print(f"index.html  {out.stat().st_size / 1e6:.1f} MB")
+START = "beauty"  # https://dinosbs.github.io/pitch/ leitet hierhin weiter
 
+
+def redirect_page(slug: str) -> str:
+    """Startseite /pitch/: leitet auf die allgemeine Fassung weiter (keine eigene Präsentation mehr)."""
+    return f"""<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>INCENT Community-Shop</title><meta http-equiv="refresh" content="0; url={slug}/">
+<script>location.replace("{slug}/" + location.search + location.hash)</script></head>
+<body style="font-family:system-ui,sans-serif;padding:40px"><p><a href="{slug}/">Weiter zur Präsentation</a></p></body></html>
+"""
+
+
+def main() -> None:
     cfg = json.loads((DATA / "pitches.json").read_text(encoding="utf-8"))
+    out = ROOT / "index.html"
+    out.write_text(redirect_page(START), encoding="utf-8")
+    print(f"index.html  Weiterleitung  →  /pitch/{START}/")
     target = ROOT / "pitches"
     if target.exists():
         shutil.rmtree(target)

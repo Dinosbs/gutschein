@@ -2,8 +2,11 @@
 
 Eine scroll-gesteuerte Präsentation, mit der wir Influencerinnen und ihrem Management im Meeting den INCENT-Community-Shop vorstellen. Danach bekommen sie den Link mit.
 
-- **Live (allgemein):** https://dinosbs.github.io/pitch/
-- **Sublink je Influencerin:** https://dinosbs.github.io/pitch/beispiel/ (Beispiel „Lena“, siehe unten)
+- **Allgemein (Beauty):** https://dinosbs.github.io/pitch/beauty/ (die Startadresse https://dinosbs.github.io/pitch/ leitet dorthin weiter)
+- **Ariel61:** https://dinosbs.github.io/pitch/ariel61/ – Shop vorgebaut mit Schriftzug „ARIEL61“, Creme-Leiste, Nude-Buttons, cremefarbener Hintergrund
+- **Yeliz Koc:** https://dinosbs.github.io/pitch/yelizkoc/ – Name hinterlegt, überwiegend weiß mit schwarzen Akzenten
+
+**Verdienst:** 70 % vom Gewinn jeder Bestellung. Alle Beträge sind eine Beispielrechnung mit 15 % Marge pro Produkt (also 10,5 % vom Verkaufspreis), die tatsächliche Marge variiert je nach Produkt. Das steht auch als Kleingedrucktes auf den Folien.
 
 Jeder Push auf `main` baut alle Fassungen neu und veröffentlicht sie über GitHub Pages (`.github/workflows/pages.yml`). Die Seiten sind mit `noindex, nofollow` markiert und erscheinen nicht in Suchmaschinen. Wer den Link hat, kann sie aber öffnen.
 
@@ -40,8 +43,8 @@ Jeder Push auf `main` baut alle Fassungen neu und veröffentlicht sie über GitH
 | 06 | Deine Community | Partner-Deals | 30 echte Deals in zwei gegenläufigen Laufbändern (Hover hält eine Reihe an) und „46 exklusive Partner-Deals allein in Health & Beauty“. |
 | 07 | Deine Community | Deine Edits | Sortimente in Reitern mit „+ X € für Dich“. Die Reiter wechseln von selbst, bis jemand klickt. |
 | 08 | Deine Community | Mehr als Beauty | „Beauty ist erst der Anfang.“ Man wählt eine Zielgruppe, und die passenden Sortimentswelten leuchten auf. |
-| 09 | Dein Verdienst | Ein Verkauf, zwei Gewinner | Echte Produkte von unter 10 € bis über 100 € wechseln sich ab, immer reihum aus vier Preisbereichen. Jeweils zu sehen: regulär → im Shop → Community spart → Du verdienst (10 %). Darunter zählen Verkäufe und Verdienst mit: „… und das ohne einen Handgriff.“ Die Produkte stehen in `data/selection.json` unter `cycle`. |
-| 10 | Dein Verdienst | Dein Potenzial | Rechner mit Reichweite, Kaufquote und Warenkorb. Die Beteiligung steht fest auf 10 %. |
+| 09 | Dein Verdienst | Ein Verkauf, zwei Gewinner | Echte Produkte von unter 10 € bis über 100 € wechseln sich ab, immer reihum aus vier Preisbereichen. Jeweils zu sehen: regulär → im Shop → Community spart → Du verdienst (70 % vom Gewinn bei 15 % Beispiel-Marge). Darunter zählen Verkäufe und Verdienst mit: „… und das ohne einen Handgriff.“ Die Produkte stehen in `data/selection.json` unter `cycle`. |
+| 10 | Dein Verdienst | Dein Potenzial | Rechner mit Reichweite, Kaufquote und Warenkorb. Die Beteiligung steht fest auf 70 % vom Gewinn, gerechnet mit 15 % Beispiel-Marge. |
 | 11 | Dein Verdienst | Null Aufwand | „Ihr müsst nichts tun.“ Aufgaben werden durchgestrichen und an INCENT übergeben. Der Aufwand zählt von 40 auf 0 Stunden. |
 | 12 | Dein Verdienst | Passives Einkommen | iPhone-Sperrbildschirm im iOS-Stil. Unten ist eine Live-Aktivität angeheftet, die den Gewinn der Nacht mitzählt („Heute Nacht verdient“ mit dem letzten Betrag in Grün). Darüber schieben sich Bestellungen von unten ein, die Uhr läuft durch die Nacht. Als iOS-Schrift dient San Francisco, wo vorhanden, sonst das eingebettete Inter. |
 | 13 | Dein Start | Reichweite & Bindung | Ein Handy mit Instagram, als 24-Sekunden-Schleife. Der Ablauf steht unter der Tabelle. |
@@ -72,27 +75,31 @@ Für jeden Pitch kommt ein Eintrag in `data/pitches.json`:
   "farbe": "rose",
   "nav": "weiss",
   "hintergrund": "image",
+  "hintergrundfarbe": null,
   "logo": "lena-logo.png",
-  "beteiligung": 10
+  "beteiligung": 70,
+  "marge": 15
 }
 ```
 
 | Feld | Bedeutung |
 | --- | --- |
 | `slug` | Adresse: `https://dinosbs.github.io/pitch/<slug>/`. Erlaubt sind nur a–z, 0–9 und Bindestrich. |
-| `name` | erscheint überall: „Exklusiv für Lena“, Schriftzug im Portal, `lena.vorteile.net`, „Für Lena“ in der Leiste, „Lenas Shop“ in den iPhone-Mitteilungen, „Lenas Beauty-Shop.“ |
+| `name` | erscheint überall: „Exklusiv für Lena“, Schriftzug im Portal, `lena.vorteile.net`, „Für Lena“ in der Leiste, „Lenas Shop“ auf dem iPhone, „Lenas Beauty-Shop.“ – leer lassen für die allgemeine Fassung |
 | `farbe`, `nav` | Button- und Leistenfarbe: `blau`, `rose`, `beere`, `nude`, `salbei`, `lavendel`, `schwarz`, `weiss`, `puder`, `creme` oder ein Hex-Wert |
 | `hintergrund` | `image` (Health-&-Beauty-Motiv), `solid` oder `gradient` |
 | `logo` | optional: Logo-Datei in `data/pitches/`. Sie ersetzt den Schriftzug in allen Mockups. |
-| `beteiligung` | optional, Standard 10 (Prozent) |
+| `hintergrundfarbe` | optional: Hex-Wert für den einfarbigen Hintergrund (sonst aus der Buttonfarbe abgeleitet) |
+| `beteiligung` | optional, Standard 70 (Prozent vom Gewinn) |
+| `marge` | optional, Standard 15 (Beispiel-Marge pro Produkt in Prozent) |
 
-Danach `python3 build.py` ausführen (das erzeugt `pitches/<slug>/index.html`) und auf `main` pushen. Der Workflow veröffentlicht die Seite unter `/<slug>/`. Der Eintrag `beispiel` ist nur eine Vorlage und kann gelöscht werden.
+Danach `python3 build.py` ausführen (das erzeugt `pitches/<slug>/index.html`) und auf `main` pushen. Der Workflow veröffentlicht die Seite unter `/<slug>/`. Ein Eintrag ohne `name` ist die allgemeine Fassung (`beauty`).
 
-Für schnelle Tests geht es auch ohne neuen Build: `index.html?name=Lena&farbe=rose&nav=schwarz&hintergrund=verlauf`
+Für schnelle Tests geht es auch ohne neuen Build: `pitches/beauty/index.html?name=Lena&farbe=rose&nav=schwarz&hintergrund=verlauf`
 
 ## Anpassen
 
-- **Beteiligung, Preisstand, Farben im Gestalter:** oben in `build.py` (`RATE`, `SNAPSHOT_DATE`, `BTN_COLORS`, `NAV_COLORS`)
+- **Beteiligung, Beispiel-Marge, Preisstand, Farben im Gestalter:** oben in `build.py` (`SHARE`, `MARGIN`, `SNAPSHOT_DATE`, `BTN_COLORS`, `NAV_COLORS`)
 - **Produkte und Deals:** `data/selection.json` (Marke + exakter Titel aus `data/catalog.json`). Die ersten 30 Deals füllen die zwei Laufbänder (`DEAL_ROW` in `build.py`), `cycle` legt die Produkte je Preisklasse fest. Die Bilder holt `tools/extract.py`.
 - **Texte und Folien:** `src/template.html`. Design: `src/style.css`. Ablauf und Animationen: `src/app.js`. Icons: `src/icons.svg`.
 - **Neue Folie:** `<section class="slide" data-act="…" data-snap data-label="…">` mit `.shell > .bg + .frame > .frame__in > .content`. Legende, Zähler und Kapitelbalken übernehmen sie automatisch. Inhalte werden in Canvas-Pixeln (1600 × 900) gestaltet. Passt eine Folie nicht ganz, verkleinert app.js nur ihren Inhalt.
@@ -114,8 +121,8 @@ python3 build.py
 ## Aufbau
 
 ```
-index.html                  allgemeine Fassung (generiert, alles eingebettet, offline-fähig)
-pitches/<slug>/index.html   Fassung je Influencerin (generiert)
+index.html                  Weiterleitung auf /beauty/ (generiert)
+pitches/<slug>/index.html   je Fassung: beauty, ariel61, yelizkoc (generiert, alles eingebettet, offline-fähig)
 build.py                    baut alle Fassungen aus src/ + data/ + assets/
 tools/extract.py            liest eine SingleFile-Speicherung des Shops aus
 src/                        template.html, style.css, app.js, icons.svg
@@ -129,4 +136,4 @@ screenshots/                Vorschaubilder
 
 - Preise, Vergleichspreise („Regulär“) und Rabatte sind eine Momentaufnahme vom 01.11.2026 aus dem INCENT-Vorteilsportal, Kategorie Health & Beauty.
 - „80+ Marken“, „250+ Produkte“, „bis 71 %“, „46 Partner-Deals“ und „Ø 27 %“ sind aus diesen Daten berechnet. „4.400 Unternehmen“, „450+ Markenpartner“, „3.000+ Markenprodukte“ und „70+ Partnergutscheine“ stammen von incent.de.
-- Die Beteiligung ist fest mit 10 % angesetzt. Reichweiten- und Umsatzwerte im Rechner sowie das Diagramm sind als Beispiel bzw. schematisch gekennzeichnet.
+- Die Beteiligung beträgt 70 % vom Gewinn. Alle Verdienst-Beträge rechnen mit 15 % Beispiel-Marge pro Produkt (70 % davon = 10,5 % vom Verkaufspreis); die tatsächliche Marge variiert je nach Produkt. Reichweiten- und Umsatzwerte im Rechner sowie das Diagramm sind als Beispiel bzw. schematisch gekennzeichnet.

@@ -1,14 +1,29 @@
 {
-  "_hinweis": "Ein Eintrag = ein Sublink https://dinosbs.github.io/pitch/<slug>/ (Datei pitches/<slug>/index.html). slug: nur a–z, 0–9 und Bindestrich. farbe/nav: Hex-Wert (#c0746a) oder blau, rose, beere, nude, salbei, lavendel, schwarz, weiss, puder, creme. hintergrund: image, solid oder gradient. logo: optionaler Dateiname in data/pitches/ (PNG, JPG, SVG, WebP). beteiligung: Prozent, Standard 10. Nach Änderungen: python3 build.py",
+  "_hinweis": "Ein Eintrag = eine Seite https://dinosbs.github.io/pitch/<slug>/ (Datei pitches/<slug>/index.html). Die Startadresse /pitch/ leitet auf /pitch/beauty/ weiter. slug: nur a–z, 0–9 und Bindestrich. name: leer = allgemeine Fassung. farbe/nav: Hex-Wert (#c0746a) oder blau, rose, beere, nude, salbei, lavendel, schwarz, weiss, puder, creme. hintergrund: image, solid oder gradient; hintergrundfarbe: optionaler Hex-Wert für solid. logo: optionaler Dateiname in data/pitches/ (PNG, JPG, SVG, WebP). beteiligung: Prozent vom Gewinn, Standard 70. marge: Beispiel-Marge pro Produkt in Prozent, Standard 15. Nach Änderungen: python3 build.py",
   "pitches": [
     {
-      "slug": "beispiel",
-      "name": "Lena",
-      "farbe": "rose",
-      "nav": "weiss",
+      "slug": "beauty",
+      "name": "",
       "hintergrund": "image",
-      "logo": null,
-      "beteiligung": 10
+      "logo": null
+    },
+    {
+      "slug": "ariel61",
+      "name": "Ariel61",
+      "farbe": "nude",
+      "nav": "creme",
+      "hintergrund": "solid",
+      "hintergrundfarbe": "#f1e8dc",
+      "logo": null
+    },
+    {
+      "slug": "yelizkoc",
+      "name": "Yeliz Koc",
+      "farbe": "schwarz",
+      "nav": "weiss",
+      "hintergrund": "solid",
+      "hintergrundfarbe": "#f7f7f7",
+      "logo": null
     }
   ]
 }
