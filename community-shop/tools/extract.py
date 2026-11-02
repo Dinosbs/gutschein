@@ -225,6 +225,8 @@ def main() -> None:
     wanted = {(norm(b), norm(t)) for b, t in selection["hero"] + selection["margin"]}
     for edit in selection["edits"]:
         wanted |= {(norm(b), norm(t)) for b, t in edit["items"]}
+    for tier in selection.get("cycle", {}).values():  # Preisklassen für „Ein Verkauf. Zwei Gewinner.“
+        wanted |= {(norm(b), norm(t)) for b, t in tier}
     by_key = {(p["brand"], p["title"]): p for p in catalog}
     for key in sorted(wanted):
         if key not in by_key or not prod_raw.get(key):

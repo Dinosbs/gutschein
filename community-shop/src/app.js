@@ -404,12 +404,9 @@
     const timeEl = $('[data-ios-time]');
     const dateEl = $('[data-ios-date]');
     const totalEl = $('[data-ios-total]');
-    const countEl = $('[data-ios-count]');
-    const ring = $('[data-ios-ring]');
+    const live = $('[data-ios-live]');
     const items = pool();
     const fmtDate = new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }).format;
-    const fmtMonth = new Intl.DateTimeFormat('de-DE', { month: 'long' }).format;
-    const monthEl = $('[data-ios-month]');
     const now = new Date();
     const clock = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 58);
     const STEP = 70; // Höhe einer Mitteilung (62) + Abstand (8), in Canvas-Pixeln
@@ -418,7 +415,6 @@
     const paintClock = () => {
       timeEl.textContent = `${clock.getHours()}:${String(clock.getMinutes()).padStart(2, '0')}`;
       dateEl.textContent = fmtDate(clock);
-      monthEl.textContent = fmtMonth(clock);
     };
     paintClock();
     const ago = (m) => (m < 1 ? 'Jetzt' : m < 60 ? `vor ${m} Min.` : `vor ${Math.floor(m / 60)} Std.`);
@@ -449,9 +445,9 @@
       return note(`+${fmtEur(amount)} für Dich`, `Neue Bestellung: ${p.brand} · ${p.title}`);
     };
     const paintTotals = (animate) => {
-      if (animate) tween(totalEl, total, fmtEur, 1100); else { totalEl._v = total; totalEl.textContent = fmtEur(total); }
-      countEl.textContent = fmtInt(count);
-      ring.style.setProperty('--ring', (100 - Math.min(100, count / 40 * 100)).toFixed(1));
+      if (!animate) { totalEl._v = total; totalEl.textContent = fmtEur(total); return; }
+      tween(totalEl, total, fmtEur, 1100);
+      live.classList.remove('is-bump'); void live.offsetWidth; live.classList.add('is-bump');
     };
     const push = (animate = true) => {
       clock.setMinutes(clock.getMinutes() + 2 + Math.floor(Math.random() * 8));
@@ -534,6 +530,70 @@
     };
   }
 
+  /* ============================================================ Ein Verkauf, zwei Gewinner: Preisklassen im Wechsel, Verdienst zählt mit */
+  function bindWinwin() {
+    const cards = $$('[data-ww-cards] .ww-card');
+    if (!cards.length) return () => {};
+    const byTier = {};
+    cards.forEach((c) => (byTier[c.dataset.tier] ||= []).push(c));
+    const tiers = Object.keys(byTier);
+    const chips = $$('[data-tier-chip]');
+    const out = Object.fromEntries(['uvp', 'price', 'save', 'off', 'earn'].map((k) => [k, $(`[data-ww="${k}"]`)]));
+    const you = $('[data-ww-you]');
+    const totalEl = $('[data-ww-total]');
+    const countEl = $('[data-ww-count]');
+    const plus = $('[data-ww-plus]');
+    const noun = $('[data-ww-noun]');
+    const last = {};
+    let timer = 0, on = false, step = 0, cur = null, total = 0, count = 0;
+    const pick = (t) => {
+      const list = byTier[t];
+      let c;
+      do { c = list[Math.floor(Math.random() * list.length)]; } while (list.length > 1 && c === last[t]);
+      last[t] = c;
+      return c;
+    };
+    const restart = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
+    const show = () => {
+      const t = tiers[step++ % tiers.length];
+      const c = pick(t);
+      if (cur && cur !== c) { const o = cur; o.classList.remove('is-on'); o.classList.add('is-out'); setTimeout(() => o.classList.remove('is-out'), 1000); }
+      c.classList.remove('is-out');
+      c.classList.add('is-on');
+      cur = c;
+      chips.forEach((ch) => ch.classList.toggle('is-on', ch.dataset.tierChip === t));
+      const price = Number(c.dataset.price), uvp = Number(c.dataset.uvp);
+      const earn = cents(price * RATE);
+      tween(out.uvp, uvp, fmtEur, 900);
+      tween(out.price, price, fmtEur, 900);
+      tween(out.save, cents(uvp - price), fmtEur, 900);
+      out.off.textContent = c.dataset.off;
+      tween(out.earn, earn, fmtEur, 900);
+      restart(you, 'is-bump');
+      total = cents(total + earn);
+      count++;
+      setTimeout(() => {
+        tween(totalEl, total, fmtEur, 1100);
+        countEl.textContent = fmtInt(count);
+        noun.textContent = count === 1 ? 'Verkauf' : 'Verkäufe';
+        plus.textContent = '+' + fmtEur(earn);
+        restart(plus, 'is-go');
+      }, 700);
+    };
+    return (want) => {
+      if (document.hidden) want = false;
+      if (want === on) return;
+      on = want;
+      clearInterval(timer);
+      if (!on) return;
+      // bei jedem Betreten von vorn: kleine Preisklasse zuerst, Verdienst ab 0
+      step = 0; total = 0; count = 0;
+      totalEl._v = 0; totalEl.textContent = fmtEur(0); countEl.textContent = '0'; noun.textContent = 'Verkäufe';
+      show();
+      timer = setInterval(show, reduce ? 6000 : 3800);
+    };
+  }
+
   /* ============================================================ Mehr als Beauty: Zielgruppe wechselt von selbst, bis jemand klickt */
   function bindAudience() {
     const box = $('[data-aud]');
@@ -588,6 +648,7 @@
     const lock = bindLockscreen();
     const edits = bindEdits();
     const audience = bindAudience();
+    const winwin = bindWinwin();
     const demo = bindDemo();
 
     // gestaffeltes Einblenden: Eyebrow → Überschrift (Wort für Wort) → Inhalte nacheinander
@@ -789,6 +850,7 @@
       if (on) runCounters(s); else resetCounters(s);
       if (s.id === 'edits') edits(on);
       if (s.id === 'sortiment') audience(on);
+      if (s.id === 'beispiel') winwin(on);
     };
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       const s = e.target;
@@ -811,6 +873,7 @@
       lock(vis && $('#passiv').classList.contains('is-near'));
       edits(vis && $('#edits').classList.contains('is-active'));
       audience(vis && $('#sortiment').classList.contains('is-active'));
+      winwin(vis && $('#beispiel').classList.contains('is-active'));
       if (!vis) toasts(false); else onScroll();
     });
 
@@ -898,6 +961,12 @@
     nav.idx = nearest();
     if (isDeck()) scrollTo(0, snapTops[nav.idx]);
 
+    // Leiste: Logo → ganz nach oben, Kapitel → erste Folie des Kapitels, Zähler → weiter, „Für Name“ → Gestalter
+    const actStart = (a) => snaps.findIndex((sn) => Number(sn.closest('[data-act]').dataset.act) === a);
+    $('[data-go="0"]').addEventListener('click', (e) => { e.preventDefault(); goTo(0); });
+    $$('[data-go-act]').forEach((b) => b.addEventListener('click', () => goTo(actStart(Number(b.dataset.goAct)))));
+    $('[data-go-next]').addEventListener('click', () => step(1));
+    $('[data-go-look]').addEventListener('click', () => goTo(snaps.findIndex((sn) => sn.id === 'look')));
     setTimeout(() => hint?.classList.add('is-gone'), 14000);
     deck.classList.add('is-ready');
   }

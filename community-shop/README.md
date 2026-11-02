@@ -15,6 +15,7 @@ Jeder Push auf `main` baut alle Fassungen neu und veröffentlicht sie über GitH
   - Der Nachlauf eines Trackpads löst keinen zweiten Wechsel aus.
 - **Orientierung:**
   - Oben zeigt die Leiste die vier Kapitel (Dein Shop · Deine Community · Dein Verdienst · Dein Start) mit Fortschritt und die Foliennummer.
+  - Die Leiste ist klickbar: Das INCENT-Logo springt zum Anfang, ein Kapitel zu seiner ersten Folie, die Foliennummer eine Folie weiter. „Für Name“ führt zum Gestalter.
   - Rechts steht die Legende. Bei Hover wird sie größer und zeigt Nummer und Titel jeder Folie.
 - **Roter Faden:** Zuerst wird der Shop gestaltet, danach erscheint alles im gewählten Look: Portal, Handys, Produktkarten, iPhone-Mitteilungen und Instagram-Story.
 - **Animationen:**
@@ -35,17 +36,27 @@ Jeder Push auf `main` baut alle Fassungen neu und veröffentlicht sie über GitH
 | 03 | Dein Shop | Dein Look | Der Gestalter fährt ein: Logo, Name, Button- und Leistenfarbe und Hintergrund. Ohne Klick probiert eine Live-Demo selbst Looks durch. Ohne eigene Wahl kehrt beim Weiterschalten der Ausgangslook zurück. |
 | 04 | Deine Community | Die Idee | Vorteilspreise, die sonst nur Mitarbeitende bekommen, dazu drei Schritte und Kennzahlen. |
 | 05 | Deine Community | Markenvielfalt | Luxusmarken, „+ 70 weitere“, Kategorien, Laufband und „Und weit mehr als Beauty: 450+ Markenpartner“. |
-| 06 | Deine Community | Partner-Deals | 30 echte Deals in zwei gegenläufigen Laufbändern (Hover hält eine Reihe an), dazu „46 exklusive Partner-Deals allein in Health & Beauty“. |
+| 06 | Deine Community | Partner-Deals | 30 echte Deals in zwei gegenläufigen Laufbändern (Hover hält eine Reihe an) und „46 exklusive Partner-Deals allein in Health & Beauty“. |
 | 07 | Deine Community | Deine Edits | Sortimente in Reitern mit „+ X € für Dich“. Die Reiter wechseln von selbst, bis jemand klickt. |
-| 08 | Deine Community | Mehr als Beauty | „Beauty ist erst der Anfang.“ Man wählt eine Zielgruppe (Beauty, Fitness, Family, Lifestyle), und die passenden Sortimentswelten leuchten auf. Die Auswahl wechselt von selbst, bis jemand klickt. |
-| 09 | Dein Verdienst | Zwei Gewinner | Lancôme: regulär 156 €, im Shop 105,95 €. Die Community spart 50,05 €, Du verdienst 10,60 €. |
-| 10 | Dein Verdienst | Dein Verdienst | Sechs echte Produkte mit **fest 10 %** Beteiligung. |
-| 11 | Dein Verdienst | Dein Potenzial | Rechner mit Reichweite, Kaufquote und Warenkorb. Die Beteiligung steht fest auf 10 %. |
-| 12 | Dein Verdienst | Null Aufwand | „Ihr müsst nichts tun.“ Aufgaben werden durchgestrichen und an INCENT übergeben. Der Aufwand zählt von 40 auf 0 Stunden. |
-| 13 | Dein Verdienst | Passives Einkommen | iPhone-Sperrbildschirm im iOS-Stil. Mitteilungen („+8,40 € für Dich“) schieben sich fortlaufend von unten ein, der ganze Stapel gleitet hoch, oben blendet die älteste aus. Uhr, Summe und Bestellzähler laufen mit. |
-| 14 | Dein Start | Reichweite & Bindung | Ein Handy mit Instagram, als Schleife: Story antippen → Link antippen → Webshop öffnet sich, Deals und Produkte werden durchgescrollt → Shop schließen → zurück zur Story → kurze Pause → von vorn. Die vier Schritte darunter leuchten synchron mit. |
-| 15 | Dein Start | Dein Start | „Innerhalb einer Woche zur eigenen Plattform“, mit Tag 1 bis Live. Schritt 1 heißt: Sortiment auf die Zielgruppe zuschneiden. |
-| 16 | Dein Start | Auf einen Blick | Zusammenfassung zum Mitnehmen („Beauty & weit mehr“) und Link zum Wiederöffnen. |
+| 08 | Deine Community | Mehr als Beauty | „Beauty ist erst der Anfang.“ Man wählt eine Zielgruppe, und die passenden Sortimentswelten leuchten auf. |
+| 09 | Dein Verdienst | Ein Verkauf, zwei Gewinner | Echte Produkte aus vier Preisklassen (bis 10 €, bis 50 €, bis 100 €, über 100 €) wechseln sich ab. Jeweils zu sehen: regulär → im Shop → Community spart → Du verdienst (10 %). Darunter zählen Verkäufe und Verdienst mit: „… und das ohne einen Handgriff.“ Die Produkte stehen in `data/selection.json` unter `cycle`. |
+| 10 | Dein Verdienst | Dein Potenzial | Rechner mit Reichweite, Kaufquote und Warenkorb. Die Beteiligung steht fest auf 10 %. |
+| 11 | Dein Verdienst | Null Aufwand | „Ihr müsst nichts tun.“ Aufgaben werden durchgestrichen und an INCENT übergeben. Der Aufwand zählt von 40 auf 0 Stunden. |
+| 12 | Dein Verdienst | Passives Einkommen | iPhone-Sperrbildschirm im iOS-Stil. Oben ist eine Mitteilung angeheftet, die den Gewinn der Nacht mitzählt. Darunter schieben sich Bestellungen von unten ein, die Uhr läuft durch die Nacht. |
+| 13 | Dein Start | Reichweite & Bindung | Ein Handy mit Instagram, als 24-Sekunden-Schleife. Der Ablauf steht unter der Tabelle. |
+| 14 | Dein Start | Dein Start | „Innerhalb einer Woche zur eigenen Plattform“, mit Tag 1 bis Live. Schritt 1 heißt: Sortiment auf die Zielgruppe zuschneiden. |
+| 15 | Dein Start | Auf einen Blick | Zusammenfassung zum Mitnehmen („Beauty & weit mehr“) und Link zum Wiederöffnen. |
+
+Ablauf der Instagram-Schleife auf Folie 13:
+
+1. Story antippen.
+2. Link antippen.
+3. Der Webshop öffnet sich. Ein Produkt kommt in den Warenkorb („Zum Warenkorb hinzugefügt“, das Symbol zeigt 1).
+4. Durch die Deals scrollen.
+5. Warenkorb öffnen, „Zur Kasse“ antippen. Es erscheint „Bestellung abgeschlossen“ und neben dem Handy „+9,40 € für Dich“.
+6. Den Shop schließen. Zurück geht es zur Story, nach einer kurzen Pause zum Feed, und die Schleife beginnt von vorn.
+
+Der Warenkorb ist im Stil von vorteile.net nachempfunden, die echte Warenkorb-Seite war nicht in der Shop-Speicherung enthalten.
 
 Vorschaubilder liegen in `screenshots/`.
 
@@ -81,7 +92,7 @@ Für schnelle Tests geht es auch ohne neuen Build: `index.html?name=Lena&farbe=r
 ## Anpassen
 
 - **Beteiligung, Preisstand, Farben im Gestalter:** oben in `build.py` (`RATE`, `SNAPSHOT_DATE`, `BTN_COLORS`, `NAV_COLORS`)
-- **Produkte und Deals:** `data/selection.json` (Marke + exakter Titel aus `data/catalog.json`). Die ersten 30 Deals füllen die zwei Laufbänder (`DEAL_ROW` in `build.py`). Ihre Bilder holt `tools/extract.py`.
+- **Produkte und Deals:** `data/selection.json` (Marke + exakter Titel aus `data/catalog.json`). Die ersten 30 Deals füllen die zwei Laufbänder (`DEAL_ROW` in `build.py`), `cycle` legt die Produkte je Preisklasse fest. Die Bilder holt `tools/extract.py`.
 - **Texte und Folien:** `src/template.html`. Design: `src/style.css`. Ablauf und Animationen: `src/app.js`. Icons: `src/icons.svg`.
 - **Neue Folie:** `<section class="slide" data-act="…" data-snap data-label="…">` mit `.shell > .bg + .frame > .frame__in > .content`. Legende, Zähler und Kapitelbalken übernehmen sie automatisch. Inhalte werden in Canvas-Pixeln (1600 × 900) gestaltet. Passt eine Folie nicht ganz, verkleinert app.js nur ihren Inhalt.
 

@@ -20,16 +20,16 @@
 <div class="hud"><div class="hud__frame">
 <header class="deckbar" data-deckbar>
   <div class="deckbar__inner">
-    <span class="deckbar__brand"><img src="{{ui:incent-logo-nav-dark}}" alt="INCENT" width="138" height="48"></span>
+    <a class="deckbar__brand" href="#start" data-go="0" title="Zum Anfang"><img src="{{ui:incent-logo-nav-dark}}" alt="INCENT – zum Anfang" width="138" height="48"></a>
     <ol class="acts" aria-label="Kapitel">
-      <li data-act-i="0"><span>Dein Shop</span><i><b></b></i></li>
-      <li data-act-i="1"><span>Deine Community</span><i><b></b></i></li>
-      <li data-act-i="2"><span>Dein Verdienst</span><i><b></b></i></li>
-      <li data-act-i="3"><span>Dein Start</span><i><b></b></i></li>
+      <li data-act-i="0"><button type="button" data-go-act="0"><span>Dein Shop</span><i><b></b></i></button></li>
+      <li data-act-i="1"><button type="button" data-go-act="1"><span>Deine Community</span><i><b></b></i></button></li>
+      <li data-act-i="2"><button type="button" data-go-act="2"><span>Dein Verdienst</span><i><b></b></i></button></li>
+      <li data-act-i="3"><button type="button" data-go-act="3"><span>Dein Start</span><i><b></b></i></button></li>
     </ol>
     <span class="deckbar__end">
-      <span class="deckbar__for" data-for-chip hidden>Für <b data-bind="name">Dein Name</b></span>
-      <span class="deckbar__count"><b data-slide-now>01</b><span>/</span><span data-slide-total>15</span></span>
+      <button type="button" class="deckbar__for" data-for-chip data-go-look hidden>Für <b data-bind="name">Dein Name</b></button>
+      <button type="button" class="deckbar__count" data-go-next title="Nächste Folie"><b data-slide-now>01</b><span>/</span><span data-slide-total>15</span></button>
     </span>
   </div>
 </header>
@@ -242,32 +242,18 @@
 
 
 <!-- ================================================================ AKT 3 · DEIN VERDIENST -->
-<section class="slide" id="beispiel" data-act="2" data-snap data-label="Zwei Gewinner">
+<section class="slide" id="beispiel" data-act="2" data-snap data-label="Ein Verkauf, zwei Gewinner">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--2"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
-    <header class="head">
-      <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">08</span>Am Beispiel</p>
-        <h2 class="h2" data-split>Ein Verkauf. <span class="grad-text">Zwei Gewinner.</span></h2>
-      </div>
-      <p class="lead" data-anim>Ein Klassiker aus dem aktuellen Sortiment: Deine Community spart deutlich – und Du verdienst ganz automatisch mit.</p>
-    </header>
-    <div class="winwin"><!--@winwin--></div>
-  </div></div></div></div>
-</section>
-
-<section class="slide slide--tint" id="verdienst" data-act="2" data-snap data-label="Dein Verdienst">
-  <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head head--tight">
       <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">09</span>Dein Verdienst</p>
-        <h2 class="h2" data-split>Jeder Verkauf <span class="grad-text">zahlt auf Dich ein.</span></h2>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">08</span>Dein Verdienst</p>
+        <h2 class="h2" data-split>Ein Verkauf. <span class="grad-text">Zwei Gewinner.</span></h2>
       </div>
       <div class="head__aside" data-anim>
         <p class="rate-chip"><span class="rate-chip__big"><!--@rate_text-->&nbsp;%</span><span>Beteiligung an jeder<br>Bestellung in Deinem Shop</span></p>
       </div>
     </header>
-    <div class="mcards"><!--@margin_cards--></div>
-    <p class="punch" data-anim><!--@punch--></p>
+    <!--@winwin-->
   </div></div></div></div>
 </section>
 
@@ -275,7 +261,7 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head">
       <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">10</span>Dein Potenzial</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">09</span>Dein Potenzial</p>
         <h2 class="h2" data-split>Was Dein Shop <span class="grad-text">im Monat</span> bringen kann.</h2>
       </div>
       <p class="lead" data-anim>Bewusst konservativ gerechnet – mit <!--@rate_text-->&nbsp;% Beteiligung an jeder Bestellung. Schieb die Regler auf Deine Zahlen.</p>
@@ -326,7 +312,7 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--2"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <div class="zero">
       <div class="zero__copy">
-        <p class="eyebrow" data-anim><span class="eyebrow__num">11</span>Für Dich &amp; Dein Management</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">10</span>Für Dich &amp; Dein Management</p>
         <h2 class="h2 zero__h" data-split>Ihr müsst <span class="grad-text">nichts tun.</span></h2>
         <p class="lead" data-anim>Kein Briefing-Pingpong, keine Kampagnenplanung, kein Lager, keine Technik. Wir übernehmen alles, was ein Shop sonst an Arbeit macht – Dein Shop läuft von allein.</p>
         <div class="zero__todo" data-anim>
@@ -357,7 +343,7 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i><i class="stars"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <div class="night">
       <div class="night__copy">
-        <p class="eyebrow" data-anim><span class="eyebrow__num">12</span>Passives Einkommen</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">11</span>Passives Einkommen</p>
         <h2 class="h2" data-split>Verdienen, <span class="grad-text">während Du schläfst.</span></h2>
         <p class="lead" data-anim>Brand Deals enden mit dem Post. Dein Shop verkauft rund um die Uhr weiter – jeden Tag, jeden Monat, ohne neuen Aufwand.</p>
         <div class="chart" data-anim>
@@ -387,12 +373,9 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <div class="reach">
       <div class="reach__copy">
-        <p class="eyebrow" data-anim><span class="eyebrow__num">13</span>Reichweite &amp; Bindung</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">12</span>Reichweite &amp; Bindung</p>
         <h2 class="h2" data-split>Mehr Reichweite. <span class="grad-text">Mehr Bindung.</span></h2>
-        <p class="lead" data-anim>Eine Story, ein Tipp auf den Link – und Deine Community stöbert in Deinem Shop. Danach geht es direkt zurück in Deine Story. Und Du hast laufend neue Themen für Stories und Reels.</p>
-        <ol class="flow" data-anim aria-label="So kommt Deine Community in Deinen Shop">
-          <li><b>1</b>Story ansehen</li><li><b>2</b>Link antippen</li><li><b>3</b>Deals entdecken</li><li><b>4</b>Zurück zur Story</li>
-        </ol>
+        <p class="lead" data-anim>Eine Story, ein Tipp auf den Link – und Deine Community kauft in Deinem Shop ein. Danach geht es direkt zurück in Deine Story. Und Du hast laufend neue Themen für Stories und Reels.</p>
         <ul class="perks perks--mini">
           <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-video"/></svg></span><h3>Content für jeden Tag</h3><p>Neue Deals, Adventskalender, Black Week – dazu fertige Marketing-Assets von uns.</p></li>
           <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Eine Community, die bleibt</h3><p>Aus Followern werden Shop-Mitglieder – unabhängig vom Algorithmus.</p></li>
@@ -409,7 +392,7 @@
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head">
       <div>
-        <p class="eyebrow" data-anim><span class="eyebrow__num">14</span>Dein Start</p>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">13</span>Dein Start</p>
         <h2 class="h2" data-split>Innerhalb einer Woche zur <span class="grad-text">eigenen Plattform</span></h2>
       </div>
       <p class="lead" data-anim>Wir übernehmen die komplette technische Einrichtung und Gestaltung für Dich, damit Du ohne Aufwand direkt mit Deinem Shop starten kannst.</p>

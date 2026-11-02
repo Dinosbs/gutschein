@@ -220,18 +220,38 @@ def vpm_phone() -> str:
 
 
 # --------------------------------------------------------------- Folien-Bausteine
+TIERS = [("a", "bis 10&nbsp;€"), ("b", "bis 50&nbsp;€"), ("c", "bis 100&nbsp;€"), ("d", "über 100&nbsp;€")]
+
+
 def frag_winwin(rate: float) -> str:
-    p = product(sel["margin"][0])
-    save = p["uvp"] - p["price"]
-    return f"""
-      <div class="winwin__card vreal" data-anim="pop"><div class="tilt" data-tilt>{vp_product(p)}</div></div>
-      <div class="winwin__flow">
-        <div class="ww ww--old" data-anim style="--d:.55s"><span class="ww__label">Regulär</span><span class="ww__value"><s>{eur(p['uvp'])}</s></span></div>
-        <span class="ww__arrow" data-anim="pop" style="--d:.9s" aria-hidden="true">{icon("arrow-right")}</span>
-        <div class="ww" data-anim style="--d:1.1s"><span class="ww__label">In Deinem Shop</span><span class="ww__value" data-countto="{p['price']:.2f}" data-from="{p['uvp']:.2f}" data-delay="1300">{eur(p['price'])}</span></div>
-        <div class="ww ww--community" data-anim style="--d:1.6s"><span class="ww__label">Deine Community spart</span><span class="ww__value" data-countto="{save:.2f}" data-delay="1800">{eur(save)}</span><span class="ww__note">−{p['discount']}&nbsp;% gegenüber regulär</span></div>
-        <div class="ww ww--you" data-anim style="--d:2.1s"><span class="ww__label">Du verdienst</span><span class="ww__value" data-countto="{p['price'] * rate:.2f}" data-delay="2300">{eur(p['price'] * rate)}</span><span class="ww__note">{rate * 100:.0f}&nbsp;% Beteiligung – ganz automatisch</span></div>
-      </div>"""
+    """„Ein Verkauf. Zwei Gewinner.“: Produkte aus vier Preisklassen wechseln sich ab, darunter zählt der Verdienst mit."""
+    cards, first = [], None
+    for tier, _ in TIERS:
+        for pair in sel["cycle"][tier]:
+            p = product(pair)
+            first = first or p
+            cards.append(f'<div class="ww-card vreal" data-tier="{tier}" data-price="{p["price"]:.2f}" data-uvp="{p["uvp"]:.2f}" '
+                         f'data-off="{p["discount"]}">{vp_product(p)}</div>')
+    p = first
+    chips = "".join(f'<li data-tier-chip="{t}">{label}</li>' for t, label in TIERS)
+    return f"""<div class="winwin">
+      <div class="ww-stage" data-anim="pop"><div class="tilt" data-tilt><div class="ww-cards" data-ww-cards>{"".join(cards)}</div></div></div>
+      <div class="winwin__side">
+        <div class="ww-tiers" data-anim><span class="ww-tiers__label">Preisklasse</span><ol>{chips}</ol></div>
+        <div class="winwin__flow">
+          <div class="ww ww--old" data-anim style="--d:.55s"><span class="ww__label">Regulär</span><span class="ww__value"><s data-ww="uvp">{eur(p['uvp'])}</s></span></div>
+          <span class="ww__arrow" data-anim="pop" style="--d:.8s" aria-hidden="true">{icon("arrow-right")}</span>
+          <div class="ww" data-anim style="--d:.9s"><span class="ww__label">In Deinem Shop</span><span class="ww__value" data-ww="price">{eur(p['price'])}</span></div>
+          <div class="ww ww--community" data-anim style="--d:1.1s"><span class="ww__label">Deine Community spart</span><span class="ww__value" data-ww="save">{eur(p['uvp'] - p['price'])}</span><span class="ww__note">−<span data-ww="off">{p['discount']}</span>&nbsp;% gegenüber regulär</span></div>
+          <div class="ww ww--you" data-anim style="--d:1.3s" data-ww-you><span class="ww__label">Du verdienst</span><span class="ww__value" data-ww="earn">{eur(p['price'] * rate)}</span><span class="ww__note">{rate * 100:.0f}&nbsp;% Beteiligung – ganz automatisch</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ww-sum" data-anim style="--d:1.6s">
+      <span class="ww-sum__count"><b data-ww-count>0</b><span><span data-ww-noun>Verkäufe</span> in<br>Deinem Shop</span></span>
+      <span class="ww-sum__total"><span>Dein Verdienst</span><strong data-ww-total>0,00&nbsp;€</strong><em class="ww-sum__plus" data-ww-plus></em></span>
+      <span class="ww-sum__claim">… und das <span class="grad-text">ohne einen Handgriff.</span></span>
+    </div>"""
 
 
 def swatches(colors, kind: str) -> str:
@@ -239,30 +259,6 @@ def swatches(colors, kind: str) -> str:
         f'<button type="button" class="swatch{" is-on" if i == 0 else ""}" style="--c:{c}" data-{kind}="{c}" '
         f'role="radio" aria-checked="{"true" if i == 0 else "false"}" aria-label="{esc(label)}"></button>'
         for i, (c, label) in enumerate(colors))
-
-
-def frag_margin_cards(rate: float) -> str:
-    out = []
-    for pair in sel["margin"]:
-        p = product(pair)
-        out.append(f"""<article class="mcard" data-anim="flip">
-  <div class="mcard__product vreal">{vp_product(p)}</div>
-  <div class="mcard__calc">
-    <dl class="mcard__rows">
-      <div><dt>Regulär</dt><dd><s>{eur(p['uvp'])}</s></dd></div>
-      <div><dt>In Deinem Shop</dt><dd>{eur(p['price'])}</dd></div>
-      <div class="is-save"><dt>Community spart</dt><dd>{eur(p['uvp'] - p['price'])}</dd></div>
-    </dl>
-    <div class="mcard__earn"><span>Du verdienst</span><strong data-countto="{p['price'] * rate:.2f}">{eur(p['price'] * rate)}</strong></div>
-  </div>
-</article>""")
-    return "\n".join(out)
-
-
-def frag_punch(rate: float) -> str:
-    p = product(sel["margin"][1])  # LED-Maske
-    return (f'Schon <strong>10 verkaufte</strong> LED-Masken von {esc(nice_brand(p["brand"]))} bringen Dir '
-            f'<span class="grad-text">{eur(p["price"] * 10 * rate)}</span> – ohne einen Handgriff.')
 
 
 def frag_lux() -> str:
@@ -322,11 +318,12 @@ def frag_deals() -> str:
     return "\n".join(out)
 
 
-def ig_phone() -> str:
+def ig_phone(rate: float) -> str:
     """Handy mit Instagram: Feed → Story → Link → Webshop (vorteile.net) → zurück zur Story. Ablauf: CSS-Schleife."""
     post = find("LANCÔME")
     st = product(sel["edits"][4]["items"][1])  # Rituals Adventskalender
     page1 = [find("DIOR"), find("SILK'N")]
+    pick = page1[1]  # dieses Produkt landet im Warenkorb
     page2 = [find("RITUALS"), find("LANCÔME")]
     friends = [("anna.m", "A", "#f2b6a8"), ("julia", "J", "#a9c1ff"), ("sophie", "S", "#ffd28a"), ("mara", "M", "#a8dcc0")]
     rings = "".join(f'<span class="ig__st"><span class="ig__ring"><i style="--av:{c}">{a}</i></span>{h}</span>' for h, a, c in friends)
@@ -359,24 +356,40 @@ def ig_phone() -> str:
       <div class="ig__sheet">
         <div class="ig__bar"><span class="ig__close">{icon("x")}</span><span class="ig__url">{icon("lock")}<span><span data-bind="slug">deinname</span>.vorteile.net</span></span>{icon("more")}</div>
         <div class="ig__view">
-          <div class="vpm ig__page">
-            <div class="vpm__header">{vp_logo()}<span class="vpm__icons">{icon("search")}{icon("heart")}<span class="vp__cart">{icon("bag")}<b>1</b></span></span></div>
-            <div class="vpm__cats"><i class="is-on">Health &amp; Beauty</i><i>Düfte</i><i>Skincare</i><i>Beauty-Tech</i></div>
-            <div class="vpm__stage">
-              <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span><span class="vp__fade"></span>
-              <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
-              {vp_deal("Shiseido")}
-              <div class="vpm__products">{"".join(vp_product(x) for x in page1)}</div>
-              <div class="vp__head vp__head--shop"><strong>Nur für Deine Community</strong><em>Partner-Deals</em></div>
-              <div class="ig__deals">{vp_deal("NARS")}{vp_deal("ghd - good hair day")}</div>
-              <div class="vpm__products">{"".join(vp_product(x) for x in page2)}</div>
+          <div class="vpm ig__shophead"><div class="vpm__header">{vp_logo()}<span class="vpm__icons">{icon("search")}{icon("heart")}<span class="vp__cart ig__cartbtn">{icon("bag")}<b class="ig__badge">1</b></span></span></div></div>
+          <div class="ig__scroll">
+            <div class="vpm ig__page">
+              <div class="vpm__cats"><i class="is-on">Health &amp; Beauty</i><i>Düfte</i><i>Skincare</i><i>Beauty-Tech</i></div>
+              <div class="vpm__stage">
+                <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span><span class="vp__fade"></span>
+                <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
+                {vp_deal("Shiseido")}
+                <div class="vpm__products">{vp_product(page1[0])}<span class="ig__pick">{vp_product(pick)}</span></div>
+                <div class="vp__head vp__head--shop"><strong>Nur für Deine Community</strong><em>Partner-Deals</em></div>
+                <div class="ig__deals">{vp_deal("NARS")}{vp_deal("ghd - good hair day")}</div>
+                <div class="vpm__products">{"".join(vp_product(x) for x in page2)}</div>
+              </div>
             </div>
+          </div>
+          <p class="ig__toast">{icon("check")}Zum Warenkorb hinzugefügt</p>
+          <div class="ig__cart">
+            <p class="ig__cart-title">Warenkorb <span>(1 Artikel)</span></p>
+            <div class="ig__cart-item"><span class="pimg pi-{pick['slug']}"></span><span class="ig__cart-meta"><b>{esc(pick['brand'])}</b><span>{esc(nice_title(pick['title']))}</span><span class="ig__cart-price"><strong>{eur(pick['price'])}</strong><s>{eur(pick['uvp'])}</s></span></span><span class="ig__cart-qty">1</span></div>
+            <dl class="ig__cart-sum">
+              <div><dt>Zwischensumme</dt><dd>{eur(pick['price'])}</dd></div>
+              <div class="is-save"><dt>Du sparst</dt><dd>{eur(pick['uvp'] - pick['price'])}</dd></div>
+              <div><dt>Versand</dt><dd>kostenlos</dd></div>
+              <div class="is-total"><dt>Gesamt</dt><dd>{eur(pick['price'])}</dd></div>
+            </dl>
+            <span class="ig__checkout">Zur Kasse</span>
+            <div class="ig__done"><span class="ig__done-check">{icon("check")}</span><b>Bestellung abgeschlossen</b><span>Danke für Deinen Einkauf!</span></div>
           </div>
         </div>
       </div>
       <span class="ig__tap"></span>
     </div>
   </div>
+  <span class="reach__earn">{icon("coins")}+{eur(pick['price'] * rate)} für Dich</span>
 </div>"""
 
 
@@ -389,9 +402,9 @@ def frag_lockscreen() -> str:
     <div class="ios__lock">{icon("lock")}</div>
     <p class="ios__date" data-ios-date>Montag, 2. November</p>
     <p class="ios__time" data-ios-time>23:41</p>
-    <div class="ios__widgets">
-      <div class="ios__widget ios__widget--wide"><span class="ios__wlabel">{icon("bag")}<span data-bind="app">Community-Shop</span> · <span data-ios-month>November</span></span><b data-ios-total>0,00 €</b></div>
-      <div class="ios__widget ios__widget--ring"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18"/><circle class="ios__ring" cx="22" cy="22" r="18" pathLength="100" data-ios-ring/></svg><b data-ios-count>0</b></div>
+    <div class="ios__live" data-ios-live>
+      <span class="ios-note__icon">{icon("bag")}</span>
+      <span class="ios__live-body"><span class="ios__live-top"><b data-bind="app">Community-Shop</b><span class="ios__live-tag">Live</span></span><strong data-ios-total>0,00 €</strong><small>heute Nacht für Dich verdient</small></span>
     </div>
     <div class="ios__stack"><ul class="ios__notes" data-ios-notes></ul></div>
     <div class="ios__bottom"><span class="ios__btn"><svg viewBox="0 0 24 24"><path d="M9 2h6l-1 6h-4zM10 8h4v12a2 2 0 0 1-4 0z"/></svg></span><span class="ios__btn"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span></div>
@@ -431,9 +444,9 @@ def render(pitch: dict | None) -> str:
         "page_title": esc(f"{poss} Beauty-Shop · INCENT Community-Shop" if name else "Dein eigener Beauty-Shop · INCENT Community-Shop"),
         "vp_hero": vp_portal(), "vpm_phone": vpm_phone(), "winwin": frag_winwin(rate),
         "swatches_btn": swatches(BTN_COLORS, "btn"), "swatches_nav": swatches(NAV_COLORS, "nav"),
-        "margin_cards": frag_margin_cards(rate), "punch": frag_punch(rate), "lux": frag_lux(),
+        "lux": frag_lux(),
         "categories": frag_categories(), "logos": frag_logos(), "edit_tabs": frag_edit_tabs(),
-        "edit_panels": frag_edit_panels(rate), "deals": frag_deals(), "deal_count": str(len(deals)), "ig_phone": ig_phone(),
+        "edit_panels": frag_edit_panels(rate), "deals": frag_deals(), "deal_count": str(len(deals)), "ig_phone": ig_phone(rate),
         "lockscreen": frag_lockscreen(), "snapshot_date": SNAPSHOT_DATE,
     }
     for key, value in fragments.items():

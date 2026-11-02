@@ -394,5 +394,99 @@
    "fitnessRAUM.de",
    "Wellbeing-Flatrate: Onlinekurse für zu Hause"
   ]
- ]
+ ],
+ "cycle": {
+  "a": [
+   [
+    "DAVIDOFF",
+    "Deodorant \"Cool Water\""
+   ],
+   [
+    "CALVIN KLEIN",
+    "Deo Stick \"CK One\", 75 g"
+   ],
+   [
+    "WALRA",
+    "Badetuch \"Soft Cotton\", anthrazit"
+   ],
+   [
+    "VOSSEN",
+    "Handtuch \"Vegan Life\" avocado"
+   ]
+  ],
+  "b": [
+   [
+    "DAVIDOFF",
+    "EdT \"The Game\", 100 ml"
+   ],
+   [
+    "HUGO BOSS",
+    "EdT \"Orange\" 75 ml"
+   ],
+   [
+    "JOOP!",
+    "EdP \"Le Bain\" 75 ml"
+   ],
+   [
+    "CALVIN KLEIN",
+    "EdT \"ck one\" 200 ml"
+   ],
+   [
+    "BABYLISS",
+    "Welleneisen \"Deep Waves W2447E\""
+   ]
+  ],
+  "c": [
+   [
+    "BABYLISS",
+    "Glätteisen \"ST496E\""
+   ],
+   [
+    "SILK'N",
+    "Gesichtsreinigungsbürste \"Bright Lux\""
+   ],
+   [
+    "SHISEIDO",
+    "\"Benefiance - Wrinkle Smoothing\", 50 ml"
+   ],
+   [
+    "SILK'N",
+    "LED Lichttherapiegerät Gesichtsmaske"
+   ],
+   [
+    "BABYLISS",
+    "Föhn, \"Air Power Pro D6555DE\""
+   ],
+   [
+    "CHLOÉ",
+    "EdP \"Chloé\", 55 ml"
+   ]
+  ],
+  "d": [
+   [
+    "SILK'N",
+    "Haarentferner \"IPL Motion Premium\""
+   ],
+   [
+    "PHILIPS",
+    "Munddusche \"Power Flosser\" + Schallzahnbürste \"DiamondClean 9000 HX3886/41\", weiß"
+   ],
+   [
+    "SILK'N",
+    "LED Lichttherapiegerät Gesichts- und Halsmaske"
+   ],
+   [
+    "LANCÔME",
+    "EdP \"La vie est belle\", 100 ml"
+   ],
+   [
+    "SILK'N",
+    "Haartrockner & Styler \"SilkyAir Flex\" mit 8 Aufsätzen"
+   ],
+   [
+    "BEURER",
+    "Shiatsu-Fußmassagegerät \"FM 120\""
+   ]
+  ]
+ }
 }
