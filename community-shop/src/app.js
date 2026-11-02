@@ -227,7 +227,7 @@
   }
 
   /* ============================================================ Rechner (Beteiligung fest) */
-  const state = { followers: clamp(Number(params.get('reichweite')) || D.defaults.followers, 5000, 1000000), conv: D.defaults.conv, basket: D.defaults.basket };
+  const state = { followers: clamp(Number(params.get('reichweite')) || Number(P.reichweite) || D.defaults.followers, 5000, 1000000), conv: D.defaults.conv, basket: D.defaults.basket };
   const LOG_MIN = 5000, LOG_MAX = 1000000;
   const followersFromSlider = (v) => {
     const raw = LOG_MIN * Math.pow(LOG_MAX / LOG_MIN, v / 1000);

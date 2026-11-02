@@ -580,6 +580,7 @@ def render(pitch: dict | None, pv: dict | None = None) -> str:
         "pitch": {"name": name, "farbe": pitch.get("farbe"), "nav": pitch.get("nav"),
                   "hintergrund": pitch.get("hintergrund"), "hintergrundfarbe": pitch.get("hintergrundfarbe"),
                   "hintergrundton": pitch.get("hintergrundton"),
+                  "reichweite": pitch.get("reichweite"),
                   "logo": logo_uri, "slug": pitch.get("slug")},
         "avgDiscount": round(AVG_DISCOUNT, 4),
         "presets": PRESETS,

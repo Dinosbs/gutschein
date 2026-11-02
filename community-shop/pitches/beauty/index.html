@@ -1987,7 +1987,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
 </main>
 
 <script>
-window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58", "audStart": 0, "defaults": {"followers": 100000, "conv": 0.5, "basket": 75, "btn": "#1c87b8", "nav": "#ffffff"}, "pitch": {"name": "", "farbe": null, "nav": null, "hintergrund": "image", "hintergrundfarbe": null, "hintergrundton": null, "logo": null, "slug": "beauty"}, "avgDiscount": 0.2662, "presets": {"blau": "#1c87b8", "rose": "#c0746a", "rosé": "#c0746a", "beere": "#a3245a", "nude": "#a7856b", "salbei": "#5f8a72", "lavendel": "#7e6aa8", "schwarz": "#222222", "weiss": "#ffffff", "weiß": "#ffffff", "puder": "#f8eeea", "creme": "#f4efe8"}};
+window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58", "audStart": 0, "defaults": {"followers": 100000, "conv": 0.5, "basket": 75, "btn": "#1c87b8", "nav": "#ffffff"}, "pitch": {"name": "", "farbe": null, "nav": null, "hintergrund": "image", "hintergrundfarbe": null, "hintergrundton": null, "reichweite": null, "logo": null, "slug": "beauty"}, "avgDiscount": 0.2662, "presets": {"blau": "#1c87b8", "rose": "#c0746a", "rosé": "#c0746a", "beere": "#a3245a", "nude": "#a7856b", "salbei": "#5f8a72", "lavendel": "#7e6aa8", "schwarz": "#222222", "weiss": "#ffffff", "weiß": "#ffffff", "puder": "#f8eeea", "creme": "#f4efe8"}};
 /* INCENT Community-Shop – Pitch Health & Beauty (scroll-gesteuerte Präsentation)
  *
  * Präsentieren: Scrollen, Pfeiltasten ↑ ↓, Bild↑/Bild↓, Leertaste, Pos1/Ende oder Presenter – jede Folie rastet ein.
@@ -2217,7 +2217,7 @@ window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58
   }
 
   /* ============================================================ Rechner (Beteiligung fest) */
-  const state = { followers: clamp(Number(params.get('reichweite')) || D.defaults.followers, 5000, 1000000), conv: D.defaults.conv, basket: D.defaults.basket };
+  const state = { followers: clamp(Number(params.get('reichweite')) || Number(P.reichweite) || D.defaults.followers, 5000, 1000000), conv: D.defaults.conv, basket: D.defaults.basket };
   const LOG_MIN = 5000, LOG_MAX = 1000000;
   const followersFromSlider = (v) => {
     const raw = LOG_MIN * Math.pow(LOG_MAX / LOG_MIN, v / 1000);
