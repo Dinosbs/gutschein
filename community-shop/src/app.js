@@ -78,7 +78,7 @@
     name: (params.get('name') || P.name || '').trim().slice(0, 20),
     bgSolid: parseColor(params.get('hintergrundfarbe')) || parseColor(P.hintergrundfarbe) || null,
     logo: P.logo || null,
-    logoName: P.logo ? 'Dein Logo' : '',
+    logoName: P.logo ? (P.name ? `Logo ${P.name}` : 'Dein Logo') : '',
   };
   const personalised = Boolean(initial.name || P.farbe || P.nav || params.get('farbe') || params.get('nav') || P.logo);
   const theme = { ...initial };

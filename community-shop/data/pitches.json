@@ -14,7 +14,7 @@
       "nav": "creme",
       "hintergrund": "solid",
       "hintergrundfarbe": "#f1e8dc",
-      "logo": null
+      "logo": "ariel61-logo.png"
     },
     {
       "slug": "yelizkoc",
@@ -23,7 +23,7 @@
       "nav": "weiss",
       "hintergrund": "solid",
       "hintergrundfarbe": "#f7f7f7",
-      "logo": null
+      "logo": "yelizkoc-logo.png"
     }
   ]
 }

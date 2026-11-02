@@ -442,7 +442,8 @@ strong { font-weight: 700; }
 .vp__logo { display: flex; align-items: center; min-width: 0; height: calc(40 * var(--u)); }
 .vp__logo-incent { display: block; height: calc(28 * var(--u)); aspect-ratio: 446 / 109; background-position: left center; background-size: contain; background-repeat: no-repeat; }
 .vp__logo-name { display: none; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: calc(27 * var(--u)); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--on-nav); transition: color .7s; }
-.vp__logo-custom { display: none; max-width: calc(180 * var(--u)); max-height: calc(40 * var(--u)); width: auto; height: auto; object-fit: contain; }
+.vp__logo-custom { display: none; max-width: calc(250 * var(--u)); max-height: calc(56 * var(--u)); width: auto; height: auto; object-fit: contain; }
+.vp-theme[data-logo="custom"] .vp__logo { height: calc(52 * var(--u)); } /* eigene Logos (mit Bildmarke) bekommen mehr Platz */
 .vp-theme[data-logo="name"] .vp__logo-incent, .vp-theme[data-logo="custom"] .vp__logo-incent { display: none; }
 .vp-theme[data-logo="name"] .vp__logo-name { display: block; animation: logo-in .7s var(--ease); }
 .vp-theme[data-logo="custom"] .vp__logo-custom { display: block; animation: logo-in .7s var(--ease); }
@@ -512,7 +513,8 @@ strong { font-weight: 700; }
 .vpm__header .vp__logo { height: calc(38 * var(--u)); }
 .vpm__header .vp__logo-incent { height: calc(30 * var(--u)); }
 .vpm__header .vp__logo-name { font-size: calc(26 * var(--u)); }
-.vpm__header .vp__logo-custom { max-width: calc(170 * var(--u)); max-height: calc(38 * var(--u)); }
+.vpm__header .vp__logo-custom { max-width: calc(210 * var(--u)); max-height: calc(50 * var(--u)); }
+.vp-theme[data-logo="custom"] .vpm__header .vp__logo { height: calc(50 * var(--u)); }
 .vpm__icons { display: flex; align-items: center; gap: calc(14 * var(--u)); color: var(--on-nav-2); transition: color .7s; }
 .vpm__icons .i { width: calc(26 * var(--u)); height: calc(26 * var(--u)); stroke-width: 1.6; }
 .vpm__cats { position: relative; z-index: 2; display: flex; gap: calc(8 * var(--u)); padding: 0 calc(18 * var(--u)) calc(14 * var(--u)); overflow: hidden; background-color: var(--nav); box-shadow: 0 2px 4px rgba(0, 0, 0, .06); transition: background-color .7s; }
@@ -2062,7 +2064,7 @@ window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58
     name: (params.get('name') || P.name || '').trim().slice(0, 20),
     bgSolid: parseColor(params.get('hintergrundfarbe')) || parseColor(P.hintergrundfarbe) || null,
     logo: P.logo || null,
-    logoName: P.logo ? 'Dein Logo' : '',
+    logoName: P.logo ? (P.name ? `Logo ${P.name}` : 'Dein Logo') : '',
   };
   const personalised = Boolean(initial.name || P.farbe || P.nav || params.get('farbe') || params.get('nav') || P.logo);
   const theme = { ...initial };

@@ -3,8 +3,8 @@
 Eine scroll-gesteuerte Präsentation, mit der wir Influencerinnen und ihrem Management im Meeting den INCENT-Community-Shop vorstellen. Danach bekommen sie den Link mit.
 
 - **Allgemein (Beauty):** https://dinosbs.github.io/pitch/beauty/ (die Startadresse https://dinosbs.github.io/pitch/ leitet dorthin weiter)
-- **Ariel61:** https://dinosbs.github.io/pitch/ariel61/ – Shop vorgebaut mit Schriftzug „ARIEL61“, Creme-Leiste, Buttons in #790b0a, cremefarbener Hintergrund
-- **Yeliz Koc:** https://dinosbs.github.io/pitch/yelizkoc/ – Name hinterlegt, überwiegend weiß mit schwarzen Akzenten
+- **Ariel61:** https://dinosbs.github.io/pitch/ariel61/ – Shop vorgebaut mit eigenem Logo (`data/pitches/ariel61-logo.png`), Creme-Leiste, Buttons in #790b0a, cremefarbener Hintergrund
+- **Yeliz Koc:** https://dinosbs.github.io/pitch/yelizkoc/ – eigenes Logo (`data/pitches/yelizkoc-logo.png`), überwiegend weiß mit schwarzen Akzenten
 
 Persönliche Fassungen sollen nicht „vom Band“ aussehen. Deshalb wird je Fassung beim Build gewürfelt, mit festem Startwert, sodass jeder Build gleich aussieht:
 
