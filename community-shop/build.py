@@ -514,7 +514,7 @@ def frag_lockscreen() -> str:
 
 
 # --------------------------------------------------------------- CSS-Kopf (Schriften + Bilder, jedes nur einmal)
-def css_head() -> str:
+def css_head(bg_image: Path | None = None) -> str:
     fonts = ASSETS / "fonts"
     parts = []
     for weight, style, file in [(400, "normal", "400"), (500, "normal", "500"), (600, "normal", "600"),
@@ -527,7 +527,7 @@ def css_head() -> str:
     ui = ASSETS / "ui"
     parts.append(f".vp__logo-incent{{background-image:url({data_uri(ui / 'incent-logo-dark.png')})}}")
     parts.append(f".vp-theme[data-nav-tone=\"dark\"] .vp__logo-incent{{background-image:url({data_uri(ui / 'incent-logo-white.png')})}}")
-    parts.append(f".vp__bg--image,.bg-opt__thumb--image{{background-image:url({data_uri(ui / 'bg-health-beauty.jpg')})}}")
+    parts.append(f".vp__bg--image,.bg-opt__thumb--image{{background-image:url({data_uri(bg_image or ui / 'bg-health-beauty.jpg')})}}")
     parts += [f".pi-{s}{{background-image:url({data_uri(ASSETS / 'products' / f'{s}.jpg')})}}" for s in sorted(used_products)]
     parts += [f".di-{s}{{background-image:url({data_uri(ASSETS / 'deals' / f'{s}.jpg')})}}" for s in sorted(used_deals)]
     parts += [f".lg-{s}{{background-image:url({data_uri(ASSETS / 'logos' / f'{s}.png')})}}" for s in sorted(used_logos)
@@ -583,7 +583,7 @@ def render(pitch: dict | None, pv: dict | None = None) -> str:
         "avgDiscount": round(AVG_DISCOUNT, 4),
         "presets": PRESETS,
     }
-    page = page.replace("/*@CSS*/", css_head() + (SRC / "style.css").read_text(encoding="utf-8"), 1)
+    page = page.replace("/*@CSS*/", css_head(DATA / "pitches" / pitch["hintergrundbild"] if pitch.get("hintergrundbild") else None) + (SRC / "style.css").read_text(encoding="utf-8"), 1)
     page = page.replace("/*@DATA*/", "window.SHOP_DATA = " + json.dumps(data, ensure_ascii=False) + ";", 1)
     page = page.replace("/*@JS*/", (SRC / "app.js").read_text(encoding="utf-8"), 1)
     left = re.findall(r"<!--@\w+-->|\{\{[a-z]+:[^}]+\}\}", page)

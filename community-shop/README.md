@@ -4,7 +4,7 @@ Eine scroll-gesteuerte Präsentation, mit der wir Influencerinnen und ihrem Mana
 
 - **Allgemein (Beauty):** https://dinosbs.github.io/pitch/beauty/ (die Startadresse https://dinosbs.github.io/pitch/ leitet dorthin weiter)
 - **Ariel61:** https://dinosbs.github.io/pitch/ariel61/ – Shop vorgebaut mit eigenem Logo (`data/pitches/ariel61-logo.png`), Creme-Leiste, Buttons in #790b0a, cremefarbener Hintergrund
-- **Yeliz Koc:** https://dinosbs.github.io/pitch/yelizkoc/ – eigenes Logo (`data/pitches/yelizkoc-logo.png`), überwiegend weiß mit schwarzen Akzenten
+- **Yeliz Koc:** https://dinosbs.github.io/pitch/yelizkoc/ – eigenes Logo (`data/pitches/yelizkoc-logo.png`), eigenes Hintergrundbild im Shop (`data/pitches/yelizkoc-hintergrund.jpg`), überwiegend weiß mit schwarzen Akzenten
 
 Persönliche Fassungen sollen nicht „vom Band“ aussehen. Deshalb wird je Fassung beim Build gewürfelt, mit festem Startwert, sodass jeder Build gleich aussieht:
 
@@ -98,6 +98,7 @@ Für jeden Pitch kommt ein Eintrag in `data/pitches.json`:
 | `hintergrund` | `image` (Health-&-Beauty-Motiv), `solid` oder `gradient` |
 | `logo` | optional: Logo-Datei in `data/pitches/`. Sie ersetzt den Schriftzug in allen Mockups. |
 | `hintergrundfarbe` | optional: Hex-Wert für den einfarbigen Hintergrund (sonst aus der Buttonfarbe abgeleitet) |
+| `hintergrundbild` | optional: Bilddatei in `data/pitches/` für den Bild-Hintergrund im Shop (sonst das Health-&-Beauty-Motiv); am besten 16:9, Personen am linken und rechten Rand |
 | `beteiligung` | optional, Standard 70 (Prozent vom Gewinn) |
 | `marge` | optional, Standard 25 (Durchschnittsmarge pro Produkt in Prozent) |
 
