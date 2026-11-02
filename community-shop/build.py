@@ -177,6 +177,43 @@ def vp_deal(title: str, text: str | None = None) -> str:
             f'<span class="vp-deal__info"><b>{esc(title)}</b><span>{esc(text or d["text"] or "")}</span></span></span>')
 
 
+# --------------------------------------------------------------- Durchmischen je Fassung
+# Persönliche Fassungen sollen nicht „vom Band“ aussehen: Reihenfolgen und Auswahl werden je slug gewürfelt
+# (fester Startwert → stabil bei jedem Build). Die allgemeine Fassung bleibt in der kuratierten Reihenfolge.
+CUR = {"slug": None, "i": 0}
+
+
+def mixed(seq, salt: str) -> list:
+    import random
+    out = list(seq)
+    if CUR["slug"]:
+        random.Random(f"{CUR['slug']}|{salt}").shuffle(out)
+    return out
+
+
+def pick_one(seq, salt: str):
+    """Ein Wert je Fassung – verschiedene Fassungen bekommen garantiert verschiedene Werte (solange genug da sind)."""
+    import random
+    order = list(seq)
+    random.Random(f"alle|{salt}").shuffle(order)
+    return order[CUR["i"] % len(order)]
+
+
+STORIES = [  # (Produkt, Story-Text, Bildunterschrift im Feed) – Eintrag 0 = allgemeine Fassung
+    (sel["edits"][4]["items"][1], "Der Adventskalender ist da ✨<br>Alle Deals in meinem Shop", "Mein Duft für den Herbst ✨ Exklusiv in meinem Shop"),
+    (["SILK'N", 'LED Lichttherapiegerät Gesichtsmaske Pro'], "Mein Glow-Geheimnis ✨<br>Jetzt in meinem Shop", "Self-Care-Sunday 🤍 Alle Lieblinge in meinem Shop"),
+    (["RITUALS", 'Geschenkset "The Ritual of Yozakura", M'], "Geschenkidee gefunden 🎁<br>Nur in meinem Shop", "Neu in meinem Shop ✨ Link in Bio"),
+    (["SHISEIDO", '"Benefiance - Wrinkle Smoothing", 50 ml'], "Meine Skincare-Routine 🤍<br>Alles in meinem Shop", "Morning Routine ☀️ Alle Produkte in meinem Shop"),
+    (["NUXE", 'Körperöl, "Huile Prodigieuse Treatment"'], "Mein Pflege-Liebling ✨<br>Jetzt in meinem Shop", "Glow-Time ✨ Den Link findet ihr in meiner Bio"),
+    (["BABYLISS", 'Warmluftbürste "Air Power Volume AS95E"'], "Volumen in 5 Minuten ✨<br>Link in meinem Shop", "Hair Day 💫 Alles in meinem Shop"),
+]
+CAPTIONS = ["Signature Scent 🤍 Exklusiv in meinem Shop", "Duft-Liebe 💫 Alle Deals in meinem Shop", "Neu in meinem Shop ✨ Link in Bio",
+            "Mein Duft für jeden Tag ✨ Jetzt in meinem Shop"]
+POST_POOL = [["CHLOÉ", 'EdP "Chloé", 55 ml'], ["TOM FORD", 'EdP "Black Orchid", 50 ml'], ["YVES SAINT LAURENT", 'EdP "Libre", 30 ml'],
+             ["PACO RABANNE", 'EdP "Lady Million" 50 ml'], ["GIORGIO ARMANI", 'EdP "Sì", 30 ml'], ["HERMES", 'EdT "Un Jardin sur le Nil", 100 ml'],
+             ["DOLCE & GABBANA", 'EdT "Light Blue", 50 ml'], ["DIOR", 'EdT "Miss Blooming Bouquet", 50 ml']]
+
+
 # --------------------------------------------------------------- Vorschau-Angebote je Fassung
 # Die allgemeine Fassung zeigt die bewährte Auswahl. Jede persönliche Fassung bekommt eigene, gewürfelte
 # Deals und Produkte (fester Startwert → bei jedem Build gleich, und keine zwei Fassungen teilen sich ein Angebot).
@@ -191,7 +228,7 @@ def preview_sets(pitches: list[dict]) -> dict[str, dict]:
     import random
     rng = random.Random("incent-community-shop-vorschau")
     taken_deals = set(DEFAULT_PREVIEW["deals"])
-    beauty = ["Rituals Cosmetics", "Doctor Mi", "The Female Company", "Yves Rocher", "LAYZIN", "lavera", "KLIER", "Philips", "Braun"]
+    beauty = ["Rituals Cosmetics", "Doctor Mi", "The Female Company", "Yves Rocher", "LAYZIN", "lavera", "KLIER", "Philips"]
     deal_pool = [t for t in beauty if t not in taken_deals]
     general = {(norm(b), norm(t)) for b, t in sel["hero"]}
     prod_pool = []
@@ -280,7 +317,7 @@ def frag_winwin(rate: float) -> str:
     """„Ein Verkauf. Zwei Gewinner.“: Produkte aus vier Preisklassen wechseln sich ab, darunter zählt der Verdienst mit."""
     cards, first = [], None
     for tier, _ in TIERS:
-        for pair in sel["cycle"][tier]:
+        for pair in mixed(sel["cycle"][tier], f"cycle-{tier}"):
             p = product(pair)
             first = first or p
             cards.append(f'<div class="ww-card vreal" data-tier="{tier}" data-price="{p["price"]:.2f}" data-uvp="{p["uvp"]:.2f}" '
@@ -314,7 +351,7 @@ def swatches(colors, kind: str) -> str:
 
 
 def frag_lux() -> str:
-    return "\n".join(f'<li data-anim="pop">{logo(slug, brand_names.get(slug, slug))}</li>' for slug in LUX)
+    return "\n".join(f'<li data-anim="pop">{logo(slug, brand_names.get(slug, slug))}</li>' for slug in mixed(LUX, "lux"))
 
 
 def frag_categories() -> str:
@@ -329,11 +366,15 @@ def frag_categories() -> str:
 
 
 def frag_logos() -> str:
-    rest = [b for b in brands if b["slug"] not in LUX]
+    rest = mixed([b for b in brands if b["slug"] not in LUX], "logos")
     tiles = "".join(f"<li>{logo(b['slug'], b['name'])}</li>" for b in rest)
     dup = "".join(f"<li>{logo(b['slug'])}</li>" for b in rest)
     return (f'<div class="marquee" style="--dur:140s"><ul class="marquee__track">{tiles}</ul>'
             f'<ul class="marquee__track" aria-hidden="true">{dup}</ul></div>')
+
+
+def edits_order() -> list[dict]:
+    return [{**e, "items": mixed(e["items"], f"edit-{e['id']}")} for e in mixed(sel["edits"], "edits")]
 
 
 def frag_edit_tabs() -> str:
@@ -341,12 +382,12 @@ def frag_edit_tabs() -> str:
         f'<button type="button" class="tab" role="tab" id="tab-{e["id"]}" aria-controls="edit-{e["id"]}" '
         f'aria-selected="{"true" if i == 0 else "false"}"{"" if i == 0 else " tabindex=\"-1\""}>{esc(e["name"])}'
         f'<span>{len(e["items"])}</span></button>'
-        for i, e in enumerate(sel["edits"]))
+        for i, e in enumerate(edits_order()))
 
 
 def frag_edit_panels(rate: float) -> str:
     out = []
-    for i, e in enumerate(sel["edits"]):
+    for i, e in enumerate(edits_order()):
         cards = "".join(
             f'<div class="ecard vreal">{vp_product(p)}<p class="ecard__earn">+&nbsp;{eur(p["price"] * rate)} für Dich</p></div>'
             for p in (product(x) for x in e["items"]))
@@ -361,7 +402,8 @@ def frag_edit_panels(rate: float) -> str:
 
 def frag_deals() -> str:
     """Zwei gegenläufige Laufbänder mit Partner-Deals (jede Reihe doppelt für eine nahtlose Schleife)."""
-    rows = [sel["deals"][:DEAL_ROW], sel["deals"][DEAL_ROW:2 * DEAL_ROW]]
+    pool = mixed(sel["deals"][:2 * DEAL_ROW], "deals")
+    rows = [pool[:DEAL_ROW], pool[DEAL_ROW:2 * DEAL_ROW]]
     out = []
     for n, row in enumerate(rows):
         tiles = "".join(f'<li class="vdeal vreal">{vp_deal(t, txt)}</li>' for t, txt in row)
@@ -372,8 +414,11 @@ def frag_deals() -> str:
 
 def ig_phone(rate: float, pv: dict) -> str:
     """Handy mit Instagram: Feed → Story → Link → Webshop (vorteile.net) → zurück zur Story. Ablauf: CSS-Schleife."""
-    post = find("LANCÔME")
-    st = product(sel["edits"][4]["items"][1])  # Rituals Adventskalender
+    post = find("LANCÔME") if not CUR["slug"] else product(pick_one(POST_POOL, "post"))
+    story_pair, story_text, caption = STORIES[0] if not CUR["slug"] else pick_one(STORIES[1:], "story")
+    if CUR["slug"]:
+        caption = pick_one(CAPTIONS, "caption")  # Feed-Post zeigt einen Duft – Bildunterschrift passend dazu
+    st = product(story_pair)
     all_ = pv_products(pv)
     d = pv["deals"]
     page1 = [all_[4], all_[5]]
@@ -395,7 +440,7 @@ def ig_phone(rate: float, pv: dict) -> str:
         <div class="ig__post-img"><span class="pimg pi-{post['slug']}"></span><span class="ig__post-tag">{icon("bag")}<span><span data-bind="slug">deinname</span>.vorteile.net</span></span></div>
         <div class="ig__actions">{icon("heart")}{icon("message")}{icon("share")}<span class="ig__save">{icon("bookmark")}</span></div>
         <p class="ig__likes">Gefällt 2.418 Mal</p>
-        <p class="ig__caption"><b data-bind="handle">deinname</b> Mein Duft für den Herbst ✨ Exklusiv in meinem Shop</p>
+        <p class="ig__caption"><b data-bind="handle">deinname</b> {caption}</p>
         <div class="ig__tabbar">{icon("home")}{icon("search")}{icon("plus-square")}{icon("reels")}<span class="ig__me"><i data-bind="initial">D</i></span></div>
       </div>
       <div class="ig__story">
@@ -403,7 +448,7 @@ def ig_phone(rate: float, pv: dict) -> str:
         <div class="ig__story-head"><span class="ig__ava ig__ava--sm"><i data-bind="initial">D</i></span><b data-bind="handle">deinname</b><span class="ig__story-time">2 Std.</span>{icon("x")}</div>
         <div class="ig__story-product"><span class="pimg pi-{st['slug']}"></span></div>
         <div class="ig__story-sticker"><span>Nur in meinem Shop</span><strong>-{st['discount']}&nbsp;%</strong></div>
-        <p class="ig__story-text">Der Adventskalender ist da ✨<br>Alle Deals in meinem Shop</p>
+        <p class="ig__story-text">{story_text}</p>
         <span class="ig__story-link">{icon("arrow-up-right")}<span><span data-bind="slug">deinname</span>.vorteile.net</span></span>
         <div class="ig__story-foot"><span class="ig__story-input">Nachricht senden …</span>{icon("heart")}{icon("share")}</div>
       </div>
@@ -494,6 +539,9 @@ def css_head() -> str:
 def render(pitch: dict | None, pv: dict | None = None) -> str:
     pitch = pitch or {}
     pv = pv or DEFAULT_PREVIEW
+    CUR["slug"] = pitch.get("slug") if pitch.get("name") else None
+    named = [x["slug"] for x in json.loads((DATA / "pitches.json").read_text(encoding="utf-8")).get("pitches", []) if x.get("name")]
+    CUR["i"] = named.index(CUR["slug"]) if CUR["slug"] in named else 0
     share = float(pitch.get("beteiligung", SHARE))
     margin = float(pitch.get("marge", MARGIN))
     rate = round(share * margin / 10000, 6)  # Verdienst je Euro Umsatz: Marge × Gewinnbeteiligung (18 % × 70 % = 12,6 %)
@@ -526,6 +574,8 @@ def render(pitch: dict | None, pv: dict | None = None) -> str:
         logo_uri = data_uri(DATA / "pitches" / pitch["logo"])
     data = {
         "rate": rate * 100, "share": share, "margin": margin,
+        "night": pick_one(["23:06", "22:41", "23:17", "22:49", "23:24"], "night") if CUR["slug"] else "22:58",
+        "audStart": pick_one([1, 2, 3], "aud") if CUR["slug"] else 0,
         "defaults": {"followers": 100_000, "conv": 0.5, "basket": 75,
                      "btn": BTN_COLORS[0][0], "nav": NAV_COLORS[0][0]},
         "pitch": {"name": name, "farbe": pitch.get("farbe"), "nav": pitch.get("nav"),

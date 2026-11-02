@@ -6,7 +6,13 @@ Eine scroll-gesteuerte Präsentation, mit der wir Influencerinnen und ihrem Mana
 - **Ariel61:** https://dinosbs.github.io/pitch/ariel61/ – Shop vorgebaut mit Schriftzug „ARIEL61“, Creme-Leiste, Buttons in #790b0a, cremefarbener Hintergrund
 - **Yeliz Koc:** https://dinosbs.github.io/pitch/yelizkoc/ – Name hinterlegt, überwiegend weiß mit schwarzen Akzenten
 
-Jede persönliche Fassung zeigt in ihren Vorschauen (Portal, Handy, Instagram-Shop) eigene Deals und Produkte. Sie werden beim Build mit festem Startwert gewürfelt, keine zwei Fassungen teilen sich ein Angebot (`preview_sets` in `build.py`). Die allgemeine Fassung behält ihre Auswahl.
+Persönliche Fassungen sollen nicht „vom Band“ aussehen. Deshalb wird je Fassung beim Build gewürfelt, mit festem Startwert, sodass jeder Build gleich aussieht:
+
+- **Vorschau-Angebote:** Portal, Shop-Handy und Instagram-Shop zeigen eigene Beauty-Deals und Produkte. Keine zwei Fassungen teilen sich ein Angebot (`preview_sets`).
+- **Reihenfolgen:** Partner-Deals im Laufband, Reiter und Produkte der Edits, Luxusmarken, Logo-Laufband und die Produkte bei „Zwei Gewinner“.
+- **Einzelwerte:** Story-Produkt und Story-Text, Feed-Post, Startzeit am iPhone und die Start-Zielgruppe bei „Mehr als Beauty“. Zwei Fassungen bekommen hier nie denselben Wert (`pick_one`).
+
+Die allgemeine Fassung behält die kuratierte Auswahl und Reihenfolge.
 
 **Verdienst:** 70 % vom Gewinn jeder Bestellung. Alle Beträge sind eine Beispielrechnung mit 18 % Marge pro Produkt (also 12,6 % vom Verkaufspreis), die tatsächliche Marge variiert je nach Produkt. Das steht auch als Kleingedrucktes auf den Folien.
 

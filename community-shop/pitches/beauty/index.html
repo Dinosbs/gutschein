@@ -1981,7 +1981,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
 </main>
 
 <script>
-window.SHOP_DATA = {"rate": 12.6, "share": 70.0, "margin": 18.0, "defaults": {"followers": 100000, "conv": 0.5, "basket": 75, "btn": "#1c87b8", "nav": "#ffffff"}, "pitch": {"name": "", "farbe": null, "nav": null, "hintergrund": "image", "hintergrundfarbe": null, "logo": null, "slug": "beauty"}, "avgDiscount": 0.2662, "presets": {"blau": "#1c87b8", "rose": "#c0746a", "rosé": "#c0746a", "beere": "#a3245a", "nude": "#a7856b", "salbei": "#5f8a72", "lavendel": "#7e6aa8", "schwarz": "#222222", "weiss": "#ffffff", "weiß": "#ffffff", "puder": "#f8eeea", "creme": "#f4efe8"}};
+window.SHOP_DATA = {"rate": 12.6, "share": 70.0, "margin": 18.0, "night": "22:58", "audStart": 0, "defaults": {"followers": 100000, "conv": 0.5, "basket": 75, "btn": "#1c87b8", "nav": "#ffffff"}, "pitch": {"name": "", "farbe": null, "nav": null, "hintergrund": "image", "hintergrundfarbe": null, "logo": null, "slug": "beauty"}, "avgDiscount": 0.2662, "presets": {"blau": "#1c87b8", "rose": "#c0746a", "rosé": "#c0746a", "beere": "#a3245a", "nude": "#a7856b", "salbei": "#5f8a72", "lavendel": "#7e6aa8", "schwarz": "#222222", "weiss": "#ffffff", "weiß": "#ffffff", "puder": "#f8eeea", "creme": "#f4efe8"}};
 /* INCENT Community-Shop – Pitch Health & Beauty (scroll-gesteuerte Präsentation)
  *
  * Präsentieren: Scrollen, Pfeiltasten ↑ ↓, Bild↑/Bild↓, Leertaste, Pos1/Ende oder Presenter – jede Folie rastet ein.
@@ -2400,7 +2400,8 @@ window.SHOP_DATA = {"rate": 12.6, "share": 70.0, "margin": 18.0, "defaults": {"f
     const items = pool();
     const fmtDate = new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }).format;
     const now = new Date();
-    const clock = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 58);
+    const [nh, nm] = String(D.night || '22:58').split(':').map(Number); // Startzeit je Fassung
+    const clock = new Date(now.getFullYear(), now.getMonth(), now.getDate(), nh, nm);
     const STEP = 70; // Höhe einer Mitteilung (62) + Abstand (8), in Canvas-Pixeln
     const KEEP = 5;  // so viele bleiben im Stapel (die oberste läuft unter der Maske aus)
     let total = 0, count = 0, members = 0, timer = 0, on = false, last = -1, cleanup = 0;
@@ -2614,7 +2615,7 @@ window.SHOP_DATA = {"rate": 12.6, "share": 70.0, "margin": 18.0, "defaults": {"f
     const stop = () => { auto = false; clearTimeout(timer); wrap.classList.remove('is-auto'); };
     btns.forEach((b, i) => b.addEventListener('click', () => { stop(); select(i); }));
     const next = () => { select((cur + 1) % btns.length); timer = setTimeout(next, DUR); };
-    select(0);
+    select(clamp(Number(D.audStart) || 0, 0, btns.length - 1)); // Startauswahl je Fassung
     return (want) => {
       want = want && auto && !document.hidden;
       if (want === running) return;

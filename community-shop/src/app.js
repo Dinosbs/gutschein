@@ -416,7 +416,8 @@
     const items = pool();
     const fmtDate = new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: 'numeric', month: 'long' }).format;
     const now = new Date();
-    const clock = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 58);
+    const [nh, nm] = String(D.night || '22:58').split(':').map(Number); // Startzeit je Fassung
+    const clock = new Date(now.getFullYear(), now.getMonth(), now.getDate(), nh, nm);
     const STEP = 70; // Höhe einer Mitteilung (62) + Abstand (8), in Canvas-Pixeln
     const KEEP = 5;  // so viele bleiben im Stapel (die oberste läuft unter der Maske aus)
     let total = 0, count = 0, members = 0, timer = 0, on = false, last = -1, cleanup = 0;
@@ -630,7 +631,7 @@
     const stop = () => { auto = false; clearTimeout(timer); wrap.classList.remove('is-auto'); };
     btns.forEach((b, i) => b.addEventListener('click', () => { stop(); select(i); }));
     const next = () => { select((cur + 1) % btns.length); timer = setTimeout(next, DUR); };
-    select(0);
+    select(clamp(Number(D.audStart) || 0, 0, btns.length - 1)); // Startauswahl je Fassung
     return (want) => {
       want = want && auto && !document.hidden;
       if (want === running) return;
