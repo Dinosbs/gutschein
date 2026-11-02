@@ -24,7 +24,8 @@ Jeder Push auf `main` baut alle Fassungen neu und veröffentlicht sie über GitH
   - Endlos-Schleifen nutzen nur `transform` und `opacity` und pausieren außerhalb des Bildes.
   - Hover-Effekte (Karten, Logos, Deals) bleiben animiert.
 - **Cursor:** Portal, Handys, Rechner-Karte und Aufgabenliste neigen sich zum Cursor, wie auf incent.de.
-- **Am Handy (zum Nachlesen):** eine normale Scroll-Seite mit denselben Inhalten.
+- **Am Handy (zum Nachlesen):** eine normale Scroll-Seite mit denselben Inhalten. Kompakte Abstände, im Einstieg das Shop-Handy statt des Desktop-Portals, Reiter zum Wischen, auf Tablets eine angenehme Lesebreite.
+- **Foliennummern:** Die Nummer in den Überschriften stimmt immer mit der Nummer in der Leiste und in der Legende überein (app.js setzt sie aus der Reihenfolge der Folien).
 - **Ohne Website-Elemente:** Es gibt keine „Shop anfragen“-Buttons. Die letzte Folie fasst alles zusammen und nennt den Link zum Wiederöffnen.
 
 ## Folien
@@ -39,10 +40,10 @@ Jeder Push auf `main` baut alle Fassungen neu und veröffentlicht sie über GitH
 | 06 | Deine Community | Partner-Deals | 30 echte Deals in zwei gegenläufigen Laufbändern (Hover hält eine Reihe an) und „46 exklusive Partner-Deals allein in Health & Beauty“. |
 | 07 | Deine Community | Deine Edits | Sortimente in Reitern mit „+ X € für Dich“. Die Reiter wechseln von selbst, bis jemand klickt. |
 | 08 | Deine Community | Mehr als Beauty | „Beauty ist erst der Anfang.“ Man wählt eine Zielgruppe, und die passenden Sortimentswelten leuchten auf. |
-| 09 | Dein Verdienst | Ein Verkauf, zwei Gewinner | Echte Produkte aus vier Preisklassen (bis 10 €, bis 50 €, bis 100 €, über 100 €) wechseln sich ab. Jeweils zu sehen: regulär → im Shop → Community spart → Du verdienst (10 %). Darunter zählen Verkäufe und Verdienst mit: „… und das ohne einen Handgriff.“ Die Produkte stehen in `data/selection.json` unter `cycle`. |
+| 09 | Dein Verdienst | Ein Verkauf, zwei Gewinner | Echte Produkte von unter 10 € bis über 100 € wechseln sich ab, immer reihum aus vier Preisbereichen. Jeweils zu sehen: regulär → im Shop → Community spart → Du verdienst (10 %). Darunter zählen Verkäufe und Verdienst mit: „… und das ohne einen Handgriff.“ Die Produkte stehen in `data/selection.json` unter `cycle`. |
 | 10 | Dein Verdienst | Dein Potenzial | Rechner mit Reichweite, Kaufquote und Warenkorb. Die Beteiligung steht fest auf 10 %. |
 | 11 | Dein Verdienst | Null Aufwand | „Ihr müsst nichts tun.“ Aufgaben werden durchgestrichen und an INCENT übergeben. Der Aufwand zählt von 40 auf 0 Stunden. |
-| 12 | Dein Verdienst | Passives Einkommen | iPhone-Sperrbildschirm im iOS-Stil. Oben ist eine Mitteilung angeheftet, die den Gewinn der Nacht mitzählt. Darunter schieben sich Bestellungen von unten ein, die Uhr läuft durch die Nacht. |
+| 12 | Dein Verdienst | Passives Einkommen | iPhone-Sperrbildschirm im iOS-Stil. Unten ist eine Live-Aktivität angeheftet, die den Gewinn der Nacht mitzählt („Heute Nacht verdient“ mit dem letzten Betrag in Grün). Darüber schieben sich Bestellungen von unten ein, die Uhr läuft durch die Nacht. Als iOS-Schrift dient San Francisco, wo vorhanden, sonst das eingebettete Inter. |
 | 13 | Dein Start | Reichweite & Bindung | Ein Handy mit Instagram, als 24-Sekunden-Schleife. Der Ablauf steht unter der Tabelle. |
 | 14 | Dein Start | Dein Start | „Innerhalb einer Woche zur eigenen Plattform“, mit Tag 1 bis Live. Schritt 1 heißt: Sortiment auf die Zielgruppe zuschneiden. |
 | 15 | Dein Start | Auf einen Blick | Zusammenfassung zum Mitnehmen („Beauty & weit mehr“) und Link zum Wiederöffnen. |
@@ -119,7 +120,7 @@ build.py                    baut alle Fassungen aus src/ + data/ + assets/
 tools/extract.py            liest eine SingleFile-Speicherung des Shops aus
 src/                        template.html, style.css, app.js, icons.svg
 data/                       catalog.json, deals.json, brands.json, selection.json, pitches.json, pitches/ (Logos)
-assets/                     products/, deals/, logos/, ui/ (INCENT-Logos, Zahlungsarten, Kategorie-Hintergrund), fonts/
+assets/                     products/, deals/, logos/, ui/ (INCENT-Logos, Zahlungsarten, Kategorie-Hintergrund), fonts/ (Barlow Semi Condensed, Inter – beide SIL OFL)
 screenshots/                Vorschaubilder
 .github/workflows/pages.yml baut und veröffentlicht auf GitHub Pages
 ```

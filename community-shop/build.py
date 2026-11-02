@@ -233,11 +233,9 @@ def frag_winwin(rate: float) -> str:
             cards.append(f'<div class="ww-card vreal" data-tier="{tier}" data-price="{p["price"]:.2f}" data-uvp="{p["uvp"]:.2f}" '
                          f'data-off="{p["discount"]}">{vp_product(p)}</div>')
     p = first
-    chips = "".join(f'<li data-tier-chip="{t}">{label}</li>' for t, label in TIERS)
     return f"""<div class="winwin">
       <div class="ww-stage" data-anim="pop"><div class="tilt" data-tilt><div class="ww-cards" data-ww-cards>{"".join(cards)}</div></div></div>
       <div class="winwin__side">
-        <div class="ww-tiers" data-anim><span class="ww-tiers__label">Preisklasse</span><ol>{chips}</ol></div>
         <div class="winwin__flow">
           <div class="ww ww--old" data-anim style="--d:.55s"><span class="ww__label">Regulär</span><span class="ww__value"><s data-ww="uvp">{eur(p['uvp'])}</s></span></div>
           <span class="ww__arrow" data-anim="pop" style="--d:.8s" aria-hidden="true">{icon("arrow-right")}</span>
@@ -402,11 +400,12 @@ def frag_lockscreen() -> str:
     <div class="ios__lock">{icon("lock")}</div>
     <p class="ios__date" data-ios-date>Montag, 2. November</p>
     <p class="ios__time" data-ios-time>23:41</p>
-    <div class="ios__live" data-ios-live>
-      <span class="ios-note__icon">{icon("bag")}</span>
-      <span class="ios__live-body"><span class="ios__live-top"><b data-bind="app">Community-Shop</b><span class="ios__live-tag">Live</span></span><strong data-ios-total>0,00 €</strong><small>heute Nacht für Dich verdient</small></span>
-    </div>
     <div class="ios__stack"><ul class="ios__notes" data-ios-notes></ul></div>
+    <div class="ios__live" data-ios-live>
+      <span class="ios__live-head"><span class="ios__live-icon">{icon("bag")}</span><b data-bind="app">Community-Shop</b><span class="ios__live-since" data-ios-since>seit 22:58</span></span>
+      <span class="ios__live-label">Heute Nacht verdient</span>
+      <span class="ios__live-row"><strong data-ios-total>0,00 €</strong><em data-ios-last></em></span>
+    </div>
     <div class="ios__bottom"><span class="ios__btn"><svg viewBox="0 0 24 24"><path d="M9 2h6l-1 6h-4zM10 8h4v12a2 2 0 0 1-4 0z"/></svg></span><span class="ios__btn"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span></div>
     <span class="ios__home"></span>
   </div>
@@ -421,6 +420,9 @@ def css_head() -> str:
                                 (600, "italic", "600-italic"), (700, "normal", "700"), (800, "normal", "800")]:
         parts.append(f'@font-face{{font-family:"Barlow Semi Condensed";font-weight:{weight};font-style:{style};'
                      f'font-display:swap;src:url({data_uri(fonts / f"barlow-semi-condensed-{file}.woff2")}) format("woff2")}}')
+    # Inter (OFL) als iOS-nahe Schrift für iPhone und Instagram, falls kein San Francisco vorhanden ist
+    parts.append(f'@font-face{{font-family:"Inter";font-weight:100 900;font-style:normal;font-display:swap;'
+                 f'src:url({data_uri(fonts / "inter-latin-var.woff2")}) format("woff2")}}')
     ui = ASSETS / "ui"
     parts.append(f".vp__logo-incent{{background-image:url({data_uri(ui / 'incent-logo-dark.png')})}}")
     parts.append(f".vp-theme[data-nav-tone=\"dark\"] .vp__logo-incent{{background-image:url({data_uri(ui / 'incent-logo-white.png')})}}")

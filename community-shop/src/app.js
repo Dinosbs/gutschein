@@ -433,6 +433,7 @@
       if (count > 2 && Math.random() < .15) {
         const n = 2 + Math.floor(Math.random() * 4);
         members += n;
+        lastAmount = 0;
         return note(`${n} neue Mitglieder`, `in ${shopName()} – Deine Community wächst`);
       }
       let i;
@@ -441,13 +442,19 @@
       const p = items[i];
       const amount = cents(p.price * RATE);
       total = cents(total + amount);
+      lastAmount = amount;
       count++;
       return note(`+${fmtEur(amount)} für Dich`, `Neue Bestellung: ${p.brand} · ${p.title}`);
     };
+    const lastEl = $('[data-ios-last]');
+    $('[data-ios-since]').textContent = `seit ${clock.getHours()}:${String(clock.getMinutes()).padStart(2, '0')}`;
+    let lastAmount = 0;
     const paintTotals = (animate) => {
+      if (lastAmount) lastEl.textContent = '+' + fmtEur(lastAmount);
       if (!animate) { totalEl._v = total; totalEl.textContent = fmtEur(total); return; }
       tween(totalEl, total, fmtEur, 1100);
       live.classList.remove('is-bump'); void live.offsetWidth; live.classList.add('is-bump');
+      if (lastAmount) { lastEl.classList.remove('is-go'); void lastEl.offsetWidth; lastEl.classList.add('is-go'); }
     };
     const push = (animate = true) => {
       clock.setMinutes(clock.getMinutes() + 2 + Math.floor(Math.random() * 8));
@@ -537,7 +544,6 @@
     const byTier = {};
     cards.forEach((c) => (byTier[c.dataset.tier] ||= []).push(c));
     const tiers = Object.keys(byTier);
-    const chips = $$('[data-tier-chip]');
     const out = Object.fromEntries(['uvp', 'price', 'save', 'off', 'earn'].map((k) => [k, $(`[data-ww="${k}"]`)]));
     const you = $('[data-ww-you]');
     const totalEl = $('[data-ww-total]');
@@ -561,7 +567,6 @@
       c.classList.remove('is-out');
       c.classList.add('is-on');
       cur = c;
-      chips.forEach((ch) => ch.classList.toggle('is-on', ch.dataset.tierChip === t));
       const price = Number(c.dataset.price), uvp = Number(c.dataset.uvp);
       const earn = cents(price * RATE);
       tween(out.uvp, uvp, fmtEur, 900);
@@ -643,6 +648,12 @@
     const hint = $('.keyhint');
     const legend = $('[data-legend]');
     $('[data-slide-total]').textContent = String(snaps.length).padStart(2, '0');
+    // Folien-Nummern in den Überschriften = Nummer in der Leiste und in der Legende
+    const pad = (n) => String(n).padStart(2, '0');
+    $$('.slide').forEach((sl) => { const n = $('.eyebrow__num', sl); if (n) n.textContent = pad(snaps.indexOf(sl) + 1); });
+    const capNum = $('.intro__cap .eyebrow__num'), studioNum = $('.studio .eyebrow__num');
+    if (capNum) capNum.textContent = pad(2);
+    if (studioNum) studioNum.textContent = pad(snaps.findIndex((sn) => sn.id === 'look') + 1);
 
     const toasts = bindToasts();
     const lock = bindLockscreen();
