@@ -268,9 +268,9 @@ strong { font-weight: 700; }
 .tilt { transform: perspective(1400px) translate3d(var(--tx, 0px), var(--ty, 0px), 0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style: preserve-3d; }
 
 /* ---------- Präsentationsleiste ---------- */
-/* Leiste, Legende und Tastenhinweis liegen auf derselben skalierten 16:9-Fläche wie die Folien */
-.hud { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; pointer-events: none; }
-.hud__frame { position: relative; width: 1600px; height: 900px; zoom: var(--k); }
+/* Bedienelemente am Bildschirmrand: Leiste oben, Legende rechts, Tastenhinweis unten links (skaliert mit --k) */
+.hud { position: fixed; inset: 0; z-index: 100; pointer-events: none; }
+.hud__frame { position: relative; width: 100%; height: 100%; zoom: var(--k); }
 .deckbar { position: absolute; inset: 0 0 auto 0; padding: 14px 40px; pointer-events: none; }
 .deckbar__inner { pointer-events: auto; display: flex; align-items: center; gap: 22px; height: 60px; max-width: 1480px; margin-inline: auto; padding: 0 10px 0 22px; border-radius: 999px; background: rgba(255, 255, 255, .95); border: 1px solid var(--line); box-shadow: 0 16px 40px -22px rgba(0, 30, 90, .35); }
 .deckbar__brand img { width: auto; height: 34px; }
