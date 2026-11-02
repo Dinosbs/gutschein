@@ -151,7 +151,7 @@ def vp_logo() -> str:
 def vp_product(p: dict) -> str:
     off = f"<em>-{p['discount']}%</em>" if p["discount"] else ""
     old = f"<s>{eur(p['uvp'])}</s>" if p["uvp"] else "<s>&nbsp;</s>"
-    return (f'<span class="vp-product" data-product data-brand="{esc(p["brand"])}" '
+    return (f'<span class="vp-product" data-product data-brand="{esc(nice_brand(p["brand"]))}" '
             f'data-title="{esc(short_title(p["title"]))}" data-price="{p["price"]:.2f}" data-img="pi-{p["slug"]}">'
             f'{icon("heart", "i vp-product__fav")}'
             f'<span class="pimg pi-{p["slug"]}" role="img" aria-label="{esc(p["brand"] + " " + p["title"])}"></span>'
@@ -216,20 +216,17 @@ def vpm_phone() -> str:
 
 
 # --------------------------------------------------------------- Folien-Bausteine
-def frag_dots(slides) -> str:
-    return "\n".join(f'<a href="#{i}" data-dot="{i}"><span>{esc(t)}</span></a>' for i, t in slides)
-
-
 def frag_winwin(rate: float) -> str:
     p = product(sel["margin"][0])
+    save = p["uvp"] - p["price"]
     return f"""
-      <div class="winwin__card vreal tilt" data-tilt>{vp_product(p)}</div>
+      <div class="winwin__card vreal" data-anim="pop"><div class="tilt" data-tilt>{vp_product(p)}</div></div>
       <div class="winwin__flow">
-        <div class="ww"><span class="ww__label">Regulär</span><s class="ww__value">{eur(p['uvp'])}</s></div>
-        <span class="ww__arrow" aria-hidden="true">{icon("arrow-right")}</span>
-        <div class="ww"><span class="ww__label">In Deinem Shop</span><span class="ww__value">{eur(p['price'])}</span></div>
-        <div class="ww ww--community"><span class="ww__label">Deine Community spart</span><span class="ww__value">{eur(p['uvp'] - p['price'])}</span><span class="ww__note">−{p['discount']}&nbsp;%</span></div>
-        <div class="ww ww--you"><span class="ww__label">Du verdienst</span><span class="ww__value">{eur(p['price'] * rate)}</span><span class="ww__note">{rate * 100:.0f}&nbsp;% Beteiligung – automatisch</span></div>
+        <div class="ww ww--old" data-anim style="--d:.55s"><span class="ww__label">Regulär</span><span class="ww__value"><s>{eur(p['uvp'])}</s></span></div>
+        <span class="ww__arrow" data-anim="pop" style="--d:.9s" aria-hidden="true">{icon("arrow-right")}</span>
+        <div class="ww" data-anim style="--d:1.1s"><span class="ww__label">In Deinem Shop</span><span class="ww__value" data-countto="{p['price']:.2f}" data-from="{p['uvp']:.2f}" data-delay="1300">{eur(p['price'])}</span></div>
+        <div class="ww ww--community" data-anim style="--d:1.6s"><span class="ww__label">Deine Community spart</span><span class="ww__value" data-countto="{save:.2f}" data-delay="1800">{eur(save)}</span><span class="ww__note">−{p['discount']}&nbsp;% gegenüber regulär</span></div>
+        <div class="ww ww--you" data-anim style="--d:2.1s"><span class="ww__label">Du verdienst</span><span class="ww__value" data-countto="{p['price'] * rate:.2f}" data-delay="2300">{eur(p['price'] * rate)}</span><span class="ww__note">{rate * 100:.0f}&nbsp;% Beteiligung – ganz automatisch</span></div>
       </div>"""
 
 
@@ -244,7 +241,7 @@ def frag_margin_cards(rate: float) -> str:
     out = []
     for pair in sel["margin"]:
         p = product(pair)
-        out.append(f"""<article class="mcard" data-anim>
+        out.append(f"""<article class="mcard" data-anim="flip">
   <div class="mcard__product vreal">{vp_product(p)}</div>
   <div class="mcard__calc">
     <dl class="mcard__rows">
@@ -252,7 +249,7 @@ def frag_margin_cards(rate: float) -> str:
       <div><dt>In Deinem Shop</dt><dd>{eur(p['price'])}</dd></div>
       <div class="is-save"><dt>Community spart</dt><dd>{eur(p['uvp'] - p['price'])}</dd></div>
     </dl>
-    <div class="mcard__earn"><span>Du verdienst</span><strong>{eur(p['price'] * rate)}</strong></div>
+    <div class="mcard__earn"><span>Du verdienst</span><strong data-countto="{p['price'] * rate:.2f}">{eur(p['price'] * rate)}</strong></div>
   </div>
 </article>""")
     return "\n".join(out)
@@ -260,12 +257,12 @@ def frag_margin_cards(rate: float) -> str:
 
 def frag_punch(rate: float) -> str:
     p = product(sel["margin"][1])  # LED-Maske
-    return (f'Schon <strong>10 verkaufte</strong> LED-Masken von {esc(p["brand"])} bringen Dir '
+    return (f'Schon <strong>10 verkaufte</strong> LED-Masken von {esc(nice_brand(p["brand"]))} bringen Dir '
             f'<span class="grad-text">{eur(p["price"] * 10 * rate)}</span> – ohne einen Handgriff.')
 
 
 def frag_lux() -> str:
-    return "\n".join(f'<li data-anim>{logo(slug, brand_names.get(slug, slug))}</li>' for slug in LUX)
+    return "\n".join(f'<li data-anim="pop">{logo(slug, brand_names.get(slug, slug))}</li>' for slug in LUX)
 
 
 def frag_categories() -> str:
@@ -311,7 +308,7 @@ def frag_edit_panels(rate: float) -> str:
 
 
 def frag_deals() -> str:
-    return "\n".join(f'<div class="vdeal vreal" data-anim>{vp_deal(t, txt)}</div>' for t, txt in sel["deals"][:DEALS_SHOWN])
+    return "\n".join(f'<div class="vdeal vreal" data-anim="flip">{vp_deal(t, txt)}</div>' for t, txt in sel["deals"][:DEALS_SHOWN])
 
 
 def frag_story_product() -> str:
@@ -321,34 +318,24 @@ def frag_story_product() -> str:
             f'<p class="story__text">Der Adventskalender ist da ✨<br>Link in Bio!</p>')
 
 
-def frag_lockscreen(rate: float) -> str:
-    """Sperrbildschirm am Morgen: Bestellungen der Nacht als Mitteilungen."""
-    picks = [("23:48", sel["margin"][0]), ("01:16", sel["margin"][1]), ("02:37", sel["margin"][4]),
-             ("04:05", sel["edits"][0]["items"][2]), ("06:21", sel["margin"][2])]
-    notes, total = [], 0.0
-    for i, (time, pair) in enumerate(picks):
-        p = product(pair)
-        amount = p["price"] * rate
-        total += amount
-        notes.append(f'<li class="note" style="--i:{i}"><span class="note__app">{icon("bag")}</span>'
-                     f'<span class="note__body"><span class="note__top"><b>Community-Shop</b><small>{time}</small></span>'
-                     f'<span>Neue Bestellung: {esc(nice_brand(p["brand"]))} {esc(short_title(p["title"]))}</span></span>'
-                     f'<b class="note__amt">+{eur(amount)}</b></li>')
-    return f"""<div class="lock__phone">
-  <div class="lock__screen">
-    <div class="lock__status"><span class="lock__sig"><i></i><i></i><i></i></span><span class="lock__island"></span><span class="lock__bat"></span></div>
-    <div class="lock__clock"><span class="lock__date">Montag, 2. November</span><span class="lock__time">06:58</span></div>
-    <ul class="lock__notes">{"".join(notes)}</ul>
-    <p class="lock__sum"><span>Über Nacht verdient</span><b>+{eur(total)}</b></p>
+def frag_lockscreen() -> str:
+    """iPhone-Sperrbildschirm (iOS-Stil). Mitteilungen schiebt app.js fortlaufend von unten ein."""
+    return f"""<div class="ios" aria-hidden="true">
+  <div class="ios__screen">
+    <div class="ios__wall"><i></i><i></i><i></i></div>
+    <div class="ios__status"><span class="ios__bars"><i></i><i></i><i></i><i></i></span><span class="ios__island"></span><span class="ios__right"><b>5G</b><span class="ios__bat"></span></span></div>
+    <div class="ios__lock">{icon("lock")}</div>
+    <p class="ios__date" data-ios-date>Montag, 2. November</p>
+    <p class="ios__time" data-ios-time>23:41</p>
+    <div class="ios__widgets">
+      <div class="ios__widget ios__widget--wide"><span class="ios__wlabel">{icon("bag")}<span data-bind="app">Community-Shop</span> · <span data-ios-month>November</span></span><b data-ios-total>0,00 €</b></div>
+      <div class="ios__widget ios__widget--ring"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18"/><circle class="ios__ring" cx="22" cy="22" r="18" pathLength="100" data-ios-ring/></svg><b data-ios-count>0</b></div>
+    </div>
+    <ul class="ios__notes" data-ios-notes></ul>
+    <div class="ios__bottom"><span class="ios__btn"><svg viewBox="0 0 24 24"><path d="M9 2h6l-1 6h-4zM10 8h4v12a2 2 0 0 1-4 0z"/></svg></span><span class="ios__btn"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span></div>
+    <span class="ios__home"></span>
   </div>
 </div>"""
-
-
-SLIDES = [("start", "Titel"), ("idee", "Die Idee"), ("beispiel", "Ein Verkauf, zwei Gewinner"), ("design", "Dein Look"),
-          ("verdienst", "Dein Verdienst"), ("rechner", "Dein Potenzial"), ("aufwand", "Null Aufwand"),
-          ("passiv", "Passives Einkommen"), ("marken", "Markenvielfalt"), ("edits", "Deine Edits"),
-          ("deals", "Partner-Deals"), ("reichweite", "Reichweite & Bindung"), ("ablauf", "Dein Start"),
-          ("danke", "Auf einen Blick")]
 
 
 # --------------------------------------------------------------- CSS-Kopf (Schriften + Bilder, jedes nur einmal)
@@ -380,13 +367,12 @@ def render(pitch: dict | None) -> str:
     fragments = {
         "icons": (SRC / "icons.svg").read_text(encoding="utf-8"),
         "page_title": esc(f"{poss} Beauty-Shop · INCENT Community-Shop" if name else "Dein eigener Beauty-Shop · INCENT Community-Shop"),
-        "dots": frag_dots(SLIDES), "vp_hero": vp_portal(), "vp_builder": vp_portal(),
-        "vpm_phone": vpm_phone(), "vpm_phone_2": vpm_phone(), "winwin": frag_winwin(rate),
+        "vp_hero": vp_portal(), "vpm_phone": vpm_phone(), "vpm_phone_2": vpm_phone(), "winwin": frag_winwin(rate),
         "swatches_btn": swatches(BTN_COLORS, "btn"), "swatches_nav": swatches(NAV_COLORS, "nav"),
         "margin_cards": frag_margin_cards(rate), "punch": frag_punch(rate), "lux": frag_lux(),
         "categories": frag_categories(), "logos": frag_logos(), "edit_tabs": frag_edit_tabs(),
         "edit_panels": frag_edit_panels(rate), "deals": frag_deals(), "story_product": frag_story_product(),
-        "lockscreen": frag_lockscreen(rate), "snapshot_date": SNAPSHOT_DATE,
+        "lockscreen": frag_lockscreen(), "snapshot_date": SNAPSHOT_DATE,
     }
     for key, value in fragments.items():
         marker = f"<!--@{key}-->"

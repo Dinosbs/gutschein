@@ -9,31 +9,42 @@ Jeder Push auf `main` baut alle Fassungen neu und veröffentlicht sie über GitH
 
 ## So funktioniert die Präsentation
 
-- **Am Desktop und Beamer (Querformat):** Jede Folie füllt den Bildschirm und rastet beim Scrollen ein. Ihre Inhalte laufen nacheinander ein, sobald die Folie erscheint, und das bei jedem erneuten Betreten. Jede Folie wird automatisch auf die Fensterhöhe eingepasst, von 1280 × 720 bis 1920 × 1080.
-- **Weiterschalten:** Mausrad oder Trackpad, Pfeiltasten ↑ ↓, Bild↑/Bild↓, Leertaste oder Presenter. Oben zeigt die Präsentationsleiste das Kapitel und die Foliennummer (z. B. „04 Dein Verdienst · 5/14“). Rechts stehen Sprungpunkte zu jeder Folie.
-- **Titel:** Beim ersten Scrollen steigt das vorteile.net-Portal auf und richtet sich auf. Dazu laufen Bestellungen ein („Neue Bestellung · +10,60 €“).
-- **Cursor:** Portal, Handy, Rechner-Karte, Aufgabenliste und Diagramm neigen sich zum Cursor, so wie auf incent.de.
+- **Feste 16:9-Bühne:** Jede Folie ist eine Fläche von 1600 × 900 Pixeln, die auf jeden Bildschirm skaliert und zentriert wird. Das gilt von 1280 × 720 über 1920 × 1080 bis 4K und Ultrawide. Bei abweichendem Seitenverhältnis entstehen ruhige Ränder, nichts wird abgeschnitten.
+- **Weiterschalten:** Mausrad oder Trackpad, Pfeiltasten, Bild↑/Bild↓, Leertaste, Pos1/Ende oder Presenter. Jede Folie rastet ein.
+- **Orientierung:**
+  - Oben zeigt die Leiste die vier Kapitel (Dein Shop · Deine Community · Dein Verdienst · Dein Start), jeweils mit Fortschrittsbalken, dazu die Foliennummer (z. B. „09 / 15“).
+  - Rechts steht die Legende. Fährt man mit der Maus darüber, wird sie größer und zeigt Nummer und Titel jeder Folie. Ein Klick springt direkt dorthin.
+- **Roter Faden:** Zuerst wird der Shop gestaltet, danach erscheint alles im gewählten Look: Portal, Handys, Produktkarten und iPhone-Mitteilungen.
+- **Animationen:**
+  - Überschriften bauen sich Wort für Wort auf, Inhalte laufen gestaffelt ein, Zahlen zählen hoch. Das passiert bei jedem Betreten einer Folie erneut.
+  - Beim Weiterschalten weicht die alte Folie in die Tiefe zurück, die neue schiebt sich darüber.
+  - Dazu laufen Endlos-Schleifen: Bestellungen am Portal, iPhone-Mitteilungen, Glanz auf Verlaufsschrift, Laufband, Ken-Burns auf den Deals, wechselnde Edits und anderes.
+  - Schleifen nutzen nur `transform` und `opacity` und pausieren auf Folien außerhalb des Bildes. So kann man jederzeit vor- und zurückspringen.
+- **Cursor:** Portal, Handys, Rechner-Karte, Aufgabenliste und Produktkarten neigen sich zum Cursor, wie auf incent.de.
 - **Am Handy (zum Nachlesen):** eine normale Scroll-Seite mit denselben Inhalten.
 - **Ohne Website-Elemente:** Es gibt keine „Shop anfragen“-Buttons. Die letzte Folie fasst alles zusammen und nennt den Link zum Wiederöffnen.
 
 ## Folien
 
-| # | Folie | Inhalt |
-| --- | --- | --- |
-| – | Titel → Dein Shop | „Dein eigener Beauty-Shop“. Danach erscheint der Shop auf vorteile.net in 3D, mit laufenden Bestellungen. |
-| 01 | Die Idee | Vorteilspreise, die sonst nur Mitarbeitende bekommen, dazu drei Schritte und Kennzahlen. |
-| 02 | Ein Verkauf, zwei Gewinner | Lancôme: regulär 156 €, im Shop 105,95 €. Die Community spart 50,05 €, Du verdienst 10,60 €. |
-| 03 | Dein Look | Live-Gestalter: Logo, Name, Button- und Leistenfarbe, Hintergrund. Desktop und Handy ändern sich sofort mit. |
-| 04 | Dein Verdienst | Sechs echte Produkte mit **fest 10 %** Beteiligung. |
-| 05 | Dein Potenzial | Rechner mit Reichweite, Kaufquote und Warenkorb. Die Beteiligung steht fest auf 10 %. |
-| 06 | Null Aufwand | „Ihr müsst nichts tun.“ Aufgaben, die sonst anfallen, werden durchgestrichen, INCENT übernimmt sie. Laufender Aufwand: 0 Stunden. |
-| 07 | Passives Einkommen | „Verdienen, während Du schläfst.“ Ein Sperrbildschirm mit Bestellungen der Nacht und ein Vergleich Brand Deals ↔ Shop (schematisch). |
-| 08 | Markenvielfalt | Luxusmarken, „+70 weitere“, Kategorien, Laufband und „Und vieles mehr: 450+ Markenpartner auf vorteile.net“. |
-| 09 | Deine Edits | Sortimente in Reitern, mit „+ X € für Dich“ an jedem Produkt. |
-| 10 | Partner-Deals | Acht Angebotskacheln im vorteile.net-Look. |
-| 11 | Reichweite & Bindung | Story → Link → Shop, dazu vier Vorteile. |
-| 12 | Dein Start | „Innerhalb einer Woche zur eigenen Plattform“, mit Tag 1 bis Live. |
-| – | Auf einen Blick | Zusammenfassung zum Mitnehmen und Link zum Wiederöffnen. |
+| # | Kapitel | Folie | Inhalt |
+| --- | --- | --- | --- |
+| 01 | Dein Shop | Titel | „Dein eigener Beauty-Shop“. Unten ragt schon das Portal ins Bild. |
+| 02 | Dein Shop | Dein Shop | Das vorteile.net-Portal richtet sich in 3D auf. Bestellungen laufen ein („+10,60 €“), der Tageszähler steigt. |
+| 03 | Dein Shop | Dein Look | Der Gestalter fährt von links ein, das Handy von unten. Gestaltbar sind Logo, Name, Button- und Leistenfarbe und Hintergrund. Ohne Klick probiert eine Live-Demo selbst Looks durch. Verlässt man die Folie ohne eigene Wahl, kehrt der Ausgangslook zurück. |
+| 04 | Deine Community | Die Idee | Vorteilspreise, die sonst nur Mitarbeitende bekommen, dazu drei Schritte und Kennzahlen. |
+| 05 | Deine Community | Markenvielfalt | Luxusmarken, „+ 70 weitere“, Kategorien, Laufband und „Und vieles mehr: 450+ Markenpartner auf vorteile.net“. |
+| 06 | Deine Community | Deine Edits | Sortimente in Reitern mit „+ X € für Dich“. Die Reiter wechseln von selbst, bis jemand klickt. |
+| 07 | Deine Community | Partner-Deals | Acht Angebotskacheln im vorteile.net-Look. |
+| 08 | Dein Verdienst | Zwei Gewinner | Lancôme: regulär 156 € (durchgestrichen), im Shop 105,95 €. Die Community spart 50,05 €, Du verdienst 10,60 €. Alle Beträge zählen live. |
+| 09 | Dein Verdienst | Dein Verdienst | Sechs echte Produkte mit **fest 10 %** Beteiligung. |
+| 10 | Dein Verdienst | Dein Potenzial | Rechner mit Reichweite, Kaufquote und Warenkorb. Die Beteiligung steht fest auf 10 %. |
+| 11 | Dein Verdienst | Null Aufwand | „Ihr müsst nichts tun.“ Aufgaben werden nacheinander durchgestrichen und an INCENT übergeben. Der Aufwand zählt von 40 auf 0 Stunden. |
+| 12 | Dein Verdienst | Passives Einkommen | Ein iPhone-Sperrbildschirm im iOS-Stil. Fortlaufend schieben sich Mitteilungen von unten ein („Neue Bestellung · +8,40 €“), die Uhr läuft durch die Nacht, Summe und Bestellzähler steigen. Dazu ein Vergleich Brand Deals ↔ Shop (schematisch). |
+| 13 | Dein Start | Reichweite & Bindung | Story → Link → Shop, dazu vier Vorteile. |
+| 14 | Dein Start | Dein Start | „Innerhalb einer Woche zur eigenen Plattform“, mit Tag 1 bis Live. |
+| 15 | Dein Start | Auf einen Blick | Zusammenfassung zum Mitnehmen und Link zum Wiederöffnen. |
+
+Vorschaubilder liegen in `screenshots/`.
 
 ## Sublinks je Influencerin
 
@@ -54,7 +65,7 @@ Für jeden Pitch kommt ein Eintrag in `data/pitches.json`:
 | Feld | Bedeutung |
 | --- | --- |
 | `slug` | Adresse: `https://dinosbs.github.io/pitch/<slug>/`. Erlaubt sind nur a–z, 0–9 und Bindestrich. |
-| `name` | erscheint überall: „Exklusiv für Lena“, Schriftzug im Portal, `lena.vorteile.net`, „Für Lena“ in der Leiste, „Lenas Beauty-Shop.“ |
+| `name` | erscheint überall: „Exklusiv für Lena“, Schriftzug im Portal, `lena.vorteile.net`, „Für Lena“ in der Leiste, „Lenas Shop“ in den iPhone-Mitteilungen, „Lenas Beauty-Shop.“ |
 | `farbe`, `nav` | Button- und Leistenfarbe: `blau`, `rose`, `beere`, `nude`, `salbei`, `lavendel`, `schwarz`, `weiss`, `puder`, `creme` oder ein Hex-Wert |
 | `hintergrund` | `image` (Health-&-Beauty-Motiv), `solid` oder `gradient` |
 | `logo` | optional: Logo-Datei in `data/pitches/`. Sie ersetzt den Schriftzug in allen Mockups. |
@@ -69,6 +80,7 @@ Für schnelle Tests geht es auch ohne neuen Build: `index.html?name=Lena&farbe=r
 - **Beteiligung, Preisstand, Farben im Gestalter:** oben in `build.py` (`RATE`, `SNAPSHOT_DATE`, `BTN_COLORS`, `NAV_COLORS`)
 - **Produkte und Deals:** `data/selection.json` (Marke + exakter Titel aus `data/catalog.json`)
 - **Texte und Folien:** `src/template.html`. Design: `src/style.css`. Ablauf und Animationen: `src/app.js`. Icons: `src/icons.svg`.
+- **Neue Folie:** `<section class="slide" data-act="…" data-snap data-label="…">` mit `.shell > .bg + .frame > .frame__in > .content`. Legende, Zähler und Kapitelbalken übernehmen sie automatisch. Inhalte werden in Canvas-Pixeln (1600 × 900) gestaltet. Passt eine Folie nicht ganz, verkleinert app.js nur ihren Inhalt.
 
 ```
 python3 build.py
