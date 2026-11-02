@@ -3,8 +3,10 @@
 Eine scroll-gesteuerte Präsentation, mit der wir Influencerinnen und ihrem Management im Meeting den INCENT-Community-Shop vorstellen. Danach bekommen sie den Link mit.
 
 - **Allgemein (Beauty):** https://dinosbs.github.io/pitch/beauty/ (die Startadresse https://dinosbs.github.io/pitch/ leitet dorthin weiter)
-- **Ariel61:** https://dinosbs.github.io/pitch/ariel61/ – Shop vorgebaut mit Schriftzug „ARIEL61“, Creme-Leiste, Nude-Buttons, cremefarbener Hintergrund
+- **Ariel61:** https://dinosbs.github.io/pitch/ariel61/ – Shop vorgebaut mit Schriftzug „ARIEL61“, Creme-Leiste, Buttons in #790b0a, cremefarbener Hintergrund
 - **Yeliz Koc:** https://dinosbs.github.io/pitch/yelizkoc/ – Name hinterlegt, überwiegend weiß mit schwarzen Akzenten
+
+Jede persönliche Fassung zeigt in ihren Vorschauen (Portal, Handy, Instagram-Shop) eigene Deals und Produkte. Sie werden beim Build mit festem Startwert gewürfelt, keine zwei Fassungen teilen sich ein Angebot (`preview_sets` in `build.py`). Die allgemeine Fassung behält ihre Auswahl.
 
 **Verdienst:** 70 % vom Gewinn jeder Bestellung. Alle Beträge sind eine Beispielrechnung mit 18 % Marge pro Produkt (also 12,6 % vom Verkaufspreis), die tatsächliche Marge variiert je nach Produkt. Das steht auch als Kleingedrucktes auf den Folien.
 

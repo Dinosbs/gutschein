@@ -177,12 +177,62 @@ def vp_deal(title: str, text: str | None = None) -> str:
             f'<span class="vp-deal__info"><b>{esc(title)}</b><span>{esc(text or d["text"] or "")}</span></span></span>')
 
 
+# --------------------------------------------------------------- Vorschau-Angebote je Fassung
+# Die allgemeine Fassung zeigt die bewährte Auswahl. Jede persönliche Fassung bekommt eigene, gewürfelte
+# Deals und Produkte (fester Startwert → bei jedem Build gleich, und keine zwei Fassungen teilen sich ein Angebot).
+DEFAULT_PREVIEW = {
+    "deals": ["Shiseido", "NARS", "ghd - good hair day"],
+    "products": [("LANCÔME", 0), ("DIOR", 0), ("SILK'N", 0), ("RITUALS", 0), ("DIOR", 0), ("SILK'N", 0), ("RITUALS", 0), ("LANCÔME", 0)],
+}
+DEAL_TEXT = {t: txt for t, txt in sel["deals"]}
+
+
+def preview_sets(pitches: list[dict]) -> dict[str, dict]:
+    import random
+    rng = random.Random("incent-community-shop-vorschau")
+    taken_deals = set(DEFAULT_PREVIEW["deals"])
+    beauty = ["Rituals Cosmetics", "Doctor Mi", "The Female Company", "Yves Rocher", "LAYZIN", "lavera", "KLIER", "Philips", "Braun"]
+    deal_pool = [t for t in beauty if t not in taken_deals]
+    general = {(norm(b), norm(t)) for b, t in sel["hero"]}
+    prod_pool = []
+    for e in sel["edits"]:
+        for b, t in e["items"]:
+            key = (norm(b), norm(t))
+            if key not in general and key not in {(norm(x), norm(y)) for x, y in prod_pool}:
+                prod_pool.append([b, t])
+    rng.shuffle(deal_pool)
+    rng.shuffle(prod_pool)
+    out = {}
+    for pitch in pitches:
+        if not pitch.get("name"):
+            continue
+        deals_ = [deal_pool.pop() for _ in range(4)]
+        prods, brands_ = [], set()
+        for item in list(prod_pool):  # möglichst verschiedene Marken je Fassung
+            if len(prods) == 8:
+                break
+            if item[0] not in brands_ or len(brands_) >= 6:
+                prods.append(item)
+                brands_.add(item[0])
+                prod_pool.remove(item)
+        out[pitch["slug"]] = {"deals": deals_, "products": prods}
+    return out
+
+
+def pv_products(pv: dict) -> list[dict]:
+    items = pv["products"]
+    if items and isinstance(items[0], tuple):  # allgemeine Fassung: Marke + Index in sel["hero"]
+        return [find(b, "hero", i) for b, i in items]
+    return [product(x) for x in items]
+
+
 VP_CATS = ('<i>Highlights</i><i>NEU</i><i class="is-on">Health &amp; Beauty</i><i>Düfte</i><i>Skincare</i>'
            '<i>Beauty-Tech</i><i>Haare</i><i>Wellness</i><i class="is-on">Alle Kategorien +</i>')
 
 
-def vp_portal() -> str:
-    products = [find("LANCÔME"), find("DIOR"), find("SILK'N"), find("RITUALS")]
+def vp_portal(pv: dict) -> str:
+    products = pv_products(pv)[:4]
+    d = pv["deals"]
     return f"""<div class="vp-frame">
   <div class="vp" aria-hidden="true">
     <div class="vp__bar"><span class="vp__dots"><i></i><i></i><i></i></span><span class="vp__url">{icon("lock")}<span><span data-bind="slug">deinname</span>.vorteile.net/de/dashboard</span></span><span class="vp__bar-end"></span></div>
@@ -193,7 +243,7 @@ def vp_portal() -> str:
     <div class="vp__stage">
       <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span><span class="vp__fade"></span>
       <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
-      <div class="vp__grid">{vp_deal("Shiseido")}{vp_deal("NARS")}</div>
+      <div class="vp__grid">{vp_deal(d[0], DEAL_TEXT.get(d[0]))}{vp_deal(d[1], DEAL_TEXT.get(d[1]))}</div>
       <div class="vp__head vp__head--shop"><strong>Besonders beliebt im Vorteils-Shop</strong><em>Im Trend</em></div>
       <div class="vp__products">{"".join(vp_product(p) for p in products)}</div>
     </div>
@@ -201,8 +251,10 @@ def vp_portal() -> str:
 </div>"""
 
 
-def vpm_phone() -> str:
-    products = [find("LANCÔME"), find("SILK'N")]
+def vpm_phone(pv: dict) -> str:
+    all_ = pv_products(pv)
+    products = [all_[0], all_[2]]
+    d = pv["deals"]
     return f"""<div class="phone" aria-hidden="true">
   <div class="phone__screen">
     <div class="vpm">
@@ -212,7 +264,7 @@ def vpm_phone() -> str:
       <div class="vpm__stage">
         <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span><span class="vp__fade"></span>
         <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
-        {vp_deal("Shiseido")}
+        {vp_deal(d[0], DEAL_TEXT.get(d[0]))}
         <div class="vpm__products">{"".join(vp_product(p) for p in products)}</div>
       </div>
     </div>
@@ -318,13 +370,15 @@ def frag_deals() -> str:
     return "\n".join(out)
 
 
-def ig_phone(rate: float) -> str:
+def ig_phone(rate: float, pv: dict) -> str:
     """Handy mit Instagram: Feed → Story → Link → Webshop (vorteile.net) → zurück zur Story. Ablauf: CSS-Schleife."""
     post = find("LANCÔME")
     st = product(sel["edits"][4]["items"][1])  # Rituals Adventskalender
-    page1 = [find("DIOR"), find("SILK'N")]
+    all_ = pv_products(pv)
+    d = pv["deals"]
+    page1 = [all_[4], all_[5]]
     pick = page1[1]  # dieses Produkt landet im Warenkorb
-    page2 = [find("RITUALS"), find("LANCÔME")]
+    page2 = [all_[6], all_[7]]
     friends = [("anna.m", "A", "#f2b6a8"), ("julia", "J", "#a9c1ff"), ("sophie", "S", "#ffd28a"), ("mara", "M", "#a8dcc0")]
     rings = "".join(f'<span class="ig__st"><span class="ig__ring"><i style="--av:{c}">{a}</i></span>{h}</span>' for h, a, c in friends)
     return f"""<div class="phone ig-phone" aria-hidden="true">
@@ -363,10 +417,10 @@ def ig_phone(rate: float) -> str:
               <div class="vpm__stage">
                 <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span><span class="vp__fade"></span>
                 <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
-                {vp_deal("Shiseido")}
+                {vp_deal(d[0], DEAL_TEXT.get(d[0]))}
                 <div class="vpm__products">{vp_product(page1[0])}<span class="ig__pick">{vp_product(pick)}</span></div>
                 <div class="vp__head vp__head--shop"><strong>Nur für Deine Community</strong><em>Partner-Deals</em></div>
-                <div class="ig__deals">{vp_deal("NARS")}{vp_deal("ghd - good hair day")}</div>
+                <div class="ig__deals">{vp_deal(d[-2], DEAL_TEXT.get(d[-2]))}{vp_deal(d[-1], DEAL_TEXT.get(d[-1]))}</div>
                 <div class="vpm__products">{"".join(vp_product(x) for x in page2)}</div>
               </div>
             </div>
@@ -437,8 +491,9 @@ def css_head() -> str:
 
 
 # --------------------------------------------------------------- Seite bauen
-def render(pitch: dict | None) -> str:
+def render(pitch: dict | None, pv: dict | None = None) -> str:
     pitch = pitch or {}
+    pv = pv or DEFAULT_PREVIEW
     share = float(pitch.get("beteiligung", SHARE))
     margin = float(pitch.get("marge", MARGIN))
     rate = round(share * margin / 10000, 6)  # Verdienst je Euro Umsatz: Marge × Gewinnbeteiligung (18 % × 70 % = 12,6 %)
@@ -448,11 +503,11 @@ def render(pitch: dict | None) -> str:
     fragments = {
         "icons": (SRC / "icons.svg").read_text(encoding="utf-8"),
         "page_title": esc(f"{poss} Beauty-Shop · INCENT Community-Shop" if name else "Dein eigener Beauty-Shop · INCENT Community-Shop"),
-        "vp_hero": vp_portal(), "vpm_phone": vpm_phone(), "winwin": frag_winwin(rate),
+        "vp_hero": vp_portal(pv), "vpm_phone": vpm_phone(pv), "winwin": frag_winwin(rate),
         "swatches_btn": swatches(BTN_COLORS, "btn"), "swatches_nav": swatches(NAV_COLORS, "nav"),
         "lux": frag_lux(),
         "categories": frag_categories(), "logos": frag_logos(), "edit_tabs": frag_edit_tabs(),
-        "edit_panels": frag_edit_panels(rate), "deals": frag_deals(), "deal_count": str(len(deals)), "ig_phone": ig_phone(rate),
+        "edit_panels": frag_edit_panels(rate), "deals": frag_deals(), "deal_count": str(len(deals)), "ig_phone": ig_phone(rate, pv),
         "lockscreen": frag_lockscreen(), "snapshot_date": SNAPSHOT_DATE,
     }
     for key, value in fragments.items():
@@ -507,6 +562,9 @@ def main() -> None:
     out = ROOT / "index.html"
     out.write_text(redirect_page(START), encoding="utf-8")
     print(f"index.html  Weiterleitung  →  /pitch/{START}/")
+    previews = preview_sets(cfg.get("pitches", []))
+    for slug, pv in previews.items():
+        print(f"  Vorschau {slug}: {', '.join(pv['deals'])} | {', '.join(b for b, _ in pv['products'])}")
     target = ROOT / "pitches"
     if target.exists():
         shutil.rmtree(target)
@@ -516,7 +574,7 @@ def main() -> None:
             raise SystemExit(f"Ungültiger slug in data/pitches.json: {slug!r} (nur a–z, 0–9, Bindestrich)")
         path = target / slug / "index.html"
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(render(pitch), encoding="utf-8")
+        path.write_text(render(pitch, previews.get(slug)), encoding="utf-8")
         print(f"pitches/{slug}/index.html  {path.stat().st_size / 1e6:.1f} MB  →  /pitch/{slug}/")
 
 

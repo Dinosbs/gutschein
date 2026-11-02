@@ -112,6 +112,13 @@
     });
     mark('btn', theme.btn);
     mark('nav', theme.nav);
+    // eigene Farbe (nicht in der Auswahl): das bunte Feld zeigt sie an
+    $$('[data-custom]').forEach((c) => {
+      const kind = c.dataset.custom;
+      const own = !$$(`[data-${kind}]`).some((el) => el.classList.contains('is-on'));
+      c.parentElement.classList.toggle('is-on', own);
+      if (own) { c.value = theme[kind]; c.parentElement.style.setProperty('--c', theme[kind]); }
+    });
     $$('[data-bg-opt]').forEach((b) => { const on = b.dataset.bgOpt === theme.bg; b.classList.toggle('is-on', on); b.setAttribute('aria-checked', on); });
 
     const prev = $('[data-logo-preview]');
