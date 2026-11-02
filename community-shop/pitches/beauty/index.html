@@ -428,6 +428,10 @@ strong { font-weight: 700; }
 .vp-theme[data-btn-tone="light"] { --on-btn: #111111; }
 .vp-theme[data-nav-tone="dark"] { --on-nav: #ffffff; --on-nav-2: rgba(255, 255, 255, .88); --on-nav-3: rgba(255, 255, 255, .6); --pill-line: rgba(255, 255, 255, .45); --search-bg: color-mix(in srgb, #ffffff 16%, var(--nav)); --search-ink: rgba(255, 255, 255, .88); }
 .vp-theme[data-bg="gradient"] { --stage-ink: #ffffff; }
+.vp-theme[data-bg="image"][data-bg-tone="dark"] { --stage-ink: #ffffff; }
+.vp-theme[data-bg-tone="dark"] .vp__head { text-shadow: 0 2px 16px rgba(0, 0, 0, .45); }
+.vp-theme[data-bg-tone="dark"] .vp__head--shop { text-shadow: none; }
+.vp-theme[data-bg-tone="dark"] .vp__fade { background: linear-gradient(180deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, .82) 52%, #fff 62%); } /* dunkles Bild läuft vor der Produktreihe ins Weiß aus */
 .vp-frame { container-type: inline-size; width: 100%; }
 .vp { --vw: 1240; --u: calc(100cqw / var(--vw)); position: relative; overflow: hidden; font-family: var(--font); font-size: calc(18 * var(--u)); line-height: 1.25; text-align: left; color: #222222; background: #ffffff; }
 .vp .i { stroke-width: 1.6; }
@@ -1983,7 +1987,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
 </main>
 
 <script>
-window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58", "audStart": 0, "defaults": {"followers": 100000, "conv": 0.5, "basket": 75, "btn": "#1c87b8", "nav": "#ffffff"}, "pitch": {"name": "", "farbe": null, "nav": null, "hintergrund": "image", "hintergrundfarbe": null, "logo": null, "slug": "beauty"}, "avgDiscount": 0.2662, "presets": {"blau": "#1c87b8", "rose": "#c0746a", "rosé": "#c0746a", "beere": "#a3245a", "nude": "#a7856b", "salbei": "#5f8a72", "lavendel": "#7e6aa8", "schwarz": "#222222", "weiss": "#ffffff", "weiß": "#ffffff", "puder": "#f8eeea", "creme": "#f4efe8"}};
+window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58", "audStart": 0, "defaults": {"followers": 100000, "conv": 0.5, "basket": 75, "btn": "#1c87b8", "nav": "#ffffff"}, "pitch": {"name": "", "farbe": null, "nav": null, "hintergrund": "image", "hintergrundfarbe": null, "hintergrundton": null, "logo": null, "slug": "beauty"}, "avgDiscount": 0.2662, "presets": {"blau": "#1c87b8", "rose": "#c0746a", "rosé": "#c0746a", "beere": "#a3245a", "nude": "#a7856b", "salbei": "#5f8a72", "lavendel": "#7e6aa8", "schwarz": "#222222", "weiss": "#ffffff", "weiß": "#ffffff", "puder": "#f8eeea", "creme": "#f4efe8"}};
 /* INCENT Community-Shop – Pitch Health & Beauty (scroll-gesteuerte Präsentation)
  *
  * Präsentieren: Scrollen, Pfeiltasten ↑ ↓, Bild↑/Bild↓, Leertaste, Pos1/Ende oder Presenter – jede Folie rastet ein.
@@ -2090,6 +2094,7 @@ window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58
     root.dataset.btnTone = lum(theme.btn) > .45 ? 'light' : 'dark';
     root.dataset.navTone = lum(theme.nav) < .3 ? 'dark' : 'light';
     root.dataset.bg = theme.bg;
+    root.dataset.bgTone = theme.bg === 'image' && /^(dunkel|dark)$/i.test(P.hintergrundton || '') ? 'dark' : 'light'; // eigenes dunkles Hintergrundbild → helle Schrift
     root.dataset.logo = theme.logo ? 'custom' : (theme.name ? 'name' : 'incent');
     const mark = (attr, value) => $$(`[data-${attr}]`).forEach((el) => {
       const on = el.dataset[attr].toLowerCase() === value.toLowerCase();

@@ -104,6 +104,7 @@
     root.dataset.btnTone = lum(theme.btn) > .45 ? 'light' : 'dark';
     root.dataset.navTone = lum(theme.nav) < .3 ? 'dark' : 'light';
     root.dataset.bg = theme.bg;
+    root.dataset.bgTone = theme.bg === 'image' && /^(dunkel|dark)$/i.test(P.hintergrundton || '') ? 'dark' : 'light'; // eigenes dunkles Hintergrundbild → helle Schrift
     root.dataset.logo = theme.logo ? 'custom' : (theme.name ? 'name' : 'incent');
     const mark = (attr, value) => $$(`[data-${attr}]`).forEach((el) => {
       const on = el.dataset[attr].toLowerCase() === value.toLowerCase();
