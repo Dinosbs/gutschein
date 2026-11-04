@@ -45,6 +45,7 @@
   const cents = (v) => Math.round(v * 100 + 1e-6) / 100;
   const params = new URLSearchParams(location.search);
   const RATE = D.rate / 100;
+  const T = D.t || { topic: 'Health & Beauty', shop: 'Beauty-Shop' }; // Texte der Fassung (Thema)
 
   /* Zahl weich auf einen neuen Wert zählen */
   function tween(el, to, fmt, dur = 800, from = el._v ?? to) {
@@ -139,12 +140,12 @@
     $$('[data-bind="slug"]').forEach((el) => { el.textContent = slug; });
     $$('[data-bind="handle"]').forEach((el) => { el.textContent = slug; });
     $$('[data-bind="initial"]').forEach((el) => { el.textContent = (n || 'D').charAt(0).toUpperCase(); });
-    $$('[data-bind="eyebrow"]').forEach((el) => { el.textContent = n ? `Exklusiv für ${n} · Health & Beauty` : 'Community-Shop · Health & Beauty'; });
-    $$('[data-bind="thanks"]').forEach((el) => { el.textContent = n ? `${possessive(n)} Beauty-Shop.` : 'Dein Beauty-Shop.'; });
+    $$('[data-bind="eyebrow"]').forEach((el) => { el.textContent = n ? `Exklusiv für ${n} · ${T.topic}` : `Community-Shop · ${T.topic}`; });
+    $$('[data-bind="thanks"]').forEach((el) => { el.textContent = n ? `${possessive(n)} ${T.shop}.` : `Dein ${T.shop}.`; });
     $$('[data-bind="app"]').forEach((el) => { el.textContent = n ? `${possessive(n)} Shop` : 'Community-Shop'; });
     $$('[data-bind="shop-in"]').forEach((el) => { el.textContent = n ? `${possessive(n)} Shop` : 'Deinem Shop'; });
     $('[data-for-chip]').hidden = !n;
-    document.title = n ? `${possessive(n)} Beauty-Shop · INCENT Community-Shop` : 'Dein eigener Beauty-Shop · INCENT Community-Shop';
+    document.title = n ? `${possessive(n)} ${T.shop} · INCENT Community-Shop` : `Dein eigener ${T.shop} · INCENT Community-Shop`;
     splitHosts.forEach(splitWords); // Überschriften mit Namen neu in Wörter teilen
   }
 
@@ -548,6 +549,39 @@
   }
 
   /* ============================================================ Ein Verkauf, zwei Gewinner: Preisklassen im Wechsel, Verdienst zählt mit */
+  /* ============================================================ Top-Deals (allgemeine Fassung): vier Plätze wechseln reihum */
+  function bindSpotlight() {
+    const slots = $$('[data-spot] .spot__slot');
+    if (!slots.length) return () => {};
+    let timer = 0, on = false, k = 0;
+    const countUp = (card) => {
+      const b = $('[data-spot-num]', card);
+      const n = Number(b.dataset.spotNum);
+      tween(b, n, fmtInt, 1300, Math.round(n * .3));
+    };
+    const turn = () => {
+      const slot = slots[k++ % slots.length];
+      const cards = $$('[data-spot-card]', slot);
+      if (cards.length < 2) return;
+      const i = Math.max(0, cards.findIndex((c) => c.classList.contains('is-on')));
+      const cur = cards[i], next = cards[(i + 1) % cards.length];
+      cur.classList.remove('is-on');
+      cur.classList.add('is-out');
+      setTimeout(() => cur.classList.remove('is-out'), 1000);
+      next.classList.add('is-on');
+      countUp(next);
+    };
+    return (want) => {
+      if (document.hidden) want = false;
+      if (want === on) return;
+      on = want;
+      clearInterval(timer);
+      if (!on) return;
+      slots.forEach((sl) => { const c = $('[data-spot-card].is-on', sl); if (c) countUp(c); });
+      timer = setInterval(turn, reduce ? 6000 : 2400);
+    };
+  }
+
   function bindWinwin() {
     const cards = $$('[data-ww-cards] .ww-card');
     if (!cards.length) return () => {};
@@ -670,6 +704,7 @@
     const edits = bindEdits();
     const audience = bindAudience();
     const winwin = bindWinwin();
+    const spotlight = bindSpotlight();
     const demo = bindDemo();
 
     // gestaffeltes Einblenden: Eyebrow → Überschrift (Wort für Wort) → Inhalte nacheinander
@@ -872,6 +907,7 @@
       if (s.id === 'edits') edits(on);
       if (s.id === 'sortiment') audience(on);
       if (s.id === 'beispiel') winwin(on);
+      if (s.id === 'deals') spotlight(on);
     };
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       const s = e.target;
@@ -895,6 +931,7 @@
       edits(vis && $('#edits').classList.contains('is-active'));
       audience(vis && $('#sortiment').classList.contains('is-active'));
       winwin(vis && $('#beispiel').classList.contains('is-active'));
+      spotlight(vis && !!$('#deals')?.classList.contains('is-active'));
       if (!vis) toasts(false); else onScroll();
     });
 

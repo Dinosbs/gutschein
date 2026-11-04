@@ -1,0 +1,923 @@
+{
+ "_hinweis": "Auswahl für die allgemeine Fassung (Thema allgemein). Produkte: [Marke, exakter Titel] aus data/general/catalog.json (Preisklasse a darf auch aus data/catalog.json stammen). Deals: exakte Titel aus data/general/deals.json. Marken: Namen aus data/general/brands.json. Nach Änderungen: python3 tools/extract_all.py <Speicherungen…> (Bilder) und python3 build.py",
+ "preview": {
+  "deals": [
+   "Samsung",
+   "Sony",
+   "Disney+",
+   "adidas"
+  ],
+  "products": [
+   [
+    "BOSE",
+    "BT Lautsprecher \"SoundLink Flex\", black"
+   ],
+   [
+    "ROWENTA",
+    "Staubsauger \"Power XXL Total Clean\""
+   ],
+   [
+    "AMERICAN TOURISTER",
+    "4-Rollen-Trolley \"Soundbox\", 77cm, golden yellow"
+   ],
+   [
+    "APPLE",
+    "AirTag 2. Gen, 4er-Pack"
+   ],
+   [
+    "WERA",
+    "Schraubendrehersatz \"Kraftform XXL\", 12-tlg"
+   ],
+   [
+    "BEURER",
+    "Akku-Massage-Gun \"MG 79\" Sensitive"
+   ],
+   [
+    "GARMIN",
+    "Fahrradcomputer \"Edge 540\""
+   ],
+   [
+    "BLACKROLL",
+    "Faszienrolle, schwarz"
+   ]
+  ],
+  "post": [
+   "BOSE",
+   "Lautsprecher \"SoundLink Home\", Light Silver"
+  ],
+  "story": [
+   "TRAVELITE",
+   "4-Rollen-Trolley L \"Bali\", 77cm, mint"
+  ],
+  "story_text": "Ready for take-off ✈️<br>Alle Deals in meinem Shop",
+  "caption": "Mein Sound für unterwegs 🎧 Exklusiv in meinem Shop"
+ },
+ "zielgruppen": [
+  {
+   "id": "tech",
+   "label": "Tech & Gaming",
+   "sub": "Gadgets, Sound, Smart Home",
+   "icon": "laptop"
+  },
+  {
+   "id": "sport",
+   "label": "Sport & Outdoor",
+   "sub": "Training, Rad, Natur",
+   "icon": "dumbbell"
+  },
+  {
+   "id": "family",
+   "label": "Familie & Zuhause",
+   "sub": "Alltag, Kids, Garten",
+   "icon": "home"
+  },
+  {
+   "id": "travel",
+   "label": "Reisen & Lifestyle",
+   "sub": "Urlaub, Mode, Erlebnisse",
+   "icon": "plane"
+  },
+  {
+   "id": "beauty",
+   "label": "Beauty & Wellness",
+   "sub": "Pflege, Düfte, Self-Care",
+   "icon": "sparkles"
+  }
+ ],
+ "welten": [
+  {
+   "name": "Mobilfunk & Internet",
+   "icon": "wifi",
+   "gruppen": "tech family",
+   "text": "Tarife, Internet & mehr"
+  },
+  {
+   "name": "Mobilität",
+   "icon": "car",
+   "gruppen": "tech sport family travel"
+  },
+  {
+   "name": "Technik",
+   "icon": "laptop",
+   "gruppen": "tech family"
+  },
+  {
+   "name": "Health & Beauty",
+   "icon": "sparkles",
+   "gruppen": "sport beauty travel"
+  },
+  {
+   "name": "Home & Living",
+   "icon": "home",
+   "gruppen": "family beauty tech"
+  },
+  {
+   "name": "Reisen",
+   "icon": "plane",
+   "gruppen": "travel family sport"
+  },
+  {
+   "name": "Sport",
+   "icon": "dumbbell",
+   "gruppen": "sport beauty"
+  },
+  {
+   "name": "Tickets",
+   "icon": "ticket",
+   "gruppen": "travel family tech"
+  },
+  {
+   "name": "Mode & Accessoires",
+   "icon": "shirt",
+   "gruppen": "travel beauty sport"
+  },
+  {
+   "name": "Essen & Trinken",
+   "icon": "utensils",
+   "gruppen": "family travel"
+  },
+  {
+   "name": "Finanzwelt",
+   "icon": "piggy",
+   "gruppen": "family tech"
+  },
+  {
+   "name": "Freizeit & Familie",
+   "icon": "users",
+   "gruppen": "family sport"
+  },
+  {
+   "name": "Weiterbildung",
+   "icon": "cap",
+   "gruppen": "tech"
+  },
+  {
+   "name": "Gutscheinwelt",
+   "icon": "gift",
+   "gruppen": "tech sport family travel beauty",
+   "text": "Gutscheine von Top-Marken"
+  },
+  {
+   "name": "Lotterie & Gewinnspiel",
+   "icon": "trophy",
+   "gruppen": "family travel",
+   "text": "Lose & Gewinnspiele"
+  }
+ ],
+ "spotlight": [
+  "ExpressVPN",
+  "Procter & Gamble Vorteils-Shop",
+  "FINN | Club",
+  "Sony",
+  "Bitdefender",
+  "Oral-B",
+  "Ebike-24.com",
+  "Disney+"
+ ],
+ "wall": [
+  "Samsung",
+  "Philips",
+  "Crocs",
+  "Tramontina",
+  "Lands' End",
+  "BERNDES",
+  "Lime",
+  "shop-apotheke.com",
+  "Schildkröt",
+  "molten",
+  "Cupra Formentor",
+  "Mercedes Gebrauchtwagen",
+  "GROHE",
+  "BIRKENSTOCK Professional",
+  "Brabantia",
+  "adidas",
+  "Spreadshirt",
+  "Stanley 1913",
+  "Kenwood",
+  "Columbia",
+  "TEMPUR",
+  "Shell V Power SmartDeal",
+  "Fielmann",
+  "ASICS",
+  "Tchibo",
+  "Kleines Kraftwerk",
+  "Saal Digital",
+  "Nordisk"
+ ],
+ "lux": [
+  "APPLE",
+  "SAMSUNG",
+  "SONY",
+  "DYSON",
+  "NINTENDO",
+  "BOSE",
+  "ADIDAS",
+  "NIKE",
+  "PUMA",
+  "BOSCH",
+  "Sixt"
+ ],
+ "logos": [
+  [
+   "GOOGLE",
+   "LENOVO",
+   "DELL",
+   "PANASONIC",
+   "GOPRO",
+   "DJI",
+   "JBL",
+   "Marshall",
+   "Teufel",
+   "HARMAN KARDON",
+   "FUJIFILM",
+   "GARMIN",
+   "PHILIPS",
+   "ROWENTA",
+   "De'Longhi",
+   "Kenwood",
+   "SMEG",
+   "KÄRCHER",
+   "MAKITA",
+   "STIHL",
+   "TEFAL",
+   "WMF",
+   "Stanley 1913",
+   "TEMPUR",
+   "Emma Matratzen",
+   "Tchibo",
+   "Media Markt DE"
+  ],
+  [
+   "ASICS",
+   "Columbia Sportswear",
+   "SALEWA",
+   "THULE",
+   "TUMI",
+   "SAMSONITE",
+   "EASTPAK",
+   "Crocs",
+   "Birkenstock Professional",
+   "MONTBLANC",
+   "FESTINA",
+   "Fielmann",
+   "Avis",
+   "FlixBus",
+   "Deutsche Bahn DE",
+   "LIME",
+   "Shell",
+   "Disney+",
+   "ELECTRONIC ARTS",
+   "ORAL-B",
+   "BRAUN",
+   "SharkNinja",
+   "Lands' End",
+   "S.OLIVER",
+   "bugatti",
+   "SportScheck",
+   "Outletcity Metzingen",
+   "Telekom",
+   "E.ON"
+  ]
+ ],
+ "edits": [
+  {
+   "id": "technik",
+   "name": "Technik",
+   "claim": "Sound, Strom und smarte Helfer.",
+   "items": [
+    [
+     "BOSE",
+     "BT Lautsprecher \"SoundLink Flex\", black"
+    ],
+    [
+     "APPLE",
+     "AirTag 2. Gen, 4er-Pack"
+    ],
+    [
+     "BOSE",
+     "Lautsprecher \"SoundLink Home\", Light Silver"
+    ],
+    [
+     "4SMARTS",
+     "Netzladegerät \"GaN Flex Pro\" 100W, \"Travel Kit\""
+    ],
+    [
+     "4SMARTS",
+     "Solar Powerbank \"Prepper\", 12000 mAh"
+    ],
+    [
+     "BOOMPODS",
+     "BTLautsprecher \"Beachboom\", ocean black"
+    ],
+    [
+     "TRUST",
+     "Fayzo Wireless Gaming Headset \"GXT 491\""
+    ],
+    [
+     "4SMARTS",
+     "6-in-1 Steckdosenleiste mit USB \"GaN 65W\""
+    ]
+   ]
+  },
+  {
+   "id": "home",
+   "name": "Home & Living",
+   "claim": "Fürs Zuhause, den Garten und die Werkbank.",
+   "items": [
+    [
+     "ROWENTA",
+     "Staubsauger \"Power XXL Total Clean\""
+    ],
+    [
+     "WERA",
+     "Schraubendrehersatz \"Kraftform XXL\", 12-tlg"
+    ],
+    [
+     "FISKARS",
+     "Bypass-Getriebeastschere \"PowerGearX LX94-M\""
+    ],
+    [
+     "STEBA",
+     "Tisch- und Säulen-Grill mit Haube \"VG 250\""
+    ],
+    [
+     "WMF",
+     "Salat-Set \"Moto\""
+    ],
+    [
+     "BOSCH",
+     "Akku-Fenstersauger \"GlassVAC\""
+    ],
+    [
+     "SKIL",
+     "Schlagbohrer"
+    ],
+    [
+     "BLOMUS",
+     "Windlicht-Set \"Calma\", XS, 2tlg, light gray"
+    ]
+   ]
+  },
+  {
+   "id": "reisen",
+   "name": "Reisen & Gepäck",
+   "claim": "Koffer, Taschen und alles für unterwegs.",
+   "items": [
+    [
+     "AMERICAN TOURISTER",
+     "4-Rollen-Trolley \"Soundbox\", 77cm, golden yellow"
+    ],
+    [
+     "TRAVELITE",
+     "4-Rollen-Trolley L \"Bali\", 77cm, mint"
+    ],
+    [
+     "TITAN",
+     "4-Rollen-Trolley \"Upgrade\", 75cm, Nightshade Black"
+    ],
+    [
+     "TATONKA",
+     "Reisetasche \"Flight Barrel\", black"
+    ],
+    [
+     "EASTPAK",
+     "Reisetasche \"Leatherface L\", black"
+    ],
+    [
+     "EASTPAK",
+     "Gürteltasche \"Springer\""
+    ],
+    [
+     "SAMSONITE",
+     "Nackenkissen \"TA Revolution\", black"
+    ],
+    [
+     "TATONKA",
+     "Reisetasche \"Barrel 130\", black"
+    ]
+   ]
+  },
+  {
+   "id": "sport",
+   "name": "Sport & Fitness",
+   "claim": "Training, Recovery und Outdoor.",
+   "items": [
+    [
+     "BLACKROLL",
+     "Faszienrolle, schwarz"
+    ],
+    [
+     "BLACKROLL",
+     "\"SUPER BAND SET\""
+    ],
+    [
+     "SCHILDKRÖT",
+     "Yogamatte, \"BICOLOR\", navy-mint"
+    ],
+    [
+     "SCHILDKRÖT",
+     "Schlingentrainer"
+    ],
+    [
+     "SALEWA",
+     "Trekkingstöcke \"Puez\", black"
+    ],
+    [
+     "LE CREUSET",
+     "Trinkflasche \"On The Go\" 1000 ml, Bamboo Green"
+    ],
+    [
+     "BLACKROLL",
+     "Fitness-Set \"Blackbox\""
+    ],
+    [
+     "SCHILDKRÖT",
+     "Push Up Multitrainer"
+    ]
+   ]
+  },
+  {
+   "id": "mobil",
+   "name": "Mobilität",
+   "claim": "Für Rad, Auto und alles dazwischen.",
+   "items": [
+    [
+     "GARMIN",
+     "Fahrradcomputer \"Edge 540\""
+    ],
+    [
+     "GARMIN",
+     "Fahrradcomputer \"Edge Explore 2\""
+    ],
+    [
+     "GARMIN",
+     "GPS-Fahrradcomputer \"Edge 840 Solar\""
+    ],
+    [
+     "WERA",
+     "Winkelschlüsselsatz \"Bicycle Set\"+Tasche, 9-teilig"
+    ],
+    [
+     "KINZO",
+     "Fahrrad Reparatur-Set, 21-tlg."
+    ],
+    [
+     "VAUDE",
+     "Fahrradtasche \"Aqua Back Single\", black"
+    ],
+    [
+     "4SMARTS",
+     "Powerbank-3in1 , Starthilfe-Set und Kompressor"
+    ],
+    [
+     "DUNLOP",
+     "Standluftpumpe mit Druckanzeige, schwarz"
+    ]
+   ]
+  },
+  {
+   "id": "health",
+   "name": "Health & Beauty",
+   "claim": "Pflege und Wohlbefinden – für alle.",
+   "items": [
+    [
+     "CALVIN KLEIN",
+     "EdT \"ck one\" 200 ml"
+    ],
+    [
+     "CALVIN KLEIN",
+     "EdT \"CK Be\", 100 ml"
+    ],
+    [
+     "HERMES",
+     "EdT \"Un Jardin sur le Nil\", 100 ml"
+    ],
+    [
+     "BEURER",
+     "Akku-Massage-Gun \"MG 79\" Sensitive"
+    ],
+    [
+     "BEURER",
+     "Fußsprudelbad \"FB 21\""
+    ],
+    [
+     "MEDISANA",
+     "Heizkissen \"HC200\", sand"
+    ],
+    [
+     "Tunturi",
+     "Smart Waage \"SC30\", black"
+    ],
+    [
+     "PHILIPS",
+     "Bürstenköpfe \"Optimal White HX6064/87\", weiß, 4 St."
+    ]
+   ]
+  }
+ ],
+ "cycle": {
+  "a": [
+   [
+    "CALVIN KLEIN",
+    "Deo Stick \"CK One\", 75 g"
+   ],
+   [
+    "WALRA",
+    "Badetuch \"Soft Cotton\", anthrazit"
+   ],
+   [
+    "VOSSEN",
+    "Handtuch \"Vegan Life\" avocado"
+   ]
+  ],
+  "b": [
+   [
+    "WERA",
+    "Schraubendrehersatz \"Kraftform XXL\", 12-tlg"
+   ],
+   [
+    "BEURER",
+    "Akku-Massage-Gun \"MG 79\" Sensitive"
+   ],
+   [
+    "KINZO",
+    "Fahrrad Reparatur-Set, 21-tlg."
+   ],
+   [
+    "4SMARTS",
+    "Netzladegerät \"GaN Flex Pro\" 100W, \"Travel Kit\""
+   ],
+   [
+    "SCHILDKRÖT",
+    "Schlingentrainer"
+   ],
+   [
+    "CALVIN KLEIN",
+    "EdT \"ck one\" 200 ml"
+   ],
+   [
+    "FISKARS",
+    "Bypass-Getriebeastschere \"PowerGearX LX94-M\""
+   ]
+  ],
+  "c": [
+   [
+    "ROWENTA",
+    "Staubsauger \"Power XXL Total Clean\""
+   ],
+   [
+    "TATONKA",
+    "Reisetasche \"Flight Barrel\", black"
+   ],
+   [
+    "TRAVELITE",
+    "4-Rollen-Trolley L \"Bali\", 77cm, mint"
+   ],
+   [
+    "HERMES",
+    "EdT \"Un Jardin sur le Nil\", 100 ml"
+   ],
+   [
+    "BOSCH",
+    "Akku-Fenstersauger \"GlassVAC\""
+   ],
+   [
+    "VAUDE",
+    "Fahrradtasche \"Aqua Back Single\", black"
+   ]
+  ],
+  "d": [
+   [
+    "BOSE",
+    "BT Lautsprecher \"SoundLink Flex\", black"
+   ],
+   [
+    "AMERICAN TOURISTER",
+    "4-Rollen-Trolley \"Soundbox\", 77cm, golden yellow"
+   ],
+   [
+    "TITAN",
+    "4-Rollen-Trolley \"Upgrade\", 75cm, Nightshade Black"
+   ],
+   [
+    "GARMIN",
+    "Fahrradcomputer \"Edge 540\""
+   ],
+   [
+    "STEBA",
+    "Tisch- und Säulen-Grill mit Haube \"VG 250\""
+   ],
+   [
+    "EASTPAK",
+    "Reisetasche \"Leatherface L\", black"
+   ]
+  ]
+ },
+ "products": [
+  [
+   "BOSE",
+   "BT Lautsprecher \"SoundLink Flex\", black"
+  ],
+  [
+   "ROWENTA",
+   "Staubsauger \"Power XXL Total Clean\""
+  ],
+  [
+   "AMERICAN TOURISTER",
+   "4-Rollen-Trolley \"Soundbox\", 77cm, golden yellow"
+  ],
+  [
+   "APPLE",
+   "AirTag 2. Gen, 4er-Pack"
+  ],
+  [
+   "WERA",
+   "Schraubendrehersatz \"Kraftform XXL\", 12-tlg"
+  ],
+  [
+   "BEURER",
+   "Akku-Massage-Gun \"MG 79\" Sensitive"
+  ],
+  [
+   "GARMIN",
+   "Fahrradcomputer \"Edge 540\""
+  ],
+  [
+   "BLACKROLL",
+   "Faszienrolle, schwarz"
+  ],
+  [
+   "BOSE",
+   "Lautsprecher \"SoundLink Home\", Light Silver"
+  ],
+  [
+   "TRAVELITE",
+   "4-Rollen-Trolley L \"Bali\", 77cm, mint"
+  ],
+  [
+   "4SMARTS",
+   "Netzladegerät \"GaN Flex Pro\" 100W, \"Travel Kit\""
+  ],
+  [
+   "4SMARTS",
+   "Solar Powerbank \"Prepper\", 12000 mAh"
+  ],
+  [
+   "BOOMPODS",
+   "BTLautsprecher \"Beachboom\", ocean black"
+  ],
+  [
+   "TRUST",
+   "Fayzo Wireless Gaming Headset \"GXT 491\""
+  ],
+  [
+   "4SMARTS",
+   "6-in-1 Steckdosenleiste mit USB \"GaN 65W\""
+  ],
+  [
+   "FISKARS",
+   "Bypass-Getriebeastschere \"PowerGearX LX94-M\""
+  ],
+  [
+   "STEBA",
+   "Tisch- und Säulen-Grill mit Haube \"VG 250\""
+  ],
+  [
+   "WMF",
+   "Salat-Set \"Moto\""
+  ],
+  [
+   "BOSCH",
+   "Akku-Fenstersauger \"GlassVAC\""
+  ],
+  [
+   "SKIL",
+   "Schlagbohrer"
+  ],
+  [
+   "BLOMUS",
+   "Windlicht-Set \"Calma\", XS, 2tlg, light gray"
+  ],
+  [
+   "TITAN",
+   "4-Rollen-Trolley \"Upgrade\", 75cm, Nightshade Black"
+  ],
+  [
+   "TATONKA",
+   "Reisetasche \"Flight Barrel\", black"
+  ],
+  [
+   "EASTPAK",
+   "Reisetasche \"Leatherface L\", black"
+  ],
+  [
+   "EASTPAK",
+   "Gürteltasche \"Springer\""
+  ],
+  [
+   "SAMSONITE",
+   "Nackenkissen \"TA Revolution\", black"
+  ],
+  [
+   "TATONKA",
+   "Reisetasche \"Barrel 130\", black"
+  ],
+  [
+   "BLACKROLL",
+   "\"SUPER BAND SET\""
+  ],
+  [
+   "SCHILDKRÖT",
+   "Yogamatte, \"BICOLOR\", navy-mint"
+  ],
+  [
+   "SCHILDKRÖT",
+   "Schlingentrainer"
+  ],
+  [
+   "SALEWA",
+   "Trekkingstöcke \"Puez\", black"
+  ],
+  [
+   "LE CREUSET",
+   "Trinkflasche \"On The Go\" 1000 ml, Bamboo Green"
+  ],
+  [
+   "BLACKROLL",
+   "Fitness-Set \"Blackbox\""
+  ],
+  [
+   "SCHILDKRÖT",
+   "Push Up Multitrainer"
+  ],
+  [
+   "GARMIN",
+   "Fahrradcomputer \"Edge Explore 2\""
+  ],
+  [
+   "GARMIN",
+   "GPS-Fahrradcomputer \"Edge 840 Solar\""
+  ],
+  [
+   "WERA",
+   "Winkelschlüsselsatz \"Bicycle Set\"+Tasche, 9-teilig"
+  ],
+  [
+   "KINZO",
+   "Fahrrad Reparatur-Set, 21-tlg."
+  ],
+  [
+   "VAUDE",
+   "Fahrradtasche \"Aqua Back Single\", black"
+  ],
+  [
+   "4SMARTS",
+   "Powerbank-3in1 , Starthilfe-Set und Kompressor"
+  ],
+  [
+   "DUNLOP",
+   "Standluftpumpe mit Druckanzeige, schwarz"
+  ],
+  [
+   "CALVIN KLEIN",
+   "EdT \"ck one\" 200 ml"
+  ],
+  [
+   "CALVIN KLEIN",
+   "EdT \"CK Be\", 100 ml"
+  ],
+  [
+   "HERMES",
+   "EdT \"Un Jardin sur le Nil\", 100 ml"
+  ],
+  [
+   "BEURER",
+   "Fußsprudelbad \"FB 21\""
+  ],
+  [
+   "MEDISANA",
+   "Heizkissen \"HC200\", sand"
+  ],
+  [
+   "Tunturi",
+   "Smart Waage \"SC30\", black"
+  ],
+  [
+   "PHILIPS",
+   "Bürstenköpfe \"Optimal White HX6064/87\", weiß, 4 St."
+  ]
+ ],
+ "deals": [
+  "Samsung",
+  "Sony",
+  "Disney+",
+  "adidas",
+  "ExpressVPN",
+  "Procter & Gamble Vorteils-Shop",
+  "FINN | Club",
+  "Bitdefender",
+  "Oral-B",
+  "Ebike-24.com",
+  "Philips",
+  "Crocs",
+  "Tramontina",
+  "Lands' End",
+  "BERNDES",
+  "Lime",
+  "shop-apotheke.com",
+  "Schildkröt",
+  "molten",
+  "Cupra Formentor",
+  "Mercedes Gebrauchtwagen",
+  "GROHE",
+  "BIRKENSTOCK Professional",
+  "Brabantia",
+  "Spreadshirt",
+  "Stanley 1913",
+  "Kenwood",
+  "Columbia",
+  "TEMPUR",
+  "Shell V Power SmartDeal",
+  "Fielmann",
+  "ASICS",
+  "Tchibo",
+  "Kleines Kraftwerk",
+  "Saal Digital",
+  "Nordisk"
+ ],
+ "dlogo_marke": {
+  "GROHE": "grohe",
+  "Saal Digital": "saal-digital"
+ },
+ "brands": [
+  "APPLE",
+  "SAMSUNG",
+  "SONY",
+  "DYSON",
+  "NINTENDO",
+  "BOSE",
+  "ADIDAS",
+  "NIKE",
+  "PUMA",
+  "BOSCH",
+  "Sixt",
+  "GOOGLE",
+  "LENOVO",
+  "DELL",
+  "PANASONIC",
+  "GOPRO",
+  "DJI",
+  "JBL",
+  "Marshall",
+  "Teufel",
+  "HARMAN KARDON",
+  "FUJIFILM",
+  "GARMIN",
+  "PHILIPS",
+  "ROWENTA",
+  "De'Longhi",
+  "Kenwood",
+  "SMEG",
+  "KÄRCHER",
+  "MAKITA",
+  "STIHL",
+  "TEFAL",
+  "WMF",
+  "Stanley 1913",
+  "TEMPUR",
+  "Emma Matratzen",
+  "Tchibo",
+  "Media Markt DE",
+  "ASICS",
+  "Columbia Sportswear",
+  "SALEWA",
+  "THULE",
+  "TUMI",
+  "SAMSONITE",
+  "EASTPAK",
+  "Crocs",
+  "Birkenstock Professional",
+  "MONTBLANC",
+  "FESTINA",
+  "Fielmann",
+  "Avis",
+  "FlixBus",
+  "Deutsche Bahn DE",
+  "LIME",
+  "Shell",
+  "Disney+",
+  "ELECTRONIC ARTS",
+  "ORAL-B",
+  "BRAUN",
+  "SharkNinja",
+  "Lands' End",
+  "S.OLIVER",
+  "bugatti",
+  "SportScheck",
+  "Outletcity Metzingen",
+  "Telekom",
+  "E.ON",
+  "GROHE",
+  "Saal Digital"
+ ]
+}

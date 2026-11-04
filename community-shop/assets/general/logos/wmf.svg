@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:odm="http://product.corel.com/CGS/11/cddns/" xml:space="preserve" width="500px" height="500px" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd"
+     viewBox="0 0 500 500">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#1F1A17}
+    .str1 {stroke:#1F1A17;stroke-width:7}
+    .fil0 {fill:none}
+    .fil1 {fill:#1F1A17}
+   ]]>
+  </style>
+ </defs>
+ <g id="Ebene 1">
+  <g>
+   <path class="fil0 str0" d="M59 23l78 0 71 128 61 -93 58 93 77 -128 37 0 -130 227 -63 -99 -61 100"/>
+   <path class="fil0 str0" d="M187 251l61 -100 63 99 130 -227 -37 0 -77 128 -58 -93 -61 93 -71 -128 -78 0 128 228z"/>
+   <path class="fil0 str0" d="M59 23l78 0 71 128 61 -93 58 93 77 -128 37 0 -130 227 -63 -99 -61 100 -128 -228z"/>
+   <path class="fil1 str1" d="M59 23l78 0 71 128 61 -93 58 93 77 -128 37 0 -130 227 -63 -99 -61 100 -128 -228z"/>
+   <path class="fil1 str0" d="M295 477l-72 0 0 -171 -56 102 -55 -102 0 171 -39 0 0 -259 64 0 50 88 61 -99 47 75 0 195z"/>
+   <path class="fil1 str0" d="M321 282l38 -64 32 0 44 0 0 70 -44 0 0 39 40 0 0 35 -40 0 0 115 -70 0 0 -195z"/>
+  </g>
+ </g>
+</svg>

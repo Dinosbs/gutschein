@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="de" class="vp-theme" data-bg="image" data-logo="incent" data-nav-tone="light" data-btn-tone="dark">
+<html lang="de" class="vp-theme" data-thema="<!--@thema-->" data-bg="image" data-logo="incent" data-nav-tone="light" data-btn-tone="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title><!--@page_title--></title>
-<meta name="description" content="INCENT Community-Shop: Dein eigener Beauty-Shop auf vorteile.net – exklusive Vorteilspreise für Deine Community, Beteiligung am Gewinn jeder Bestellung, null Aufwand.">
+<meta name="description" content="INCENT Community-Shop: <!--@t:meta-->">
 <meta name="theme-color" content="#f4f7fc">
 <link rel="icon" href="{{ui:incent-favicon}}">
 <script>document.documentElement.classList.add("js")</script>
@@ -52,9 +52,9 @@
         
 
         <div class="intro__title" data-intro-title>
-          <p class="eyebrow eyebrow--live" data-anim><span data-bind="eyebrow">Community-Shop · Health &amp; Beauty</span></p>
-          <h1 class="intro__h" data-split>Dein eigener <span class="grad-text">Beauty-Shop</span></h1>
-          <p class="intro__lead" data-anim>Exklusive Vorteilspreise von über 80 Beauty-Marken – und weit darüber hinaus. Auf vorteile.net, in Deinem Look, nur für Deine Community. An jeder Bestellung verdienst Du mit.</p>
+          <p class="eyebrow eyebrow--live" data-anim><span data-bind="eyebrow">Community-Shop · <!--@t:topic--></span></p>
+          <h1 class="intro__h" data-split>Dein eigener <span class="grad-text"><!--@t:shop--></span></h1>
+          <p class="intro__lead" data-anim><!--@t:intro_lead--></p>
           <ul class="intro__ticks">
             <li data-anim="pop"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>100&nbsp;% kostenlos</li>
             <li data-anim="pop"><svg class="i i--sm" aria-hidden="true"><use href="#i-check"/></svg>Null Aufwand für Dich &amp; Dein Management</li>
@@ -141,18 +141,68 @@
       <p class="lead" data-anim>Auf vorteile.net kaufen heute Mitarbeitende aus über 4.400 Unternehmen zu Vorteilspreisen ein. Mit dem Community-Shop öffnen wir diese Welt für Dich – in <strong>Deinem</strong> Shop, unter <strong>Deinem</strong> Namen.</p>
     </header>
     <ol class="perks perks--3">
-      <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg></span><span class="perk__num">01</span><h3>Du empfiehlst</h3><p>Du teilst Deinen Shop mit Deiner Community – mit Deinen Lieblingsprodukten und Edits, von „Meine Morning Routine“ bis „Geschenke unter 50&nbsp;€“.</p></li>
-      <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><span class="perk__num">02</span><h3>Deine Community spart</h3><p>Im Schnitt <strong>27&nbsp;%</strong> unter dem regulären Preis, bei vielen Produkten deutlich mehr. Ein Vorteil, den sie nur über Dich bekommt.</p></li>
+      <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-star"/></svg></span><span class="perk__num">01</span><h3>Du empfiehlst</h3><p>Du teilst Deinen Shop mit Deiner Community – mit Deinen Lieblingsprodukten und Edits, <!--@t:edits_example-->.</p></li>
+      <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><span class="perk__num">02</span><h3>Deine Community spart</h3><p>Im Schnitt <strong><!--@avg-->&nbsp;%</strong> unter dem regulären Preis, bei vielen Produkten deutlich mehr. Ein Vorteil, den sie nur über Dich bekommt.</p></li>
       <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-coins"/></svg></span><span class="perk__num">03</span><h3>Du verdienst mit</h3><p><strong><!--@share-->&nbsp;% vom Gewinn</strong> jeder Bestellung in Deinem Shop. Ohne Lager, ohne Versand, ohne eigenes Risiko – und 100&nbsp;% kostenlos.</p></li>
     </ol>
+<!--@if beauty-->
     <dl class="stats" data-anim>
       <div class="stat"><dt>Marken in Health &amp; Beauty</dt><dd><span data-count="80">80</span><span class="stat__suffix">+</span></dd></div>
       <div class="stat"><dt>Beauty- &amp; Health-Produkte</dt><dd><span data-count="250">250</span><span class="stat__suffix">+</span></dd></div>
       <div class="stat"><dt>unter dem regulären Preis</dt><dd><span class="stat__pre">bis</span> <span data-count="71">71</span><span class="stat__suffix">&nbsp;%</span></dd></div>
       <div class="stat"><dt>exklusive Partner-Deals</dt><dd><span data-count="46">46</span></dd></div>
     </dl>
+<!--@end--><!--@if allgemein-->
+    <dl class="stats" data-anim>
+      <div class="stat"><dt>Markenpartner</dt><dd><span data-count="450">450</span><span class="stat__suffix">+</span></dd></div>
+      <div class="stat"><dt>Markenprodukte</dt><dd><span data-count="3000">3.000</span><span class="stat__suffix">+</span></dd></div>
+      <div class="stat"><dt>Rabatt bei Partner-Deals</dt><dd><span class="stat__pre">bis</span> <span data-count="83">83</span><span class="stat__suffix">&nbsp;%</span></dd></div>
+      <div class="stat"><dt>Welten · über 50 Unterkategorien</dt><dd><span data-count="15">15</span></dd></div>
+    </dl>
+<!--@end-->
   </div></div></div></div>
 </section>
+
+<!--@if allgemein-->
+<section class="slide slide--tint" id="welten" data-act="1" data-snap data-label="15 Welten">
+  <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--2"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
+    <header class="head head--tight">
+      <div>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">05</span>Das Sortiment</p>
+        <h2 class="h2" data-split>Ein Shop. <span class="grad-text">15 Welten.</span></h2>
+      </div>
+      <p class="lead" data-anim>Über 450 Markenpartner in 15 Welten und über 50 Unterkategorien – vom Mobilfunktarif bis zur Reise. Wir schneiden Dein Sortiment auf <strong>Deine Zielgruppe</strong> zu.</p>
+    </header>
+    <div class="fit-aud fit-aud--all">
+      <div class="aud" data-anim="left">
+        <p class="aud__label">Deine Community ist …</p>
+        <div class="aud__list" role="group" aria-label="Zielgruppe" data-aud><!--@zielgruppen--></div>
+      </div>
+      <div class="cats-world" data-anim="right">
+        <p class="cats-world__head"><span>Sortiment in <strong data-bind="shop-in">Deinem Shop</strong></span><span class="cats-world__count"><b data-aud-count>8</b> von <!--@welten_n--> Welten aktiv</span></p>
+        <ul class="world world--all"><!--@welten--></ul>
+      </div>
+    </div>
+  </div></div></div></div>
+</section>
+
+<section class="slide" id="deals" data-act="1" data-snap data-label="Top-Deals">
+  <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i></div><div class="frame"><div class="frame__in"><div class="content">
+    <header class="head head--tight head--deals">
+      <div>
+        <p class="eyebrow" data-anim><span class="eyebrow__num">06</span>Top-Deals</p>
+        <h2 class="h2" data-split>Deals, die es <span class="grad-text">sonst nirgends gibt.</span></h2>
+      </div>
+      <div class="head__aside deals__aside" data-anim>
+        <p class="rate-chip"><span class="rate-chip__big"><span data-count="<!--@deal_count-->"><!--@deal_count--></span>+</span><span>exklusive Partner-Deals<br>in 15 Welten</span></p>
+      </div>
+    </header>
+    <div class="spot" data-anim="flip" data-spot aria-label="Top-Deals"><!--@spotlight--></div>
+    <div class="dealwall dealwall--compact" data-anim aria-label="Weitere Partner-Deals auf vorteile.net"><!--@deals--></div>
+    <p class="dealwall__note" data-anim><svg class="i i--sm" aria-hidden="true"><use href="#i-tag"/></svg><span>Rabatte direkt bei Top-Marken – genau so, wie sie heute auf vorteile.net stehen. Portalweit kommen <strong>70+ Partnergutscheine</strong> dazu, neue Deals laufend.</span></p>
+  </div></div></div></div>
+</section>
+<!--@end-->
 
 <section class="slide slide--tint" id="marken" data-act="1" data-snap data-label="Markenvielfalt">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--2"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
@@ -161,18 +211,19 @@
         <p class="eyebrow" data-anim><span class="eyebrow__num">05</span>Markenvielfalt</p>
         <h2 class="h2" data-split>Die Marken, die Deine Community <span class="grad-text">liebt.</span></h2>
       </div>
-      <p class="lead" data-anim>Vom Luxusduft bis zum LED-Beauty-Device: Allein in Health &amp; Beauty warten über 80 Marken und 250+ Produkte – und das ist nur ein Ausschnitt.</p>
+      <p class="lead" data-anim><!--@t:marken_lead--></p>
     </header>
     <ul class="lux">
       <!--@lux-->
-      <li class="lux__more" data-anim="pop"><b>+&nbsp;70</b><span>weitere Marken in Health&nbsp;&amp;&nbsp;Beauty</span></li>
+      <li class="lux__more" data-anim="pop"><!--@t:lux_more--></li>
     </ul>
-    <dl class="cats" data-anim><!--@categories--></dl>
-    <div class="logo-rows" data-anim aria-label="Weitere Marken in Health &amp; Beauty"><!--@logos--></div>
-    <p class="more" data-anim><svg class="i" aria-hidden="true"><use href="#i-sparkles"/></svg><span><strong>Und weit mehr als Beauty:</strong> Insgesamt über 450 Markenpartner, 3.000+ Markenprodukte und 70+ Partnergutscheine auf vorteile.net – von Mode und Sport bis Reisen und Technik. Dein Sortiment stellen wir passend zu Deiner Zielgruppe zusammen.</span></p>
+    <!--@if allgemein--><p class="cats__cap" data-anim>Top-Rabatt je Welt</p><!--@end--><dl class="cats" data-anim><!--@categories--></dl>
+    <div class="logo-rows" data-anim aria-label="<!--@t:logos_label-->"><!--@logos--></div>
+    <!--@if beauty--><p class="more" data-anim><svg class="i" aria-hidden="true"><use href="#i-sparkles"/></svg><span><!--@t:more--></span></p><!--@end-->
   </div></div></div></div>
 </section>
 
+<!--@if beauty-->
 <section class="slide slide--tint" id="deals" data-act="1" data-snap data-label="Partner-Deals">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head head--tight">
@@ -188,6 +239,7 @@
     <p class="dealwall__note" data-anim><svg class="i i--sm" aria-hidden="true"><use href="#i-tag"/></svg><span>Rabatte direkt bei Top-Marken – genau so, wie sie heute auf vorteile.net stehen. Portalweit kommen <strong>70+ Partnergutscheine</strong> dazu, neue Deals laufend.</span></p>
   </div></div></div></div>
 </section>
+<!--@end-->
 
 <section class="slide" id="edits" data-act="1" data-snap data-label="Deine Edits">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
@@ -196,7 +248,7 @@
         <p class="eyebrow" data-anim><span class="eyebrow__num">07</span>Deine Edits</p>
         <h2 class="h2" data-split>Kuratiere Deine <span class="grad-text">Edits.</span></h2>
       </div>
-      <p class="lead" data-anim>Stell Dein Sortiment zusammen wie Deinen Feed – Lieblingsprodukte, Routinen, Geschenkideen. Echte Produkte aus dem aktuellen Angebot, inklusive Deinem Anteil*.</p>
+      <p class="lead" data-anim><!--@t:edits_lead--></p>
     </header>
     <div class="tabs" role="tablist" aria-label="Edits" data-anim data-tabs><!--@edit_tabs--></div>
     <div class="edits" data-anim><!--@edit_panels--></div>
@@ -204,6 +256,7 @@
   </div></div></div></div>
 </section>
 
+<!--@if beauty-->
 <section class="slide slide--tint" id="sortiment" data-act="1" data-snap data-label="Mehr als Beauty">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--2"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head head--tight">
@@ -227,18 +280,19 @@
         <p class="cats-world__head"><span>Sortiment in <strong data-bind="shop-in">Deinem Shop</strong></span><span class="cats-world__count"><b data-aud-count>4</b> von 8 Welten aktiv</span></p>
         <ul class="world">
           <li data-world="beauty fit life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-sparkles"/></svg></span><b>Health &amp; Beauty</b><small>80+ Marken · Dein Start</small></li>
-          <li data-world="beauty life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-shirt"/></svg></span><b>Fashion &amp; Accessoires</b><small>Mode, Schuhe, Schmuck</small></li>
-          <li data-world="fit"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-dumbbell"/></svg></span><b>Sport &amp; Fitness</b><small>Training, Outdoor, Recovery</small></li>
-          <li data-world="fit family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-cup"/></svg></span><b>Food &amp; Drinks</b><small>Supplements, Genuss</small></li>
-          <li data-world="beauty family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg></span><b>Home &amp; Living</b><small>Interior, Haushalt, Küche</small></li>
-          <li data-world="fit life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg></span><b>Technik &amp; Gadgets</b><small>Audio, Smart Home, Wearables</small></li>
-          <li data-world="family life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg></span><b>Reisen &amp; Erlebnisse</b><small>Hotels, Wellness, Events</small></li>
-          <li data-world="family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg></span><b>Kids &amp; Family</b><small>Spielzeug, Baby, Schule</small></li>
+          <li data-world="beauty life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-shirt"/></svg></span><b>Mode &amp; Accessoires</b><small>Mode, Schuhe, Schmuck</small></li>
+          <li data-world="fit"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-dumbbell"/></svg></span><b>Sport</b><small>Sportmode, Home-Gym, Outdoor</small></li>
+          <li data-world="fit family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-utensils"/></svg></span><b>Essen &amp; Trinken</b><small>Kaffee, Kochen, Food &amp; Wine</small></li>
+          <li data-world="beauty family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg></span><b>Home &amp; Living</b><small>Wohnen, Garten, Haushalt</small></li>
+          <li data-world="fit life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-laptop"/></svg></span><b>Technik</b><small>Smartphones, Audio, Laptops</small></li>
+          <li data-world="family life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg></span><b>Reisen</b><small>Pauschalreisen, Hotels, Kreuzfahrten</small></li>
+          <li data-world="family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg></span><b>Freizeit &amp; Familie</b><small>Spielwaren, Geschenke, Tierbedarf</small></li>
         </ul>
       </div>
     </div>
   </div></div></div></div>
 </section>
+<!--@end-->
 
 
 
@@ -302,7 +356,7 @@
             <div><dt>Umsatz in Deinem Shop</dt><dd data-res="revenue">37.500&nbsp;€</dd></div>
             <div><dt>Deine Community spart</dt><dd data-res="savings">13.600&nbsp;€</dd></div>
           </dl>
-          <p class="calc__note"><!--@fine_rate-->. Beispielrechnung, keine Umsatzprognose. Ersparnis auf Basis der Ø&nbsp;27&nbsp;% im aktuellen Health-&amp;-Beauty-Sortiment.</p>
+          <p class="calc__note"><!--@fine_rate-->. Beispielrechnung, keine Umsatzprognose. Ersparnis auf Basis der Ø&nbsp;<!--@avg-->&nbsp;% im aktuellen <!--@t:calc_basis-->.</p>
         </div>
       </div>
     </div>
@@ -399,7 +453,7 @@
       <p class="lead" data-anim>Wir übernehmen die komplette technische Einrichtung und Gestaltung für Dich, damit Du ohne Aufwand direkt mit Deinem Shop starten kannst.</p>
     </header>
     <ol class="steps">
-      <li class="step" data-anim><span class="step__num">01</span><h3>Definition</h3><p>Gemeinsam schneiden wir Dein Sortiment auf Deine Zielgruppe zu – Beauty und alles, was Deine Community sonst liebt.</p></li>
+      <li class="step" data-anim><span class="step__num">01</span><h3>Definition</h3><p><!--@t:step1--></p></li>
       <li class="step" data-anim><span class="step__num">02</span><h3>Einrichtung</h3><p>Wir gestalten Deinen Vorteils-Shop in Deinem Design und integrieren alle gewünschten Inhalte.</p></li>
       <li class="step" data-anim><span class="step__num">03</span><h3>Übergabe</h3><p>Du teilst Deinen Shop-Link, wir liefern Dir fertige Inhalte für die Promotion.</p></li>
       <li class="step" data-anim><span class="step__num">04</span><h3>Profitieren</h3><p>Du bekommst monatliche Auswertungen zu den Verkäufen über Deinen Shop – und Deine Beteiligung.</p></li>
@@ -416,16 +470,16 @@
 <section class="slide slide--end" id="danke" data-act="3" data-snap data-label="Auf einen Blick">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i><i class="bg__grid"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <div class="end">
-      <p class="eyebrow eyebrow--live" data-anim><span data-bind="eyebrow">Community-Shop · Health &amp; Beauty</span></p>
-      <h2 class="end__h" data-split><span data-bind="thanks">Dein Beauty-Shop.</span> <span class="grad-text">Startklar in einer Woche.</span></h2>
+      <p class="eyebrow eyebrow--live" data-anim><span data-bind="eyebrow">Community-Shop · <!--@t:topic--></span></p>
+      <h2 class="end__h" data-split><span data-bind="thanks">Dein <!--@t:shop-->.</span> <span class="grad-text">Startklar in einer Woche.</span></h2>
       <ul class="recap">
         <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-palette"/></svg></span><b>Dein Look</b><span>Dein Shop auf vorteile.net – mit Deinem Namen, Logo und Deinen Farben.</span></li>
-        <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><b><!--@share-->&nbsp;% vom Gewinn</b><span>jeder Bestellung in Deinem Shop. Deine Community spart im Schnitt 27&nbsp;%.</span></li>
+        <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><b><!--@share-->&nbsp;% vom Gewinn</b><span>jeder Bestellung in Deinem Shop. Deine Community spart im Schnitt <!--@avg-->&nbsp;%.</span></li>
         <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-zap"/></svg></span><b>Null Aufwand</b><span>für Dich und Dein Management – 100&nbsp;% kostenlos, kein Risiko.</span></li>
-        <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg></span><b>Beauty &amp; weit mehr</b><span>80+ Beauty-Marken, 450+ Markenpartner insgesamt – zugeschnitten auf Deine Community.</span></li>
+        <li data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-<!--@t:recap4_icon-->"/></svg></span><!--@t:recap4--></li>
       </ul>
       <p class="end__link" data-anim><svg class="i i--sm" aria-hidden="true"><use href="#i-eye"/></svg><span>Diese Präsentation jederzeit wieder öffnen: <b data-self-link>dinosbs.github.io/pitch</b></span></p>
-      <p class="end__fine" data-anim>INCENT · Vertrauliche Präsentation · Produkte, Preise und Rabatte: Momentaufnahme aus dem INCENT-Vorteilsportal (vorteile.net), Kategorie Health &amp; Beauty, <!--@snapshot_date-->. „Regulär“ entspricht dem im Shop ausgewiesenen Vergleichspreis. Verdienst-Beispiele: <!--@share-->&nbsp;% vom Gewinn. <!--@fine_rate-->. Reichweiten- und Umsatzwerte sind Beispielrechnungen, keine Zusage. Alle Marken und Logos gehören ihren jeweiligen Inhabern.</p>
+      <p class="end__fine" data-anim>INCENT · Vertrauliche Präsentation · Produkte, Preise und Rabatte: Momentaufnahme aus dem INCENT-Vorteilsportal (vorteile.net), <!--@t:fine_kat-->, <!--@snapshot_date-->. „Regulär“ entspricht dem im Shop ausgewiesenen Vergleichspreis. Verdienst-Beispiele: <!--@share-->&nbsp;% vom Gewinn. <!--@fine_rate-->. Reichweiten- und Umsatzwerte sind Beispielrechnungen, keine Zusage. Alle Marken und Logos gehören ihren jeweiligen Inhabern.</p>
     </div>
   </div></div></div></div>
 </section>

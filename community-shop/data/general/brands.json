@@ -1,0 +1,2860 @@
+[
+ {
+  "name": "4SMARTS",
+  "slug": "4smarts",
+  "kategorien": [
+   "Technik",
+   "Home & Living",
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "ABUS Security",
+  "slug": "abus-security",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "ACER",
+  "slug": "acer",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "APPLE",
+  "slug": "apple",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "AVENT",
+  "slug": "avent",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Bitdefender",
+  "slug": "bitdefender",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "BOOMPODS",
+  "slug": "boompods",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "BOSE",
+  "slug": "bose",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "BRAINZ",
+  "slug": "brainz",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "DANGBEI",
+  "slug": "dangbei",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "DELL",
+  "slug": "dell",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "DENVER",
+  "slug": "denver",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "DEVIALET",
+  "slug": "devialet",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Disney+",
+  "slug": "disney",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "DJI",
+  "slug": "dji",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Druckerpatronen.de",
+  "slug": "druckerpatronen-de",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "DYSON",
+  "slug": "dyson",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "E WIE EINFACH",
+  "slug": "e-wie-einfach",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "E.ON",
+  "slug": "e-on",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "ECOVACS",
+  "slug": "ecovacs",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "ELECTRONIC ARTS",
+  "slug": "electronic-arts",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "EnBW",
+  "slug": "enbw",
+  "kategorien": [
+   "Technik",
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "ExpressVPN",
+  "slug": "expressvpn",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "faller audio",
+  "slug": "faller-audio",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Fresh 'n Rebel",
+  "slug": "fresh-n-rebel",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "FUJIFILM",
+  "slug": "fujifilm",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "FÜR UNS Onlineshop",
+  "slug": "fuer-uns-onlineshop",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "G3 FERRARI",
+  "slug": "g3-ferrari",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "GARMIN",
+  "slug": "garmin",
+  "kategorien": [
+   "Technik",
+   "Mobilität",
+   "Sport"
+  ]
+ },
+ {
+  "name": "GOOGLE",
+  "slug": "google",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Google Play DE",
+  "slug": "google-play-de",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "GOPRO",
+  "slug": "gopro",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "GRUNDIG",
+  "slug": "grundig",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "HAMA",
+  "slug": "hama",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "HARMAN KARDON",
+  "slug": "harman-kardon",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "HD Toner",
+  "slug": "hd-toner",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Hilo",
+  "slug": "hilo",
+  "kategorien": [
+   "Technik",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "HOMBLI",
+  "slug": "hombli",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "HQ Patronen",
+  "slug": "hq-patronen",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "JBL",
+  "slug": "jbl",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "JUST IN CASE",
+  "slug": "just-in-case",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Kaspersky",
+  "slug": "kaspersky",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Kleines Kraftwerk",
+  "slug": "kleines-kraftwerk",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "LENOVO",
+  "slug": "lenovo",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Marshall",
+  "slug": "marshall",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Media Markt DE",
+  "slug": "media-markt-de",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Müller DE",
+  "slug": "mueller-de",
+  "kategorien": [
+   "Technik",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "NINTENDO",
+  "slug": "nintendo",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "NOLATR",
+  "slug": "nolatr",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "NordPass",
+  "slug": "nordpass",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "NordVPN",
+  "slug": "nordvpn",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Octopus Energy",
+  "slug": "octopus-energy",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "OOONO",
+  "slug": "ooono",
+  "kategorien": [
+   "Technik",
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "ORAL-B",
+  "slug": "oral-b",
+  "kategorien": [
+   "Technik",
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Ostrom",
+  "slug": "ostrom",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Otovo",
+  "slug": "otovo",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "PANASONIC",
+  "slug": "panasonic",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Philips HUE",
+  "slug": "philips-hue",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "POLAR",
+  "slug": "polar",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "RAZER",
+  "slug": "razer",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "rebuy",
+  "slug": "rebuy",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Recommerce",
+  "slug": "recommerce",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "ROWENTA",
+  "slug": "rowenta",
+  "kategorien": [
+   "Technik",
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "SAMSUNG",
+  "slug": "samsung",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "SAVIN",
+  "slug": "savin",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Scheffinger",
+  "slug": "scheffinger",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "SharkNinja",
+  "slug": "sharkninja",
+  "kategorien": [
+   "Technik",
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Shelly",
+  "slug": "shelly",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Solakon",
+  "slug": "solakon",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "SONY",
+  "slug": "sony",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "STIEBEL ELTRON",
+  "slug": "stiebel-eltron",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Svea Solar",
+  "slug": "svea-solar",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "TCL",
+  "slug": "tcl",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Telekom",
+  "slug": "telekom",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Teufel",
+  "slug": "teufel",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "tink",
+  "slug": "tink",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "TRUST",
+  "slug": "trust",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "VONMÄHLEN",
+  "slug": "vonmaehlen",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "Wechselpilot",
+  "slug": "wechselpilot",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "WITHINGS",
+  "slug": "withings",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "XTORM",
+  "slug": "xtorm",
+  "kategorien": [
+   "Technik"
+  ]
+ },
+ {
+  "name": "YOULIQ",
+  "slug": "youliq",
+  "kategorien": [
+   "Technik",
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "8SEASONS",
+  "slug": "8seasons",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "AEG",
+  "slug": "aeg",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "AIRY",
+  "slug": "airy",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "ALPINA",
+  "slug": "alpina",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "AMBIVALENZ",
+  "slug": "ambivalenz",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "AVOLT",
+  "slug": "avolt",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "BABYLISS",
+  "slug": "babyliss",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Bauknecht",
+  "slug": "bauknecht",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Beliani",
+  "slug": "beliani",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "BERGHOFF",
+  "slug": "berghoff",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "BERNDES",
+  "slug": "berndes",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "BESTWAY",
+  "slug": "bestway",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "BEURER",
+  "slug": "beurer",
+  "kategorien": [
+   "Home & Living",
+   "Mode & Accessoires",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "BLACKROLL",
+  "slug": "blackroll",
+  "kategorien": [
+   "Home & Living",
+   "Sport",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "BLOMUS",
+  "slug": "blomus",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "BLUME2000",
+  "slug": "blume2000",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "BOSCH",
+  "slug": "bosch",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Brabantia",
+  "slug": "brabantia",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "BRAUN",
+  "slug": "braun",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "BRÜDER MANNESMANN",
+  "slug": "brueder-mannesmann",
+  "kategorien": [
+   "Home & Living",
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Caracda",
+  "slug": "caracda",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "COBI",
+  "slug": "cobi",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "CONAIR",
+  "slug": "conair",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Cosori",
+  "slug": "cosori",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "De'Longhi",
+  "slug": "delonghi",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "DESKSPACE",
+  "slug": "deskspace",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "DeubaXXL",
+  "slug": "deubaxxl",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "DOMO",
+  "slug": "domo",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "DREMEL",
+  "slug": "dremel",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Emma Matratzen",
+  "slug": "emma-matratzen",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "EMSA",
+  "slug": "emsa",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Ergotopia",
+  "slug": "ergotopia",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Erwin Müller",
+  "slug": "erwin-mueller",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Exit Toys",
+  "slug": "exit-toys",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "FATBOY",
+  "slug": "fatboy",
+  "kategorien": [
+   "Home & Living",
+   "Mode & Accessoires",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Fatmoose",
+  "slug": "fatmoose",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "FISKARS",
+  "slug": "fiskars",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Freddie’s Flowers",
+  "slug": "freddie-s-flowers",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "FRITEL",
+  "slug": "fritel",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "GARDENA",
+  "slug": "gardena",
+  "kategorien": [
+   "Home & Living",
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "GEFU",
+  "slug": "gefu",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "GF GARDEN",
+  "slug": "gf-garden",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "ghd - good hair day",
+  "slug": "ghd-good-hair-day",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "GRAEF",
+  "slug": "graef",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Grillfürst",
+  "slug": "grillfuerst",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "GROHE",
+  "slug": "grohe",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Herzbach Home",
+  "slug": "herzbach-home",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "höfats",
+  "slug": "hoefats",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "HOZELOCK",
+  "slug": "hozelock",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Hulténs",
+  "slug": "hultens",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Interstuhl",
+  "slug": "interstuhl",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "INVENTUM",
+  "slug": "inventum",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "JANZEN",
+  "slug": "janzen",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "JENS",
+  "slug": "jens",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Jungborn",
+  "slug": "jungborn",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "KÄRCHER",
+  "slug": "kaercher",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Kaufland DE",
+  "slug": "kaufland-de",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Kenwood",
+  "slug": "kenwood",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "KINZO",
+  "slug": "kinzo",
+  "kategorien": [
+   "Home & Living",
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "KNISTER",
+  "slug": "knister",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "KONSTSMIDE",
+  "slug": "konstsmide",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Kuvings",
+  "slug": "kuvings",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Lampenwelt",
+  "slug": "lampenwelt",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "LE CREUSET",
+  "slug": "le-creuset",
+  "kategorien": [
+   "Home & Living",
+   "Sport"
+  ]
+ },
+ {
+  "name": "LEIFHEIT",
+  "slug": "leifheit",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Levoit",
+  "slug": "levoit",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Lieferando DE",
+  "slug": "lieferando-de",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "LIFETIME GARDEN",
+  "slug": "lifetime-garden",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Lykke&You",
+  "slug": "lykke-you",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "MAKITA",
+  "slug": "makita",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Massivmoebel24",
+  "slug": "massivmoebel24",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "McMakler",
+  "slug": "mcmakler",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "MEGABAD",
+  "slug": "megabad",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Mein schöner Garten",
+  "slug": "mein-schoener-garten",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "MILU",
+  "slug": "milu",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Myphotobook",
+  "slug": "myphotobook",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Narwal",
+  "slug": "narwal",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "NewShades",
+  "slug": "newshades",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "NO BRAND",
+  "slug": "no-brand",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "NORDLUX",
+  "slug": "nordlux",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "NORLÄNDER",
+  "slug": "norlaender",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Petite Amélie",
+  "slug": "petite-amelie",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "PHILIPS",
+  "slug": "philips",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "POCO",
+  "slug": "poco",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "POINT VIRGULE",
+  "slug": "point-virgule",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "PosterXXL",
+  "slug": "posterxxl",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "PRINCESS",
+  "slug": "princess",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Procter & Gamble Vorteils-Shop",
+  "slug": "procter-gamble-vorteils-shop",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "QUANTOOL",
+  "slug": "quantool",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "REISENTHEL",
+  "slug": "reisenthel",
+  "kategorien": [
+   "Home & Living",
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "roba",
+  "slug": "roba",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "ROBERT THOMAS",
+  "slug": "robert-thomas",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "ROBOROCK",
+  "slug": "roborock",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "RÖSLE",
+  "slug": "roesle",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "ROTHO",
+  "slug": "rotho",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Saal Digital",
+  "slug": "saal-digital",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Sallys Shop",
+  "slug": "sallys-shop",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "SEVERIN",
+  "slug": "severin",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "SKIL",
+  "slug": "skil",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "SMEG",
+  "slug": "smeg",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "SOLO STOVE",
+  "slug": "solo-stove",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Soltako",
+  "slug": "soltako",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Stanley 1913",
+  "slug": "stanley-1913",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "STEAMERY",
+  "slug": "steamery",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "STEBA",
+  "slug": "steba",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "STELTON",
+  "slug": "stelton",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "STIHL",
+  "slug": "stihl",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "TADO",
+  "slug": "tado",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "TALBOT-TORRO",
+  "slug": "talbot-torro",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Tchibo",
+  "slug": "tchibo",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "TEFAL",
+  "slug": "tefal",
+  "kategorien": [
+   "Home & Living",
+   "Sport"
+  ]
+ },
+ {
+  "name": "TEMPUR",
+  "slug": "tempur",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "TOMADO",
+  "slug": "tomado",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Tramontina",
+  "slug": "tramontina",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Transporo",
+  "slug": "transporo",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Vileda",
+  "slug": "vileda",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "VistaPrint",
+  "slug": "vistaprint",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "VOSSEN",
+  "slug": "vossen",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "WALRA",
+  "slug": "walra",
+  "kategorien": [
+   "Home & Living",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "WERA",
+  "slug": "wera",
+  "kategorien": [
+   "Home & Living",
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "WhiteWall",
+  "slug": "whitewall",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Wickey",
+  "slug": "wickey",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "WMF",
+  "slug": "wmf",
+  "kategorien": [
+   "Home & Living"
+  ]
+ },
+ {
+  "name": "Allane",
+  "slug": "allane",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Autohaus24",
+  "slug": "autohaus24",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Automobilclub von Deutschland",
+  "slug": "automobilclub-von-deutschland",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Avis",
+  "slug": "avis",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Budget",
+  "slug": "budget",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "carVertical",
+  "slug": "carvertical",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Circle K DE",
+  "slug": "circle-k-de",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Deutsche Bahn DE",
+  "slug": "deutsche-bahn-de",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "DUNLOP",
+  "slug": "dunlop",
+  "kategorien": [
+   "Mobilität",
+   "Sport"
+  ]
+ },
+ {
+  "name": "ebike-24.com",
+  "slug": "ebike-24-com",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "FINN",
+  "slug": "finn",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "FlixBus",
+  "slug": "flixbus",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Geld für eAuto",
+  "slug": "geld-fuer-eauto",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "instamotion",
+  "slug": "instamotion",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "LIME",
+  "slug": "lime",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Maxi-Cosi",
+  "slug": "maxi-cosi",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "MeinAuto.de",
+  "slug": "meinauto-de",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "MICRO",
+  "slug": "micro",
+  "kategorien": [
+   "Mobilität",
+   "Sport"
+  ]
+ },
+ {
+  "name": "Ollo Bikes",
+  "slug": "ollo-bikes",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Reifen24.de",
+  "slug": "reifen24-de",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Shell",
+  "slug": "shell",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Sixt",
+  "slug": "sixt",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "SUMMIT",
+  "slug": "summit",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Sunny Cars",
+  "slug": "sunny-cars",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "Upway",
+  "slug": "upway",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "VAUDE",
+  "slug": "vaude",
+  "kategorien": [
+   "Mobilität",
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "VMAX",
+  "slug": "vmax",
+  "kategorien": [
+   "Mobilität"
+  ]
+ },
+ {
+  "name": "11teamsports",
+  "slug": "11teamsports",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Sport"
+  ]
+ },
+ {
+  "name": "ADIDAS",
+  "slug": "adidas",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Sport"
+  ]
+ },
+ {
+  "name": "AMERICAN TOURISTER",
+  "slug": "american-tourister",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "ARMEDANGELS",
+  "slug": "armedangels",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "ASICS",
+  "slug": "asics",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Sport"
+  ]
+ },
+ {
+  "name": "Aspinal of London",
+  "slug": "aspinal-of-london",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "AVIATOR Wallets",
+  "slug": "aviator-wallets",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Avocadostore",
+  "slug": "avocadostore",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Babista",
+  "slug": "babista",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "babymarkt",
+  "slug": "babymarkt",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Bär Schuhe",
+  "slug": "baer-schuhe",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Birkenstock Professional",
+  "slug": "birkenstock-professional",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Blutsgeschwister",
+  "slug": "blutsgeschwister",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Boden",
+  "slug": "boden",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "bugatti",
+  "slug": "bugatti",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "BUILT FOR ATHLETES",
+  "slug": "built-for-athletes",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "BURKELY",
+  "slug": "burkely",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "CASTELIJN & BEERENS",
+  "slug": "castelijn-beerens",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Columbia Sportswear",
+  "slug": "columbia-sportswear",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Sport"
+  ]
+ },
+ {
+  "name": "Crocs",
+  "slug": "crocs",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "DILLING",
+  "slug": "dilling",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "DreiMaster",
+  "slug": "dreimaster",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "EASTPAK",
+  "slug": "eastpak",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Eterna",
+  "slug": "eterna",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Faina",
+  "slug": "faina",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "FARE",
+  "slug": "fare",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "FESTINA",
+  "slug": "festina",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Fielmann",
+  "slug": "fielmann",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "FIGURETTA",
+  "slug": "figuretta",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Fitz & Huxley",
+  "slug": "fitz-huxley",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "GREGORY",
+  "slug": "gregory",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Hatstore",
+  "slug": "hatstore",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Hemden.de",
+  "slug": "hemden-de",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "ICEBOUND",
+  "slug": "icebound",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "IMPACKT",
+  "slug": "impackt",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "IZIA",
+  "slug": "izia",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "J. Lindeberg",
+  "slug": "j-lindeberg",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "JAN VANDERSTORM",
+  "slug": "jan-vanderstorm",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Kapten & Son",
+  "slug": "kapten-son",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "KUHN Maßkonfektion",
+  "slug": "kuhn-masskonfektion",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Lands' End",
+  "slug": "lands-end",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "LERROS",
+  "slug": "lerros",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "LIEBESKIND BERLIN",
+  "slug": "liebeskind-berlin",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "LIEBESKIND BERLIN TIME & JEWEL",
+  "slug": "liebeskind-berlin-time-jewel",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Lipault",
+  "slug": "lipault",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "LORUS",
+  "slug": "lorus",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "LOTUS",
+  "slug": "lotus",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "misterspex DE",
+  "slug": "misterspex-de",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Mo",
+  "slug": "mo",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "MONTBLANC",
+  "slug": "montblanc",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "myMO",
+  "slug": "mymo",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "NANA KAY",
+  "slug": "nana-kay",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "NIKE",
+  "slug": "nike",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "OTAZU",
+  "slug": "otazu",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Outletcity Metzingen",
+  "slug": "outletcity-metzingen",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Sport"
+  ]
+ },
+ {
+  "name": "OVERKILL",
+  "slug": "overkill",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Paper & Sons",
+  "slug": "paper-sons",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "PAUL HEWITT",
+  "slug": "paul-hewitt",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Personalshop",
+  "slug": "personalshop",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Picard",
+  "slug": "picard",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "PUMA",
+  "slug": "puma",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Sport"
+  ]
+ },
+ {
+  "name": "S.OLIVER",
+  "slug": "s-oliver",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "SALEWA",
+  "slug": "salewa",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Sport"
+  ]
+ },
+ {
+  "name": "SAMSONITE",
+  "slug": "samsonite",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "SCHILDKRÖT",
+  "slug": "schildkroet",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Sport"
+  ]
+ },
+ {
+  "name": "Schmuddelwedda",
+  "slug": "schmuddelwedda",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "SECRID",
+  "slug": "secrid",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "SEIKO",
+  "slug": "seiko",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Shirtinator",
+  "slug": "shirtinator",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "SIF JAKOBS",
+  "slug": "sif-jakobs",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "SportScheck",
+  "slug": "sportscheck",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Sport"
+  ]
+ },
+ {
+  "name": "SPREADSHIRT",
+  "slug": "spreadshirt",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Suri Frey",
+  "slug": "suri-frey",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "SWAROVSKI",
+  "slug": "swarovski",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "TATONKA",
+  "slug": "tatonka",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "The Female Company",
+  "slug": "the-female-company",
+  "kategorien": [
+   "Mode & Accessoires",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "THOMAS SABO",
+  "slug": "thomas-sabo",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "THULE",
+  "slug": "thule",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "TITAN",
+  "slug": "titan",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "TRAVELITE",
+  "slug": "travelite",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "TUMI",
+  "slug": "tumi",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "Usha",
+  "slug": "usha",
+  "kategorien": [
+   "Mode & Accessoires"
+  ]
+ },
+ {
+  "name": "ACON",
+  "slug": "acon",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "AVENTO",
+  "slug": "avento",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "BACKLAXX",
+  "slug": "backlaxx",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "BowFlex",
+  "slug": "bowflex",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Brandl Nutrition",
+  "slug": "brandl-nutrition",
+  "kategorien": [
+   "Sport",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Fairnatural",
+  "slug": "fairnatural",
+  "kategorien": [
+   "Sport",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "fitnessRAUM.de",
+  "slug": "fitnessraum-de",
+  "kategorien": [
+   "Sport",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "FormMed HealthCare",
+  "slug": "formmed-healthcare",
+  "kategorien": [
+   "Sport",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "GEAR2PLAY",
+  "slug": "gear2play",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Gymondo",
+  "slug": "gymondo",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Hammer Sport Fitnessgeräte",
+  "slug": "hammer-sport-fitnessgeraete",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Ironmaster",
+  "slug": "ironmaster",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Johnson Fitness & Wellness",
+  "slug": "johnson-fitness-wellness",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Matchu Sports",
+  "slug": "matchu-sports",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Molten",
+  "slug": "molten",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Nordisk",
+  "slug": "nordisk",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Online-Prävention by fitnessRAUM.de",
+  "slug": "online-praevention-by-fitnessraum-de",
+  "kategorien": [
+   "Sport",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Orthomol Sport",
+  "slug": "orthomol-sport",
+  "kategorien": [
+   "Sport",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Plankpad",
+  "slug": "plankpad",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Power System",
+  "slug": "power-system",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "PUSU Ski",
+  "slug": "pusu-ski",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "SLAZENGER",
+  "slug": "slazenger",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Sportstech",
+  "slug": "sportstech",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Tunturi",
+  "slug": "tunturi",
+  "kategorien": [
+   "Sport",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "WAIMEA",
+  "slug": "waimea",
+  "kategorien": [
+   "Sport"
+  ]
+ },
+ {
+  "name": "Zenspotting",
+  "slug": "zenspotting",
+  "kategorien": [
+   "Sport",
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "7Mind",
+  "slug": "7mind",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "asambeauty",
+  "slug": "asambeauty",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "BABOR",
+  "slug": "babor",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "BetterHelp",
+  "slug": "betterhelp",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Biogena Sports",
+  "slug": "biogena-sports",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "BIOTHERM",
+  "slug": "biotherm",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "BIOTHERM HOMME",
+  "slug": "biotherm-homme",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "CALVIN KLEIN",
+  "slug": "calvin-klein",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Cellavent",
+  "slug": "cellavent",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "CERRUTI",
+  "slug": "cerruti",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "CHLOÉ",
+  "slug": "chloe",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Clinique",
+  "slug": "clinique",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "DAVIDOFF",
+  "slug": "davidoff",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Denttabs",
+  "slug": "denttabs",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "DIOR",
+  "slug": "dior",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Doctor Mi",
+  "slug": "doctor-mi",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "DOLCE & GABBANA",
+  "slug": "dolce-gabbana",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "elaire",
+  "slug": "elaire",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Frank Juice",
+  "slug": "frank-juice",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "GIORGIO ARMANI",
+  "slug": "giorgio-armani",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "happybrush",
+  "slug": "happybrush",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "HEAT IT",
+  "slug": "heat-it",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "HERMES",
+  "slug": "hermes",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "hiPURE",
+  "slug": "hipure",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "HUGO BOSS",
+  "slug": "hugo-boss",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Impress",
+  "slug": "impress",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "InnoNature",
+  "slug": "innonature",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "JIL SANDER",
+  "slug": "jil-sander",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "JOOP!",
+  "slug": "joop",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Juniper",
+  "slug": "juniper",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Kale & Me",
+  "slug": "kale-me",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "KLIER",
+  "slug": "klier",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "LANCÔME",
+  "slug": "lancome",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Lavera",
+  "slug": "lavera",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Layzin Skin",
+  "slug": "layzin-skin",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Liebscher & Bracht",
+  "slug": "liebscher-bracht",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Liebscher & Bracht App",
+  "slug": "liebscher-bracht-app",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Loop Earplugs",
+  "slug": "loop-earplugs",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "MEDISANA",
+  "slug": "medisana",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "NARS",
+  "slug": "nars",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "NUXE",
+  "slug": "nuxe",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Orthomol Shop",
+  "slug": "orthomol-shop",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "PACO RABANNE",
+  "slug": "paco-rabanne",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Pink Box",
+  "slug": "pink-box",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "RITUALS",
+  "slug": "rituals",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "RIVERDALE",
+  "slug": "riverdale",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "SedVital",
+  "slug": "sedvital",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "SHISEIDO",
+  "slug": "shiseido",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Shop-Apotheke",
+  "slug": "shop-apotheke",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "SILK'N",
+  "slug": "silkn",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "TOM FORD",
+  "slug": "tom-ford",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Wellcard",
+  "slug": "wellcard",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "YAZIO",
+  "slug": "yazio",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Yves Rocher",
+  "slug": "yves-rocher",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "YVES SAINT LAURENT",
+  "slug": "yves-saint-laurent",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ },
+ {
+  "name": "Zahnheld",
+  "slug": "zahnheld",
+  "kategorien": [
+   "Health & Beauty"
+  ]
+ }
+]

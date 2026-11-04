@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" class="vp-theme" data-bg="image" data-logo="incent" data-nav-tone="light" data-btn-tone="dark">
+<html lang="de" class="vp-theme" data-thema="beauty" data-bg="image" data-logo="incent" data-nav-tone="light" data-btn-tone="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -714,6 +714,63 @@ strong { font-weight: 700; }
 .world b { font-size: 1.15rem; line-height: 1.15; }
 .world small { font-size: .92rem; color: var(--ink-3); }
 
+/* ---------- Allgemeine Fassung: alle 15 Welten (Zielgruppe wählen → passende Welten leuchten auf) ---------- */
+.fit-aud--all { grid-template-columns: 300px 1fr; gap: 24px; }
+.fit-aud--all .aud { padding: 22px; gap: 12px; }
+.fit-aud--all .aud__list { gap: 9px; }
+.fit-aud--all .aud__btn { padding: 11px 14px; gap: 12px; }
+.fit-aud--all .aud__btn .i { width: 38px; height: 38px; padding: 9px; }
+.fit-aud--all .aud__btn b { font-size: 1.1rem; }
+.fit-aud--all .aud__btn small { font-size: .9rem; }
+.fit-aud--all .cats-world { padding: 20px 22px 22px; }
+.fit-aud--all .cats-world__head { margin-bottom: 12px; }
+.world--all { grid-template-columns: repeat(5, 1fr); grid-auto-rows: 1fr; gap: 10px; }
+.world--all li { gap: 2px; padding: 12px 14px 14px; border-radius: 16px; transition-delay: calc(var(--wi, 0) * 30ms); }
+.world--all .world__icon { width: 36px; height: 36px; margin-bottom: 8px; border-radius: 11px; }
+.world--all .world__icon .i { width: 18px; height: 18px; }
+.world--all b { font-size: 1.04rem; line-height: 1.12; }
+.world--all small { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: .84rem; line-height: 1.25; }
+.world--all li::after { right: auto; left: 38px; top: 8px; width: 18px; height: 18px; background-size: 11px; transition-delay: calc(.12s + var(--wi, 0) * 30ms); }
+.world__badge { position: absolute; right: 10px; top: 12px; padding: 3px 8px; border-radius: 99px; font-style: normal; font-size: .76rem; font-weight: 700; white-space: nowrap; color: var(--royal); background: rgba(43, 75, 255, .09); transition: color .5s, background-color .5s; }
+.world li.is-on .world__badge { color: #fff; background: var(--grad-btn); }
+
+/* ---------- Allgemeine Fassung: Top-Deals (große, wechselnde Deals) ---------- */
+.head--deals { grid-template-columns: 1fr auto; }
+.spot { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; perspective: 1600px; }
+.spot__slot { position: relative; height: 214px; }
+.spot__card { position: absolute; inset: 0; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px 20px 18px; border-radius: 22px; color: #fff; background: #0b1030; box-shadow: 0 30px 60px -32px rgba(0, 30, 90, .75); opacity: 0; transform: rotateX(-16deg) translateY(26px) scale(.95); transform-origin: 50% 100%; transition: opacity .7s var(--ease), transform 1.1s var(--ease); pointer-events: none; }
+.spot__card.is-on { opacity: 1; transform: none; pointer-events: auto; transition-delay: .18s; }
+.spot__card.is-out { opacity: 0; transform: rotateX(16deg) translateY(-20px) scale(.95); transition-delay: 0s; }
+.spot__card .dimg { position: absolute; inset: 0; z-index: -2; background-position: center; background-size: cover; background-repeat: no-repeat; transform: scale(1.04); }
+.is-active .spot__card.is-on .dimg { animation: spot-zoom 10s ease-in-out infinite alternate; }
+@keyframes spot-zoom { to { transform: scale(1.14) translate3d(-2%, -2%, 0); } }
+.spot__shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(6, 10, 40, 0) 22%, rgba(6, 10, 40, .55) 55%, rgba(6, 10, 40, .9) 100%); }
+.spot__logo { position: absolute; left: 0; top: 14px; display: grid; place-items: center; width: 112px; height: 56px; padding: 8px 12px; border-radius: 0 10px 10px 0; background: #fff; box-shadow: 0 10px 24px -14px rgba(0, 0, 0, .6); }
+.spot__logo .logo { width: 100%; height: 100%; }
+.spot__logo .vp-deal__logo-text { font-size: 1rem; font-weight: 700; color: #222; text-align: center; line-height: 1.05; }
+.spot__cat { position: absolute; right: 12px; top: 14px; padding: 5px 11px; border-radius: 99px; font-size: .8rem; font-weight: 600; letter-spacing: .02em; color: #fff; background: rgba(6, 10, 40, .5); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25); }
+.spot__val { display: flex; align-items: baseline; gap: 6px; line-height: .9; text-shadow: 0 4px 24px rgba(0, 0, 0, .35); }
+.spot__val small { align-self: center; max-width: 3.2em; font-size: .95rem; font-weight: 700; line-height: 1; text-transform: uppercase; opacity: .92; }
+.spot__val b { font-size: 4.4rem; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.spot__val em { font-style: normal; font-size: 2.3rem; font-weight: 800; }
+.spot__title { margin-top: 6px; font-size: 1.2rem; font-weight: 700; line-height: 1.15; }
+.spot__text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .92rem; opacity: .85; }
+.dealwall--compact { gap: 8px; margin-top: 14px; }
+.dealrow--compact .vdeal.vreal { --u: .66px; width: 232px; }
+.dealrow--compact .vp-deal { height: calc(220 * var(--u)); border-radius: 8px; }
+.dealrow--compact .dealrow__track { gap: 12px; padding: 4px 12px 10px 0; }
+.dealwall--compact + .dealwall__note { margin-top: 6px; }
+
+/* ---------- Allgemeine Fassung: Marken ---------- */
+.cats__cap { margin: 14px 0 -6px; font-size: .88rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.marquee + .marquee { margin-top: 10px; }
+.marquee--rev .marquee__track { animation-direction: reverse; }
+@media (orientation: landscape) and (min-width: 900px) and (min-height: 480px) {
+  [data-thema="allgemein"] .lux li { height: 90px; padding: 18px 24px; }
+  [data-thema="allgemein"] .marquee li { height: 64px; padding: 13px 20px; }
+  [data-thema="allgemein"] .logo-rows { margin-top: 4px; }
+}
+
 /* ---------- Ein Verkauf, zwei Gewinner ---------- */
 .ww-stage { perspective: 1600px; }
 .ww-cards { position: relative; width: 300px; height: 404px; }
@@ -1253,6 +1310,26 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
   .tabs::-webkit-scrollbar { display: none; }
   .tab { flex: none; height: 42px; padding: 0 16px; font-size: 1rem; }
   .dealwall { margin-inline: -18px; }
+  .fit-aud.fit-aud--all { grid-template-columns: minmax(0, 1fr); }
+  .fit-aud--all .cats-world { padding: 18px 14px 16px; }
+  .world.world--all { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .world.world--all li { display: grid; grid-template-columns: 32px minmax(0, 1fr); grid-template-rows: auto auto; align-content: center; column-gap: 9px; row-gap: 3px; padding: 10px; }
+  .world.world--all .world__icon { grid-row: 1 / span 2; width: 32px; height: 32px; border-radius: 10px; }
+  .world.world--all b { grid-column: 2; font-size: .92rem; line-height: 1.12; hyphens: auto; overflow-wrap: break-word; }
+  .world.world--all small { display: none; }
+  .world.world--all li::after { left: 30px; right: auto; top: 4px; }
+  .world.world--all .world__badge { position: static; grid-column: 2; justify-self: start; margin: 0; padding: 2px 7px; font-size: .7rem; }
+  .head--deals { grid-template-columns: 1fr; }
+  .spot { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .spot__slot { height: 168px; }
+  .spot__card { padding: 12px 14px 14px; border-radius: 16px; }
+  .spot__logo { width: 84px; height: 42px; top: 10px; }
+  .spot__cat { display: none; }
+  .spot__val b { font-size: 2.6rem; }
+  .spot__val em { font-size: 1.5rem; }
+  .spot__val small { font-size: .7rem; }
+  .spot__title { font-size: 1rem; }
+  .spot__text { display: none; }
   .dealrow .vdeal { width: 280px; }
   .fit-aud { grid-template-columns: 1fr; gap: 16px; }
   .world { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -1389,6 +1466,13 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
 <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></symbol>
 <symbol id="i-reels" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M3 8h18M8 3l3 5M14 3l3 5"/><path d="m10 11.5 4.5 2.5-4.5 2.5z"/></symbol>
 <symbol id="i-plus-square" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.86a10 10 0 0 1 14 0"/><path d="M8.5 16.43a5 5 0 0 1 7 0"/></symbol>
+<symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9"/><path d="M2 20h20l-2-4H4z"/></symbol>
+<symbol id="i-ticket" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><path d="M13 5v2M13 11v2M13 17v2"/></symbol>
+<symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></symbol>
+<symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0z"/></symbol>
 </svg>
 
 
@@ -1559,14 +1643,18 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
       <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-percent"/></svg></span><span class="perk__num">02</span><h3>Deine Community spart</h3><p>Im Schnitt <strong>27&nbsp;%</strong> unter dem regulären Preis, bei vielen Produkten deutlich mehr. Ein Vorteil, den sie nur über Dich bekommt.</p></li>
       <li class="perk" data-anim="flip"><span class="perk__icon"><svg class="i" aria-hidden="true"><use href="#i-coins"/></svg></span><span class="perk__num">03</span><h3>Du verdienst mit</h3><p><strong>70&nbsp;% vom Gewinn</strong> jeder Bestellung in Deinem Shop. Ohne Lager, ohne Versand, ohne eigenes Risiko – und 100&nbsp;% kostenlos.</p></li>
     </ol>
+
     <dl class="stats" data-anim>
       <div class="stat"><dt>Marken in Health &amp; Beauty</dt><dd><span data-count="80">80</span><span class="stat__suffix">+</span></dd></div>
       <div class="stat"><dt>Beauty- &amp; Health-Produkte</dt><dd><span data-count="250">250</span><span class="stat__suffix">+</span></dd></div>
       <div class="stat"><dt>unter dem regulären Preis</dt><dd><span class="stat__pre">bis</span> <span data-count="71">71</span><span class="stat__suffix">&nbsp;%</span></dd></div>
       <div class="stat"><dt>exklusive Partner-Deals</dt><dd><span data-count="46">46</span></dd></div>
     </dl>
+
   </div></div></div></div>
 </section>
+
+
 
 <section class="slide slide--tint" id="marken" data-act="1" data-snap data-label="Markenvielfalt">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--2"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
@@ -1602,6 +1690,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
   </div></div></div></div>
 </section>
 
+
 <section class="slide slide--tint" id="deals" data-act="1" data-snap data-label="Partner-Deals">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--2"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head head--tight">
@@ -1618,6 +1707,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
     <p class="dealwall__note" data-anim><svg class="i i--sm" aria-hidden="true"><use href="#i-tag"/></svg><span>Rabatte direkt bei Top-Marken – genau so, wie sie heute auf vorteile.net stehen. Portalweit kommen <strong>70+ Partnergutscheine</strong> dazu, neue Deals laufend.</span></p>
   </div></div></div></div>
 </section>
+
 
 <section class="slide" id="edits" data-act="1" data-snap data-label="Deine Edits">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--1"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
@@ -1662,6 +1752,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
   </div></div></div></div>
 </section>
 
+
 <section class="slide slide--tint" id="sortiment" data-act="1" data-snap data-label="Mehr als Beauty">
   <div class="shell" data-shell><div class="bg" aria-hidden="true"><i class="orb orb--2"></i><i class="orb orb--3"></i></div><div class="frame"><div class="frame__in"><div class="content">
     <header class="head head--tight">
@@ -1685,18 +1776,19 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
         <p class="cats-world__head"><span>Sortiment in <strong data-bind="shop-in">Deinem Shop</strong></span><span class="cats-world__count"><b data-aud-count>4</b> von 8 Welten aktiv</span></p>
         <ul class="world">
           <li data-world="beauty fit life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-sparkles"/></svg></span><b>Health &amp; Beauty</b><small>80+ Marken · Dein Start</small></li>
-          <li data-world="beauty life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-shirt"/></svg></span><b>Fashion &amp; Accessoires</b><small>Mode, Schuhe, Schmuck</small></li>
-          <li data-world="fit"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-dumbbell"/></svg></span><b>Sport &amp; Fitness</b><small>Training, Outdoor, Recovery</small></li>
-          <li data-world="fit family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-cup"/></svg></span><b>Food &amp; Drinks</b><small>Supplements, Genuss</small></li>
-          <li data-world="beauty family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg></span><b>Home &amp; Living</b><small>Interior, Haushalt, Küche</small></li>
-          <li data-world="fit life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg></span><b>Technik &amp; Gadgets</b><small>Audio, Smart Home, Wearables</small></li>
-          <li data-world="family life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg></span><b>Reisen &amp; Erlebnisse</b><small>Hotels, Wellness, Events</small></li>
-          <li data-world="family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-heart"/></svg></span><b>Kids &amp; Family</b><small>Spielzeug, Baby, Schule</small></li>
+          <li data-world="beauty life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-shirt"/></svg></span><b>Mode &amp; Accessoires</b><small>Mode, Schuhe, Schmuck</small></li>
+          <li data-world="fit"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-dumbbell"/></svg></span><b>Sport</b><small>Sportmode, Home-Gym, Outdoor</small></li>
+          <li data-world="fit family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-utensils"/></svg></span><b>Essen &amp; Trinken</b><small>Kaffee, Kochen, Food &amp; Wine</small></li>
+          <li data-world="beauty family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg></span><b>Home &amp; Living</b><small>Wohnen, Garten, Haushalt</small></li>
+          <li data-world="fit life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-laptop"/></svg></span><b>Technik</b><small>Smartphones, Audio, Laptops</small></li>
+          <li data-world="family life"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-plane"/></svg></span><b>Reisen</b><small>Pauschalreisen, Hotels, Kreuzfahrten</small></li>
+          <li data-world="family"><span class="world__icon"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg></span><b>Freizeit &amp; Familie</b><small>Spielwaren, Geschenke, Tierbedarf</small></li>
         </ul>
       </div>
     </div>
   </div></div></div></div>
 </section>
+
 
 
 
@@ -1987,7 +2079,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px 
 </main>
 
 <script>
-window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58", "audStart": 0, "defaults": {"followers": 100000, "conv": 0.5, "basket": 75, "btn": "#1c87b8", "nav": "#ffffff"}, "pitch": {"name": "", "farbe": null, "nav": null, "hintergrund": "image", "hintergrundfarbe": null, "hintergrundton": null, "reichweite": null, "logo": null, "slug": "beauty"}, "avgDiscount": 0.2662, "presets": {"blau": "#1c87b8", "rose": "#c0746a", "rosé": "#c0746a", "beere": "#a3245a", "nude": "#a7856b", "salbei": "#5f8a72", "lavendel": "#7e6aa8", "schwarz": "#222222", "weiss": "#ffffff", "weiß": "#ffffff", "puder": "#f8eeea", "creme": "#f4efe8"}};
+window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58", "audStart": 0, "defaults": {"followers": 100000, "conv": 0.5, "basket": 75, "btn": "#1c87b8", "nav": "#ffffff"}, "pitch": {"name": "", "farbe": null, "nav": null, "hintergrund": "image", "hintergrundfarbe": null, "hintergrundton": null, "reichweite": null, "logo": null, "slug": "beauty"}, "avgDiscount": 0.2662, "t": {"topic": "Health & Beauty", "shop": "Beauty-Shop"}, "presets": {"blau": "#1c87b8", "rose": "#c0746a", "rosé": "#c0746a", "beere": "#a3245a", "nude": "#a7856b", "salbei": "#5f8a72", "lavendel": "#7e6aa8", "schwarz": "#222222", "weiss": "#ffffff", "weiß": "#ffffff", "puder": "#f8eeea", "creme": "#f4efe8"}};
 /* INCENT Community-Shop – Pitch Health & Beauty (scroll-gesteuerte Präsentation)
  *
  * Präsentieren: Scrollen, Pfeiltasten ↑ ↓, Bild↑/Bild↓, Leertaste, Pos1/Ende oder Presenter – jede Folie rastet ein.
@@ -2035,6 +2127,7 @@ window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58
   const cents = (v) => Math.round(v * 100 + 1e-6) / 100;
   const params = new URLSearchParams(location.search);
   const RATE = D.rate / 100;
+  const T = D.t || { topic: 'Health & Beauty', shop: 'Beauty-Shop' }; // Texte der Fassung (Thema)
 
   /* Zahl weich auf einen neuen Wert zählen */
   function tween(el, to, fmt, dur = 800, from = el._v ?? to) {
@@ -2129,12 +2222,12 @@ window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58
     $$('[data-bind="slug"]').forEach((el) => { el.textContent = slug; });
     $$('[data-bind="handle"]').forEach((el) => { el.textContent = slug; });
     $$('[data-bind="initial"]').forEach((el) => { el.textContent = (n || 'D').charAt(0).toUpperCase(); });
-    $$('[data-bind="eyebrow"]').forEach((el) => { el.textContent = n ? `Exklusiv für ${n} · Health & Beauty` : 'Community-Shop · Health & Beauty'; });
-    $$('[data-bind="thanks"]').forEach((el) => { el.textContent = n ? `${possessive(n)} Beauty-Shop.` : 'Dein Beauty-Shop.'; });
+    $$('[data-bind="eyebrow"]').forEach((el) => { el.textContent = n ? `Exklusiv für ${n} · ${T.topic}` : `Community-Shop · ${T.topic}`; });
+    $$('[data-bind="thanks"]').forEach((el) => { el.textContent = n ? `${possessive(n)} ${T.shop}.` : `Dein ${T.shop}.`; });
     $$('[data-bind="app"]').forEach((el) => { el.textContent = n ? `${possessive(n)} Shop` : 'Community-Shop'; });
     $$('[data-bind="shop-in"]').forEach((el) => { el.textContent = n ? `${possessive(n)} Shop` : 'Deinem Shop'; });
     $('[data-for-chip]').hidden = !n;
-    document.title = n ? `${possessive(n)} Beauty-Shop · INCENT Community-Shop` : 'Dein eigener Beauty-Shop · INCENT Community-Shop';
+    document.title = n ? `${possessive(n)} ${T.shop} · INCENT Community-Shop` : `Dein eigener ${T.shop} · INCENT Community-Shop`;
     splitHosts.forEach(splitWords); // Überschriften mit Namen neu in Wörter teilen
   }
 
@@ -2538,6 +2631,39 @@ window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58
   }
 
   /* ============================================================ Ein Verkauf, zwei Gewinner: Preisklassen im Wechsel, Verdienst zählt mit */
+  /* ============================================================ Top-Deals (allgemeine Fassung): vier Plätze wechseln reihum */
+  function bindSpotlight() {
+    const slots = $$('[data-spot] .spot__slot');
+    if (!slots.length) return () => {};
+    let timer = 0, on = false, k = 0;
+    const countUp = (card) => {
+      const b = $('[data-spot-num]', card);
+      const n = Number(b.dataset.spotNum);
+      tween(b, n, fmtInt, 1300, Math.round(n * .3));
+    };
+    const turn = () => {
+      const slot = slots[k++ % slots.length];
+      const cards = $$('[data-spot-card]', slot);
+      if (cards.length < 2) return;
+      const i = Math.max(0, cards.findIndex((c) => c.classList.contains('is-on')));
+      const cur = cards[i], next = cards[(i + 1) % cards.length];
+      cur.classList.remove('is-on');
+      cur.classList.add('is-out');
+      setTimeout(() => cur.classList.remove('is-out'), 1000);
+      next.classList.add('is-on');
+      countUp(next);
+    };
+    return (want) => {
+      if (document.hidden) want = false;
+      if (want === on) return;
+      on = want;
+      clearInterval(timer);
+      if (!on) return;
+      slots.forEach((sl) => { const c = $('[data-spot-card].is-on', sl); if (c) countUp(c); });
+      timer = setInterval(turn, reduce ? 6000 : 2400);
+    };
+  }
+
   function bindWinwin() {
     const cards = $$('[data-ww-cards] .ww-card');
     if (!cards.length) return () => {};
@@ -2660,6 +2786,7 @@ window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58
     const edits = bindEdits();
     const audience = bindAudience();
     const winwin = bindWinwin();
+    const spotlight = bindSpotlight();
     const demo = bindDemo();
 
     // gestaffeltes Einblenden: Eyebrow → Überschrift (Wort für Wort) → Inhalte nacheinander
@@ -2862,6 +2989,7 @@ window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58
       if (s.id === 'edits') edits(on);
       if (s.id === 'sortiment') audience(on);
       if (s.id === 'beispiel') winwin(on);
+      if (s.id === 'deals') spotlight(on);
     };
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       const s = e.target;
@@ -2885,6 +3013,7 @@ window.SHOP_DATA = {"rate": 17.5, "share": 70.0, "margin": 25.0, "night": "22:58
       edits(vis && $('#edits').classList.contains('is-active'));
       audience(vis && $('#sortiment').classList.contains('is-active'));
       winwin(vis && $('#beispiel').classList.contains('is-active'));
+      spotlight(vis && !!$('#deals')?.classList.contains('is-active'));
       if (!vis) toasts(false); else onScroll();
     });
 

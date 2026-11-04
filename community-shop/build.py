@@ -3,11 +3,13 @@
 
     python3 build.py
 
-    index.html                  allgemeine Fassung
-    pitches/<slug>/index.html   eine Fassung je Eintrag in data/pitches.json
+    index.html                  Startseite: allgemeine Fassung über alle Kategorien (Thema „allgemein“)
+    pitches/<slug>/index.html   eine Fassung je Eintrag in data/pitches.json (Thema „beauty“ oder „allgemein“)
                                 (online: https://dinosbs.github.io/pitch/<slug>/)
 
 Quellen: src/template.html + src/style.css + src/app.js + src/icons.svg + data/*.json + assets/*
+Thema „beauty“: data/*.json + assets/* (Health & Beauty). Thema „allgemein“: data/general/*.json + assets/general/*
+(alle gespeicherten Kategorien, siehe tools/extract_all.py), fehlende Bilder fallen auf assets/* zurück.
 Design: INCENT-Relaunch (github.com/Dinosbs/incentde). Die Shop-Mockups sind dem echten
 Vorteilsportal (vorteile.net) nachgebaut. Nur Standardbibliothek, keine Abhängigkeiten.
 """
@@ -27,7 +29,8 @@ SRC, DATA, ASSETS = ROOT / "src", ROOT / "data", ROOT / "assets"
 
 SHARE = 70                    # Beteiligung am Gewinn in Prozent (je Pitch: "beteiligung")
 MARGIN = 25                   # Durchschnittsmarge pro Produkt in Prozent (je Pitch: "marge")
-SNAPSHOT_DATE = "01.11.2026"  # Stand der Preise aus der Shop-Speicherung
+SNAPSHOT_DATE = "01.11.2026"  # Stand der Preise aus der Shop-Speicherung (Health & Beauty)
+SNAPSHOT_GEN = "04.11.2026"   # Stand der Kategorien-Speicherungen (allgemeine Fassung)
 RESERVED = {"assets", "data", "src", "tools", "screenshots", "pitches", "favicon.png", "index.html"}
 
 # Farben im Gestalter (Buttonfarbe = Akzentfarbe des Portals, wie --btn auf vorteile.net)
@@ -111,16 +114,35 @@ catalog = json.loads((DATA / "catalog.json").read_text(encoding="utf-8"))
 deals = {d["title"]: d for d in json.loads((DATA / "deals.json").read_text(encoding="utf-8"))}
 brands = json.loads((DATA / "brands.json").read_text(encoding="utf-8"))
 sel = json.loads((DATA / "selection.json").read_text(encoding="utf-8"))
+SEL_BEAUTY = sel  # render() schaltet sel je Fassung um (allgemein: data/general/selection.json)
 by_key = {(norm(p["brand"]), norm(p["title"])): p for p in catalog}
 brand_names = {b["slug"]: b["name"] for b in brands}
+
+GEN, G_ASSETS = DATA / "general", ASSETS / "general"
+
+
+def _load(path: Path, default):
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else default
+
+
+gen_catalog = _load(GEN / "catalog.json", [])
+gen_deals = {d["title"]: d for d in _load(GEN / "deals.json", [])}
+gen_brands = _load(GEN / "brands.json", [])
+gen_tree = _load(GEN / "kategorien.json", [])
+gen_sel = _load(GEN / "selection.json", {})
+gen_by_key = {(norm(p["brand"]), norm(p["title"])): p for p in gen_catalog}
+gen_brand_slug = {b["name"]: b["slug"] for b in gen_brands}
+gen_brand_names = {b["slug"]: b["name"] for b in gen_brands}
 
 used_products: set[str] = set()
 used_deals: set[str] = set()
 used_logos: set[str] = set()
+used_dlogos: set[str] = set()
 
 
 def product(pair) -> dict:
-    p = by_key[(norm(pair[0]), norm(pair[1]))]
+    key = (norm(pair[0]), norm(pair[1]))
+    p = gen_by_key[key] if CUR["theme"] == "allgemein" and key in gen_by_key else by_key[key]
     used_products.add(p["slug"])
     return p
 
@@ -130,9 +152,14 @@ def find(brand: str, which: str = "hero", index: int = 0) -> dict:
 
 
 def deal(title: str) -> dict:
-    d = deals[title]
+    d = gen_deals[title] if CUR["theme"] == "allgemein" else deals[title]
     used_deals.add(d["slug"])
     return d
+
+
+def dtext(title: str) -> str | None:
+    """Kurzer Deal-Text aus der Beauty-Auswahl; die allgemeine Fassung nutzt den Text aus dem Portal."""
+    return None if CUR["theme"] == "allgemein" else DEAL_TEXT.get(title)
 
 
 def logo(slug: str, label: str = "") -> str:
@@ -143,6 +170,8 @@ def logo(slug: str, label: str = "") -> str:
 
 discounts = [(p["uvp"] - p["price"]) / p["uvp"] for p in catalog if p["uvp"]]
 AVG_DISCOUNT = sum(discounts) / len(discounts)
+_gd = [(p["uvp"] - p["price"]) / p["uvp"] for p in gen_catalog if p["uvp"]]
+AVG_DISCOUNT_GEN = sum(_gd) / len(_gd) if _gd else AVG_DISCOUNT
 
 
 # --------------------------------------------------------------- vorteile.net-Bausteine
@@ -165,22 +194,42 @@ def vp_product(p: dict) -> str:
             f'<span class="vp-product__price"><strong>{eur(p["price"])}</strong>{off}</span>{old}</span>')
 
 
+def deal_logo(d: dict, title: str) -> str:
+    """Logo im Deal: allgemeine Fassung = Logo aus der Deal-Kachel des Portals, sonst Markenlogo oder Schriftzug."""
+    if CUR["theme"] == "allgemein":
+        if any((G_ASSETS / "dlogos" / f"{d['slug']}.{e}").exists() for e in ("png", "svg")):
+            used_dlogos.add(d["slug"])
+            return f'<span class="logo dl-{d["slug"]}" role="img" aria-label="{esc(title)}"></span>'
+        if title in gen_sel.get("dlogo_marke", {}):
+            return logo(gen_sel["dlogo_marke"][title], title)
+        return f'<b class="vp-deal__logo-text">{esc(title)}</b>'
+    slug = DEAL_LOGOS.get(title)
+    return logo(slug, title) if slug else f'<b class="vp-deal__logo-text">{esc(title)}</b>'
+
+
+def deal_name(title: str) -> str:
+    return title.replace(" | ", " ")
+
+
 def vp_deal(title: str, text: str | None = None) -> str:
     d = deal(title)
-    m = re.match(r"(bis zu|über)?\s*(.*)", d["discount"] or "")
+    disc = d["discount"] or ""
+    if CUR["theme"] == "allgemein":
+        short = re.match(r"((?:bis zu|über)\s*)?([\d.,]+\s*(?:%|€))", disc)
+        disc = (short.group(1) or "") + short.group(2) if short else disc
+    m = re.match(r"(bis zu|über)?\s*(.*)", disc)
     pre = "<small>bis<br>zu</small>" if m.group(1) == "bis zu" else (f"<small>{esc(m.group(1))}</small>" if m.group(1) else "")
-    slug = DEAL_LOGOS.get(title)
-    logo_html = logo(slug, title) if slug else f'<b class="vp-deal__logo-text">{esc(title)}</b>'
+    logo_html = deal_logo(d, title)
     return (f'<span class="vp-deal"><span class="dimg di-{d["slug"]}"></span>'
             f'<span class="vp-deal__logo">{logo_html}</span>'
             f'<span class="vp-deal__badge">{pre}{esc(m.group(2).replace(" ", ""))}</span>'
-            f'<span class="vp-deal__info"><b>{esc(title)}</b><span>{esc(text or d["text"] or "")}</span></span></span>')
+            f'<span class="vp-deal__info"><b>{esc(deal_name(title))}</b><span>{esc(text or d["text"] or "")}</span></span></span>')
 
 
 # --------------------------------------------------------------- Durchmischen je Fassung
 # Persönliche Fassungen sollen nicht „vom Band“ aussehen: Reihenfolgen und Auswahl werden je slug gewürfelt
 # (fester Startwert → stabil bei jedem Build). Die allgemeine Fassung bleibt in der kuratierten Reihenfolge.
-CUR = {"slug": None, "i": 0}
+CUR = {"slug": None, "i": 0, "theme": "beauty"}
 
 
 def mixed(seq, salt: str) -> list:
@@ -230,9 +279,9 @@ def preview_sets(pitches: list[dict]) -> dict[str, dict]:
     taken_deals = set(DEFAULT_PREVIEW["deals"])
     beauty = ["Rituals Cosmetics", "Doctor Mi", "The Female Company", "Yves Rocher", "LAYZIN", "lavera", "KLIER", "Philips"]
     deal_pool = [t for t in beauty if t not in taken_deals]
-    general = {(norm(b), norm(t)) for b, t in sel["hero"]}
+    general = {(norm(b), norm(t)) for b, t in SEL_BEAUTY["hero"]}
     prod_pool = []
-    for e in sel["edits"]:
+    for e in SEL_BEAUTY["edits"]:
         for b, t in e["items"]:
             key = (norm(b), norm(t))
             if key not in general and key not in {(norm(x), norm(y)) for x, y in prod_pool}:
@@ -241,7 +290,7 @@ def preview_sets(pitches: list[dict]) -> dict[str, dict]:
     rng.shuffle(prod_pool)
     out = {}
     for pitch in pitches:
-        if not pitch.get("name"):
+        if not pitch.get("name") or pitch.get("thema", "beauty") != "beauty":
             continue
         deals_ = [deal_pool.pop() for _ in range(4)]
         prods, brands_ = [], set()
@@ -256,6 +305,10 @@ def preview_sets(pitches: list[dict]) -> dict[str, dict]:
     return out
 
 
+GEN_PREVIEW = {"deals": gen_sel.get("preview", {}).get("deals", []),
+               "products": gen_sel.get("preview", {}).get("products", [])}
+
+
 def pv_products(pv: dict) -> list[dict]:
     items = pv["products"]
     if items and isinstance(items[0], tuple):  # allgemeine Fassung: Marke + Index in sel["hero"]
@@ -265,6 +318,51 @@ def pv_products(pv: dict) -> list[dict]:
 
 VP_CATS = ('<i>Highlights</i><i>NEU</i><i class="is-on">Health &amp; Beauty</i><i>Düfte</i><i>Skincare</i>'
            '<i>Beauty-Tech</i><i>Haare</i><i>Wellness</i><i class="is-on">Alle Kategorien +</i>')
+VP_CATS_GEN = ('<i class="is-on">Highlights</i><i>NEU</i><i>Mobilfunk &amp; Internet</i><i>Mobilität</i><i>Technik</i>'
+               '<i>Health &amp; Beauty</i><i>Home &amp; Living</i><i>Reisen</i><i class="is-on">Alle Kategorien +</i>')
+VPM_CATS = {"beauty": '<i class="is-on">Health &amp; Beauty</i><i>Düfte</i><i>Skincare</i><i>Beauty-Tech</i>',
+            "allgemein": '<i class="is-on">Highlights</i><i>Technik</i><i>Reisen</i><i>Mode</i><i>Sport</i>'}
+BEST_OF = {"beauty": "Best of Health &amp; Beauty", "allgemein": "Best of the Best"}
+
+
+THEMES = {
+    "beauty": {
+        "page_title": "Beauty-Shop", "shop": "Beauty-Shop", "topic": "Health &amp; Beauty",
+        "meta": "Dein eigener Beauty-Shop auf vorteile.net – exklusive Vorteilspreise für Deine Community, Beteiligung am Gewinn jeder Bestellung, null Aufwand.",
+        "intro_lead": "Exklusive Vorteilspreise von über 80 Beauty-Marken – und weit darüber hinaus. Auf vorteile.net, in Deinem Look, nur für Deine Community. An jeder Bestellung verdienst Du mit.",
+        "edits_example": "von „Meine Morning Routine“ bis „Geschenke unter 50&nbsp;€“",
+        "marken_lead": "Vom Luxusduft bis zum LED-Beauty-Device: Allein in Health &amp; Beauty warten über 80 Marken und 250+ Produkte – und das ist nur ein Ausschnitt.",
+        "lux_more": "<b>+&nbsp;70</b><span>weitere Marken in Health&nbsp;&amp;&nbsp;Beauty</span>",
+        "logos_label": "Weitere Marken in Health &amp; Beauty",
+        "more": "<strong>Und weit mehr als Beauty:</strong> Insgesamt über 450 Markenpartner, 3.000+ Markenprodukte und 70+ Partnergutscheine auf vorteile.net – von Mode und Sport bis Reisen und Technik. Dein Sortiment stellen wir passend zu Deiner Zielgruppe zusammen.",
+        "edits_lead": "Stell Dein Sortiment zusammen wie Deinen Feed – Lieblingsprodukte, Routinen, Geschenkideen. Echte Produkte aus dem aktuellen Angebot, inklusive Deinem Anteil*.",
+        "calc_basis": "Health-&amp;-Beauty-Sortiment",
+        "step1": "Gemeinsam schneiden wir Dein Sortiment auf Deine Zielgruppe zu – Beauty und alles, was Deine Community sonst liebt.",
+        "recap4": "<b>Beauty &amp; weit mehr</b><span>80+ Beauty-Marken, 450+ Markenpartner insgesamt – zugeschnitten auf Deine Community.</span>",
+        "fine_kat": "Kategorie Health &amp; Beauty", "recap4_icon": "heart",
+    },
+    "allgemein": {
+        "page_title": "Vorteils-Shop", "shop": "Vorteils-Shop", "topic": "15 Welten · 450+ Marken",
+        "meta": "Dein eigener Vorteils-Shop auf vorteile.net – exklusive Vorteilspreise von über 450 Marken in 15 Welten für Deine Community, Beteiligung am Gewinn jeder Bestellung, null Aufwand.",
+        "intro_lead": "Exklusive Vorteilspreise von über 450 Marken in 15 Welten – von Technik über Reisen bis Mode. Auf vorteile.net, in Deinem Look, nur für Deine Community. An jeder Bestellung verdienst Du mit.",
+        "edits_example": "von „Meine Tech-Favoriten“ bis „Geschenke unter 50&nbsp;€“",
+        "marken_lead": "Von Apple bis adidas, von Dyson bis Sixt: die großen Namen aus allen Welten – zu Preisen, die es sonst nur für Mitarbeitende gibt.",
+        "lux_more": "<b>+&nbsp;440</b><span>weitere Marken in 15&nbsp;Welten</span>",
+        "logos_label": "Weitere Marken aus allen Welten",
+        "more": "<strong>Und das ist nur ein Ausschnitt:</strong> Insgesamt über 450 Markenpartner, 3.000+ Markenprodukte und 70+ Partnergutscheine auf vorteile.net – vom Mobilfunktarif bis zur Reise. Neue Deals kommen laufend dazu.",
+        "edits_lead": "Stell Dein Sortiment zusammen wie Deinen Feed – Lieblingsprodukte, Tech-Favoriten, Reise-Essentials, Geschenkideen. Echte Produkte aus dem aktuellen Angebot, inklusive Deinem Anteil*.",
+        "calc_basis": "Sortiment",
+        "step1": "Gemeinsam schneiden wir Dein Sortiment auf Deine Zielgruppe zu – aus 15 Welten genau das, was Deine Community liebt.",
+        "recap4": "<b>15 Welten</b><span>450+ Markenpartner – von Technik über Reisen bis Mode, zugeschnitten auf Deine Community.</span>",
+        "fine_kat": "Kategorien Technik, Home &amp; Living, Mobilität, Mode &amp; Accessoires, Sport und Health &amp; Beauty",
+        "recap4_icon": "layers",
+    },
+}
+
+
+def tv(key: str) -> str:
+    """Text der aktuellen Fassung (Thema)."""
+    return THEMES[CUR["theme"]][key]
 
 
 def vp_portal(pv: dict) -> str:
@@ -275,12 +373,12 @@ def vp_portal(pv: dict) -> str:
     <div class="vp__bar"><span class="vp__dots"><i></i><i></i><i></i></span><span class="vp__url">{icon("lock")}<span><span data-bind="slug">deinname</span>.vorteile.net/de/dashboard</span></span><span class="vp__bar-end"></span></div>
     <div class="vp__header">
       <div class="vp__top">{vp_logo()}<span class="vp__search">Suchen{icon("search")}</span><span class="vp__account"><b>Community-Shop</b><small data-bind="name">Dein Name</small></span></div>
-      <div class="vp__nav"><span class="vp__cats">{VP_CATS}</span><span class="vp__icons">{icon("heart")}{icon("user")}<span class="vp__cart">{icon("bag")}<b>1</b></span></span></div>
+      <div class="vp__nav"><span class="vp__cats">{VP_CATS if CUR["theme"] == "beauty" else VP_CATS_GEN}</span><span class="vp__icons">{icon("heart")}{icon("user")}<span class="vp__cart">{icon("bag")}<b>1</b></span></span></div>
     </div>
     <div class="vp__stage">
       <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span><span class="vp__fade"></span>
-      <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
-      <div class="vp__grid">{vp_deal(d[0], DEAL_TEXT.get(d[0]))}{vp_deal(d[1], DEAL_TEXT.get(d[1]))}</div>
+      <div class="vp__head"><strong>{BEST_OF[CUR["theme"]]}</strong><em>Exklusive Angebote</em></div>
+      <div class="vp__grid">{vp_deal(d[0], dtext(d[0]))}{vp_deal(d[1], dtext(d[1]))}</div>
       <div class="vp__head vp__head--shop"><strong>Besonders beliebt im Vorteils-Shop</strong><em>Im Trend</em></div>
       <div class="vp__products">{"".join(vp_product(p) for p in products)}</div>
     </div>
@@ -297,11 +395,11 @@ def vpm_phone(pv: dict) -> str:
     <div class="vpm">
       <div class="vpm__status"><span>9:41</span><span class="vpm__island"></span><span class="vpm__sig"><i></i><i></i><i></i></span></div>
       <div class="vpm__header">{vp_logo()}<span class="vpm__icons">{icon("search")}{icon("heart")}<span class="vp__cart">{icon("bag")}<b>1</b></span></span></div>
-      <div class="vpm__cats"><i class="is-on">Health &amp; Beauty</i><i>Düfte</i><i>Skincare</i><i>Beauty-Tech</i></div>
+      <div class="vpm__cats">{VPM_CATS[CUR["theme"]]}</div>
       <div class="vpm__stage">
         <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span><span class="vp__fade"></span>
-        <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
-        {vp_deal(d[0], DEAL_TEXT.get(d[0]))}
+        <div class="vp__head"><strong>{BEST_OF[CUR["theme"]]}</strong><em>Exklusive Angebote</em></div>
+        {vp_deal(d[0], dtext(d[0]))}
         <div class="vpm__products">{"".join(vp_product(p) for p in products)}</div>
       </div>
     </div>
@@ -351,10 +449,18 @@ def swatches(colors, kind: str) -> str:
 
 
 def frag_lux() -> str:
+    if CUR["theme"] == "allgemein":
+        return "\n".join(f'<li data-anim="pop">{logo(gen_brand_slug[n], n)}</li>' for n in mixed(gen_sel["lux"], "lux"))
     return "\n".join(f'<li data-anim="pop">{logo(slug, brand_names.get(slug, slug))}</li>' for slug in mixed(LUX, "lux"))
 
 
 def frag_categories() -> str:
+    if CUR["theme"] == "allgemein":  # Top-Rabatt je gespeicherter Welt (aus den Partner-Deals)
+        saved = sorted((t for t in gen_tree if t.get("gespeichert") and t["gespeichert"].get("max_rabatt")),
+                       key=lambda t: -t["gespeichert"]["max_rabatt"])
+        return "\n".join(f'<div><dt>{esc(t["name"])}</dt><dd><span class="stat__pre">bis</span> '
+                         f'<span data-count="{t["gespeichert"]["max_rabatt"]}">{t["gespeichert"]["max_rabatt"]}</span>'
+                         f'<span class="stat__suffix">&nbsp;%</span></dd></div>' for t in saved)
     counts = {name: 0 for name, _ in CATEGORIES}
     for p in catalog:
         for name, rx in CATEGORIES:
@@ -366,6 +472,15 @@ def frag_categories() -> str:
 
 
 def frag_logos() -> str:
+    if CUR["theme"] == "allgemein":  # zwei gegenläufige Laufbänder mit bekannten Marken aus allen Welten
+        out = []
+        for n, row in enumerate(gen_sel["logos"]):
+            row = mixed(row, f"logos-{n}")
+            tiles = "".join(f"<li>{logo(gen_brand_slug[x], x)}</li>" for x in row)
+            dup = "".join(f"<li>{logo(gen_brand_slug[x])}</li>" for x in row)
+            out.append(f'<div class="marquee{" marquee--rev" if n else ""}" style="--dur:{110 + n * 20}s"><ul class="marquee__track">{tiles}</ul>'
+                       f'<ul class="marquee__track" aria-hidden="true">{dup}</ul></div>')
+        return "".join(out)
     rest = mixed([b for b in brands if b["slug"] not in LUX], "logos")
     tiles = "".join(f"<li>{logo(b['slug'], b['name'])}</li>" for b in rest)
     dup = "".join(f"<li>{logo(b['slug'])}</li>" for b in rest)
@@ -402,22 +517,32 @@ def frag_edit_panels(rate: float) -> str:
 
 def frag_deals() -> str:
     """Zwei gegenläufige Laufbänder mit Partner-Deals (jede Reihe doppelt für eine nahtlose Schleife)."""
-    pool = mixed(sel["deals"][:2 * DEAL_ROW], "deals")
-    rows = [pool[:DEAL_ROW], pool[DEAL_ROW:2 * DEAL_ROW]]
+    if CUR["theme"] == "allgemein":
+        wall = [(t, None) for t in mixed(gen_sel["wall"], "deals")]
+        half = (len(wall) + 1) // 2
+        rows = [wall[:half], wall[half:]]
+    else:
+        pool = mixed(sel["deals"][:2 * DEAL_ROW], "deals")
+        rows = [pool[:DEAL_ROW], pool[DEAL_ROW:2 * DEAL_ROW]]
     out = []
     for n, row in enumerate(rows):
         tiles = "".join(f'<li class="vdeal vreal">{vp_deal(t, txt)}</li>' for t, txt in row)
-        out.append(f'<div class="dealrow{" dealrow--rev" if n else ""}" style="--dur:{150 + n * 25}s">'
+        out.append(f'<div class="dealrow{" dealrow--rev" if n else ""}{" dealrow--compact" if CUR["theme"] == "allgemein" else ""}" style="--dur:{150 + n * 25}s">'
                    f'<ul class="dealrow__track">{tiles}</ul><ul class="dealrow__track" aria-hidden="true">{tiles}</ul></div>')
     return "\n".join(out)
 
 
 def ig_phone(rate: float, pv: dict) -> str:
     """Handy mit Instagram: Feed → Story → Link → Webshop (vorteile.net) → zurück zur Story. Ablauf: CSS-Schleife."""
-    post = find("LANCÔME") if not CUR["slug"] else product(pick_one(POST_POOL, "post"))
-    story_pair, story_text, caption = STORIES[0] if not CUR["slug"] else pick_one(STORIES[1:], "story")
-    if CUR["slug"]:
-        caption = pick_one(CAPTIONS, "caption")  # Feed-Post zeigt einen Duft – Bildunterschrift passend dazu
+    if CUR["theme"] == "allgemein":  # allgemeine Fassung: Post und Story aus data/general/selection.json
+        g = gen_sel["preview"]
+        post, story_pair = product(g["post"]), g["story"]
+        story_text, caption = g["story_text"], g["caption"]
+    else:
+        post = find("LANCÔME") if not CUR["slug"] else product(pick_one(POST_POOL, "post"))
+        story_pair, story_text, caption = STORIES[0] if not CUR["slug"] else pick_one(STORIES[1:], "story")
+        if CUR["slug"]:
+            caption = pick_one(CAPTIONS, "caption")  # Feed-Post zeigt einen Duft – Bildunterschrift passend dazu
     st = product(story_pair)
     all_ = pv_products(pv)
     d = pv["deals"]
@@ -458,14 +583,14 @@ def ig_phone(rate: float, pv: dict) -> str:
           <div class="vpm ig__shophead"><div class="vpm__header">{vp_logo()}<span class="vpm__icons">{icon("search")}{icon("heart")}<span class="vp__cart ig__cartbtn">{icon("bag")}<b class="ig__badge">1</b></span></span></div></div>
           <div class="ig__scroll">
             <div class="vpm ig__page">
-              <div class="vpm__cats"><i class="is-on">Health &amp; Beauty</i><i>Düfte</i><i>Skincare</i><i>Beauty-Tech</i></div>
+              <div class="vpm__cats">{VPM_CATS[CUR["theme"]]}</div>
               <div class="vpm__stage">
                 <span class="vp__bg vp__bg--image"></span><span class="vp__bg vp__bg--solid"></span><span class="vp__bg vp__bg--gradient"></span><span class="vp__fade"></span>
-                <div class="vp__head"><strong>Best of Health &amp; Beauty</strong><em>Exklusive Angebote</em></div>
-                {vp_deal(d[0], DEAL_TEXT.get(d[0]))}
+                <div class="vp__head"><strong>{BEST_OF[CUR["theme"]]}</strong><em>Exklusive Angebote</em></div>
+                {vp_deal(d[0], dtext(d[0]))}
                 <div class="vpm__products">{vp_product(page1[0])}<span class="ig__pick">{vp_product(pick)}</span></div>
                 <div class="vp__head vp__head--shop"><strong>Nur für Deine Community</strong><em>Partner-Deals</em></div>
-                <div class="ig__deals">{vp_deal(d[-2], DEAL_TEXT.get(d[-2]))}{vp_deal(d[-1], DEAL_TEXT.get(d[-1]))}</div>
+                <div class="ig__deals">{vp_deal(d[-2], dtext(d[-2]))}{vp_deal(d[-1], dtext(d[-1]))}</div>
                 <div class="vpm__products">{"".join(vp_product(x) for x in page2)}</div>
               </div>
             </div>
@@ -492,6 +617,50 @@ def ig_phone(rate: float, pv: dict) -> str:
 </div>"""
 
 
+# --------------------------------------------------------------- allgemeine Fassung: Welten, Zielgruppen, Top-Deals
+def frag_zielgruppen() -> str:
+    return "\n".join(
+        f'<button type="button" class="aud__btn" data-aud-btn="{z["id"]}" aria-pressed="{"true" if i == 0 else "false"}">'
+        f'{icon(z["icon"])}<span><b>{esc(z["label"])}</b><small>{esc(z["sub"])}</small></span></button>'
+        for i, z in enumerate(gen_sel["zielgruppen"]))
+
+
+def frag_welten() -> str:
+    """Alle Kategorien des Portals (Navigation) mit Unterkategorien; Top-Rabatt, wo eine Speicherung vorliegt."""
+    cfg = {w["name"]: w for w in gen_sel["welten"]}
+    out = []
+    for t in gen_tree:
+        w = cfg[t["name"]]
+        subs = t["subs"]
+        line = " · ".join(subs[:3]) + (" …" if len(subs) > 3 else "") if subs else w.get("text", "")
+        mx = (t.get("gespeichert") or {}).get("max_rabatt")
+        badge = f'<em class="world__badge">bis {mx}&nbsp;%</em>' if mx else ""
+        tip = esc(" · ".join(subs)) if subs else esc(line)
+        out.append(f'<li data-world="{w["gruppen"]}" title="{tip}"><span class="world__icon">{icon(w["icon"])}</span>'
+                   f'<b>{esc(t["name"])}</b><small>{esc(line)}</small>{badge}</li>')
+    return "\n".join(out)
+
+
+def spot_card(title: str, on: bool) -> str:
+    d = deal(title)
+    m = re.match(r"(bis zu|über)?\s*([\d.,]+)\s*(%|€)?", d["discount"] or "")
+    pre, num, unit = (m.group(1) or ""), int(m.group(2).replace(".", "").replace(",", "")), (m.group(3) or "")
+    shown = f"{num:,}".replace(",", ".")
+    pre_html = f"<small>{esc(pre)}</small>" if pre else ""
+    return (f'<article class="spot__card{" is-on" if on else ""}" data-spot-card>'
+            f'<span class="dimg di-{d["slug"]}"></span><span class="spot__shade"></span>'
+            f'<span class="spot__logo">{deal_logo(d, title)}</span><span class="spot__cat">{esc(d["kategorien"][0])}</span>'
+            f'<span class="spot__val">{pre_html}<b data-spot-num="{num}">{shown}</b><em>{"&nbsp;" + unit if unit else ""}</em></span>'
+            f'<span class="spot__title">{esc(deal_name(title))}</span><span class="spot__text">{esc(d["text"] or "")}</span></article>')
+
+
+def frag_spotlight(slots: int = 4) -> str:
+    """Top-Deals: vier Plätze, jeder wechselt zwischen zwei großen Deals (Schleife in app.js)."""
+    items = mixed(gen_sel["spotlight"], "spot")
+    return "".join(f'<div class="spot__slot" style="--si:{i}">{"".join(spot_card(t, k == 0) for k, t in enumerate(items[i::slots]))}</div>'
+                   for i in range(slots))
+
+
 def frag_lockscreen() -> str:
     """iPhone-Sperrbildschirm (iOS-Stil). Mitteilungen schiebt app.js fortlaufend von unten ein."""
     return f"""<div class="ios" aria-hidden="true">
@@ -514,6 +683,16 @@ def frag_lockscreen() -> str:
 
 
 # --------------------------------------------------------------- CSS-Kopf (Schriften + Bilder, jedes nur einmal)
+def asset_file(kind: str, slug: str, exts=("jpg",)) -> Path | None:
+    """Bild der aktuellen Fassung: allgemeine Fassung zuerst assets/general/<kind>/, sonst assets/<kind>/."""
+    dirs = [G_ASSETS / kind, ASSETS / kind] if CUR["theme"] == "allgemein" else [ASSETS / kind]
+    for d in dirs:
+        for e in exts:
+            if (d / f"{slug}.{e}").exists():
+                return d / f"{slug}.{e}"
+    return None
+
+
 def css_head(bg_image: Path | None = None) -> str:
     fonts = ASSETS / "fonts"
     parts = []
@@ -527,18 +706,28 @@ def css_head(bg_image: Path | None = None) -> str:
     ui = ASSETS / "ui"
     parts.append(f".vp__logo-incent{{background-image:url({data_uri(ui / 'incent-logo-dark.png')})}}")
     parts.append(f".vp-theme[data-nav-tone=\"dark\"] .vp__logo-incent{{background-image:url({data_uri(ui / 'incent-logo-white.png')})}}")
-    parts.append(f".vp__bg--image,.bg-opt__thumb--image{{background-image:url({data_uri(bg_image or ui / 'bg-health-beauty.jpg')})}}")
-    parts += [f".pi-{s}{{background-image:url({data_uri(ASSETS / 'products' / f'{s}.jpg')})}}" for s in sorted(used_products)]
-    parts += [f".di-{s}{{background-image:url({data_uri(ASSETS / 'deals' / f'{s}.jpg')})}}" for s in sorted(used_deals)]
-    parts += [f".lg-{s}{{background-image:url({data_uri(ASSETS / 'logos' / f'{s}.png')})}}" for s in sorted(used_logos)
-              if (ASSETS / "logos" / f"{s}.png").exists()]
+    default_bg = G_ASSETS / "ui" / "bg-technik.jpg" if CUR["theme"] == "allgemein" else ui / "bg-health-beauty.jpg"
+    parts.append(f".vp__bg--image,.bg-opt__thumb--image{{background-image:url({data_uri(bg_image or default_bg)})}}")
+    parts += [f".pi-{s}{{background-image:url({data_uri(asset_file('products', s))})}}" for s in sorted(used_products)]
+    parts += [f".di-{s}{{background-image:url({data_uri(asset_file('deals', s))})}}" for s in sorted(used_deals)]
+    parts += [f".lg-{s}{{background-image:url({data_uri(f)})}}" for s in sorted(used_logos)
+              if (f := asset_file("logos", s, ("png",) if CUR["theme"] == "beauty" else ("png", "svg")))]
+    parts += [f".dl-{s}{{background-image:url({data_uri(f)})}}" for s in sorted(used_dlogos)
+              if (f := next((G_ASSETS / "dlogos" / f"{s}.{e}" for e in ("png", "svg") if (G_ASSETS / "dlogos" / f"{s}.{e}").exists()), None))]
     return "\n".join(parts) + "\n"
 
 
 # --------------------------------------------------------------- Seite bauen
 def render(pitch: dict | None, pv: dict | None = None) -> str:
+    global sel
     pitch = pitch or {}
-    pv = pv or DEFAULT_PREVIEW
+    CUR["theme"] = pitch.get("thema", "beauty")
+    if CUR["theme"] not in THEMES:
+        raise SystemExit(f"Unbekanntes Thema: {CUR['theme']!r} (beauty oder allgemein)")
+    sel = gen_sel if CUR["theme"] == "allgemein" else SEL_BEAUTY
+    for used in (used_products, used_deals, used_logos, used_dlogos):  # jede Seite bettet nur ihre eigenen Bilder ein
+        used.clear()
+    pv = pv or (GEN_PREVIEW if CUR["theme"] == "allgemein" else DEFAULT_PREVIEW)
     CUR["slug"] = pitch.get("slug") if pitch.get("name") else None
     named = [x["slug"] for x in json.loads((DATA / "pitches.json").read_text(encoding="utf-8")).get("pitches", []) if x.get("name")]
     CUR["i"] = named.index(CUR["slug"]) if CUR["slug"] in named else 0
@@ -547,22 +736,29 @@ def render(pitch: dict | None, pv: dict | None = None) -> str:
     rate = round(share * margin / 10000, 6)  # Verdienst je Euro Umsatz: Marge × Gewinnbeteiligung (25 % × 70 % = 17,5 %)
     name = (pitch.get("name") or "").strip()
     page = (SRC / "template.html").read_text(encoding="utf-8")
+    # Fassung anwenden: <!--@if thema-->…<!--@end--> und Texte <!--@t:schlüssel-->
+    page = re.sub(r"<!--@if (\w+)-->(.*?)<!--@end-->", lambda m: m.group(2) if m.group(1) == CUR["theme"] else "", page, flags=re.S)
+    page = re.sub(r"<!--@t:(\w+)-->", lambda m: tv(m.group(1)), page)
     poss = (name + ("’" if re.search(r"[sxzß]$", name, re.I) else "s")) if name else ""
+    general = CUR["theme"] == "allgemein"
     fragments = {
         "icons": (SRC / "icons.svg").read_text(encoding="utf-8"),
-        "page_title": esc(f"{poss} Beauty-Shop · INCENT Community-Shop" if name else "Dein eigener Beauty-Shop · INCENT Community-Shop"),
+        "page_title": esc(f"{poss} {tv('page_title')} · INCENT Community-Shop" if name else f"Dein eigener {tv('page_title')} · INCENT Community-Shop"),
         "vp_hero": vp_portal(pv), "vpm_phone": vpm_phone(pv), "winwin": frag_winwin(rate),
         "swatches_btn": swatches(BTN_COLORS, "btn"), "swatches_nav": swatches(NAV_COLORS, "nav"),
         "lux": frag_lux(),
         "categories": frag_categories(), "logos": frag_logos(), "edit_tabs": frag_edit_tabs(),
-        "edit_panels": frag_edit_panels(rate), "deals": frag_deals(), "deal_count": str(len(deals)), "ig_phone": ig_phone(rate, pv),
-        "lockscreen": frag_lockscreen(), "snapshot_date": SNAPSHOT_DATE,
+        "edit_panels": frag_edit_panels(rate), "deals": frag_deals(), "ig_phone": ig_phone(rate, pv),
+        "lockscreen": frag_lockscreen(), "snapshot_date": SNAPSHOT_GEN if general else SNAPSHOT_DATE, "thema": CUR["theme"],
+        "avg": f"{round((AVG_DISCOUNT_GEN if general else AVG_DISCOUNT) * 100)}",
     }
+    if general:
+        fragments.update({"spotlight": frag_spotlight(), "welten": frag_welten(), "zielgruppen": frag_zielgruppen(),
+                          "welten_n": str(len(gen_tree)), "deal_count": str(len(gen_deals) // 10 * 10)})
+    else:
+        fragments["deal_count"] = str(len(deals))
     for key, value in fragments.items():
-        marker = f"<!--@{key}-->"
-        if marker not in page:
-            raise SystemExit(f"Marker fehlt im Template: {marker}")
-        page = page.replace(marker, value)
+        page = page.replace(f"<!--@{key}-->", value)
     pct = lambda v: f"{v:g}".replace(".", ",")
     page = page.replace("<!--@fine_rate-->", f"*Durchschnittsmarge ist rund {pct(margin)}&nbsp;%")
     page = page.replace("<!--@share-->", pct(share)).replace("<!--@margin-->", pct(margin))
@@ -582,7 +778,8 @@ def render(pitch: dict | None, pv: dict | None = None) -> str:
                   "hintergrundton": pitch.get("hintergrundton"),
                   "reichweite": pitch.get("reichweite"),
                   "logo": logo_uri, "slug": pitch.get("slug")},
-        "avgDiscount": round(AVG_DISCOUNT, 4),
+        "avgDiscount": round(AVG_DISCOUNT_GEN if general else AVG_DISCOUNT, 4),
+        "t": {"topic": html.unescape(tv("topic")), "shop": tv("shop")},
         "presets": PRESETS,
     }
     page = page.replace("/*@CSS*/", css_head(DATA / "pitches" / pitch["hintergrundbild"] if pitch.get("hintergrundbild") else None) + (SRC / "style.css").read_text(encoding="utf-8"), 1)
@@ -611,8 +808,12 @@ def redirect_page(slug: str) -> str:
 def main() -> None:
     cfg = json.loads((DATA / "pitches.json").read_text(encoding="utf-8"))
     out = ROOT / "index.html"
-    out.write_text(redirect_page(START), encoding="utf-8")
-    print(f"index.html  Weiterleitung  →  /pitch/{START}/")
+    if cfg.get("startseite"):  # https://dinosbs.github.io/pitch/ zeigt die allgemeine Fassung direkt
+        out.write_text(render(cfg["startseite"]), encoding="utf-8")
+        print(f"index.html  {out.stat().st_size / 1e6:.1f} MB  →  /pitch/  (Thema {CUR['theme']})")
+    else:
+        out.write_text(redirect_page(START), encoding="utf-8")
+        print(f"index.html  Weiterleitung  →  /pitch/{START}/")
     previews = preview_sets(cfg.get("pitches", []))
     for slug, pv in previews.items():
         print(f"  Vorschau {slug}: {', '.join(pv['deals'])} | {', '.join(b for b, _ in pv['products'])}")

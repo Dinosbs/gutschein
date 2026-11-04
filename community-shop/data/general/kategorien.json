@@ -1,0 +1,191 @@
+[
+ {
+  "name": "Mobilfunk & Internet",
+  "slug": "mobilfunk-internet",
+  "subs": [],
+  "gespeichert": null
+ },
+ {
+  "name": "Mobilität",
+  "slug": "mobilitaet",
+  "subs": [
+   "Auto",
+   "Neuwagen",
+   "Gebrauchtwagen",
+   "Zweiräder",
+   "Autovermietung",
+   "Zubehör & Service"
+  ],
+  "gespeichert": {
+   "produkte": 20,
+   "deals": 24,
+   "marken": 35,
+   "max_rabatt": 60,
+   "hintergrund": true
+  }
+ },
+ {
+  "name": "Technik",
+  "slug": "technik",
+  "subs": [
+   "Laptops & Tablets",
+   "Smartphones & Wearables",
+   "Audio & Kopfhörer",
+   "Strom & Energie",
+   "TV, Foto & Gaming",
+   "Gadgets & Zubehör"
+  ],
+  "gespeichert": {
+   "produkte": 20,
+   "deals": 32,
+   "marken": 82,
+   "max_rabatt": 83,
+   "hintergrund": true
+  }
+ },
+ {
+  "name": "Health & Beauty",
+  "slug": "health-beauty",
+  "subs": [
+   "Gesundheit & Hygiene",
+   "Beauty & Wellness",
+   "Düfte & Kosmetik",
+   "Nahrungsergänzung"
+  ],
+  "gespeichert": {
+   "produkte": 20,
+   "deals": 32,
+   "marken": 88,
+   "max_rabatt": 66,
+   "hintergrund": true
+  }
+ },
+ {
+  "name": "Home & Living",
+  "slug": "home-living",
+  "subs": [
+   "Wohnen & Accessoires",
+   "Garten & Heimwerken",
+   "Haushaltsbedarf",
+   "Haushaltselektronik"
+  ],
+  "gespeichert": {
+   "produkte": 20,
+   "deals": 32,
+   "marken": 150,
+   "max_rabatt": 66,
+   "hintergrund": true
+  }
+ },
+ {
+  "name": "Reisen",
+  "slug": "reisen",
+  "subs": [
+   "Reisegepäck",
+   "Kreuzfahrten",
+   "Pauschalreisen",
+   "Reiseportale & Hotels",
+   "Erlebnisreisen"
+  ],
+  "gespeichert": null
+ },
+ {
+  "name": "Sport",
+  "slug": "sport",
+  "subs": [
+   "Sportmode & Ausrüstung",
+   "Geräte & Home-Gym",
+   "Supplements",
+   "Outdoorsport"
+  ],
+  "gespeichert": {
+   "produkte": 20,
+   "deals": 32,
+   "marken": 41,
+   "max_rabatt": 33,
+   "hintergrund": false
+  }
+ },
+ {
+  "name": "Tickets",
+  "slug": "tickets",
+  "subs": [
+   "Ausstellungen & Museen",
+   "Freizeitparks",
+   "Shows & Entertainment"
+  ],
+  "gespeichert": null
+ },
+ {
+  "name": "Mode & Accessoires",
+  "slug": "mode-accessoires",
+  "subs": [
+   "Damen- & Herrenmode",
+   "Kindermode",
+   "Schuhe",
+   "Schmuck & Accessoires",
+   "Taschen & Reisegepäck"
+  ],
+  "gespeichert": {
+   "produkte": 20,
+   "deals": 32,
+   "marken": 86,
+   "max_rabatt": 35,
+   "hintergrund": true
+  }
+ },
+ {
+  "name": "Essen & Trinken",
+  "slug": "essen-trinken",
+  "subs": [
+   "Küchen- & Haushaltsgeräte",
+   "Kaffee, Tee & Gewürze",
+   "Gedeckter Tisch",
+   "Kochen & Backen",
+   "Restaurant & Lieferdienste",
+   "Food, Sweets & Wine"
+  ],
+  "gespeichert": null
+ },
+ {
+  "name": "Finanzwelt",
+  "slug": "finanzwelt",
+  "subs": [
+   "Finanzdienstleistungen",
+   "Versicherungen"
+  ],
+  "gespeichert": null
+ },
+ {
+  "name": "Freizeit & Familie",
+  "slug": "freizeit-familie",
+  "subs": [
+   "Familie, Kind & Spielwaren",
+   "Geschenkideen",
+   "Outdoor & Camping",
+   "Tierbedarf",
+   "Bücher & Zeitschriften"
+  ],
+  "gespeichert": null
+ },
+ {
+  "name": "Weiterbildung",
+  "slug": "weiterbildung",
+  "subs": [
+   "Sprache, Schule & Fernstudium"
+  ],
+  "gespeichert": null
+ },
+ {
+  "name": "Gutscheinwelt",
+  "slug": "gutscheinwelt",
+  "subs": [],
+  "gespeichert": null
+ },
+ {
+  "name": "Lotterie & Gewinnspiel",
+  "slug": "lotterie-gewinnspiel",
+  "subs": [],
+  "gespeichert": null
+ }
+]
